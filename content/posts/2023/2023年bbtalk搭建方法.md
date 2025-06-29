@@ -5,7 +5,7 @@ update: 2023-01-27 22:00
 category: [搭建]
 top_img: false
 tags: [artalk, butterfly]
-cover: https://cloud.myxz.top/d/img/default_cover_12.avif?sign=Fh0qjJ9vC0ggdUzVfIA6NxMOnaSx7pnhVfAzHm45oOs=:0
+image: https://cloud.myxz.top/d/img/default_cover_12.avif?sign=Fh0qjJ9vC0ggdUzVfIA6NxMOnaSx7pnhVfAzHm45oOs=:0
 abbrlink: 58408
 ---
 bbtalk部署方式：

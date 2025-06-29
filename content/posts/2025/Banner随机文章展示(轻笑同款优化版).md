@@ -3,7 +3,7 @@ title: Banner随机文章展示(轻笑同款)
 description: 首页显示随机文章，修复一些bug
 date: 2025-03-01 10:00
 updated: 2025-03-05 12:09
-cover: https://sourceimage.s3.bitiful.net/img/default_cover_10.avif
+image: https://sourceimage.s3.bitiful.net/img/default_cover_10.avif
 category: [hexo]
 tags: [hexo, butterfly, 美化]
 ---
@@ -21,7 +21,7 @@ hexo.extend.generator.register('thePosts', function (locals) {
         return {
           title: post.title || "暂无标题",
           abbrlink: post.abbrlink,
-          cover: post.cover,
+          image: post.cover,
           description: post.description || "暂无简介"
         };
       });

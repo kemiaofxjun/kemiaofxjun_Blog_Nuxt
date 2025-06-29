@@ -3,7 +3,7 @@ title: 首页分类条美化
 description: 从零开始魔改butterfly
 date: 2025-03-05 8:00
 updated: 2025-03-06 18:00
-cover: https://sourceimage.s3.bitiful.net/img/default_cover_19.avif
+image: https://sourceimage.s3.bitiful.net/img/default_cover_19.avif
 category: [hexo]
 tags: [hexo, butterfly]
 ---
