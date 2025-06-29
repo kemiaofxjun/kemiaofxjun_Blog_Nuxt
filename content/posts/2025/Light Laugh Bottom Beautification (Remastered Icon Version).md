@@ -6,6 +6,7 @@ update: 2025-02-28 10:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_15.avif
 categories: [hexo]
 tags: [hexo, butterfly, 美化]
+recommend: true
 ---
 ## 1.前言
 这篇文章根据[轻笑](https://qcqx.cn)的css文件和html进行美化，本篇文章的主题为：4.5.0，其他版本需自己适配

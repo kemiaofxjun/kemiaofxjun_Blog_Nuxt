@@ -6,6 +6,7 @@ image: https://sourceimage.s3.bitiful.net/img/default_cover_1.avif
 categories: [hexo]
 top_img: false
 tags: [hexo, butterfly]
+recommend: true
 ---
 # 一.前言
 由于我想要修改一下导航栏，对一些功能进行优化，所以有了这篇文章，那么就来修改吧

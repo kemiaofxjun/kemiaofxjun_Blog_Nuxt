@@ -6,6 +6,7 @@ updated: 2025-02-07 12:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_9.avif
 categories: [hexo]
 tags: [hexo, butterfly]
+recommend: true
 ---
 # 一.添加iconfont
 打开[iconfont](https://www.iconfont.cn/)，进行注册，注册完毕后在搜索栏中进行搜索，搜索到对应图标选择图标，点击右上角进入添加图标到选定的图标库名称。

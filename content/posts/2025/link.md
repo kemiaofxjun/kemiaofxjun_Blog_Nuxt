@@ -7,6 +7,7 @@ image: https://sourceimage.s3.bitiful.net/img/default_cover_18.avif
 categories: [hexo]
 top_img: false
 tags: [hexo, butterfly, 美化]
+recommend: true
 ---
 
 ## 前言
