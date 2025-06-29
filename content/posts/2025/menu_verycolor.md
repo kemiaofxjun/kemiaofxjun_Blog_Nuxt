@@ -4,7 +4,7 @@ description: 对导航栏进行修改，以支持多色图标
 date: 2025-02-05 10:00
 updated: 2025-02-07 12:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_9.avif
-category: [hexo]
+categories: [hexo]
 tags: [hexo, butterfly]
 ---
 # 一.添加iconfont

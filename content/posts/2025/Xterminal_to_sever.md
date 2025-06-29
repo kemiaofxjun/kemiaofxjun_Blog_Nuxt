@@ -4,7 +4,7 @@ description: 在windows上的服务内网穿透到云服务器
 date: 2025-03-25 20:00
 update: 2025-03-26 20:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_43.avif
-category: [教程]
+categories: [教程]
 tags: [内网穿透, 工具]
 ---
 ## 前言

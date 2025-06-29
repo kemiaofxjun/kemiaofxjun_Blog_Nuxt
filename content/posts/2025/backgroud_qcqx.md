@@ -4,7 +4,7 @@ description: 从零开始魔改butterfly
 date: 2025-03-05 8:00
 updated: 2025-03-06 18:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_21.avif
-category: [hexo]
+categories: [hexo]
 tags: [hexo, butterfly]
 ---
 一.前言

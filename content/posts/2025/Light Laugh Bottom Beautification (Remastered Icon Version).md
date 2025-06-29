@@ -4,7 +4,7 @@ description: 对底部进行添加图标，建站时间以及美化
 date: 2025-02-27 10:00
 update: 2025-02-28 10:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_15.avif
-category: [hexo]
+categories: [hexo]
 tags: [hexo, butterfly, 美化]
 ---
 ## 1.前言

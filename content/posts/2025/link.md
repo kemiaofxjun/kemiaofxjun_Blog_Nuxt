@@ -4,7 +4,7 @@ description: 友链页面美化以及添加功能
 date: 2025-04-19 10:00
 updated: 2025-04-19 12:09
 image: https://sourceimage.s3.bitiful.net/img/default_cover_18.avif
-category: [hexo]
+categories: [hexo]
 top_img: false
 tags: [hexo, butterfly, 美化]
 ---

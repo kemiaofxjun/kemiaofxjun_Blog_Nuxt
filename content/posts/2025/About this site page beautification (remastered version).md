@@ -3,7 +3,7 @@ title: 关于页面美化
 description: 对关于页面进行美化
 date: 2025-03-24 9:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_11.avif
-category: [hexo]
+categories: [hexo]
 top_img: false
 tags: [hexo, butterfly]
 ---

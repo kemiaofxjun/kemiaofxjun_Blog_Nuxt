@@ -4,7 +4,7 @@ description: 给归档、分类、标签页文章卡片加上所属分类和标�
 date: 2025-03-24 8:00:09
 updated: 2025-03-24 10:56:09
 image: https://sourceimage.s3.bitiful.net/img/default_cover_37.avif
-category: [hexo]
+categories: [hexo]
 tags: [hexo, butterfly]
 ---
 

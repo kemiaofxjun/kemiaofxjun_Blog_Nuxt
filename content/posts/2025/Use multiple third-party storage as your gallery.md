@@ -4,7 +4,7 @@ description: 使用多个第三方存储作为图库或者静态文件进行使�
 date: 2025-04-01 10:00
 updated: 2025-04-01 12:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_26.avif
-category: [教程]
+categories: [教程]
 top_img: false
 tags: [存储, 第三方]
 ---

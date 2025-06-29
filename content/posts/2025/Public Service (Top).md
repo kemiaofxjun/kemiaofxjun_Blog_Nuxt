@@ -4,7 +4,7 @@ description: 方便给需要的人使用
 date: '2025-03-22 12:45'
 updated: '2025-03-22 14:09'
 image: https://sourceimage.s3.bitiful.net/img/default_cover_10.avif
-category: [公益]
+categories: [公益]
 top_img: false
 tags: [公益, 服务]
 abbrlink: public
