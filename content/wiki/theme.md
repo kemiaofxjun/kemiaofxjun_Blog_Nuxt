@@ -1,7 +1,7 @@
 ---
 title: 主题
 hide-info: true
-
+categories: [经验分享]
 aside: [github-card, toc]
 top: [wiki]
 wiki:
