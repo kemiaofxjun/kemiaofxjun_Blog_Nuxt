@@ -13,7 +13,7 @@ export default [{
         feed: 'https://blog.liushen.fun/atom.xml',
         icon: '/assets/img/link/LiuShen.webp',
         avatar: 'https://blog.liushen.fun/info/avatar.ico',
-        archs: ['hexo', '服务器'],
+        archs: ['Hexo', '服务器'],
         date: '2025-03-15',
         comment: '',
     },{
@@ -25,7 +25,7 @@ export default [{
         feed: '',
         icon: 'https://www.qcqx.cn/head.webp',
         avatar: 'https://www.qcqx.cn/head.webp',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     },{
@@ -37,7 +37,7 @@ export default [{
         feed: '',
         icon: 'https://pub-noionion.oss-cn-hangzhou.aliyuncs.com/head.jpg',
         avatar: 'https://pub-noionion.oss-cn-hangzhou.aliyuncs.com/head.jpg',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     },{
@@ -49,7 +49,7 @@ export default [{
         feed: '',
         icon: 'https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg',
         avatar: 'https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg',
-        archs: ['hexo', '服务器'],
+        archs: ['Hexo', '服务器'],
         date: '2025-03-19',
         comment: '',
     },{
@@ -61,7 +61,7 @@ export default [{
         feed: '',
         icon: 'https://blog.bywind.xyz/img/avatar.png',
         avatar: 'https://blog.bywind.xyz/img/avatar.png',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-21',
         comment: '',
     },{
@@ -73,7 +73,7 @@ export default [{
         feed: '',
         icon: 'https://images.boysec.cn/medias/avatar.jpg',
         avatar: 'https://images.boysec.cn/medias/avatar.jpg',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     }],
@@ -89,7 +89,7 @@ export default [{
         feed: '',
         icon: 'https://imgse.koxiuqiu.cc/imgse/u/19/2025/02/20/67b737d854192.webp',
         avatar: 'https://imgse.koxiuqiu.cc/imgse/u/19/2025/02/20/67b737d854192.webp',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     },{
@@ -101,7 +101,7 @@ export default [{
         feed: 'https://blog.leonus.cn/atom.xml',
         icon: 'https://q1.qlogo.cn/g?b=qq&nk=990320751&s=5',
         avatar: 'https://q1.qlogo.cn/g?b=qq&nk=990320751&s=5',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-04-19',
         comment: '',
     },{
@@ -113,7 +113,7 @@ export default [{
         feed: '',
         icon: '/assets/img/link/Ariasaka.jpg',
         avatar: '/assets/img/link/Ariasaka.jpg',
-        archs: ['Next', 'vercel'],
+        archs: ['Next', 'Vercel'],
         date: '2025-03-25',
         comment: '',
     },{
@@ -125,7 +125,7 @@ export default [{
         feed: '',
         icon: 'https://bu.dusays.com/2023/06/23/64959cf745a4d.png',
         avatar: 'https://bu.dusays.com/2023/06/23/64959cf745a4d.png',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-30',
         comment: '',
     },{
@@ -137,7 +137,7 @@ export default [{
         feed: '',
         icon: 'https://image.mnchen.cn/2023/12/mnochen.jpg',
         avatar: 'https://image.mnchen.cn/2023/12/mnochen.jpg',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-04-30',
         comment: '',
     },{
@@ -149,7 +149,7 @@ export default [{
         feed: '',
         icon: '/assets/img/link/ciraos.webp',
         avatar: '/assets/img/link/ciraos.webp',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     },{
@@ -161,7 +161,7 @@ export default [{
         feed: '',
         icon: 'https://bu.dusays.com/2025/04/11/67f92f6fcfb26.webp',
         avatar: 'https://bu.dusays.com/2025/04/11/67f92f6fcfb26.webp',
-        archs: ['hexo', 'vercel'],
+        archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
     }],
