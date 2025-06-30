@@ -70,7 +70,7 @@ export default defineAppConfig({
                 items: [
                     { icon: 'simple-icons:nuxtdotjs', text: 'Nuxt开源博客主题', url: 'https://github.com/L33Z22L11/blog-v3' },
                     { icon: 'ph:swatches-bold', text: '主题和组件文档', url: '/theme' },
-                    { icon: 'ph:certificate-bold', text: '萌备20246888号', url: 'https://icp.gov.moe/?keyword=20246888' },
+                    { icon: 'ph:certificate-bold', text: '萌备20251949号', url: 'https://icp.gov.moe/?keyword=20251949' },
                 ],
             },
         ] satisfies Nav,
@@ -101,7 +101,7 @@ export default defineAppConfig({
             title: '',
             items: [
                 { icon: 'ph:files-bold', text: '文章', url: '/' },
-                { icon: 'ph:archive-bold', text: '归档', url: '/archive' },
+                
                 { icon: 'ph:link-bold', text: '友链', url: '/link' },
             ],
         },
