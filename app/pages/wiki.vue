@@ -21,7 +21,7 @@ const { category, categories, listCategorized } = useCategory(listSorted)
 
 <template>
     <div class="wiki">
-        <div class="preview-header">
+        <div class="wiki-header">
             <h1>
                 <ZRawLink class="mobile-only" to="/">
                     <Icon name="ph:caret-left-bold" />
@@ -49,11 +49,11 @@ const { category, categories, listCategorized } = useCategory(listSorted)
 </template>
 
 <style lang="scss" scoped>
-.preview {
+.wiki {
     margin: 1rem;
 }
 
-.preview-header {
+.wiki-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
