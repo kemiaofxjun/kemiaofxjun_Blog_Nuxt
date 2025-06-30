@@ -3,6 +3,12 @@ title: 主题
 hide-info: true
 
 aside: [github-card, toc]
+top: [wiki]
+wiki:
+  imgsrc: https://gcore.jsdelivr.net/gh/xaoxuu/assets.xaoxuu.com/wiki/stellar/icon.svg
+  title: Stellar - 每个人的独立博客
+  description: Stellar 是一个内置文档系统的简约商务风 Hexo 主题，支持丰富的标签和动态数据组件。
+  href: https://xaoxuu.com/wiki/stellar/#start
 github:
   name: L33Z22L11/blog-v3
   description: 基于 Nuxt Content 的博客主题，使用 Nuxt 3 构建。

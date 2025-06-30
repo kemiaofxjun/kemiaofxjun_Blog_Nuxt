@@ -28,7 +28,7 @@ const blogConfig = {
     qqGroup: '169994096',
     timeEstablished: '2019-07-19',
     timezone: 'Asia/Shanghai',
-    url: 'https://blog.zhilu.cyou/',
+    url: 'https://www.myxz.top/',
 
     feed: {
         limit: 50,
@@ -67,7 +67,7 @@ const blogConfig = {
     twikoo: {
         js: 'https://gcore.jsdelivr.net/npm/twikoo@1.6.40/dist/twikoo.all.min.js',
         // 自己部署的 Twikoo 服务
-        envId: 'https://twikoo.zhilu.cyou/',
+        envId: 'https://twikoo.sxiaohe.top/',
         preload: 'https://twikoo.zhilu.cyou/',
     },
 }
