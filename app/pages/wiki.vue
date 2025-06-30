@@ -8,8 +8,8 @@ const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-log'])
 
 const { data: listRaw } = await useAsyncData(
-    'preview_list',
-    () => queryContent('previews')
+    'wiki_list',
+    () => queryContent('wiki')
         .only(['_path', 'categories', 'image', 'date', 'description', 'readingTime', 'title', 'updated'])
         .find(),
     { default: () => [] },
@@ -20,7 +20,7 @@ const { category, categories, listCategorized } = useCategory(listSorted)
 </script>
 
 <template>
-    <div class="preview">
+    <div class="wiki">
         <div class="preview-header">
             <h1>
                 <ZRawLink class="mobile-only" to="/">
