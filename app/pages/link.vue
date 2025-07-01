@@ -49,39 +49,6 @@ const { data: postLink } = await useAsyncData('/link', () => queryContent('/link
                 在 Folo 上订阅
             </ProseA>
         </div>
-        <div class="flink-banners">
-            <div class="banner-top-box">
-                <div class="flink-banners-title">
-                    <div class="banners-title-small">
-                        友情链接
-                    </div>
-                    <div class="banners-title-big">
-                        与数百名博主无限进步
-                    </div>
-                <div>
-                <div class="banner-button-group">
-                    <a class="banner-button secondary no-text-decoration" onclick="travelling()">
-                        <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right:8px">
-                        </i>
-                        <span class="banner-button-text">
-                            随机访问
-                        </span>
-                    </a>
-                    <a class="banner-button no-text-decoration" onclick="addFriendLinksInFooter()">
-                        <i class="anzhiyufont anzhiyu-icon-arrow-circle-right">
-                        </i>
-                        <span class="banner-button-text">
-                            申请友链
-                        </span>
-                    </a>
-                </div>
-                <div id="skills-tags-group-all">
-                    <div class="tags-group-wrapper">
-                    
-                    <div>
-                <div>
-            </div>
-        <div>
     </header>
 
     <FeedGroup label="友链" :feeds="friends" />
