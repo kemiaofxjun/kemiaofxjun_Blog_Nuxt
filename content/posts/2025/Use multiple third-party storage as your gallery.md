@@ -105,9 +105,6 @@ Endpoint                    | Endpoint address（不知道可以看下方的官�
 **部分存储如何查找以及在Alist中使用：**
 [添加对象存储示例及官方文档](https://alist.nn.ci/zh/guide/drivers/s3.html#%E6%B7%BB%E5%8A%A0%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B%E5%8F%8A%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3)
 
-{% tabs 对象存储部署 %}
-
-<!-- tab 缤纷云 -->
 把以下内容一一粘贴到Alist对象存储中的配置项中：
 
 参数名       | 参数作用              |
@@ -120,6 +117,3 @@ Endpoint    | s3.bitiful.net        |
 
 成功后来到首页打开，即可看到：
 ![](https://cloud.myxz.top/d/post/img/20250401/8.png?sign=kpLD6g0N6IL0xcD1BGKEn28E3PCUCFYEBgli_z7Vh2A=:0)
-<!-- endtab -->
-
-{% endtabs %}

@@ -1,3 +1,6 @@
+---
+aside: [connectivity, blogstats, bloglog]
+---
 <!-- 友链页面的“申请友链”要求 -->
 
 - 申请要求：原则上与多数独立博客的友链要求一致
