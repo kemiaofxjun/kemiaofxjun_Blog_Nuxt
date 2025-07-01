@@ -9,14 +9,14 @@ export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
 // 此处为启动时需要的配置，启动后可变配置位于 app/app.config.ts
 const blogConfig = {
     title: '莫言小栈',
-    subtitle: '纸鹿至麓不知路，支炉制露不止漉',
+    subtitle: '',
     // 长 description 利好于 SEO
     description: '',
     author: {
         name: '莫言',
         avatar: 'https://www.zhilu.cyou/api/avatar.png',
         email: '3227988255@qq.com',
-        homepage: 'https://www.zhilu.cyou/',
+        homepage: 'https://www.myxz.top/',
     },
     copyright: {
         abbr: 'CC BY-NC-SA 4.0',

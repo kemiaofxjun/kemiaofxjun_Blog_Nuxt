@@ -5,7 +5,7 @@ useSeoMeta({
     description: `${appConfig.title}的文档。`,
 })
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 const { data: listRaw } = await useAsyncData(
     'wiki_list',
