@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const layoutStore = useLayoutStore()
 
-const { widgets } = useWidgets(() => layoutStore.topWidgets)
+const { top } = useWidgets(() => layoutStore.top)
 </script>
 
 <template>
