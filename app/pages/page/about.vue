@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const appConfig = useAppConfig()
+const layoutStore = useLayoutStore()
+
+useSeoMeta({
+    title: '关于我的',
+    ogType: 'profile',
+    description: `${appConfig.title}的关于页面。`,
+})
+</script>
+
 <template>
     <div class="about-page">
         <link href="/assets/css/about.css" rel="stylesheet">
