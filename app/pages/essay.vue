@@ -564,36 +564,3 @@ body[data-type=essay] #page .author-content-item .card-content .banner-button-gr
     color: var(--icat-blue)
 }
 </style>
-
-<script>
-export default {
-  props: {
-    site: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    urlFor(path) {
-      // 实际项目中需实现路径解析逻辑
-      return path; 
-    },
-
-    formatDate(dateStr) {
-      const date = new Date(dateStr);
-      return date.toLocaleString('zh-CN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    },
-
-    isBilibili(url) {
-      return url.includes('player.bilibili.com');
-    }
-  }
-};
-
-</script>
