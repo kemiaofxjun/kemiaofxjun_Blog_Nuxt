@@ -574,21 +574,11 @@ export default {
     }
   },
   methods: {
-    /​**​
-     * 路径格式化方法（需根据项目实际实现）
-     * @param {string} path - 原始路径
-     * @returns {string} 完整URL
-     */
     urlFor(path) {
       // 实际项目中需实现路径解析逻辑
       return path; 
     },
-    
-    /​**​
-     * 日期格式化
-     * @param {string} dateStr - ISO日期字符串
-     * @returns {string} 格式化日期
-     */
+
     formatDate(dateStr) {
       const date = new Date(dateStr);
       return date.toLocaleString('zh-CN', {
@@ -599,12 +589,7 @@ export default {
         minute: '2-digit'
       });
     },
-    
-    /​**​
-     * 检测B站视频
-     * @param {string} url - 视频URL
-     * @returns {boolean}
-     */
+
     isBilibili(url) {
       return url.includes('player.bilibili.com');
     }
