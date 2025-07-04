@@ -415,7 +415,6 @@ useSeoMeta({
 }
 </style>
 
-<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js"></script>
 <script>
 	(() => {
     function isInViewPortOfOne(el) {
