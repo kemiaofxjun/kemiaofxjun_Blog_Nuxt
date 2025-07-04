@@ -1,6 +1,6 @@
 ---
 title: Xterminal内网穿透到服务器
-description: 在windows上的服务内网穿透到云服务器
+description: 这篇文章简述了在windows上使用Xterminal软件中的内网穿透服务，且在云服务器上进行反代实现本地无任何公网宽带的服务，在使用的过程中，需要防止被ddos攻击以免造成损失。
 date: 2025-03-25 20:00
 update: 2025-03-26 20:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_43.avif

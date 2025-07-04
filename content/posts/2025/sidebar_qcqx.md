@@ -1,6 +1,6 @@
 ---
 title: 卡片美化
-description: 从零开始魔改butterfly
+description: 这篇文章讲述了如何美化博客侧边栏，并调整各个卡片内容的样式表。
 date: 2025-03-05 8:00
 updated: 2025-03-06 18:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_29.avif

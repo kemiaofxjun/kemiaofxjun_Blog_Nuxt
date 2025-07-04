@@ -1,6 +1,6 @@
 ---
 title: 博客基础之静态文件存储
-description: 使用多个第三方存储作为图库或者静态文件进行使用
+description: 这篇文章讲述使用多个第三方存储作为图库或者静态文件进行存储，在使用第三方存储或者第三方图库不要忘记备份图片以免出现丢失的情况。
 date: 2025-04-01 10:00
 updated: 2025-04-01 12:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_26.avif
