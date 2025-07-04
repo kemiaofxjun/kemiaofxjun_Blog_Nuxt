@@ -6,6 +6,7 @@ useSeoMeta({
 })
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setTop(['wiki'])
 
 const { data: listRaw } = await useAsyncData(
     'wiki_list',
