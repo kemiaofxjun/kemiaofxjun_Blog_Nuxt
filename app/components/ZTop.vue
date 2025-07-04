@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const layoutStore = useLayoutStore()
 
-const { top } = useWidgets(() => layoutStore.top)
+const { top } = usetops(() => layoutStore.top)
 </script>
 
 <template>
@@ -12,9 +12,9 @@ const { top } = useWidgets(() => layoutStore.top)
         <top v-if="layoutStore.top?.length" id="z-top" class="scrollcheck-y" :class="{ show: layoutStore.isOpen('top') }">
             <div class="container">
                 <TransitionGroup name="float-in">
-                    <div v-for="widget in widgets" :key="widget.name" class="widget">
+                    <div v-for="top in tops" :key="top.name" class="top">
                         <!-- 更换页面时通过 key 更新这些组件，防止旧数据导致问题 -->
-                        <component :is="widget.comp" :key="$route.path" />
+                        <component :is="top.comp" :key="$route.path" />
                     </div>
                 </TransitionGroup>
             </div>
