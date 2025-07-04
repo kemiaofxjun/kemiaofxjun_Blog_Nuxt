@@ -1,6 +1,6 @@
 ---
 title: 美化文章卡片显示数字
-description: 从零开始魔改butterfly
+description: 这篇文章讲述如何给自己博客中的归档、分类、标签页三个页面的文章卡片添加数字来进行编排，以及对添加的数字进行CSS美化，但也请注意要经常备份以免出现错误。
 date: 2025-03-05 8:00
 updated: 2025-03-06 18:00
 cover: https://sourceimage.s3.bitiful.net/img/default_cover_29.avif

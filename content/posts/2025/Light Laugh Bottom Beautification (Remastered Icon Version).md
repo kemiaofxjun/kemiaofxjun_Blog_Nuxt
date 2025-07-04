@@ -1,6 +1,6 @@
 ---
-title: 轻笑底部美化（图标）
-description: 对底部进行添加图标，建站时间以及美化
+title: 轻笑底部美化
+description: 本篇文章讲述了如何在博客的底部模块进行魔改添加图标、来源图片、返回顶部以及建站时间，对建站时间进行js内联到模块中。
 date: 2025-02-27 10:00
 update: 2025-02-28 10:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_15.avif

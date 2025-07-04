@@ -1,6 +1,6 @@
 ---
 title: 菜单栏多色动态图标
-description: 对导航栏进行修改，以支持多色图标
+description: 这篇文章主要简述了在博客菜单栏中进行适配彩色动态图标，并教导如何使用彩色动态图标。
 date: 2025-02-05 10:00
 updated: 2025-02-07 12:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_9.avif

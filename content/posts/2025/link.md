@@ -1,6 +1,6 @@
 ---
 title: 友链魔改
-description: 友链页面美化以及添加功能
+description: 这篇文章讲述了在友链页面中进行魔改，对清羽飞扬的PUG页面模板进行修改，套用轻笑的友链卡片样式。
 date: 2025-04-19 10:00
 updated: 2025-04-19 12:09
 image: https://sourceimage.s3.bitiful.net/img/default_cover_18.avif

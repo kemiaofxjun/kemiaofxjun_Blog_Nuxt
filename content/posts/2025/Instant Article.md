@@ -1,13 +1,12 @@
 ---
 title: 即刻短文的三种部署方案
-description: 本篇转载三种不同方案（已经放好原文章链接）
+description: 本篇转载三种来自于不同博客的即刻短文的方案，以及对内容进行整合。
 date: '2025-03-06 12:45'
 updated: '2025-03-05 14:09'
 image: https://sourceimage.s3.bitiful.net/img/default_cover_55.avif
 categories: [hexo]
 top_img: false
 tags: [hexo, butterfly, 美化]
-recommend: true
 ---
 ## 原文来源
 {% link Butterfly的魔改教程：即刻短文页,亦小封,https://meuicat.com/posts/1cdf15f7.html %}

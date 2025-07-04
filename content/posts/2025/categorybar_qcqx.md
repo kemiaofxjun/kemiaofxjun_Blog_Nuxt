@@ -1,6 +1,6 @@
 ---
 title: 首页分类条美化
-description: 从零开始魔改butterfly
+description: 此篇文章以清羽飞扬的教程为蓝本，结合了轻笑的分类条样式，讲述了如何在博客首页中添加分类条模版PUG文件以及CSS美化。
 date: 2025-03-05 8:00
 updated: 2025-03-06 18:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_19.avif
