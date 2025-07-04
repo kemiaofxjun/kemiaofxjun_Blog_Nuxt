@@ -10,156 +10,254 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="about-page">
-        <link href="/assets/css/about.css" rel="stylesheet">
-        <div class="author-main">
-            <div class="author-tag-left">
-                <span class="author-tag">
-                    💻 Like数码科技
-                </span>
-                <span class="author-tag">
-                    🥣 干饭魂 干饭人
-                </span>
-                <span class="author-tag">
-                    🕊 咕咕咕咕咕咕~
-                </span>
-                <span class="author-tag">
-                    🧱 CV工程师
-                </span>
-            </div>
-            <div class="author-box">
-                <span>
-                </span>
-                <div class="author-img">
-                    <img class="no-lightbox" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg">
-                </div>
-            </div>
-            <div class="author-tag-right">
-                <span class="author-tag">
-                    吃饭不如碎觉 💤
-                </span>
-                <span class="author-tag">
-                    乐观 积极 向上 🤝
-                </span>
-                <span class="author-tag">
-                    专攻各种困难 🔨
-                </span>
-                <span class="author-tag">
-                    人不狠话超多 💢
-                </span>
-            </div>
-            <div class="image-dot">
+  <div id="about-page">
+    <link href="/assets/css/about.css" rel="stylesheet" />
+    <div class="author-main">
+      <div class="author-tag-left">
+        <span class="author-tag">
+          💻 Like数码科技
+        </span>
+        <span class="author-tag">
+          🥣 干饭魂 干饭人
+        </span>
+        <span class="author-tag">
+          🕊 咕咕咕咕咕咕~
+        </span>
+        <span class="author-tag">
+          🧱 CV工程师
+        </span>
+      </div>
+      <div class="author-box">
+        <span>
+        </span>
+        <div class="author-img">
+          <img class="no-lightbox" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"
+          />
         </div>
-        <p class="p center logo large">
-		    关于本站
-	    </p>
-	<div class="author-content">
-		<div class="author-content-item myInfoAndSayHello">
-			<div class="title1">
-				你好，很高兴认识你👋
-			</div>
-			<div class="title2">
-				我叫
-				<span class="inline-word">
-					陈志伟
-				</span>
-			</div>
-			<div class="title1">
-				是一名 前端工程师、学生、独立开发者、
-				<span class="inline-word">
-					博主
-				</span>
-			</div>
-		</div>
-		<div class="aboutsiteTips author-content-item">
-			<div class="author-content-item-tips">
-				追求
-			</div>
-			<h2>
-				源于
-				<br/>
-				热爱而去
-				<span class="inline-word">
-					感受
-				</span>
-				<div class="mask">
-					<span class="first-tips">
-						学习
-					</span>
-					<span>
-						生活
-					</span>
-					<span data-up="data-up">
-						程序
-					</span>
-					<span data-show="data-show">
-						体验
-					</span>
-				</div>
-			</h2>
-		</div>
+      </div>
+      <div class="author-tag-right">
+        <span class="author-tag">
+          吃饭不如碎觉 💤
+        </span>
+        <span class="author-tag">
+          乐观 积极 向上 🤝
+        </span>
+        <span class="author-tag">
+          专攻各种困难 🔨
+        </span>
+        <span class="author-tag">
+          人不狠话超多 💢
+        </span>
+      </div>
+      <div class="image-dot">
+      </div>
+    </div>
+    <p class="p center logo large">
+      关于本站
+    </p>
+    <div class="author-content">
+      <div class="author-content-item myInfoAndSayHello">
+        <div class="title1">
+          你好，很高兴认识你👋
+        </div>
+        <div class="title2">
+          我叫
+          <span class="inline-word">
+            陈志伟
+          </span>
+        </div>
+        <div class="title1">
+          是一名 前端工程师、学生、独立开发者、
+          <span class="inline-word">
+            博主
+          </span>
+        </div>
+      </div>
+      <div class="aboutsiteTips author-content-item">
+        <div class="author-content-item-tips">
+          追求
+        </div>
+        <h2>
+          源于
+          <br/>
+          热爱而去
+          <span class="inline-word">
+            感受
+          </span>
+          <div class="mask">
+            <span class="first-tips">
+              学习
+            </span>
+            <span>
+              生活
+            </span>
+            <span data-up="data-up">
+              程序
+            </span>
+            <span data-show="data-show">
+              体验
+            </span>
+          </div>
+        </h2>
+      </div>
     </div>
     <div class="hello-about">
-		<div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-		<div class="shapes">
-			<div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-			<div class="shape shape-2" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-			<div class="shape shape-3" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-		</div>
-		<div class="content">
-			<h1>Hello there!</h1>
-		</div>
-	</div>
-	<div class="author-content">
-		<div class="about-statistic author-content-item">
-			<div class="card-content">
-				<div class="author-content-item-tips">数据</div><span class="author-content-item-title">访问统计</span>
-				<div id="statistic"></div>
-				<div class="post-tips">统计信息来自<a href="https://invite.51.la/1NzKqTeb?target=V6" target="_blank" rel="noopener nofollow">51la网站统计</a></div>
-				<div class="banner-button-group"><a class="banner-button" onclick="pjax.loadUrl(&quot;/archives/&quot;)" data-pjax-state="data-pjax-state"><i class="fas fa-circle-right"></i><span class="banner-button-text">文章隧道</span></a></div>
-			</div>
-		</div>
-		<div class="author-content-item-group column mapAndInfo">
-			<div class="author-content-item map single"><span class="map-title">我现在住在<b>中国，长沙市</b></span></div>
-			<div class="author-content-item selfInfo single">
-				<div><span class="selfInfo-title">生于</span><span class="selfInfo-content" id="selfInfo-content-year" style="color:#43a6c6">2002</span></div>
-				<div><span class="selfInfo-title">湖南信息学院</span><span class="selfInfo-content" style="color:#c69043">软件工程</span></div>
-				<div><span class="selfInfo-title">现在职业</span><span class="selfInfo-content" style="color:#b04fe6"> </span></div>
-			</div>
-		</div>
-	</div>
-	<div class="author-content">
-		<div class="author-content-item maxim">
-			<div class="author-content-item-tips">座右铭</div><span class="maxim-title"><span style="opacity:.6;margin-bottom:8px">生活明朗，</span><span>万物可爱。</span></span>
-		</div>
-		<div class="author-content-item myphoto"><img class="author-content-img no-lightbox" alt="自拍" src="https://img02.anheyu.com/adminuploads/1/2022/09/24/632e9643611ec.jpg" /></div>
-	</div>
-	<div class="author-content">
-		<div class="author-content-item like-technology">
-			<div class="card-content">
-				<div class="author-content-item-tips">关注偏好</div><span class="author-content-item-title">数码科技</span>
-				<div class="content-bottom">
-					<div class="tips">手机、电脑软硬件</div>
-				</div>
-			</div>
-		</div>
-		<div class="author-content-item game-yuanshen">
-			<div class="card-content">
-				<div class="author-content-item-tips">爱好游戏</div><span class="author-content-item-title">原神</span>
-				<div class="content-bottom">
-					<div class="icon-group">
-						<div class="loading-bar" role="presentation" aria-hidden="true"><img class="no-lightbox" src="https://yuanshen.site/imgs/loading-bar.png" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" /></div>
-					</div>
-					<div class="tips game-yuanshen-uid">UID: 125766904</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="author-content">
-		<div class="create-site-post author-content-item single">
-			<div class="author-content-item-tips">心路历程</div>欢迎来到我的博客 😝，这里是我记笔记的地方 🙌，目前就读于长沙<strong>湖南信息学院</strong>的<strong>软件工程</strong>专业，虽然有时候常常会忘记更新笔记，咕咕 ✋~ 但是记笔记真的是一个很棒的习惯 💪，能把学下来的知识进行积累，沉淀，有一句话说的好，能教给别人的知识，才是真正学会了的知识 ⚡ 每周我都会尽量进行更新 ☁️，如果没更的话，可能是我忘了，也可能是我在钻研某个东西的时候太入迷了
-		</div>
-	</div>
+      <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)">
+      </div>
+      <div class="shapes">
+        <div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)">
+        </div>
+        <div class="shape shape-2" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)">
+        </div>
+        <div class="shape shape-3" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)">
+        </div>
+      </div>
+      <div class="content">
+        <h1>
+          Hello there!
+        </h1>
+      </div>
+    </div>
+    <div class="author-content">
+      <div class="about-statistic author-content-item">
+        <div class="card-content">
+          <div class="author-content-item-tips">
+            数据
+          </div>
+          <span class="author-content-item-title">
+            访问统计
+          </span>
+          <div id="statistic">
+          </div>
+          <div class="post-tips">
+            统计信息来自
+            <a href="https://invite.51.la/1NzKqTeb?target=V6" target="_blank" rel="noopener nofollow">
+              51la网站统计
+            </a>
+          </div>
+          <div class="banner-button-group">
+            <a class="banner-button" onclick="pjax.loadUrl(&quot;/archives/&quot;)"
+            data-pjax-state="data-pjax-state">
+              <i class="fas fa-circle-right">
+              </i>
+              <span class="banner-button-text">
+                文章隧道
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="author-content-item-group column mapAndInfo">
+        <div class="author-content-item map single">
+          <span class="map-title">
+            我现在住在
+            <b>
+              中国，长沙市
+            </b>
+          </span>
+        </div>
+        <div class="author-content-item selfInfo single">
+          <div>
+            <span class="selfInfo-title">
+              生于
+            </span>
+            <span class="selfInfo-content" id="selfInfo-content-year" style="color:#43a6c6">
+              2002
+            </span>
+          </div>
+          <div>
+            <span class="selfInfo-title">
+              湖南信息学院
+            </span>
+            <span class="selfInfo-content" style="color:#c69043">
+              软件工程
+            </span>
+          </div>
+          <div>
+            <span class="selfInfo-title">
+              现在职业
+            </span>
+            <span class="selfInfo-content" style="color:#b04fe6">
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="author-content">
+      <div class="author-content-item maxim">
+        <div class="author-content-item-tips">
+          座右铭
+        </div>
+        <span class="maxim-title">
+          <span style="opacity:.6;margin-bottom:8px">
+            生活明朗，
+          </span>
+          <span>
+            万物可爱。
+          </span>
+        </span>
+      </div>
+      <div class="author-content-item myphoto">
+        <img class="author-content-img no-lightbox" alt="自拍" src="https://img02.anheyu.com/adminuploads/1/2022/09/24/632e9643611ec.jpg"
+        />
+      </div>
+    </div>
+    <div class="author-content">
+      <div class="author-content-item like-technology">
+        <div class="card-content">
+          <div class="author-content-item-tips">
+            关注偏好
+          </div>
+          <span class="author-content-item-title">
+            数码科技
+          </span>
+          <div class="content-bottom">
+            <div class="tips">
+              手机、电脑软硬件
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="author-content-item game-yuanshen">
+        <div class="card-content">
+          <div class="author-content-item-tips">
+            爱好游戏
+          </div>
+          <span class="author-content-item-title">
+            原神
+          </span>
+          <div class="content-bottom">
+            <div class="icon-group">
+              <div class="loading-bar" role="presentation" aria-hidden="true">
+                <img class="no-lightbox" src="https://yuanshen.site/imgs/loading-bar.png"
+                alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
+              </div>
+            </div>
+            <div class="tips game-yuanshen-uid">
+              UID: 125766904
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="author-content">
+      <div class="create-site-post author-content-item single">
+        <div class="author-content-item-tips">
+          心路历程
+        </div>
+        欢迎来到我的博客 😝，这里是我记笔记的地方 🙌，目前就读于长沙
+        <strong>
+          湖南信息学院
+        </strong>
+        的
+        <strong>
+          软件工程
+        </strong>
+        专业，虽然有时候常常会忘记更新笔记，咕咕 ✋~ 但是记笔记真的是一个很棒的习惯 💪，能把学下来的知识进行积累，沉淀，有一句话说的好，能教给别人的知识，才是真正学会了的知识
+        ⚡ 每周我都会尽量进行更新 ☁️，如果没更的话，可能是我忘了，也可能是我在钻研某个东西的时候太入迷了
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
