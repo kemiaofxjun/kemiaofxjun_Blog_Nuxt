@@ -9,7 +9,7 @@ const { widgets } = useWidgets(() => layoutStore.topWidgets)
         <div v-if="layoutStore.isOpen('top')" id="z-top-bgmask" @click="layoutStore.toggle('top')" />
     </Transition>
     <Transition>
-        <top v-if="layoutStore.topWidgets?.length" id="z-top" class="scrollcheck-y" :class="{ show: layoutStore.isOpen('top') }">
+        <top v-if="layoutStore.top?.length" id="z-top" class="scrollcheck-y" :class="{ show: layoutStore.isOpen('top') }">
             <div class="container">
                 <TransitionGroup name="float-in">
                     <div v-for="widget in widgets" :key="widget.name" class="widget">
