@@ -28,7 +28,7 @@ export default defineNuxtConfig({
                 { rel: 'preconnect', href: 'https://fonts.googleapis.cn' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.cn', crossorigin: '' },
 
-                { rel: 'stylesheet', href: '/fonts/MapleMono-Regular/result.css' },
+                { rel: 'stylesheet', href: 'https://chinese-fonts-cdn.deno.dev/packages/zqzmxs/dist/%E9%92%9F%E9%BD%90%E5%BF%97%E8%8E%BD%E8%A1%8C%E4%B9%A6/result.css', media: 'none', onload: 'this.media="all"' },
                 // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap', media: 'none', onload: 'this.media="all"' },
                 // Fira Code 没有斜体
                 // { rel: 'stylesheet', href: 'https://fonts.googleapis.cn/css2?family=Fira+Code:wght@300..700&family=Noto+Serif+SC:wght@200..900&display=swap', media: 'none', onload: 'this.media="all"' },
