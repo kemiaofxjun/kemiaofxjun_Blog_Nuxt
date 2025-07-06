@@ -12,7 +12,7 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="essays_page_banner" style="background-image:url(/assets/img/page_backgroud/essays.webp);">
+    <div class="essays_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
         <div class="essays_banner_content">
             <h1>
                 朋友圈
