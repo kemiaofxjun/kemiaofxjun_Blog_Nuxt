@@ -26,28 +26,28 @@ useSeoMeta({
                 <div class="moment_update_time">
                     Updated at 2025-07-06
                 </div>
-                <div class="powered_by">
+                <div class="moment_powered_by">
                     Powered by FriendCircleLite
                 </div>
             </div>
         </div>
     </div>
-    <div class="moment_page_fcircle">
-        <script>
-            if (typeof UserConfig === 'undefined') {
-                var UserConfig = {
-                    // 填写你的fc Lite地址
-                    private_api_url: 'https://moments.myxz.top/',
-                    // 点击加载更多时，一次最多加载几篇文章，默认20
-                    page_turning_number: 20,
-                    // 头像加载失败时，默认头像地址
-                    error_img: 'https://i.p-i.vip/30/20240815-66bced9226a36.webp',
-                }
-            }
-        </script>
-        <script src="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js"></script>
-        <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css">
+    <div class="friend-circle-lite-root">
     </div>
+    <script>
+        if (typeof UserConfig === 'undefined') {
+            var UserConfig = {
+                // 填写你的fc Lite地址
+                private_api_url: 'https://moments.myxz.top/',
+                // 点击加载更多时，一次最多加载几篇文章，默认20
+                page_turning_number: 20,
+                // 头像加载失败时，默认头像地址
+                error_img: 'https://i.p-i.vip/30/20240815-66bced9226a36.webp',
+            }
+        }
+    </script>
+    <script src="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js"></script>
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css">
 </template>
 
 <style>
@@ -118,5 +118,25 @@ useSeoMeta({
 
 .moment_page_banner .banner-btn .icon {
     font-size: 1.2rem
+}
+
+.moment_friend_stats {
+    align-items: flex-end;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-monospace);
+    font-size: .7rem;
+    gap: .1rem;
+    opacity: .7;
+    text-shadow: 0 4px 5px rgba(0,0,0,.5)
+}
+
+.moment_friend_stats .moment_update_time {
+    opacity: 1
+}
+
+.moment_friend_stats .moment_powered_by {
+    opacity: .8
 }
 </style>
