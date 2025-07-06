@@ -1,5 +1,18 @@
+<script setup lang="ts">
+const appConfig = useAppConfig()
+const layoutStore = useLayoutStore()
+
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+
+useSeoMeta({
+    title: '友链朋友圈',
+    ogType: 'profile',
+    description: `${appConfig.title}的友链朋友圈页面。`,
+})
+</script>
+
 <template>
-    <div class="moment_page_banner" style="background-image:url(https://x.xinb.de/i/2024/09/19/685515.webp);">
+    <div class="moment_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
         <div class="moment_banner_content">
             <h1>
                 朋友圈
@@ -24,7 +37,7 @@
             if (typeof UserConfig === 'undefined') {
                 var UserConfig = {
                     // 填写你的fc Lite地址
-                    private_api_url: 'https://fc.liushen.fun/',
+                    private_api_url: 'https://moments.myxz.top/',
                     // 点击加载更多时，一次最多加载几篇文章，默认20
                     page_turning_number: 20,
                     // 头像加载失败时，默认头像地址
