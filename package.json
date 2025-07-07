@@ -15,7 +15,6 @@
     "new": "node scripts/new-blog.js"
   },
   "dependencies": {
-    "@vite-pwa/nuxt": "^1.0.4",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "embla-carousel-autoplay": "^8.5.2",
@@ -25,8 +24,7 @@
     "parse-domain": "^8.2.2",
     "plain-shiki": "^0.2.0",
     "radash": "^12.1.0",
-    "vue-tippy": "^6.7.0",
-    "workbox-window": "^7.3.0"
+    "vue-tippy": "^6.7.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
@@ -46,7 +44,7 @@
     "nuxt": "~3.13.2",
     "remark-reading-time": "^2.0.1",
     "sass": "^1.86.0",
-    "shiki": "^3.7.0",
+    "shiki": "^2.5.0",
     "stylelint": "^16.16.0",
     "terser": "^5.39.0",
     "typescript": "^5.8.2",
