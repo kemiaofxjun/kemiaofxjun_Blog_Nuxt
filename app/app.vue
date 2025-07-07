@@ -4,7 +4,6 @@
     <ZSidebar />
     <div id="content">
         <main id="main-content">
-            <UpdatePrompt />
             <NuxtPage />
             <ZFooter />
         </main>
