@@ -55,27 +55,34 @@ useSeoMeta({
 
 <script lang="ts">
     export default {
-        var head = document.getElementsByTagName('head')[0]
-        var meta = document.createElement('meta')
-        meta.name = 'referrer'
-        meta.content = 'no-referrer'
-        head.appendChild(meta)
-        if (ispeak) {
-            ispeak
-            .init({
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加referrer元标签
+            var head = document.getElementsByTagName('head')[0]
+            var meta = document.createElement('meta')
+            meta.name = 'referrer'
+            meta.content = 'no-referrer'
+            head.appendChild(meta)
+            
+            // 初始化highlight.js
+            hljs.highlightAll();
+            
+            // 尝试初始化iSpeak
+            if (ispeak) {
+                ispeak.init({
                 el: '#ispeak',
                 api: 'https://kkapi-dev.vercel.app/',
                 author: '61fe93508fd621d39a155725',
                 pageSize: 10,
                 loading_img: 'https://bu.dusays.com/2021/03/04/d2d5e983e2961.gif'
-            })
-            .then(function () {
-                console.log('ispeak 加载完成')
+                }).then(function() {
+                console.log('iSpeak加载完成')
                 document.getElementById('tip').style.display = 'none'
-            })
-        } else {
-            document.getElementById('tip').innerHTML = 'ipseak依赖加载失败！'
-        }
+                })
+            } else {
+                document.getElementById('tip').className = 'status-message error'
+                document.getElementById('tip').textContent = 'iSpeak依赖加载失败！'
+            }
+        })
     }
 </script>
 
