@@ -163,7 +163,6 @@ useSeoMeta({
   margin-top: 20px;
   transition: all 0.25s;
   user-select: none;
-  width: calc(48% - 7px);
   margin: 10px;
 }
 
@@ -227,12 +226,5 @@ useSeoMeta({
 
 div#bb_loading img{
   border-radius: 15px;
-}
-
-#bb-main {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
 }
 </style>
