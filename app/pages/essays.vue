@@ -33,7 +33,7 @@ useSeoMeta({
         </div>
     </div>
     <div class="essay_connect">
-        <script src="/assets/js/bibi.js"></script>
+        <script src="/assets/js/essay.js"></script>
         <div id="bibi">
         <div class="bb-info"></div><div id="bb-main"></div>
         </div>
