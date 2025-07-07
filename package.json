@@ -46,7 +46,7 @@
     "nuxt": "~3.13.2",
     "remark-reading-time": "^2.0.1",
     "sass": "^1.86.0",
-    "shiki": "^2.5.0",
+    "shiki": "^3.7.0",
     "stylelint": "^16.16.0",
     "terser": "^5.39.0",
     "typescript": "^5.8.2",
