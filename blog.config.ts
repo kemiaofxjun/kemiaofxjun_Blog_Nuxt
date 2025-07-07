@@ -63,7 +63,7 @@ const blogConfig = {
 
     // 用于 Twikoo 评论系统
     twikoo: {
-        js: 'https://gcore.jsdelivr.net/npm/twikoo@1.6.40/dist/twikoo.all.min.js',
+        js: 'https://jsd.myxz.top/npm/twikoo@1.6.40/dist/twikoo.all.min.js',
         // 自己部署的 Twikoo 服务
         envId: 'https://twikoo.sxiaohe.top/',
         preload: 'https://twikoo.sxiaohe.top/',

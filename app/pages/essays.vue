@@ -14,26 +14,25 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
 </script>
 
 <template>
-    <div class="essays_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
-        <div class="essays_banner_content">
-            <h1>
-                说说
-            </h1>
+    <header class="link-reminder">
+        <div class="content">
+            <p><Icon name="ph:newspaper-clipping-bold" />我会通过快捷方式进行写作</p>
             <p>
-                记录生活，瞬间发布。
+                我制作了本站的
+                <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
+                <ProseA>Ispeak快捷发表</ProseA>，可通过快捷列表来进行使用
             </p>
         </div>
-        <div class="essays_banner_extra">
-            <div class="essays_friend_stats">
-                <div class="essays_update_time">
-                    Updated at 2025-07-06
-                </div>
-                <div class="essays_powered_by">
-                    Powered by Ispeak
-                </div>
-            </div>
+        <div class="operations">
+            <ProseA href="https://kkadmin.myxz.top" icon="ph:rss-simple-bold">
+                Ispeak后台管理
+            </ProseA>
+            <ProseA href="https://ispeak_biubiu.myxz.top" icon="ph:list-plus-bold">
+                Ispeak网页版发表
+            </ProseA>
         </div>
-    </div>
+    </header>
+
     <div class="essay_connect">
         <script src="/assets/js/essay.js"></script>
         <div id="bibi">
@@ -165,7 +164,8 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
   margin-top: 20px;
   transition: all 0.25s;
   user-select: none;
-  margin: 10px;
+  max-width: 752px;
+  margin: 20px auto;
 }
 
 @media screen and (max-width: 800px) {
@@ -212,7 +212,6 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
 
 #bibi .card-footer {
   display: flex;
-  padding-bottom: 10px;
 }
 
 #bibi .card-footer .card-label {
