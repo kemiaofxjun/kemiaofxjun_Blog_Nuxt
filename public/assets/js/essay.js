@@ -3,7 +3,7 @@ let total = 0
 let nowNum = 0
 let items = []
 let page = 1
-let Url = 'http://kkapi.myxz.top/api/ispeak?author=686a85c70ec50e26f0efe551&page=' // 记住替换为你的API链接
+let Url = 'httpS://kkapi.myxz.top/api/ispeak?author=686a85c70ec50e26f0efe551&page=' // 记住替换为你的API链接
 
 
 window.addEventListener('DOMContentLoaded', () => {
