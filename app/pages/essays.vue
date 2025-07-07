@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { myFeed } from '~~/blog.config'
+import friends from '~/friends'
+import subscriptions from '~/subscriptions'
+
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
@@ -9,6 +13,14 @@ useSeoMeta({
     ogType: 'profile',
     description: `${appConfig.title}的说说页面。`,
 })
+
+const copyFields = {
+    博主: myFeed.author,
+    标题: myFeed.title,
+    介绍: myFeed.desc,
+    网址: myFeed.link,
+    头像: myFeed.avatar,
+}
 
 const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
 </script>
