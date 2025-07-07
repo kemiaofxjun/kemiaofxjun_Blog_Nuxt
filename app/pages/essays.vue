@@ -9,16 +9,18 @@ useSeoMeta({
     ogType: 'profile',
     description: `${appConfig.title}的说说页面。`,
 })
+
+const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
 </script>
 
 <template>
     <div class="essays_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
         <div class="essays_banner_content">
             <h1>
-                朋友圈
+                说说
             </h1>
             <p>
-                发现更多有趣的博主
+                记录生活，瞬间发布。
             </p>
         </div>
         <div class="essays_banner_extra">
@@ -27,7 +29,7 @@ useSeoMeta({
                     Updated at 2025-07-06
                 </div>
                 <div class="essays_powered_by">
-                    Powered by FriendCircleLite
+                    Powered by Ispeak
                 </div>
             </div>
         </div>

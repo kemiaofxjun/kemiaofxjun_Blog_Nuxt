@@ -9,6 +9,8 @@ useSeoMeta({
     ogType: 'profile',
     description: `${appConfig.title}的友链朋友圈页面。`,
 })
+
+const { data: postLink } = await useAsyncData('/moment', () => queryContent('/moment').findOne())
 </script>
 
 <template>
