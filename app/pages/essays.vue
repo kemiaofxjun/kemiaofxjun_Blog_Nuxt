@@ -32,59 +32,13 @@ useSeoMeta({
             </div>
         </div>
     </div>
-    <div id="tip" style="text-align:center;">ipseak加载中</div>
-    <div class='js-pjax' id="ispeak"></div>
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdmirror.com/npm/highlight.js/styles/atom-one-dark.min.css"
-    />
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdmirror.com/npm/ispeak/style.css"
-    />
-    <script src="https://cdn.jsdmirror.com/npm/highlight.js/highlight.min.js"></script>
-    <script src="https://cdn.jsdmirror.com/npm/marked@v3/marked.min.js"></script>
-    <script src="https://cdn.jsdmirror.com/npm/ispeak/ispeak.umd.js"></script>
-    <!-- CSS -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdmirror.com/npm/@waline/client/dist/waline.css"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/@waline/client/dist/waline-meta.css"/>
+    <div class="essay_connect">
+        <script src="/assets/js/bibi.js"></script>
+        <div id="bibi">
+        <div class="bb-info"></div><div id="bb-main"></div>
+        </div>
+    </div>
 </template>
-
-<script lang="ts">
-    export default {
-        document.addEventListener('DOMContentLoaded', function() {
-            // 添加referrer元标签
-            var head = document.getElementsByTagName('head')[0]
-            var meta = document.createElement('meta')
-            meta.name = 'referrer'
-            meta.content = 'no-referrer'
-            head.appendChild(meta)
-            
-            // 初始化highlight.js
-            hljs.highlightAll();
-            
-            // 尝试初始化iSpeak
-            if (ispeak) {
-                ispeak.init({
-                el: '#ispeak',
-                api: 'https://kkapi-dev.vercel.app/',
-                author: '61fe93508fd621d39a155725',
-                pageSize: 10,
-                loading_img: 'https://bu.dusays.com/2021/03/04/d2d5e983e2961.gif'
-                }).then(function() {
-                console.log('iSpeak加载完成')
-                document.getElementById('tip').style.display = 'none'
-                })
-            } else {
-                document.getElementById('tip').className = 'status-message error'
-                document.getElementById('tip').textContent = 'iSpeak依赖加载失败！'
-            }
-        })
-    }
-</script>
 
 <style>
 .essays_page_banner {
