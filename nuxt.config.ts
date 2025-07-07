@@ -106,7 +106,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vueuse/nuxt',
         '@zinkawaii/nuxt-shiki',
-        '@vite-pwa/nuxt',
+        '@vite-pwa/nuxt'
     ],
 
     colorMode: {
@@ -162,75 +162,5 @@ export default defineNuxtConfig({
     site: {
         name: blogConfig.title,
         url: blogConfig.url,
-    },
-    pwa: {
-        // 基本配置
-        manifest: {
-            name: 'My Nuxt App',
-            short_name: 'NuxtApp',
-            theme_color: '#ffffff',
-            background_color: '#ffffff',
-            display: 'standalone',
-            orientation: 'portrait',
-            start_url: '/',
-            icons: [
-                {
-                src: 'pwa-192x192.png',
-                sizes: '192x192',
-                type: 'image/png'
-                },
-                {
-                src: 'pwa-512x512.png',
-                sizes: '512x512',
-                type: 'image/png'
-                }
-            ]
-        },
-
-        // Service Worker 配置
-        workbox: {
-            globPatterns: ['​**​/*.{js,css,html,png,jpg,jpeg,svg,gif,woff2}'],
-            navigateFallback: '/',
-            runtimeCaching: [
-                // 缓存Google字体
-                {
-                    urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-                    handler: 'CacheFirst',
-                    options: {
-                        cacheName: 'google-fonts-cache',
-                        expiration: {
-                        maxEntries: 10,
-                        maxAgeSeconds: 60 * 60 * 24 * 30 // 30天
-                        }
-                    }
-                },
-                // 缓存API请求
-                {
-                    urlPattern: /^https:\/\/api\.example\.com\/.*/i,
-                    handler: 'NetworkFirst',
-                    options: {
-                        cacheName: 'api-cache',
-                        networkTimeoutSeconds: 10,
-                        expiration: {
-                        maxEntries: 150,
-                        maxAgeSeconds: 60 * 60 * 24 // 24小时
-                        }
-                    }
-                }
-            ]
-        },
-
-        // 客户端行为控制
-        client: {
-            installPrompt: true, // 显示安装提示
-            periodicSyncForUpdates: 3600, // 每小时检查更新(秒)
-        },
-
-        // 开发选项
-        devOptions: {
-            enabled: true, // 开发环境中启用
-            type: 'module', // 使用模块化Service Worker
-            suppressWarnings: true,
-        }
     },
 })
