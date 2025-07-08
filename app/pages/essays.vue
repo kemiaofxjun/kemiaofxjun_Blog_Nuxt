@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Essays } from '~~/blog.config'
-import essays_data from '~/essay_data'
+import essays_data from '~/essay'
 const essay_Data = ref(essay_data);
 
 const appConfig = useAppConfig()
