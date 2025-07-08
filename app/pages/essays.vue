@@ -15,7 +15,7 @@ useSeoMeta({
 })
 
 const essays_Data = {
-    博主: essays.author,
+    博主: Essays.author,
 }
 
 const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
