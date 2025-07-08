@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { essays } from '~~/blog.config'
 import essays_data from '~/essay_data'
+const essay_Data = ref(essay_data);
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -43,15 +44,14 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
     <div class="essay_content">
         <section class="essay_content_message">
             <ul class="essay_content_list">
-                <li class="essay_content_item" v-for="(item, index) in essay_data.essay_list" :key="item.essay_list" v-if="index < 30">
+                <li class="essay_content_item" v-for="(item, index) in essay_Data.essay_list" :key="item.essay_list" v-if="index < 30">
                     <div class="essay_items_content">
                         <p class = "essay_datacont">
                             {{ item.content }}
                             <div v-if="item.image" class="essay_container_img">
                                 <div v-for="iten, indey in item.image" :key="iten.id || indey">
-                                    <a class="essay_content_img" :herf="url_for(item.image[indey]) target="_blank" data-fancybox="gallery" data-caption="">
-                                        <img :src="url_for(item.image[indey])">
-                                        </img>
+                                    <a class="bber-content-img" :href="url_for(item.image[indey])" target="_blank" data-fancybox="gallery" data-caption="">
+                                        <img :src="url_for(item.image[indey])"></img>
                                     </a>
                                 </div>
                                 <div class="bber_content_noimg"></div>

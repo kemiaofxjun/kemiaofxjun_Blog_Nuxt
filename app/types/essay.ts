@@ -1,5 +1,5 @@
 export interface Essay_connect {
-    connect: string
+    content: string
     date: string
     image: string
 }
