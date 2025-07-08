@@ -66,6 +66,38 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
     </div>
 </template>
 
+<style lang="scss" scoped>
+.link-reminder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 2rem;
+    margin: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    background: var(--c-primary-soft);
+
+    .content {
+        flex-basis: 20em;
+        flex-grow: 3;
+
+        p + p {
+            margin-top: 0.2em;
+        }
+    }
+
+    .operations {
+        display: flex;
+        flex-basis: 10em;
+        flex-grow: 1;
+        justify-content: end;
+        gap: 0.2em 1rem;
+        flex-wrap: wrap;
+    }
+}
+</style>
+
 <style>
 body[data-type="essay"] #page {
   border: 0;
