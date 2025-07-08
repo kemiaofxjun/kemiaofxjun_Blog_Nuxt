@@ -14,7 +14,7 @@ useSeoMeta({
     description: `${appConfig.title}的说说页面。`,
 })
 
-const e ssays_Data = {
+const essays_Data = {
     博主: essays.author,
 }
 
