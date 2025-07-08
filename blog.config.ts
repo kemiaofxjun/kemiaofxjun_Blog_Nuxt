@@ -86,7 +86,7 @@ export const myFeed = <FeedEntry>{
 }
 
 // 用于说说页面中的博主名称
-export const Essay = {
+export const Essays = {
     author: blogConfig.author.name,
 }
 
