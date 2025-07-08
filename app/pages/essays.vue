@@ -50,8 +50,8 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
                             {{ item.content }}
                             <div v-if="item.image" class="essay_container_img">
                                 <div v-for="(iten, indey) in item.image" :key="iten.id || indey">
-                                    <a class="bber-content-img" :href="url_for(item.image[indey])" target="_blank" data-fancybox="gallery" data-caption="">
-                                        <img :src="url_for(item.image[indey])"></img>
+                                    <a class="bber-content-img" :href="item.image[indey]" target="_blank" data-fancybox="gallery" data-caption="">
+                                        <img :src="item.image[indey]"></img>
                                     </a>
                                 </div>
                                 <div class="bber_content_noimg"></div>
