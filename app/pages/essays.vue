@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Essays } from '~~/blog.config'
-import essays_data from '~/essay'
-const essay_Data = ref(essay_data);
+import essayData from '~/essayData'
+const itemData = ref(essayData);
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -44,7 +44,7 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
     <div class="essay_content">
         <section class="essay_content_message">
             <ul class="essay_content_list">
-                <li class="essay_content_item" v-for="(item, index) in essay_Data.essay_list" :key="item.essay_list" v-if="index < 30">
+                <li class="essay_content_item" v-for="(item, index) in itemData.essay_list" :key="item.essay_list" v-if="index < 30">
                     <div class="essay_items_content">
                         <p class = "essay_datacont">
                             {{ item.content }}
