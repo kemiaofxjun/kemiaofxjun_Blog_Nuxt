@@ -85,6 +85,12 @@ export const myFeed = <FeedEntry>{
     comment: '这是我自己',
 }
 
+// 用于说说页面中的博主名称
+export const Essay = {
+    author: blogConfig.author.name,
+}
+
+
 // 将旧页面永久重定向到新页面
 const redirectRouteRules = Object.entries(redirectList)
     .reduce<NitroConfig['routeRules']>((acc, [from, to]) => {
