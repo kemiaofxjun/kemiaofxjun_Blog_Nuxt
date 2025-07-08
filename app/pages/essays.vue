@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { essays } from '~~/blog.config'
+import { Essays } from '~~/blog.config'
 import essays_data from '~/essay_data'
 const essay_Data = ref(essay_data);
 
@@ -14,7 +14,7 @@ useSeoMeta({
     description: `${appConfig.title}的说说页面。`,
 })
 
-const essays_Data = {
+const e ssays_Data = {
     博主: essays.author,
 }
 
@@ -49,7 +49,7 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
                         <p class = "essay_datacont">
                             {{ item.content }}
                             <div v-if="item.image" class="essay_container_img">
-                                <div v-for="iten, indey in item.image" :key="iten.id || indey">
+                                <div v-for="(iten, indey) in item.image" :key="iten.id || indey">
                                     <a class="bber-content-img" :href="url_for(item.image[indey])" target="_blank" data-fancybox="gallery" data-caption="">
                                         <img :src="url_for(item.image[indey])"></img>
                                     </a>
