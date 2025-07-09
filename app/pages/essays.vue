@@ -91,155 +91,96 @@ onMounted(() => {
       }
     </style>
 
-    <template v-for="essay in essayData.essay" :key="essay.title">
-      <!-- 顶部横幅区域 -->
-      <div 
-        class="author-content author-content-item essayPage single"
-        :style="essay.top_background ? `background: url(${essay.top_background}) left 28% / cover no-repeat;` : ''"
-      >
-        <div class="card-content">
-          <div class="author-content-item-tips">{{ essay.title }}</div>
-          <span class="author-content-item-title">{{ essay.subTitle }}</span>
-          
-          <div class="content-bottom">
-            <div class="tips">{{ essay.tips }}</div>
-          </div>
-          
-          <div class="banner-button-group">
-            <a :href="essay.buttonLink" class="banner-button">
-              <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
-              <span class="banner-button-text">{{ essay.buttonText }}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 说说内容区域 -->
-      <div id="bber">
-        <section class="timeline page-1">
-          <ul id="waterfall" class="list">
-            <li 
-              v-for="(item, index) in essay.essay_list" 
-              :key="item.date || index"
-              class="bber-item"
-              v-if="index < essay.limit"
-            >
-              <div class="bber-content">
-                <!-- 内容 -->
-                <p class="datacont">{{ item.content }}</p>
-                
-                <!-- 图片展示 -->
-                <div v-if="item.image && item.image.length" class="bber-container-img">
-                  <template v-for="(imgUrl, imgIndex) in item.image" :key="imgIndex">
-                    <a 
-                      class="bber-content-img" 
-                      :href="imgUrl" 
-                      target="_blank" 
-                      data-fancybox="gallery" 
-                      data-caption=""
-                    >
-                      <img :src="imgUrl">
-                    </a>
-                  </template>
-                  
-                  <!-- 占位格 -->
-                  <div v-for="i in 3 - Math.min(item.image.length, 3)" :key="`empty-${i}`" class="bber-content-noimg"></div>
-                </div>
-                
-                <!-- 视频展示 -->
-                <div v-if="item.video && item.video.length" class="bber-container-img">
-                  <template v-for="(videoUrl, videoIndex) in item.video" :key="videoIndex">
-                    <div 
-                      v-if="videoUrl.includes('player.bilibili.com')"
-                      style="position: relative; padding: 30% 45%;margin-top: 10px;margin-bottom: 10px;"
-                    >
-                      <iframe 
-                        style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;margin: 0;border-radius: 12px;border: var(--style-border);" 
-                        :src="videoUrl" 
-                        scrolling="no" 
-                        border="0" 
-                        frameborder="no" 
-                        framespacing="0" 
-                        allowfullscreen="true"
-                      ></iframe>
-                    </div>
-                    <a 
-                      v-else 
-                      class="bber-content-video"
-                      :href="videoUrl"
-                      data-fancybox="gallery"
-                      data-caption=""
-                    >
-                      <video :src="videoUrl"></video>
-                    </a>
-                  </template>
-                  
-                  <!-- 占位格 -->
-                  <div v-for="i in 3 - Math.min(item.video.length, 3)" :key="`empty-video-${i}`" class="bber-content-noimg"></div>
-                </div>
-                
-                <!-- 音乐播放器 -->
-                <div v-if="item.aplayer" class="bber-music">
-                  <meting-js 
-                    :id="item.aplayer.id" 
-                    :server="item.aplayer.server" 
-                    type="song" 
-                    mutex="true"
-                    preload="none" 
-                    theme="var(--anzhiyu-main)" 
-                    data-lrctype="0" 
-                    order="list"
-                  ></meting-js>
-                </div>
-              </div>
-              
-              <!-- 分隔线 -->
-              <hr>
-              
-              <!-- 底部信息 -->
-              <div class="bber-bottom">
-                <div class="bber-info">
-                  <!-- 发布时间 -->
-                  <div class="bber-info-time">
-                    <i class="anzhiyufont anzhiyu-icon-clock"></i>
-                    <time class="datatime" :datetime="item.date">{{ new Date(item.date).toISOString() }}</time>
-                  </div>
-                  
-                  <!-- 相关链接 -->
-                  <a 
-                    v-if="item.link" 
-                    class="bber-content-link" 
-                    :href="item.link" 
-                    title="跳转到短文指引的链接" 
-                    rel="external nofollow"
-                  >
-                    <i class="anzhiyufont anzhiyu-icon-link"></i>
-                    <span>链接</span>
-                  </a>
-                  
-                  <!-- 来源信息 -->
-                  <div v-if="item.from" class="bber-info-from">
-                    <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
-                    <span>{{ item.from }}</span>
-                  </div>
-                  
-                  <!-- 地理位置 -->
-                  <div v-if="item.address" class="bber-info-from">
-                    <i class="anzhiyufont anzhiyu-icon-location-dot"></i>
-                    <span>{{ item.address }}</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
+    <!-- 顶部横幅区域 -->
+    <div 
+      class="author-content author-content-item essayPage single"
+      :style="bannerData.top_background ? `background: url(${bannerData.top_background}) center center / cover no-repeat;` : ''"
+    >
+      <div class="card-content">
+        <div class="author-content-item-tips">{{ bannerData.title }}</div>
+        <span class="author-content-item-title">{{ bannerData.subTitle }}</span>
         
-        <!-- 底部提示 -->
-        <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
-          只展示最近{{ currentEssay.limit }}条短文
+        <div class="content-bottom">
+          <div class="tips">{{ bannerData.tips }}</div>
+        </div>
+        
+        <div class="banner-button-group">
+          <a :href="bannerData.buttonLink" class="banner-button">
+            <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
+            <span class="banner-button-text">{{ bannerData.buttonText }}</span>
+          </a>
         </div>
       </div>
-    </template>
+    </div>
+
+    <!-- 说说内容区域 -->
+    <div id="bber">
+      <section class="timeline page-1">
+        <ul id="waterfall" class="list">
+          <li 
+            v-for="(item, index) in customEssays" 
+            :key="index"
+            class="bber-item"
+          >
+            <div class="bber-content">
+              <!-- 内容 -->
+              <p class="datacont">{{ item.content }}</p>
+              
+              <!-- 图片展示 -->
+              <div v-if="item.image" class="bber-container-img">
+                <div v-if="item.image && item.image.length > 0">
+                  <a 
+                    class="bber-content-img" 
+                    :href="item.image" 
+                    target="_blank" 
+                    data-fancybox="gallery" 
+                    data-caption=""
+                  >
+                    <img :src="item.image">
+                  </a>
+                </div>
+                
+                <!-- 占位格 -->
+                <div v-if="!item.image || item.image === ''" class="bber-content-noimg"></div>
+                <div class="bber-content-noimg"></div>
+                <div class="bber-content-noimg"></div>
+              </div>
+            </div>
+            
+            <!-- 分隔线 -->
+            <hr>
+            
+            <!-- 底部信息 -->
+            <div class="bber-bottom">
+              <div class="bber-info">
+                <!-- 发布时间 -->
+                <div class="bber-info-time">
+                  <i class="anzhiyufont anzhiyu-icon-clock"></i>
+                  <time class="datatime" :datetime="item.date">{{ item.date }}</time>
+                </div>
+                
+                <!-- 来源信息 -->
+                <div class="bber-info-from">
+                  <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
+                  <span>我的站点</span>
+                </div>
+                
+                <!-- 地理位置 -->
+                <div class="bber-info-from">
+                  <i class="anzhiyufont anzhiyu-icon-location-dot"></i>
+                  <span>北京</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      
+      <!-- 底部提示 -->
+      <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
+        只展示最近{{ bannerData.limit }}条短文
+      </div>
+    </div>
   </div>
 </template>
 
