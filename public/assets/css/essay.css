@@ -190,12 +190,13 @@ body[data-type="essay"] #web_bg {
   align-items: flex-start;
   background: var(--anzhiyu-card-bg);
   box-shadow: var(--anzhiyu-shadow-border);
-  margin-right: 2%;
 }
 #bber .timeline #waterfall.show {
   opacity: 1;
 }
 #bber ul.list {
+  width: 96%;
+  margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
