@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Essays } from '~~/blog.config'
-import essayData from '~/essayData'
+import type { Essay, EssayListItem } from '~/types'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -17,45 +17,251 @@ const essays_Data = {
     博主: Essays.author,
 }
 
+// 假设的数据结构
+interface EssayData {
+  essay: {
+    title: string
+    subTitle: string
+    tips: string
+    top_background?: string
+    buttonText: string
+    buttonLink: string
+    essay_list: EssayListItem[]
+    limit: number
+  }[]
+}
+
+const currentEssay = computed(() => essayData.value.essay[0])
+const currentTime = computed(() => new Date().toISOString())
+
+// 加载外部脚本
+onMounted(() => {
+  const loadScript = (src: string) => {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) return resolve(null)
+      
+      const script = document.createElement('script')
+      script.src = src
+      script.async = true
+      script.onload = resolve
+      script.onerror = reject
+      document.head.appendChild(script)
+    })
+  }
+
+  loadScript('/js/waterfall.js')
+    .then(() => loadScript('/js/essay.js'))
+    .catch(err => console.error('脚本加载失败:', err))
+})
+
+// 评论功能（需要替换为实际实现）
+const showComment = (content: string) => {
+  console.log('显示评论界面:', content)
+  alert(`评论内容: ${content}`)
+}
+
+const essayData = ref<EssayData>({
+  essay: [
+    {
+      title: "我的说说",
+      subTitle: "分享生活中的点滴",
+      tips: "发布于2023年5月",
+      top_background: "/path/to/background.jpg",
+      buttonText: "查看更多",
+      buttonLink: "/essays",
+      limit: 30,
+      essay_list: [
+        {
+          content: '买到 myxz.top 域名，而且还是个白金域名，太棒了。',
+          date: '2025/3/20',
+          image: 'https://bcjyn0fc8o7wifyp.public.blob.vercel-storage.com/img/b486dd9b02c8081a42f7161aa135da0-lUIahC6nFeKNkSKlHnHa38kuYGMlnU.png',
+        },
+        {
+          content: '最近长牙包了，没办法完善一些东西',
+          date: '2025/03/03',
+          image: '',
+        },
+        {
+          content: '目前基本上已经完成了仿照轻笑的博客样式',
+          date: '2025/02/07',
+          image: 'https://blog.myxz.top/img/screen.avif',
+        },
+        {
+          content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
+          date: '2025/02/03',
+          image: '',
+        }
+      ]
+    }
+  ]
+})
+
 const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
 </script>
 
 <template>
-  <div id="bber" class="essay_content">
-    <section class="essay_content_message">
-      <!-- 空状态提示 -->
-      <div v-if="essayData === null || essayData === undefined" class="loading">
-        加载中...
-      </div>
-      <div v-else-if="essayData.length === 0" class="empty">
-        暂无说说内容
-      </div>
-      <ul v-else class="essay_content_list">
-        <li
-          class="essay_content_item"
-          v-for="(item, index) in essayData"
-          :key="index"
-          v-if="index < 30"
-        >
-          <div class="essay_items_content">
-            <p class="essay_datacont">
-              {{ item.content }}
-              <div v-if="item.image && item.image.length" class="essay_container_img">
-                <div v-for="(imgUrl, imgIndex) in item.image" :key="imgIndex">
-                  <a class="bber-content-img" :href="imgUrl" target="_blank" data-fancybox="gallery">
-                    <img :src="imgUrl" />
-                  </a>
-                </div>
-                <!-- 空容器 -->
-                <div class="bber_content_noimg"></div>
-                <div class="bber_content_noimg"></div>
-                <div class="bber_content_noimg"></div>
-              </div>
-            </p>
+  <div id="essay_page">
+    <!-- 全局样式 -->
+    <style>
+      #web_bg~.page:has(#essay_page) {
+        background: none!important;
+      }
+    </style>
+
+    <template v-for="essay in essayData.essay" :key="essay.title">
+      <!-- 顶部横幅区域 -->
+      <div 
+        class="author-content author-content-item essayPage single"
+        :style="essay.top_background ? `background: url(${essay.top_background}) left 28% / cover no-repeat;` : ''"
+      >
+        <div class="card-content">
+          <div class="author-content-item-tips">{{ essay.title }}</div>
+          <span class="author-content-item-title">{{ essay.subTitle }}</span>
+          
+          <div class="content-bottom">
+            <div class="tips">{{ essay.tips }}</div>
           </div>
-        </li>
-      </ul>
-    </section>
+          
+          <div class="banner-button-group">
+            <a :href="essay.buttonLink" class="banner-button">
+              <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
+              <span class="banner-button-text">{{ essay.buttonText }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 说说内容区域 -->
+      <div id="bber">
+        <section class="timeline page-1">
+          <ul id="waterfall" class="list">
+            <li 
+              v-for="(item, index) in essay.essay_list" 
+              :key="item.date || index"
+              class="bber-item"
+              v-if="index < essay.limit"
+            >
+              <div class="bber-content">
+                <!-- 内容 -->
+                <p class="datacont">{{ item.content }}</p>
+                
+                <!-- 图片展示 -->
+                <div v-if="item.image && item.image.length" class="bber-container-img">
+                  <template v-for="(imgUrl, imgIndex) in item.image" :key="imgIndex">
+                    <a 
+                      class="bber-content-img" 
+                      :href="imgUrl" 
+                      target="_blank" 
+                      data-fancybox="gallery" 
+                      data-caption=""
+                    >
+                      <img :src="imgUrl">
+                    </a>
+                  </template>
+                  
+                  <!-- 占位格 -->
+                  <div v-for="i in 3 - Math.min(item.image.length, 3)" :key="`empty-${i}`" class="bber-content-noimg"></div>
+                </div>
+                
+                <!-- 视频展示 -->
+                <div v-if="item.video && item.video.length" class="bber-container-img">
+                  <template v-for="(videoUrl, videoIndex) in item.video" :key="videoIndex">
+                    <div 
+                      v-if="videoUrl.includes('player.bilibili.com')"
+                      style="position: relative; padding: 30% 45%;margin-top: 10px;margin-bottom: 10px;"
+                    >
+                      <iframe 
+                        style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;margin: 0;border-radius: 12px;border: var(--style-border);" 
+                        :src="videoUrl" 
+                        scrolling="no" 
+                        border="0" 
+                        frameborder="no" 
+                        framespacing="0" 
+                        allowfullscreen="true"
+                      ></iframe>
+                    </div>
+                    <a 
+                      v-else 
+                      class="bber-content-video"
+                      :href="videoUrl"
+                      data-fancybox="gallery"
+                      data-caption=""
+                    >
+                      <video :src="videoUrl"></video>
+                    </a>
+                  </template>
+                  
+                  <!-- 占位格 -->
+                  <div v-for="i in 3 - Math.min(item.video.length, 3)" :key="`empty-video-${i}`" class="bber-content-noimg"></div>
+                </div>
+                
+                <!-- 音乐播放器 -->
+                <div v-if="item.aplayer" class="bber-music">
+                  <meting-js 
+                    :id="item.aplayer.id" 
+                    :server="item.aplayer.server" 
+                    type="song" 
+                    mutex="true"
+                    preload="none" 
+                    theme="var(--anzhiyu-main)" 
+                    data-lrctype="0" 
+                    order="list"
+                  ></meting-js>
+                </div>
+              </div>
+              
+              <!-- 分隔线 -->
+              <hr>
+              
+              <!-- 底部信息 -->
+              <div class="bber-bottom">
+                <div class="bber-info">
+                  <!-- 发布时间 -->
+                  <div class="bber-info-time">
+                    <i class="anzhiyufont anzhiyu-icon-clock"></i>
+                    <time class="datatime" :datetime="item.date">{{ new Date(item.date).toISOString() }}</time>
+                  </div>
+                  
+                  <!-- 相关链接 -->
+                  <a 
+                    v-if="item.link" 
+                    class="bber-content-link" 
+                    :href="item.link" 
+                    title="跳转到短文指引的链接" 
+                    rel="external nofollow"
+                  >
+                    <i class="anzhiyufont anzhiyu-icon-link"></i>
+                    <span>链接</span>
+                  </a>
+                  
+                  <!-- 来源信息 -->
+                  <div v-if="item.from" class="bber-info-from">
+                    <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
+                    <span>{{ item.from }}</span>
+                  </div>
+                  
+                  <!-- 地理位置 -->
+                  <div v-if="item.address" class="bber-info-from">
+                    <i class="anzhiyufont anzhiyu-icon-location-dot"></i>
+                    <span>{{ item.address }}</span>
+                  </div>
+                </div>
+                
+                <!-- 评论按钮 -->
+                <div class="bber-reply" @click="showComment(item.content)">
+                  <i class="anzhiyufont anzhiyu-icon-message"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+        
+        <!-- 底部提示 -->
+        <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
+          只展示最近{{ currentEssay.limit }}条短文
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
