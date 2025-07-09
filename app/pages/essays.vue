@@ -40,7 +40,7 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
         </div>
     </header>
 
-    <div class="essay_content">
+    <div id="bber" class="essay_content">
         <section class="essay_content_message">
             <ul class="essay_content_list">
                 <li class="essay_content_item" v-for="(item, index) in essayData" v-if="index < 30">
