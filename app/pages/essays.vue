@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Essays } from '~~/blog.config'
-import type { Essay, EssayListItem } from '~/types'
+import { ref, onMounted } from 'vue'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -13,26 +12,53 @@ useSeoMeta({
     description: `${appConfig.title}的说说页面。`,
 })
 
-const essays_Data = {
-    博主: Essays.author,
+const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
+
+// 定义数据结构
+interface EssayItem {
+  content: string
+  date: string
+  image?: string
+  video?: string[]
+  link?: string
+  from?: string
+  address?: string
 }
 
-// 假设的数据结构
-interface EssayData {
-  essay: {
-    title: string
-    subTitle: string
-    tips: string
-    top_background?: string
-    buttonText: string
-    buttonLink: string
-    essay_list: EssayListItem[]
-    limit: number
-  }[]
-}
+// 提供的数据
+const customEssays = ref<EssayItem[]>([
+  {
+    content: '买到 myxz.top 域名，而且还是个白金域名，太棒了。',
+    date: '2025/3/20',
+    image: 'https://bcjyn0fc8o7wifyp.public.blob.vercel-storage.com/img/b486dd9b02c8081a42f7161aa135da0-lUIahC6nFeKNkSKlHnHa38kuYGMlnU.png',
+  },
+  {
+    content: '最近长牙包了，没办法完善一些东西',
+    date: '2025/03/03',
+    image: '',
+  },
+  {
+    content: '目前基本上已经完成了仿照轻笑的博客样式',
+    date: '2025/02/07',
+    image: 'https://blog.myxz.top/img/screen.avif',
+  },
+  {
+    content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
+    date: '2025/02/03',
+    image: '',
+  },
+])
 
-const currentEssay = computed(() => essayData.value.essay[0])
-const currentTime = computed(() => new Date().toISOString())
+// 顶部横幅数据
+const bannerData = ref({
+  title: "我的说说",
+  subTitle: "分享生活中的点滴",
+  tips: "发布于2023年至今",
+  top_background: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  buttonText: "查看更多",
+  buttonLink: "/essays",
+  limit: 30
+})
 
 // 加载外部脚本
 onMounted(() => {
@@ -49,48 +75,11 @@ onMounted(() => {
     })
   }
 
-  loadScript('/assets/js/waterfall.js')
-    .then(() => loadScript('/assets/js/essay.js'))
+  loadScript('/js/waterfall.js')
+    .then(() => loadScript('/js/essay.js'))
     .catch(err => console.error('脚本加载失败:', err))
 })
 
-const essayData = ref<EssayData>({
-  essay: [
-    {
-      title: "我的说说",
-      subTitle: "分享生活中的点滴",
-      tips: "发布于2023年5月",
-      top_background: "/path/to/background.jpg",
-      buttonText: "查看更多",
-      buttonLink: "/essays",
-      limit: 30,
-      essay_list: [
-        {
-          content: '买到 myxz.top 域名，而且还是个白金域名，太棒了。',
-          date: '2025/3/20',
-          image: 'https://bcjyn0fc8o7wifyp.public.blob.vercel-storage.com/img/b486dd9b02c8081a42f7161aa135da0-lUIahC6nFeKNkSKlHnHa38kuYGMlnU.png',
-        },
-        {
-          content: '最近长牙包了，没办法完善一些东西',
-          date: '2025/03/03',
-          image: '',
-        },
-        {
-          content: '目前基本上已经完成了仿照轻笑的博客样式',
-          date: '2025/02/07',
-          image: 'https://blog.myxz.top/img/screen.avif',
-        },
-        {
-          content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
-          date: '2025/02/03',
-          image: '',
-        }
-      ]
-    }
-  ]
-})
-
-const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
 </script>
 
 <template>
