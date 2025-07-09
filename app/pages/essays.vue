@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
-layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log', 'blog-qrcode'])
 
 useSeoMeta({
     title: '说说',
@@ -158,13 +158,7 @@ onMounted(() => {
                 <!-- 来源信息 -->
                 <div class="bber-info-from">
                   <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
-                  <span>我的站点</span>
-                </div>
-                
-                <!-- 地理位置 -->
-                <div class="bber-info-from">
-                  <i class="anzhiyufont anzhiyu-icon-location-dot"></i>
-                  <span>北京</span>
+                  <span>莫言小栈</span>
                 </div>
               </div>
             </div>
