@@ -121,7 +121,7 @@ onMounted(() => {
               <p class="datacont">{{ item.content }}</p>
               
               <!-- 图片展示 -->
-              <div v-if="item.image" class="bber-container-img">
+              <div v-if="item.image" class="bber-container-img" style="width: auto!important">
                 <div v-if="item.image && item.image.length > 0">
                   <a 
                     class="bber-content-img" 
@@ -129,6 +129,7 @@ onMounted(() => {
                     target="_blank" 
                     data-fancybox="gallery" 
                     data-caption=""
+                    style="width: 100%!important"
                   >
                     <img :src="item.image">
                   </a>
