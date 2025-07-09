@@ -86,23 +86,23 @@ onMounted(() => {
   <div id="#essay_page">
 
     <!-- 顶部横幅区域 -->
-    <div 
-      class="author-content author-content-item essayPage single"
-      :style="bannerData.top_background ? `background: url(${bannerData.top_background}) center center / cover no-repeat;` : ''"
-    >
-      <div class="card-content">
-        <div class="author-content-item-tips">{{ bannerData.title }}</div>
-        <span class="author-content-item-title">{{ bannerData.subTitle }}</span>
-        
-        <div class="content-bottom">
-          <div class="tips">{{ bannerData.tips }}</div>
-        </div>
-        
-        <div class="banner-button-group">
-          <a :href="bannerData.buttonLink" class="banner-button">
-            <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
-            <span class="banner-button-text">{{ bannerData.buttonText }}</span>
-          </a>
+    <div class="essay_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
+      <div class="essay_banner_content">
+        <h1>
+          即刻短文
+        </h1>
+        <p>
+          记录生活点滴，一些想法
+        </p>
+      </div>
+      <div class="essay_banner_extra">
+        <div class="essay_friend_stats">
+          <div class="essay_update_time">
+            Updated at 2025-07-06
+          </div>
+          <div class="essay_powered_by">
+            Powered by AnHeYuEssays
+          </div>
         </div>
       </div>
     </div>
@@ -179,34 +179,93 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-.link-reminder {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.8rem 2rem;
+<style>
+.essay_page_banner {
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 8px;
     margin: 1rem;
-    padding: 0.8rem 1rem;
-    border-radius: 1rem;
-    background: var(--c-primary-soft);
+    max-height: 320px;
+    min-height: 256px;
+    overflow: hidden;
+    position: relative
+}
 
-    .content {
-        flex-basis: 20em;
-        flex-grow: 3;
+.essay_page_banner .essay_banner_content {
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    justify-content: space-between;
+    padding: 1rem;
+    position: absolute;
+    text-shadow: 0 4px 5px rgba(0,0,0,.5)
+}
 
-        p + p {
-            margin-top: 0.2em;
-        }
-    }
+.essay_page_banner .essay_banner_content h1 {
+    font-size: 2rem
+}
 
-    .operations {
-        display: flex;
-        flex-basis: 10em;
-        flex-grow: 1;
-        justify-content: end;
-        gap: 0.2em 1rem;
-        flex-wrap: wrap;
-    }
+.essay_page_banner .essay_banner_content p {
+    font-size: 1rem;
+    opacity: .9
+}
+
+.essay_page_banner .essay_banner_extra {
+    align-items: flex-end;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    justify-content: flex-end;
+    margin: 1rem;
+    position: absolute
+}
+
+.essay_page_banner .banner-btn {
+    align-items: center;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background: #ffffff1a;
+    border-radius: 20px;
+    color: #eee;
+    display: flex;
+    font-size: .9rem;
+    gap: .1rem;
+    opacity: .8;
+    padding: .5rem .8rem;
+    transition: all .3s
+}
+
+.essay_page_banner .banner-btn:hover {
+    background: #0003
+}
+
+.essay_page_banner .banner-btn .icon {
+    font-size: 1.2rem
+}
+
+.essay_friend_stats {
+    align-items: flex-end;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-monospace);
+    font-size: .7rem;
+    gap: .1rem;
+    opacity: .7;
+    text-shadow: 0 4px 5px rgba(0,0,0,.5)
+}
+
+.essay_friend_stats .essay_update_time {
+    opacity: 1
+}
+
+.essay_friend_stats .essay_powered_by {
+    opacity: .8
 }
 </style>
