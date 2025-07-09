@@ -32,7 +32,7 @@
   --anzhiyu-black-acrylic1: #0b0b0e !important;
 }
 
-[data-theme="light"] {
+.light, :root {
   --anzhiyu-theme: #3b70fc;
   --anzhiyu-theme-op: #4259ef23;
   --anzhiyu-blue: #3b70fc;
@@ -60,7 +60,7 @@
   --anzhiyu-card-border: #c0c6d8;
 }
 
-[data-theme="dark"] {
+.dark {
   --anzhiyu-theme: #0084ff;
   --anzhiyu-theme-op: #0084ff23;
   --anzhiyu-blue: #0084ff;
