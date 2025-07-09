@@ -83,6 +83,7 @@ onMounted(() => {
 
 <template>
   <link rel="stylesheet" href="/assets/css/essay.css">
+  <link rel="stylesheet" href="https://github.com/661111/my-jingtai-cdn/blob/main/fonts/anzhiyu/anzhiyufonts.css">
   <div id="#essay_page">
 
     <!-- 顶部横幅区域 -->
