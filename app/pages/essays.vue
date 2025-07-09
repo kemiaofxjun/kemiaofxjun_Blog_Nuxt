@@ -54,12 +54,6 @@ onMounted(() => {
     .catch(err => console.error('脚本加载失败:', err))
 })
 
-// 评论功能（需要替换为实际实现）
-const showComment = (content: string) => {
-  console.log('显示评论界面:', content)
-  alert(`评论内容: ${content}`)
-}
-
 const essayData = ref<EssayData>({
   essay: [
     {
@@ -245,11 +239,6 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
                     <i class="anzhiyufont anzhiyu-icon-location-dot"></i>
                     <span>{{ item.address }}</span>
                   </div>
-                </div>
-                
-                <!-- 评论按钮 -->
-                <div class="bber-reply" @click="showComment(item.content)">
-                  <i class="anzhiyufont anzhiyu-icon-message"></i>
                 </div>
               </div>
             </li>
