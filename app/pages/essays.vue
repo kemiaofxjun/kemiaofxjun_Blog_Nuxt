@@ -75,8 +75,8 @@ onMounted(() => {
     })
   }
 
-  loadScript('/js/waterfall.js')
-    .then(() => loadScript('/js/essay.js'))
+  loadScript('/assets/js/waterfall.js')
+    .then(() => loadScript('/assets/js/essay.js'))
     .catch(err => console.error('脚本加载失败:', err))
 })
 
