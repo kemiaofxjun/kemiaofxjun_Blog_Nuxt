@@ -1,23 +1,7 @@
 var percentFlag = false; // 节流阀
 function essayScroll() {
   let a = document.documentElement.scrollTop || window.pageYOffset; // 卷去高度
-  const waterfallResult = a % document.documentElement.clientHeight; // 卷去一个视口
   result <= 99 || (result = 99);
-
-  if (
-    !percentFlag &&
-    waterfallResult + 100 >= document.documentElement.clientHeight &&
-    document.querySelector("#waterfall")
-  ) {
-    // console.info(waterfallResult, document.documentElement.clientHeight);
-    setTimeout(() => {
-      waterfall("#waterfall");
-    }, 500);
-  } else {
-    setTimeout(() => {
-      document.querySelector("#waterfall") && waterfall("#waterfall");
-    }, 500);
-  }
 
   const r = window.scrollY + document.documentElement.clientHeight;
 
@@ -69,13 +53,6 @@ var anzhiyu = {
         (t.innerText = anzhiyu.diffDate(datetime, true)), (t.style.display = "inline");
       });
   },
-  reflashEssayWaterFall: function () {
-    document.querySelector("#waterfall") &&
-      setTimeout(function () {
-        waterfall("#waterfall");
-        document.getElementById("waterfall").classList.add("show");
-      }, 500);
-  },
   commentText: function (e) {
     if (e == "undefined" || e == "null") e = "好棒！";
     var n = document.getElementsByClassName("el-textarea__inner")[0],
@@ -93,4 +70,3 @@ var anzhiyu = {
 };
 
 anzhiyu.changeTimeInEssay();
-anzhiyu.reflashEssayWaterFall();
