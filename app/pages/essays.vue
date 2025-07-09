@@ -21,48 +21,42 @@ const { data: postLink } = await useAsyncData('/essays', () => queryContent('/es
 </script>
 
 <template>
-    <header class="link-reminder">
-        <div class="content">
-            <p><Icon name="ph:newspaper-clipping-bold" />我会通过快捷方式进行写作</p>
-            <p>
-                我制作了本站的
-                <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
-                <ProseA>Ispeak快捷发表</ProseA>，可通过快捷列表来进行使用
+  <div id="bber" class="essay_content">
+    <section class="essay_content_message">
+      <!-- 空状态提示 -->
+      <div v-if="essayData === null || essayData === undefined" class="loading">
+        加载中...
+      </div>
+      <div v-else-if="essayData.length === 0" class="empty">
+        暂无说说内容
+      </div>
+      <ul v-else class="essay_content_list">
+        <li
+          class="essay_content_item"
+          v-for="(item, index) in essayData"
+          :key="index"
+          v-if="index < 30"
+        >
+          <div class="essay_items_content">
+            <p class="essay_datacont">
+              {{ item.content }}
+              <div v-if="item.image && item.image.length" class="essay_container_img">
+                <div v-for="(imgUrl, imgIndex) in item.image" :key="imgIndex">
+                  <a class="bber-content-img" :href="imgUrl" target="_blank" data-fancybox="gallery">
+                    <img :src="imgUrl" />
+                  </a>
+                </div>
+                <!-- 空容器 -->
+                <div class="bber_content_noimg"></div>
+                <div class="bber_content_noimg"></div>
+                <div class="bber_content_noimg"></div>
+              </div>
             </p>
-        </div>
-        <div class="operations">
-            <ProseA href="https://kkadmin.myxz.top" icon="ph:rss-simple-bold">
-                Ispeak后台管理
-            </ProseA>
-            <ProseA href="https://ispeak_biubiu.myxz.top" icon="ph:list-plus-bold">
-                Ispeak网页版发表
-            </ProseA>
-        </div>
-    </header>
-
-    <div id="bber" class="essay_content">
-        <section class="essay_content_message">
-            <ul class="essay_content_list">
-                <li class="essay_content_item" v-for="(item, index) in essayData" v-if="index < 30">
-                    <div class="essay_items_content">
-                        <p class = "essay_datacont">
-                            {{ item.content }}
-                            <div v-if="item.image" class="essay_container_img">
-                                <div v-for="(imgUrl, imgIndex) in item.image" :key="imgUrl || imgIndex">
-                                    <a class="bber-content-img" :href="imgUrl" target="_blank" data-fancybox="gallery" data-caption="">
-                                        <img :src="imgUrl"></img>
-                                    </a>
-                                </div>
-                                <div class="bber_content_noimg"></div>
-                                <div class="bber_content_noimg"></div>
-                                <div class="bber_content_noimg"></div>
-                            </div>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
