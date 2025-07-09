@@ -16,20 +16,25 @@ const TuiJian_QRcode_data = [
 </script>
 
 <template>
-    <div class="Qrcode" id="TuiJian">
-        <div id="TuiJian_items">
-            <div :class="TuiJian_QRcode_data.class">
-                <div class="TuiJian_contect_left">
-                    <p>
-                        扫一扫
-                    </p>
-                    <span>
-                        {{ TuiJian_QRcode_data.name }}
-                    </span>
-                </div>
-                <div class="TuiJian_contect_right">
-                    <div class="TuiJian_contect_image_box">
-                        <img :src="TuiJian_QRcode_data.image" alt="Qrcode">
+    <h3 class="widget-title">
+        本站移动端
+    </h3>
+    <div class="widget-card">
+        <div class="Qrcode" id="TuiJian">
+            <div id="TuiJian_items">
+                <div :class="TuiJian_QRcode_data.class">
+                    <div class="TuiJian_contect_left">
+                        <p>
+                            扫一扫
+                        </p>
+                        <span>
+                            {{ TuiJian_QRcode_data.name }}
+                        </span>
+                    </div>
+                    <div class="TuiJian_contect_right">
+                        <div class="TuiJian_contect_image_box">
+                            <img :src="TuiJian_QRcode_data.image" alt="Qrcode">
+                        </div>
                     </div>
                 </div>
             </div>
