@@ -5,15 +5,23 @@ import { useRoute } from 'vue-router'
 // 获取当前路由信息
 const route = useRoute()
 
-// 二维码图片URL
-const currentPageQRCode = ref('')
-const appQRCode = ref('')
+// 使用 qrcode.js 生成二维码
+import QRCode from 'qrcode'
 
-// 生成二维码的函数（实际项目中应使用真实的二维码生成服务）
-const generateQRCode = (url: string, options = { margin: 4 }) => {
-  // 这里只是模拟，实际项目中应使用二维码生成库
-  // 例如：使用 qrcode.js 或调用后端API生成二维码
-  return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&margin=${options.margin}&data=${encodeURIComponent(url)}`
+const generateQRCode = async (url: string) => {
+  try {
+    return await QRCode.toDataURL(url, {
+      margin: 2,
+      width: 150,
+      color: {
+        dark: '#000000',
+        light: '#ffffff'
+      }
+    })
+  } catch (err) {
+    console.error('二维码生成失败', err)
+    return ''
+  }
 }
 
 // 初始化二维码
