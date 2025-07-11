@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
-layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log', 'blog-qrcode'])
+layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
 
 useSeoMeta({
     title: '说说',
