@@ -14,7 +14,7 @@ useSeoMeta({
 
 // 配置选项
 const UserConfig = reactive({
-  private_api_url: '', 
+  private_api_url: 'https://moments.myxz.top/', 
   page_turning_number: 20,
   error_img: "https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite@latest/static/favicon.ico"
 })
