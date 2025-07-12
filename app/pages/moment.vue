@@ -192,7 +192,7 @@ const hideModal = () => {
         <div class="article-container gradient-card">
           <div class="article-author">{{ randomArticle.author }}</div>
           <div class="article-title">{{ randomArticle.title }}</div>
-          <div class="article-date">{{ formatDate(article.created) }}</div>
+          <div class="article-date">{{ randomArticle.created }}</div>
         </div>
       </a>
       <button class="refresh-btn gradient-card" @click="displayRandomArticle">
