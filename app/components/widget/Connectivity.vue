@@ -14,19 +14,12 @@ const appConfig = useAppConfig()
         }"
     >
         <!-- TODO: 优化技术架构展示 -->
+        <p>域名启用 DNSSEC 和 HSTS，续费至2030年8月，托管于 Vercel；博客由 Nuxt Content 驱动，使用去图图床。</p>
         <p>
-            🔗 域名 续费至2026年
-            <br>
-            📑 博客 由 Nuxt Content 进行驱动
-            <br>
-            📷 图片 托管于 缤纷云
-        </p>
-        <p>
-            🀄️ 框架: Nuxt
-            <br>
-            🎴 加速: Vercel CDN
-            <br>
-            📷 图床: 缤纷云
+            获得省级、国家级认证如下：<br>
+            江苏:<span class="seasonal-emoji">跳转反诈宣传</span><br>
+            重庆:<span class="seasonal-emoji">DNS污染</span><br>
+            移动:<span class="seasonal-emoji">多省阻断解析</span>
         </p>
     </div>
 </template>

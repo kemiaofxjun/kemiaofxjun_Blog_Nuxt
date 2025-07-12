@@ -22,15 +22,12 @@ export default defineNuxtConfig({
 
                 { rel: 'preconnect', href: 'https://cdn-font.hyperos.mi.com' },
                 // 浏览器渲染中文 VF 字重有问题
-                // { rel: 'stylesheet', href: 'https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://cdn-font.hyperos.mi.com/font/css?family=MiSans_VF:VF:Chinese_Simplify,Latin&display=swap', media: 'none', onload: 'this.media="all"' },
                 // https://cdn-font.hyperos.mi.com/font/css?family=MiSans:100,200,300,400,450,500,600,650,700,900:Chinese_Simplify,Latin&display=swap
 
                 { rel: 'preconnect', href: 'https://fonts.googleapis.cn' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.cn', crossorigin: '' },
-
-                { rel: 'preconnect', href: 'https://chinese-fonts-cdn.deno.dev' },
-                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font%2FYeZiGongChangTangYingHei%2Fresult.css', media: 'none', onload: 'this.media="all"' },
-                // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap', media: 'none', onload: 'this.media="all"' },
                 // Fira Code 没有斜体
                 // { rel: 'stylesheet', href: 'https://fonts.googleapis.cn/css2?family=Fira+Code:wght@300..700&family=Noto+Serif+SC:wght@200..900&display=swap', media: 'none', onload: 'this.media="all"' },
 
@@ -105,7 +102,7 @@ export default defineNuxtConfig({
         '@nuxtjs/seo',
         '@pinia/nuxt',
         '@vueuse/nuxt',
-        '@zinkawaii/nuxt-shiki'
+        '@zinkawaii/nuxt-shiki',
     ],
 
     colorMode: {

@@ -9,7 +9,7 @@ useSeoMeta({
 const birthYear = appConfig.stats.birthYear
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'blog-log'])
 
 const { data: listRaw } = await useAsyncData(
     'posts_index',

@@ -31,6 +31,11 @@ body {
     padding: 20px;
 }
 
+@font-face {
+    font-family: AlimamaFangYuanTi;
+    src: url("/fonts/AlimamaFangYuanTi.woff2");
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -55,6 +60,7 @@ a {
 }
 
 .title {
+    font-family: AlimamaFangYuanTi;
     font-variation-settings: "wght" 600, "BEVL" 100;
     font-size: 1.5em;
     line-height: normal;

@@ -49,6 +49,8 @@ const blogConfig = {
     scripts: [
         // 自己部署的 Umami 统计服务
         { 'src': 'https://zhi.zhilu.cyou/zhi.js', 'data-website-id': 'a1997c81-a42b-46f6-8d1d-8fbd67a8ef41', 'defer': true },
+        // Cloudflare Insights 统计服务
+        { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
     ],
 
     // 用于 Shiki、Plain Shiki 引入代码高亮
@@ -63,17 +65,17 @@ const blogConfig = {
 
     // 用于 Twikoo 评论系统
     twikoo: {
-        js: 'https://jsd.myxz.top/npm/twikoo@1.6.40/dist/twikoo.all.min.js',
+        js: 'https://gcore.jsdelivr.net/npm/twikoo@1.6.40/dist/twikoo.all.min.js',
         // 自己部署的 Twikoo 服务
-        envId: 'https://twikoo.sxiaohe.top/',
-        preload: 'https://twikoo.sxiaohe.top/',
+        envId: 'https://twikoo.zhilu.cyou/',
+        preload: 'https://twikoo.zhilu.cyou/',
     },
 }
 
 // 用于生成 OPML 和友链页面配置
 export const myFeed = <FeedEntry>{
     author: blogConfig.author.name,
-    sitenick: '莫言小栈',
+    sitenick: '摸鱼处',
     title: blogConfig.title,
     desc: blogConfig.subtitle || blogConfig.description,
     link: blogConfig.url,
@@ -84,7 +86,6 @@ export const myFeed = <FeedEntry>{
     date: blogConfig.timeEstablished,
     comment: '这是我自己',
 }
-
 
 // 将旧页面永久重定向到新页面
 const redirectRouteRules = Object.entries(redirectList)

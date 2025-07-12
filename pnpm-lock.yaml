@@ -16,9 +16,6 @@ importers:
 
   .:
     dependencies:
-      '@resvg/resvg-js':
-        specifier: ^2.6.2
-        version: 2.6.2
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
