@@ -13,9 +13,9 @@ const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
 
 useSeoMeta({
-    title: essayConstants.pageTitle,
-    ogType: 'profile',
-    description: `${appConfig.title}${essayConstants.pageDescription}。`,
+  title: '说说',
+  ogType: 'profile',
+  description: `${appConfig.title}的说说页面。`,
 })
 
 // 加载外部脚本
