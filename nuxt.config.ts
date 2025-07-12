@@ -104,7 +104,6 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vueuse/nuxt',
         '@zinkawaii/nuxt-shiki',
-        '@vite-pwa/nuxt',
     ],
 
     colorMode: {
