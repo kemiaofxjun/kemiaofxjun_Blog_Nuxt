@@ -5,7 +5,7 @@ import subscriptions from '~/subscriptions'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
-layoutStore.setAside([])
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 useSeoMeta({
     title: '友链',

@@ -31,11 +31,6 @@ body {
     padding: 20px;
 }
 
-@font-face {
-    font-family: AlimamaFangYuanTi;
-    src: url("/fonts/AlimamaFangYuanTi.woff2");
-}
-
 * {
     margin: 0;
     padding: 0;
