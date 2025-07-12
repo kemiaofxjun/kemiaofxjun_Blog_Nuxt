@@ -1,5 +1,11 @@
+<!-- ~/pages/essays.vue -->
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { 
+  customEssays, 
+  bannerData, 
+  essayConstants 
+} from '~/essay'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -7,55 +13,9 @@ const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
 
 useSeoMeta({
-    title: '说说',
+    title: essayConstants.pageTitle,
     ogType: 'profile',
-    description: `${appConfig.title}的说说页面。`,
-})
-
-// 定义数据结构
-interface EssayItem {
-  content: string
-  date: string
-  image?: string
-  video?: string[]
-  link?: string
-  from?: string
-  address?: string
-}
-
-// 提供的数据
-const customEssays = ref<EssayItem[]>([
-  {
-    content: '买到 myxz.top 域名，而且还是个白金域名，太棒了。',
-    date: '2025/3/20',
-    image: 'https://bcjyn0fc8o7wifyp.public.blob.vercel-storage.com/img/b486dd9b02c8081a42f7161aa135da0-lUIahC6nFeKNkSKlHnHa38kuYGMlnU.png',
-  },
-  {
-    content: '最近长牙包了，没办法完善一些东西',
-    date: '2025/03/03',
-    image: '',
-  },
-  {
-    content: '目前基本上已经完成了仿照轻笑的博客样式',
-    date: '2025/02/07',
-    image: 'https://blog.myxz.top/img/screen.avif',
-  },
-  {
-    content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
-    date: '2025/02/03',
-    image: '',
-  },
-])
-
-// 顶部横幅数据
-const bannerData = ref({
-  title: "我的说说",
-  subTitle: "分享生活中的点滴",
-  tips: "发布于2023年至今",
-  top_background: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  buttonText: "查看更多",
-  buttonLink: "/essays",
-  limit: 30
+    description: `${appConfig.title}${essayConstants.pageDescription}。`,
 })
 
 // 加载外部脚本
@@ -82,25 +42,28 @@ onMounted(() => {
 <template>
   <link rel="stylesheet" href="/assets/css/essay.css">
   <link rel="stylesheet" href="https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css">
-  <div id="#essay_page">
+  <div id="essay_page">
 
     <!-- 顶部横幅区域 -->
-    <div class="essay_page_banner" style="background-image:url(/assets/img/page_backgroud/moment.webp);">
+    <div 
+      class="essay_page_banner" 
+      :style="`background-image:url(${bannerData.top_background})`"
+    >
       <div class="essay_banner_content">
         <h1>
           即刻短文
         </h1>
         <p>
-          记录生活点滴，一些想法
+          {{ essayConstants.pageDescription }}
         </p>
       </div>
       <div class="essay_banner_extra">
         <div class="essay_friend_stats">
           <div class="essay_update_time">
-            Updated at 2025-07-06
+            Updated at {{ essayConstants.lastUpdate }}
           </div>
           <div class="essay_powered_by">
-            Powered by AnHeYuEssays
+            Powered by {{ essayConstants.poweredBy }}
           </div>
         </div>
       </div>
@@ -120,7 +83,11 @@ onMounted(() => {
               <p class="datacont">{{ item.content }}</p>
               
               <!-- 图片展示 -->
-              <div v-if="item.image" class="bber-container-img" style="width: auto!important">
+              <div 
+                v-if="item.image" 
+                class="bber-container-img"
+                style="width: auto!important"
+              >
                 <div v-if="item.image && item.image.length > 0">
                   <a 
                     class="bber-content-img" 
@@ -135,7 +102,10 @@ onMounted(() => {
                 </div>
                 
                 <!-- 占位格 -->
-                <div v-if="!item.image || item.image === ''" class="bber-content-noimg"></div>
+                <div 
+                  v-if="!item.image || item.image === ''" 
+                  class="bber-content-noimg"
+                ></div>
                 <div class="bber-content-noimg"></div>
                 <div class="bber-content-noimg"></div>
               </div>
@@ -156,7 +126,7 @@ onMounted(() => {
                 <!-- 来源信息 -->
                 <div class="bber-info-from">
                   <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
-                  <span>莫言小栈</span>
+                  <span>{{ essayConstants.siteName }}</span>
                 </div>
               </div>
             </div>
