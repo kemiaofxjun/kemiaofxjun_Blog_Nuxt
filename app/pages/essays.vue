@@ -12,8 +12,6 @@ useSeoMeta({
     description: `${appConfig.title}的说说页面。`,
 })
 
-const { data: postLink } = await useAsyncData('/essays', () => queryContent('/essays').findOne())
-
 // 定义数据结构
 interface EssayItem {
   content: string
