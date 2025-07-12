@@ -188,11 +188,11 @@ const hideModal = () => {
     <!-- 随机文章区域 -->
     <div v-if="randomArticle" class="random-article">
       <div class="random-container-title">随机钓鱼</div>
-      <a href="#" @click.prevent="openRandomArticle">
+      <a href="#" @click.prevent="openRandomArticle" class="article-item">
         <div class="article-container gradient-card">
           <div class="article-author">{{ randomArticle.author }}</div>
           <div class="article-title">{{ randomArticle.title }}</div>
-          <div class="article-date">{{ randomArticle.date }}</div>
+          <div class="article-date">{{ formatDate(article.created) }}</div>
         </div>
       </a>
       <button class="refresh-btn gradient-card" @click="displayRandomArticle">
