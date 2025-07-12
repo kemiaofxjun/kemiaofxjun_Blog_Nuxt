@@ -104,7 +104,6 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vueuse/nuxt',
         '@zinkawaii/nuxt-shiki',
-        '@nuxtjs/pwa',
     ],
 
     colorMode: {
@@ -160,5 +159,5 @@ export default defineNuxtConfig({
     site: {
         name: blogConfig.title,
         url: blogConfig.url,
-    }
+    },
 })
