@@ -172,6 +172,7 @@ export default defineNuxtConfig({
         injectRegister: false,
         includeManifestIcons: false,
         manifest: false,
+        maximumFileSizeToCacheInBytes: 3000000,
         injectManifest: {
             globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
         },
