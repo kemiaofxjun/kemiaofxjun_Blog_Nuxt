@@ -184,9 +184,9 @@ const hideModal = () => {
 
 <template>
   <link rel="stylesheet" href="/assets/css/moments.css">
-  <div id="friend-circle-lite-root">
+  <div class="article-list">
     <!-- 随机文章区域 -->
-    <div v-if="randomArticle" id="random-article">
+    <div v-if="randomArticle" class="random-article">
       <div class="random-container-title">随机钓鱼</div>
       <a href="#" @click.prevent="openRandomArticle">
         <div class="article-container gradient-card">
