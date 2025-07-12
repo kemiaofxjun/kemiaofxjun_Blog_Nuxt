@@ -112,7 +112,7 @@ export default defineAppConfig({
 
     /** 风格化 blog-stats widget */
     seasonal: {
-        widgetBackground: 'https://wsrv.nl/?url=i2.hdslb.com/bfs/archive/46165212e09842103752c453d7987a470059760b.jpg@320w',
+        widgetBackground: 'https://i2.hdslb.com/bfs/archive/46165212e09842103752c453d7987a470059760b.jpg@160w',
         // emoji: '🧧',
     },
 
