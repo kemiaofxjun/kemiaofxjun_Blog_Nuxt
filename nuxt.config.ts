@@ -180,5 +180,23 @@ export default defineNuxtConfig({
             enabled: true,
             type: 'module',
         },
+        workbox: {
+            runtimeCaching: [
+                {
+                    urlPattern: /^https:\/\/sourceimage\.s3\.bitiful\.net\/.*/i,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'google-fonts-stylesheets',
+                        expiration: {
+                            maxEntries: 10,
+                            maxAgeSeconds: 60 * 60 * 24 * 365 // 一年
+                        },
+                        cacheableResponse: {
+                        statuses: [0, 200]
+                        }
+                    }
+                }
+            ]
+        }
     },
 })
