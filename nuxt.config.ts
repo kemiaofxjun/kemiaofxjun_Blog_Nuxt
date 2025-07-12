@@ -104,6 +104,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vueuse/nuxt',
         '@zinkawaii/nuxt-shiki',
+        '@vite-pwa/nuxt',
     ],
 
     colorMode: {
@@ -161,22 +162,22 @@ export default defineNuxtConfig({
         url: blogConfig.url,
     },
 
-    // pwa: {
-    //     mode: 'development',
-    //     disable: false,
-    //     scope: '/',
-    //     srcDir: './service-worker',
-    //     filename: 'sw.ts',
-    //     strategies: 'injectManifest',
-    //     injectRegister: false,
-    //     includeManifestIcons: false,
-    //     manifest: false,
-    //     injectManifest: {
-    //         globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    //     },
-    //     devOptions: {
-    //         enabled: true,
-    //         type: 'module',
-    //     },
-    // },
+    pwa: {
+        mode: 'development',
+        disable: false,
+        scope: '/',
+        srcDir: './service-worker',
+        filename: 'sw.ts',
+        strategies: 'injectManifest',
+        injectRegister: false,
+        includeManifestIcons: false,
+        manifest: false,
+        injectManifest: {
+            globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+        },
+        devOptions: {
+            enabled: true,
+            type: 'module',
+        },
+    },
 })
