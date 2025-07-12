@@ -15,6 +15,7 @@
     "new": "node scripts/new-blog.js"
   },
   "dependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "embla-carousel-autoplay": "^8.5.2",
@@ -24,7 +25,8 @@
     "parse-domain": "^8.2.2",
     "plain-shiki": "^0.2.0",
     "radash": "^12.1.0",
-    "vue-tippy": "^6.7.0"
+    "vue-tippy": "^6.7.0",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",

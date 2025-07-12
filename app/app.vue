@@ -4,6 +4,7 @@
     <ZSidebar />
     <div id="content">
         <main id="main-content">
+            <script src="/assets/js/pwa_update.js"></script>
             <NuxtPage />
             <ZFooter />
         </main>

@@ -104,6 +104,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vueuse/nuxt',
         '@zinkawaii/nuxt-shiki',
+        '@nuxtjs/pwa',
     ],
 
     colorMode: {
@@ -160,4 +161,69 @@ export default defineNuxtConfig({
         name: blogConfig.title,
         url: blogConfig.url,
     },
+
+    // PWA配置内容
+    pwa: {
+        manifest: {
+            name: '全缓存网站',
+            short_name: 'CacheAll',
+            theme_color: '#4DBA87',
+            background_color: '#ffffff',
+            display: 'standalone',
+            scope: '/',
+            start_url: '/'
+        },
+        workbox: {
+            enabled: true,
+            // 开发环境启用（可选）
+            dev: true,
+            // 预缓存所有资源
+            preCaching: [
+                { url: '/', revision: null },
+                { url: '/offline', revision: null }
+            ],
+            // 运行时缓存策略
+            runtimeCaching: [
+                {
+                    // 匹配所有页面请求
+                    urlPattern: ({ url }) => url.pathname.startsWith('/'),
+                    handler: 'NetworkFirst',
+                    options: {
+                        cacheName: 'pages-cache',
+                        expiration: {
+                        maxEntries: 100,
+                        maxAgeSeconds: 30 * 24 * 60 * 60 // 30天
+                        }
+                    }
+                },
+                {
+                    // 匹配所有静态资源
+                    urlPattern: ({ request }) => request.destination === 'script' || 
+                                                request.destination === 'style' || 
+                                                request.destination === 'image' || 
+                                                request.destination === 'font',
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'assets-cache',
+                        expiration: {
+                            maxEntries: 200,
+                            maxAgeSeconds: 60 * 24 * 60 * 60 // 60天
+                        }
+                    }
+                },
+                {
+                    // 匹配API请求
+                    urlPattern: /^https:\/\/api\.example\.com\/.*/,
+                    handler: 'StaleWhileRevalidate',
+                    options: {
+                        cacheName: 'api-cache',
+                        expiration: {
+                            maxEntries: 50,
+                            maxAgeSeconds: 5 * 60 // 5分钟
+                        }
+                    }
+                }
+            ]
+        }
+    }
 })
