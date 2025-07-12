@@ -192,7 +192,7 @@ export default defineNuxtConfig({
                             maxAgeSeconds: 60 * 60 * 24 * 365 // 一年
                         },
                         cacheableResponse: {
-                        statuses: [0, 200]
+                            statuses: [0, 200]
                         }
                     }
                 }
