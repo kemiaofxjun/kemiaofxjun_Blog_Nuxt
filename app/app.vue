@@ -1,3 +1,22 @@
+<script lang="ts">
+import { onMounted } from 'vue';
+
+// 页面完全加载后注册（与原 JS 逻辑完全一致）
+window.addEventListener('load', () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service Worker 注册成功，作用域：', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker 注册失败：', error);
+      });
+  } else {
+    console.warn('当前浏览器不支持 Service Worker');
+  }
+});
+</script>
+
 <template>
     <NuxtLoadingIndicator />
     <SkipToContent />
