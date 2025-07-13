@@ -15,15 +15,11 @@ const EXTERNAL_RESOURCES: string[] = [
 // 2. 定义缓存名称
 const EXTERNAL_CACHE_NAME = 'external-resources-permanent';
 const PERMANENT_REQUEST_TRACKER = 'permanent-requests';
-const OFFLINE_PAGE = '/offline.html'; // 确保此文件存在于 public 目录
 
 // 3. 显式定义要预缓存的核心资源
 const PRECACHE_RESOURCES = [
   // 使用绝对URL确保路径正确
   { url: '/', revision: 'v1' },
-  { url: OFFLINE_PAGE, revision: 'v1' },
-  { url: '/manifest.json', revision: 'v1' },
-  { url: '/favicon.ico', revision: 'v1' },
   
   // 添加其他关键静态资源
   ...(self.__WB_MANIFEST || [])
