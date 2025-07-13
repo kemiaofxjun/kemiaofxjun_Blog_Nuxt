@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import { onMounted } from 'vue';
 
 // 页面完全加载后注册（与原 JS 逻辑完全一致）
