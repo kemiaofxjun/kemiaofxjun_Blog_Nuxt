@@ -161,24 +161,4 @@ export default defineNuxtConfig({
         name: blogConfig.title,
         url: blogConfig.url,
     },
-
-    pwa: {
-        mode: 'development',
-        disable: false,
-        scope: '/',
-        srcDir: './service-worker',
-        filename: 'sw.ts',
-        strategies: 'injectManifest',
-        injectRegister: false,
-        includeManifestIcons: false,
-        manifest: false,
-        injectManifest: {
-            globPatterns: ['**/*.{js,json,css,html,txt,svg,png,avif,jpg,jpeg,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-            maximumFileSizeToCacheInBytes: 3000000,
-        },
-        devOptions: {
-            enabled: true,
-            type: 'module',
-        }
-    },
 })
