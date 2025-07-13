@@ -4,104 +4,75 @@ declare const self: ServiceWorkerGlobalScope;
 import { clientsClaim } from 'workbox-core';
 import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
-import { ExpirationPlugin } from 'workbox-expiration';
+import { StaleWhileRevalidate } from 'workbox-strategies';
 
-// 1. 配置关键参数
+// 1. 修复资源过滤问题
+function filterResources(resources: any[]): string[] {
+  return resources
+    .filter(resource => {
+      // 统一处理字符串和对象格式的资源
+      const url = typeof resource === 'string' ? resource : resource.url;
+      return url && 
+             !url.includes('hot-update') && 
+             !url.includes('__webpack') && 
+             !url.includes('development');
+    })
+    .map(resource => {
+      // 转换为字符串URL格式
+      return typeof resource === 'string' ? resource : resource.url;
+    });
+}
+
+// 2. 定义需要缓存的外部资源域名
 const EXTERNAL_RESOURCES: string[] = [
   'https://sourceimage.s3.bitiful.net',
   'https://gcore.jsdelivr.net'
 ];
 
+// 3. 定义缓存名称
 const EXTERNAL_CACHE_NAME = 'external-resources-permanent';
 const PERMANENT_REQUEST_TRACKER = 'permanent-requests';
 const OFFLINE_PAGE = '/offline.html';
-const MAX_CONCURRENT_REQUESTS = 10; // 限制并发请求数
 
-// 2. 预缓存核心资源 - 只包含真正必要的资源
+// 4. 获取并过滤预缓存资源
+const WB_MANIFEST = self.__WB_MANIFEST || [];
 const PRECACHE_RESOURCES = [
-  '/',
-  // 添加其他关键CSS/JS文件
-  ...(self.__WB_MANIFEST || [])
-].filter(resource => {
-  // 过滤掉可能不存在的资源
-  return !resource.includes('hot-update') && 
-         !resource.includes('__webpack') &&
-         !resource.includes('development');
-});
+  { url: '/', revision: 'v1' },
+  ...WB_MANIFEST
+];
 
-// 3. 请求队列系统 - 限制并发请求
-class RequestQueue {
-  private queue: (() => Promise<void>)[] = [];
-  private activeCount = 0;
+// 过滤后的资源URL列表
+const PRECACHE_URLS = filterResources(PRECACHE_RESOURCES);
 
-  async add(requestFn: () => Promise<void>): Promise<void> {
-    return new Promise((resolve) => {
-      const execute = async () => {
-        this.activeCount++;
-        try {
-          await requestFn();
-        } catch (error) {
-          console.error('Queue request error:', error);
-        } finally {
-          this.activeCount--;
-          this.processQueue();
-        }
-        resolve();
-      };
-
-      this.queue.push(execute);
-      this.processQueue();
-    });
-  }
-
-  private processQueue() {
-    while (this.queue.length > 0 && this.activeCount < MAX_CONCURRENT_REQUESTS) {
-      const nextRequest = this.queue.shift();
-      if (nextRequest) nextRequest();
-    }
-  }
-}
-
-const requestQueue = new RequestQueue();
-
-// 4. 安全预缓存方法
+// 5. 安全预缓存方法
 async function safePrecache() {
   const cache = await caches.open('core-cache');
   
-  for (const resource of PRECACHE_RESOURCES) {
+  for (const url of PRECACHE_URLS) {
     try {
-      const url = new URL(resource, self.location.origin).href;
-      
-      // 检查是否已在缓存中
-      const cached = await cache.match(url);
-      if (cached) continue;
-      
-      await requestQueue.add(async () => {
-        const response = await fetch(url, {
-          method: 'GET',
-          cache: 'no-store',
-          credentials: 'same-origin'
-        });
-        
-        if (response.ok) {
-          await cache.put(url, response.clone());
-          console.log(`Precached: ${url}`);
-        } else {
-          console.warn(`Precache skipped (${response.status}): ${url}`);
-        }
+      const absoluteUrl = new URL(url, self.location.origin).href;
+      const response = await fetch(absoluteUrl, {
+        method: 'GET',
+        cache: 'no-store',
+        credentials: 'same-origin'
       });
+      
+      if (response.ok) {
+        await cache.put(absoluteUrl, response.clone());
+        console.log(`Precached: ${absoluteUrl}`);
+      } else {
+        console.warn(`Precache skipped (${response.status}): ${absoluteUrl}`);
+      }
     } catch (error) {
-      console.error(`Precache error for ${resource}:`, error);
+      console.error(`Precache error for ${url}:`, error);
     }
   }
 }
 
-// 5. 主安装流程
+// 6. 主安装流程
 self.addEventListener('install', (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
-      // 预缓存核心资源
       await safePrecache();
       
       // 通知客户端
@@ -116,7 +87,7 @@ self.addEventListener('install', (event: ExtendableEvent) => {
   );
 });
 
-// 6. 激活阶段
+// 7. 激活阶段
 self.addEventListener('activate', (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
@@ -138,12 +109,12 @@ self.addEventListener('activate', (event: ExtendableEvent) => {
   );
 });
 
-// 7. 缓存策略配置
+// 8. 缓存策略配置
 cleanupOutdatedCaches();
 self.skipWaiting();
 clientsClaim();
 
-// 8. 永久缓存处理函数
+// 9. 永久缓存处理函数
 async function markRequestAsPermanent(url: string): Promise<void> {
   const cache = await caches.open(PERMANENT_REQUEST_TRACKER);
   await cache.put(url, new Response('permanent'));
@@ -166,37 +137,37 @@ async function handlePermanentCacheStrategy(request: Request, event: ExtendableE
   }
   
   try {
-    // 使用队列控制并发请求
-    return await new Promise<Response>((resolve, reject) => {
-      requestQueue.add(async () => {
-        try {
-          const fetchOptions: RequestInit = {
-            method: request.method,
-            headers: request.headers,
-            mode: 'cors',
-            credentials: 'omit',
-            cache: 'no-cache'
-          };
-          
-          const fetchResponse = await fetch(request, fetchOptions);
-          
-          if (fetchResponse.ok) {
-            const responseToCache = fetchResponse.clone();
-            const cache = await caches.open(EXTERNAL_CACHE_NAME);
-            
-            // 标记为永久缓存
-            event.waitUntil(markRequestAsPermanent(url));
-            event.waitUntil(cache.put(request, responseToCache));
-            
-            resolve(fetchResponse);
-          } else {
-            reject(new Error(`Fetch failed with status ${fetchResponse.status}`));
-          }
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
+    const fetchOptions: RequestInit = {
+      method: request.method,
+      headers: request.headers,
+      mode: 'cors',
+      credentials: 'omit',
+      cache: 'no-cache'
+    };
+    
+    const fetchResponse = await fetch(request, fetchOptions);
+    
+    if (fetchResponse.ok) {
+      const responseToCache = fetchResponse.clone();
+      const cache = await caches.open(EXTERNAL_CACHE_NAME);
+      
+      // 标记该请求为永久缓存
+      event.waitUntil(markRequestAsPermanent(url));
+      event.waitUntil(cache.put(request, responseToCache));
+      
+      return fetchResponse;
+    }
+    
+    // 尝试使用可能的旧缓存
+    const cache = await caches.open(EXTERNAL_CACHE_NAME);
+    const staleResponse = await cache.match(request);
+    if (staleResponse) {
+      event.waitUntil(markRequestAsPermanent(url));
+      return staleResponse;
+    }
+    
+    throw new Error('Fetch failed and no stale cache available');
+    
   } catch (error) {
     console.error('Fetch failed for external resource:', url, error);
     
@@ -213,65 +184,39 @@ async function handlePermanentCacheStrategy(request: Request, event: ExtendableE
   }
 }
 
-// 9. 注册路由策略
-// 静态资源缓存策略
-registerRoute(
-  ({ request }) => 
-    request.destination === 'script' || 
-    request.destination === 'style' ||
-    request.destination === 'font',
-  new StaleWhileRevalidate({
-    cacheName: 'static-assets',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 100,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30天
-      }),
-    ],
-  })
-);
+// 10. 导航请求处理
+async function handleNavigationRequest(url: URL, event: FetchEvent): Promise<Response> {
+  try {
+    // 尝试从缓存获取
+    const cache = await caches.open('core-cache');
+    const requestPath = url.pathname === '/' ? '/index.html' : url.pathname;
+    const cachedResponse = await cache.match(requestPath);
+    
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // 网络请求
+    return await fetch(event.request);
+  } catch (error) {
+    return caches.match(OFFLINE_PAGE) || new Response('Offline', {
+      status: 200,
+      headers: { 'Content-Type': 'text/html' }
+    });
+  }
+}
 
-// 图片缓存策略
-registerRoute(
-  ({ request }) => request.destination === 'image',
-  new CacheFirst({
-    cacheName: 'images',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 200,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30天
-      }),
-    ],
-  })
-);
-
-// 10. fetch事件处理
+// 11. fetch事件处理
 self.addEventListener('fetch', (event: FetchEvent) => {
   const url = new URL(event.request.url);
   
   // 处理导航请求
   if (event.request.mode === 'navigate') {
-    event.respondWith(
-      (async () => {
-        try {
-          // 尝试从缓存获取
-          const cachedPage = await caches.match(url.pathname === '/' ? '/index.html' : url.pathname);
-          if (cachedPage) return cachedPage;
-          
-          // 网络请求
-          return await fetch(event.request);
-        } catch (error) {
-          return caches.match(OFFLINE_PAGE) || new Response('Offline', {
-            status: 200,
-            headers: { 'Content-Type': 'text/html' }
-          });
-        }
-      })()
-    );
+    event.respondWith(handleNavigationRequest(url, event));
     return;
   }
   
-  // 处理外部资源
+  // 处理外部资源请求
   const isExternal = EXTERNAL_RESOURCES.some(domain => 
     url.href.startsWith(domain) || 
     url.hostname.endsWith(`.${domain}`)
@@ -282,10 +227,17 @@ self.addEventListener('fetch', (event: FetchEvent) => {
     return;
   }
   
-  // 其他请求使用默认策略（由Workbox处理）
+  // 其他静态资源
+  if (['script', 'style', 'image', 'font'].includes(event.request.destination)) {
+    event.respondWith(
+      new StaleWhileRevalidate({
+        cacheName: 'static-assets'
+      }).handle({ event })
+    );
+  }
 });
 
-// 11. 消息处理
+// 12. 消息处理
 self.addEventListener('message', (event: ExtendableMessageEvent) => {
   if (event.data?.type === 'CLEAR_CACHE') {
     caches.delete(EXTERNAL_CACHE_NAME);
@@ -293,40 +245,3 @@ self.addEventListener('message', (event: ExtendableMessageEvent) => {
     event.source?.postMessage({ type: 'CACHE_CLEARED' });
   }
 });
-
-// 12. 后台同步处理
-self.addEventListener('sync', (event: SyncEvent) => {
-  if (event.tag === 'update-cache') {
-    console.log('Background sync for cache update');
-    // 这里可以添加缓存更新逻辑
-  }
-});
-
-// 13. 性能监控
-let requestCount = 0;
-let cacheHitCount = 0;
-
-self.addEventListener('fetch', (event: FetchEvent) => {
-  requestCount++;
-  
-  event.respondWith(
-    (async () => {
-      const cachedResponse = await caches.match(event.request);
-      if (cachedResponse) {
-        cacheHitCount++;
-        return cachedResponse;
-      }
-      return fetch(event.request);
-    })()
-  );
-});
-
-// 定期报告性能
-setInterval(() => {
-  const hitRate = requestCount > 0 ? (cacheHitCount / requestCount * 100).toFixed(1) : 0;
-  console.log(`Cache hit rate: ${hitRate}% (${cacheHitCount}/${requestCount})`);
-  
-  // 重置计数器
-  requestCount = 0;
-  cacheHitCount = 0;
-}, 60 * 1000); // 每分钟报告一次
