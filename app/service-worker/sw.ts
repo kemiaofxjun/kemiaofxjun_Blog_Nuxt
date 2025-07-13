@@ -6,21 +6,40 @@ import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
-// 1. 修复资源过滤问题
+// 1. 安全资源过滤函数
 function filterResources(resources: any[]): string[] {
   return resources
     .filter(resource => {
-      // 统一处理字符串和对象格式的资源
-      const url = typeof resource === 'string' ? resource : resource.url;
-      return url && 
-             !url.includes('hot-update') && 
-             !url.includes('__webpack') && 
-             !url.includes('development');
+      // 安全检查：确保资源存在且不是null/undefined
+      if (!resource) return false;
+      
+      // 获取URL值
+      let urlValue: string | undefined;
+      
+      if (typeof resource === 'string') {
+        urlValue = resource;
+      } else if (typeof resource === 'object' && resource.url) {
+        urlValue = resource.url;
+      } else {
+        return false; // 无效资源类型
+      }
+      
+      // 过滤开发环境资源
+      return urlValue && 
+             !urlValue.includes('hot-update') && 
+             !urlValue.includes('__webpack') && 
+             !urlValue.includes('development');
     })
     .map(resource => {
-      // 转换为字符串URL格式
-      return typeof resource === 'string' ? resource : resource.url;
-    });
+      // 安全转换为URL字符串
+      if (typeof resource === 'string') {
+        return resource;
+      } else if (typeof resource === 'object' && resource.url) {
+        return resource.url;
+      }
+      return ''; // 无效资源返回空字符串
+    })
+    .filter(url => url !== ''); // 过滤掉空字符串
 }
 
 // 2. 定义需要缓存的外部资源域名
@@ -41,7 +60,7 @@ const PRECACHE_RESOURCES = [
   ...WB_MANIFEST
 ];
 
-// 过滤后的资源URL列表
+// 使用安全过滤函数
 const PRECACHE_URLS = filterResources(PRECACHE_RESOURCES);
 
 // 5. 安全预缓存方法
@@ -50,6 +69,9 @@ async function safePrecache() {
   
   for (const url of PRECACHE_URLS) {
     try {
+      // 确保URL是有效的
+      if (!url || typeof url !== 'string') continue;
+      
       const absoluteUrl = new URL(url, self.location.origin).href;
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -129,6 +151,11 @@ async function isPermanentRequest(url: string): Promise<boolean> {
 async function handlePermanentCacheStrategy(request: Request, event: ExtendableEvent): Promise<Response> {
   const url = request.url;
   
+  // 安全检查：确保URL有效
+  if (!url) {
+    return new Response('Invalid URL', { status: 400 });
+  }
+  
   // 检查是否已标记为永久请求
   if (await isPermanentRequest(url)) {
     const cache = await caches.open(EXTERNAL_CACHE_NAME);
@@ -187,9 +214,11 @@ async function handlePermanentCacheStrategy(request: Request, event: ExtendableE
 // 10. 导航请求处理
 async function handleNavigationRequest(url: URL, event: FetchEvent): Promise<Response> {
   try {
+    // 安全处理根路径
+    const requestPath = url.pathname === '/' ? '/index.html' : url.pathname;
+    
     // 尝试从缓存获取
     const cache = await caches.open('core-cache');
-    const requestPath = url.pathname === '/' ? '/index.html' : url.pathname;
     const cachedResponse = await cache.match(requestPath);
     
     if (cachedResponse) {
@@ -208,6 +237,9 @@ async function handleNavigationRequest(url: URL, event: FetchEvent): Promise<Res
 
 // 11. fetch事件处理
 self.addEventListener('fetch', (event: FetchEvent) => {
+  // 安全处理：确保request存在
+  if (!event.request) return;
+  
   const url = new URL(event.request.url);
   
   // 处理导航请求
@@ -228,7 +260,8 @@ self.addEventListener('fetch', (event: FetchEvent) => {
   }
   
   // 其他静态资源
-  if (['script', 'style', 'image', 'font'].includes(event.request.destination)) {
+  if (event.request.destination && 
+      ['script', 'style', 'image', 'font'].includes(event.request.destination)) {
     event.respondWith(
       new StaleWhileRevalidate({
         cacheName: 'static-assets'
@@ -239,9 +272,16 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 
 // 12. 消息处理
 self.addEventListener('message', (event: ExtendableMessageEvent) => {
-  if (event.data?.type === 'CLEAR_CACHE') {
+  // 安全处理：确保event.data存在
+  if (!event.data) return;
+  
+  if (event.data.type === 'CLEAR_CACHE') {
     caches.delete(EXTERNAL_CACHE_NAME);
     caches.delete(PERMANENT_REQUEST_TRACKER);
-    event.source?.postMessage({ type: 'CACHE_CLEARED' });
+    
+    // 安全处理：确保event.source存在
+    if (event.source) {
+      event.source.postMessage({ type: 'CACHE_CLEARED' });
+    }
   }
 });
