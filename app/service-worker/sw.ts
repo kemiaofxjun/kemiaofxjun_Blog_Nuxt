@@ -13,7 +13,8 @@ const EXTERNAL_RESOURCES: string[] = [
 ];
 
 // 自定义缓存名称
-const EXTERNAL_CACHE_NAME = 'external-resources-v1';
+const EXTERNAL_CACHE_NAME = 'external-resources-permanent';
+const PERMANENT_REQUEST_TRACKER = 'permanent-requests';
 
 // --- Workbox 功能设置 ---
 
@@ -34,41 +35,63 @@ try {
   console.warn('Error while registering cache route', { error });
 }
 
-// 4. 激活阶段清理旧缓存
+// 4. 激活阶段清理旧缓存（保留永久缓存）
 self.addEventListener('activate', (event: ExtendableEvent) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => name !== EXTERNAL_CACHE_NAME)
-          .map((name) => caches.delete(name))
+          .filter(name => name !== EXTERNAL_CACHE_NAME && name !== PERMANENT_REQUEST_TRACKER)
+          .map(name => caches.delete(name))
       );
     })
   );
 });
 
-// --- 自定义外部资源缓存功能 ---
+// --- 永久缓存请求跟踪器 ---
 
-// 处理外部资源请求
-async function handleExternalRequest(request: Request): Promise<Response> {
+// /​**​
+//  * 标记请求为"永久缓存"状态
+//  */
+async function markRequestAsPermanent(url: string): Promise<void> {
+  const cache = await caches.open(PERMANENT_REQUEST_TRACKER);
+  await cache.put(url, new Response('permanent'));
+}
+
+// /​**​
+//  * 检查请求是否为永久缓存
+//  */
+async function isPermanentRequest(url: string): Promise<boolean> {
+  const cache = await caches.open(PERMANENT_REQUEST_TRACKER);
+  const response = await cache.match(url);
+  return !!response;
+}
+
+// --- 处理外部资源请求 ---
+
+// /​**​
+//  * 处理永久缓存请求策略
+//  */
+async function handlePermanentCacheStrategy(request: Request, event: ExtendableEvent): Promise<Response> {
+  const url = request.url;
   const cache = await caches.open(EXTERNAL_CACHE_NAME);
   
-  // 尝试从缓存中获取响应
-  const cachedResponse = await cache.match(request);
-  if (cachedResponse) {
-    return cachedResponse;
+  // 如果已经标记为永久请求，直接返回缓存
+  if (await isPermanentRequest(url)) {
+    const cachedResponse = await cache.match(request);
+    return cachedResponse || new Response('Resource not found', { status: 404 });
   }
-
-  // 配置跨域请求选项
-  const fetchOptions: RequestInit = {
-    method: request.method,
-    headers: request.headers,
-    mode: 'cors',
-    credentials: 'omit',
-    cache: 'no-cache'
-  };
-
+  
   try {
+    // 配置跨域请求选项
+    const fetchOptions: RequestInit = {
+      method: request.method,
+      headers: request.headers,
+      mode: 'cors',
+      credentials: 'omit',
+      cache: 'no-cache'
+    };
+    
     // 发起网络请求
     const fetchResponse = await fetch(request, fetchOptions);
     
@@ -77,89 +100,39 @@ async function handleExternalRequest(request: Request): Promise<Response> {
       // 克隆响应以便缓存和使用
       const responseToCache = fetchResponse.clone();
       
+      // 标记该请求为永久缓存
+      event.waitUntil(markRequestAsPermanent(url));
+      
       // 异步缓存响应（不阻塞返回）
       event.waitUntil(cache.put(request, responseToCache));
       
-      // 检查缓存控制头
-      const cacheControl = fetchResponse.headers.get('Cache-Control');
-      const maxAge = cacheControl?.match(/max-age=(\d+)/)?.[1];
-      
-      // 如果资源有明确的缓存时间，设置定时更新
-      if (maxAge) {
-        const expirationTime = Date.now() + parseInt(maxAge) * 1000;
-        const cacheMetadata = {
-          url: request.url,
-          timestamp: Date.now(),
-          expiration: expirationTime
-        };
-        
-        // 使用单独的缓存存储元数据
-        const metadataCache = await caches.open('cache-metadata');
-        await metadataCache.put(request.url, new Response(JSON.stringify(cacheMetadata)));
-      }
+      return fetchResponse;
     }
     
-    return fetchResponse;
-  } catch (error) {
-    console.error('Fetch failed for external resource:', request.url, error);
-    
-    // 尝试返回可能存在的旧版本缓存
+    // 对于不成功的响应，尝试使用可能的旧缓存（如果有）
     const staleResponse = await cache.match(request);
     if (staleResponse) {
+      // 标记使用旧的缓存资源
+      event.waitUntil(markRequestAsPermanent(url));
       return staleResponse;
     }
     
-    // 最后的备选方案
-    return new Response('Service Unavailable', {
+    throw new Error('Fetch failed and no stale cache available');
+    
+  } catch (error) {
+    console.error('Fetch failed for external resource:', url, error);
+    
+    // 最终的备选方案 - 提供友好的错误消息
+    return new Response(`
+    `, {
       status: 503,
-      headers: { 'Content-Type': 'text/plain' }
+      statusText: 'Service Unavailable',
+      headers: { 'Content-Type': 'text/html' }
     });
   }
 }
 
-// 缓存更新任务
-async function updateCachedResources() {
-  const cache = await caches.open(EXTERNAL_CACHE_NAME);
-  const metadataCache = await caches.open('cache-metadata');
-  
-  // 获取所有缓存请求
-  const requests = await cache.keys();
-  
-  for (const request of requests) {
-    try {
-      // 获取缓存的元数据
-      const metadataResponse = await metadataCache.match(request.url);
-      
-      if (metadataResponse) {
-        const metadata = await metadataResponse.json();
-        
-        // 检查是否过期
-        if (metadata.expiration && metadata.expiration <= Date.now()) {
-          // 刷新缓存
-          const newResponse = await fetch(request);
-          
-          if (newResponse.ok) {
-            await cache.put(request, newResponse.clone());
-            
-            // 更新元数据
-            const cacheControl = newResponse.headers.get('Cache-Control');
-            const maxAge = cacheControl?.match(/max-age=(\d+)/)?.[1];
-            
-            if (maxAge) {
-              metadata.expiration = Date.now() + parseInt(maxAge) * 1000;
-              metadata.timestamp = Date.now();
-              await metadataCache.put(request.url, new Response(JSON.stringify(metadata)));
-            }
-          }
-        }
-      }
-    } catch (error) {
-      console.warn('Failed to update cached resource:', request.url, error);
-    }
-  }
-}
-
-// 所有 fetch 事件的主处理程序
+// --- 所有 fetch 事件的主处理程序 ---
 self.addEventListener('fetch', (event: FetchEvent) => {
   const url = new URL(event.request.url);
   
@@ -174,34 +147,39 @@ self.addEventListener('fetch', (event: FetchEvent) => {
     return;
   }
   
-  // 处理外部资源请求
+  // 处理外部资源请求 - 使用永久缓存策略
   if (isExternal) {
-    event.respondWith(handleExternalRequest(event.request));
+    event.respondWith(handlePermanentCacheStrategy(event.request, event));
+    return;
   }
-  // 其他请求继续使用默认行为（由 Workbox 处理）
+  
+  // 2. 其他静态资源使用Workbox策略
+  // 这里可以添加其他资源处理逻辑...
 });
 
-// 定期更新缓存资源
-self.addEventListener('periodicsync', (event: Event) => {
-  if (event.tag === 'update-cache') {
-    event.waitUntil(updateCachedResources());
-  }
-});
-
-// 安装后定期执行缓存更新（每天一次）
+// 5. 在Service Worker安装时提供用户提示
 self.addEventListener('install', (event: ExtendableEvent) => {
   event.waitUntil(
     (async () => {
-      if ('periodicSync' in self.registration) {
-        try {
-          // @ts-ignore - 暂未包含在 TS 类型定义中
-          await self.registration.periodicSync.register('update-cache', {
-            minInterval: 24 * 60 * 60 * 1000 // 24小时
+      // 提示用户Service Worker已安装
+      const clients = await self.clients.matchAll({ type: 'window' });
+      if (clients && clients.length) {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_STATUS',
+            message: 'Service Worker installed. External resources will be cached permanently after first request.'
           });
-        } catch (error) {
-          console.warn('Periodic sync registration failed:', error);
-        }
+        });
       }
     })()
   );
+});
+
+// 6. 提供消息处理机制（前端可通过此触发缓存清理）
+self.addEventListener('message', (event: ExtendableMessageEvent) => {
+  if (event.data && event.data.type === 'CLEAR_PERMANENT_CACHE') {
+    caches.delete(EXTERNAL_CACHE_NAME);
+    caches.delete(PERMANENT_REQUEST_TRACKER);
+    event.source?.postMessage({ type: 'CACHE_CLEARED' });
+  }
 });
