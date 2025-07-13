@@ -2,7 +2,6 @@
     <NuxtLoadingIndicator />
     <SkipToContent />
     <ZSidebar />
-    <script src="/assets/js/service_worker_webadd.js"></script>
     <div id="content">
         <main id="main-content">
             <NuxtPage />

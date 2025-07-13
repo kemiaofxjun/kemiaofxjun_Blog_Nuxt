@@ -4,6 +4,7 @@ const appConfig = useAppConfig()
 
 <template>
     <ZRawLink class="zhilu-header">
+        <script src="/assets/js/service_worker_webadd.js"></script>
         <div v-if="appConfig.header.emojiTail" class="emoji-tail">
             <span
                 v-for="(emoji, emojiIndex) in appConfig.header.emojiTail"
