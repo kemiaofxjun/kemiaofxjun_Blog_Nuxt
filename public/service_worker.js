@@ -79,6 +79,11 @@ const cacheList = {
         time: 259200,
         clean: true
     },
+    hyperos: {
+        url: /(^(https:\/\/cdn-file\.hyperos\.mi\.com)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g,
+        time: 259200,
+        clean: true
+    },
     source_s3_bitful: {
         url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g,
         time: 259200,
@@ -94,18 +99,18 @@ const cacheList = {
         time: 259200,
         clean: true
     },
-    lf3: {
-        url: /(^(https:\/\/lf3-cdn-tos\.bytecdntp\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    lf26: {
-        url: /(^(https:\/\/lf26-cdn-tos\.bytecdntp\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
     resources: {
         url: /(^(https:\/\/www\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
+        time: 259200,
+        clean: true
+    },
+    myxz_api_status: {
+        url: /(^(https:\/\/www\.myxz\.top\/api\/stats).*@\d.*)/g,
+        time: 10,
+        clean: true
+    },
+    myxz_site_blog: {
+        url: /(^(https:\/\/blog\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
         time: 259200,
         clean: true
     }
