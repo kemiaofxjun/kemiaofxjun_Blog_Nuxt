@@ -102,27 +102,23 @@ function findCache(url) {
 
 // ====================== Fetch 事件优化（LCP 核心） ======================
 self.addEventListener("fetch", async (event) => {
-    const finalRequest = replaceRequest(event.request) || event.request;
-    const cacheRule = findCache(finalRequest.url);
-
-    // 1. 优先处理 LCP 关键资源（强制缓存优先）
-    if (cacheRule?.isLCP) {
+    // 1. 处理 LCP 关键资源（强制缓存优先）
+    const lcpCriticalAsset = LCP_CRITICAL_ASSETS.find(asset => event.request.url.includes(asset));
+    if (lcpCriticalAsset) {
         event.respondWith(
-            caches.match(finalRequest).then(async (cachedResponse) => {
-                // 若缓存存在，直接返回（跳过网络请求）
+            caches.match(event.request).then(async (cachedResponse) => {
                 if (cachedResponse) {
-                    dbAccess.update(finalRequest.url); // 更新访问时间
+                    dbAccess.update(event.request.url);
                     return cachedResponse;
                 }
-                // 若缓存不存在，强制网络请求并缓存
                 try {
-                    const response = await fetch(finalRequest);
+                    const response = await fetch(event.request);
                     if (response.ok) {
-                        caches.open("Chuckle").then(cache => cache.put(finalRequest, response.clone()));
+                        caches.open("Chuckle").then(cache => cache.put(event.request, response.clone()));
                     }
                     return response;
                 } catch (error) {
-                    console.error(`LCP 资源加载失败：${finalRequest.url}`, error);
+                    console.error(`LCP 资源加载失败：${event.request.url}`, error);
                     return new Response("LCP 资源加载失败，请刷新页面", { status: 500 });
                 }
             })
@@ -132,19 +128,19 @@ self.addEventListener("fetch", async (event) => {
 
     // 2. 原有逻辑（非 LCP 资源）
     const replacedRequest = replaceRequest(event.request);
-    const finalRequest = replacedRequest || event.request;
-    const cacheRule = findCache(finalRequest.url);
+    const processedRequest = replacedRequest || event.request; // 重命名为 processedRequest
+    const cacheRule = findCache(processedRequest.url);
 
-    if (blockRequest(finalRequest)) {
+    if (blockRequest(processedRequest)) {
         event.respondWith(new Response(null, { status: 204 }));
     } else if (cacheRule) {
         event.respondWith(
-            caches.match(finalRequest).then(async (cachedResponse) => {
-                return fetchEvent(finalRequest, cachedResponse, cacheRule);
+            caches.match(processedRequest).then(async (cachedResponse) => {
+                return fetchEvent(processedRequest, cachedResponse, cacheRule);
             })
         );
     } else if (replacedRequest) {
-        event.respondWith(fetch(finalRequest));
+        event.respondWith(fetch(processedRequest)); // 使用 renamed 变量
     }
 });
 
