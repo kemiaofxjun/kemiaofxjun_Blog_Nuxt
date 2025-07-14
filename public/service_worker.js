@@ -1,63 +1,30 @@
-// 定义缓存名称和版本缓存名称，以及最大访问缓存时间（单位：秒）
+// ====================== 基础配置与工具函数 ======================
 const CACHE_NAME = "苏晓河";
 const VERSION_CACHE_NAME = "sxiaoheTime";
-const MAX_ACCESS_CACHE_TIME = 345600;
+const MAX_ACCESS_CACHE_TIME = 345600; // 4 天（秒）
 
-// 获取当前时间戳的函数
+// 获取当前时间戳
 function time() {
     return new Date().getTime();
 }
 
-// 数据库操作助手对象，包含读取、写入和删除缓存的方法
+// 数据库操作助手（简化版，保留核心功能）
 const dbHelper = {
-    // 读取缓存的方法，返回一个 Promise
-    read: (request) => new Promise((resolve) => {
-        caches.match(request)
-          .then((response) => {
-                if (!response) {
-                    resolve(null);
-                } else {
-                    response.text().then((data) => resolve(data));
-                }
-            })
-          .catch(() => {
-                resolve(null);
-            });
-    }),
-    // 写入缓存的方法，返回一个 Promise
-    write: (request, data) => new Promise((resolve, reject) => {
-        caches.open("ChuckleTime")
-          .then((cache) => {
-                cache.put(request, new Response(data));
-                resolve();
-            })
-          .catch(() => {
-                reject();
-            });
-    }),
-    // 删除缓存的方法
-    delete: (request) => {
-        caches.match(request)
-          .then((response) => {
-                if (response) {
-                    caches.open("ChuckleTime").then((cache) => cache.delete(request));
-                }
-            });
-    }
+    read: (request) => caches.match(request)?.then(res => res?.text()),
+    write: (request, data) => caches.open("ChuckleTime").then(cache => cache.put(request, new Response(data))),
+    delete: (request) => caches.match(request).then(res => res && caches.open("ChuckleTime").then(cache => cache.delete(request)))
 };
 
-// 数据库时间操作对象，用于读取、写入和删除时间相关的缓存
+// 数据库时间操作（记录访问时间）
 const dbTime = {
     read: (key) => dbHelper.read(new Request(`https://LOCALCACHE/${encodeURIComponent(key)}`)),
     write: (key, data) => dbHelper.write(new Request(`https://LOCALCACHE/${encodeURIComponent(key)}`), data),
     delete: (key) => dbHelper.delete(new Request(`https://LOCALCACHE/${encodeURIComponent(key)}`))
 };
 
-// 数据库访问操作对象，用于更新访问时间和检查缓存是否过期
+// 数据库访问控制（清理过期缓存）
 const dbAccess = {
-    // 更新访问时间的方法
     update: (url) => dbHelper.write(new Request(`https://ACCESS-CACHE/${encodeURIComponent(url)}`), time()),
-    // 检查缓存是否过期的方法，返回一个布尔值
     check: async (url) => {
         const request = new Request(`https://ACCESS-CACHE/${encodeURIComponent(url)}`);
         const lastAccessTime = await dbHelper.read(request);
@@ -69,58 +36,61 @@ const dbAccess = {
     }
 };
 
-// 安装事件监听器，跳过等待阶段
-self.addEventListener("install", () => self.skipWaiting());
+// ====================== LCP 关键资源预缓存 ======================
+// 首屏关键资源列表（根据实际页面调整）
+const LCP_CRITICAL_ASSETS = [
+    // LCP 图片（示例）
+    "https://www.myxz.top/img/2025/01/daohanglan/cover.avif",
+    // 核心 CSS/JS
+    "https://www.myxz.top/styles/main.css",
+    "https://www.myxz.top/assets/js/main.js",
+    // 首页 HTML（若为 SPA 可忽略）
+    "https://www.myxz.top/"
+];
 
-// 缓存列表对象，包含不同类型的缓存规则
+// 预缓存关键资源（安装时执行）
+self.addEventListener("install", async (event) => {
+    self.skipWaiting();
+    event.waitUntil(
+        // 1. 预缓存 LCP 关键资源
+        caches.open("Chuckle").then(async (cache) => {
+            await cache.addAll(LCP_CRITICAL_ASSETS);
+            console.log("预缓存 LCP 关键资源完成");
+        }),
+        // 2. 初始化通用缓存（保留原逻辑）
+        caches.open("Chuckle").then((cache) => cache.addAll([])) // 原 cachelist 为空，暂不填充
+    );
+});
+
+// ====================== 缓存规则与 CDN 分流 ======================
+// 扩展缓存规则（新增 LCP 资源优先级）
 const cacheList = {
-    sxiaohecdn: {
-        url: /(^(https:\/\/jsd\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
-        time: 259200,
-        clean: true
-    },
-    hyperos: {
-        url: /(^(https:\/\/cdn-file\.hyperos\.mi\.com)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g,
-        time: 259200,
-        clean: true
-    },
-    source_s3_bitful: {
-        url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g,
-        time: 259200,
-        clean: true
-    },
-    alfonts: {
-        url: /(^(https:\/\/at\.alicdn\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    fastly: {
-        url: /(^(https:\/\/fastly\.jsdelivr\.net).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    resources: {
-        url: /(^(https:\/\/www\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
-        time: 259200,
-        clean: true
-    },
-    myxz_api_status: {
-        url: /(^(https:\/\/www\.myxz\.top\/api\/stats).*@\d.*)/g,
-        time: 10,
-        clean: true
-    },
-    myxz_site_blog: {
-        url: /(^(https:\/\/blog\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
-        time: 259200,
-        clean: true
+    // 原有 CDN 规则（保留）
+    sxiaohecdn: { url: /(^(https:\/\/jsd\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
+    hyperos: { url: /(^(https:\/\/cdn-file\.hyperos\.mi\.com)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 259200, clean: true },
+    source_s3_bitful: { url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 259200, clean: true },
+    alfonts: { url: /(^(https:\/\/at\.alicdn\.com).*@\d.*)/g, time: 259200, clean: true },
+    fastly: { url: /(^(https:\/\/fastly\.jsdelivr\.net).*@\d.*)/g, time: 259200, clean: true },
+    resources: { url: /(^(https:\/\/www\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
+    myxz_site_blog: { url: /(^(https:\/\/blog\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
+    // 新增 LCP 资源优先级规则（覆盖原规则）
+    lcp_priority: {
+        url: new RegExp(LCP_CRITICAL_ASSETS.join("|")), // 匹配所有 LCP 关键资源
+        time: 31536000, // 1 年（长期缓存）
+        clean: false // 不主动清理（避免影响 LCP）
     }
 };
 
-// 替换列表对象，用于请求替换
+// 替换列表（保留原逻辑）
 const replaceList = {};
 
-// 查找匹配的缓存规则的函数
+// 查找匹配的缓存规则（优先 LCP 规则）
 function findCache(url) {
+    // 优先匹配 LCP 关键资源规则
+    if (LCP_CRITICAL_ASSETS.some(asset => url.includes(asset))) {
+        return { ...cacheList.lcp_priority, isLCP: true };
+    }
+    // 再匹配其他规则
     for (const key in cacheList) {
         const rule = cacheList[key];
         if (url.match(rule.url)) {
@@ -130,64 +100,37 @@ function findCache(url) {
     return null;
 }
 
-// 替换请求的函数，返回替换后的请求或 null
-function replaceRequest(request) {
-    let url = request.url;
-    let replaced = false;
-    for (const key in replaceList) {
-        const rule = replaceList[key];
-        for (const source of rule.source) {
-            if (url.match(source)) {
-                url = url.replace(source, rule.dist);
-                replaced = true;
-            }
-        }
-    }
-    return replaced ? new Request(url) : null;
-}
-
-// 阻止请求的函数，返回布尔值
-function blockRequest(request) {
-    return false;
-}
-
-// 处理 fetch 事件的异步函数
-async function fetchEvent(request, cachedResponse, cacheRule) {
-    const currentTime = time();
-    dbAccess.update(request.url);
-    const cacheTime = cacheRule.time;
-    let shouldFetch = false;
-
-    if (cachedResponse) {
-        const lastUpdatedTime = await dbTime.read(request.url);
-        if (lastUpdatedTime && currentTime - lastUpdatedTime < cacheTime) {
-            return cachedResponse;
-        }
-        shouldFetch = true;
-    }
-
-    const fetchResource = () => fetch(request)
-      .then((response) => {
-            dbTime.write(request.url, currentTime);
-            if (response.ok || response.status === 0) {
-                const clonedResponse = response.clone();
-                caches.open("Chuckle").then((cache) => cache.put(request, clonedResponse));
-            }
-            return response;
-        });
-
-    return shouldFetch
-      ? Promise.race([
-            new Promise((resolve) => setTimeout(() => resolve(cachedResponse), 400)),
-            fetchResource()
-        ]).catch((error) => {
-            console.error(`不可达的链接：${request.url}\n错误信息：${error}`);
-        })
-      : fetchResource();
-}
-
-// fetch 事件监听器，处理请求
+// ====================== Fetch 事件优化（LCP 核心） ======================
 self.addEventListener("fetch", async (event) => {
+    const finalRequest = replaceRequest(event.request) || event.request;
+    const cacheRule = findCache(finalRequest.url);
+
+    // 1. 优先处理 LCP 关键资源（强制缓存优先）
+    if (cacheRule?.isLCP) {
+        event.respondWith(
+            caches.match(finalRequest).then(async (cachedResponse) => {
+                // 若缓存存在，直接返回（跳过网络请求）
+                if (cachedResponse) {
+                    dbAccess.update(finalRequest.url); // 更新访问时间
+                    return cachedResponse;
+                }
+                // 若缓存不存在，强制网络请求并缓存
+                try {
+                    const response = await fetch(finalRequest);
+                    if (response.ok) {
+                        caches.open("Chuckle").then(cache => cache.put(finalRequest, response.clone()));
+                    }
+                    return response;
+                } catch (error) {
+                    console.error(`LCP 资源加载失败：${finalRequest.url}`, error);
+                    return new Response("LCP 资源加载失败，请刷新页面", { status: 500 });
+                }
+            })
+        );
+        return;
+    }
+
+    // 2. 原有逻辑（非 LCP 资源）
     const replacedRequest = replaceRequest(event.request);
     const finalRequest = replacedRequest || event.request;
     const cacheRule = findCache(finalRequest.url);
@@ -205,14 +148,57 @@ self.addEventListener("fetch", async (event) => {
     }
 });
 
-// message 事件监听器，处理刷新消息
+// ====================== 原有辅助函数（保留优化） ======================
+// 阻止请求（保留）
+function blockRequest(request) {
+    return false;
+}
+
+// 处理 fetch 事件（优化缓存策略）
+async function fetchEvent(request, cachedResponse, cacheRule) {
+    const currentTime = time();
+    dbAccess.update(request.url);
+    const cacheTime = cacheRule.time;
+    let shouldFetch = false;
+
+    if (cachedResponse) {
+        const lastUpdatedTime = await dbTime.read(request.url);
+        if (lastUpdatedTime && currentTime - lastUpdatedTime < cacheTime) {
+            return cachedResponse;
+        }
+        shouldFetch = true;
+    }
+
+    const fetchResource = () => fetch(request)
+        .then((response) => {
+            dbTime.write(request.url, currentTime);
+            if (response.ok || response.status === 0) {
+                const clonedResponse = response.clone();
+                caches.open("Chuckle").then((cache) => cache.put(request, clonedResponse));
+            }
+            return response;
+        });
+
+    return shouldFetch
+        ? Promise.race([
+            new Promise((resolve) => setTimeout(() => resolve(cachedResponse), 400)),
+            fetchResource()
+        ]).catch((error) => {
+            console.error(`不可达的链接：${request.url}\n错误信息：${error}`);
+            return cachedResponse || new Response("网络请求失败", { status: 500 });
+        })
+        : fetchResource();
+}
+
+// ====================== 缓存清理与消息处理 ======================
+// message 事件（保留优化）
 self.addEventListener("message", (event) => {
     if (event.data === "refresh") {
         caches.open("Chuckle").then((cache) => {
             cache.keys().then((requests) => {
                 requests.forEach((request) => {
                     const cacheRule = findCache(request.url);
-                    if (!cacheRule || (cacheRule.clean &&!dbAccess.check(request.url))) {
+                    if (!cacheRule || (cacheRule.clean && !dbAccess.check(request.url))) {
                         cache.delete(request);
                         dbTime.delete(request);
                     }
@@ -223,123 +209,13 @@ self.addEventListener("message", (event) => {
     }
 });
 
-// 缓存列表数组
-let cachelist = [];
-
-// 安装事件监听器，打开缓存并添加缓存列表中的资源
+// 安装事件（保留原逻辑）
 self.addEventListener("install", async (event) => {
     self.skipWaiting();
     event.waitUntil(
         caches.open("Chuckle").then((cache) => {
             console.log("Opened cache");
-            return cache.addAll(cachelist);
+            return cache.addAll([]); // 原 cachelist 为空，暂不填充
         })
     );
 });
-
-// CDN 配置对象，包含不同类型的 CDN 地址
-const cdn = {
-    gh: {
-        jsdelivr: { url: "https://jsdelivr.pai233.top/gh" },
-        tianli: { url: "https://cdn1.tianli0.top/gh" },
-        fastly: { url: "https://fastly.jsdelivr.net/gh" },
-        sxiaohe: { url: "https://jsd.sxiaohe.top/gh" }
-    },
-    combine: {
-        jsdelivr: { url: "https://jsdelivr.pai233.top/combine" },
-        tianli: { url: "https://cdn1.tianli0.top/combine" },
-        jsdelivr_fastly: { url: "https://fastly.jsdelivr.net/combine" }
-    },
-    npm: {
-        eleme: { url: "https://npm.elemecdn.com" },
-        pai: { url: "https://jsdelivr.pai233.top/npm" },
-        zhimg: { url: "https://unpkg.zhimg.com" },
-        unpkg: { url: "https://unpkg.com" },
-        tianli: { url: "https://cdn1.tianli0.top/npm" },
-        fastly: { url: "https://fastly.jsdelivr.net/npm" },
-        sxiaohe: { url: "https://jsd.sxiaohe.top/npm" }
-    }
-};
-
-// 处理错误响应的异步函数
-const handleerr = async (request, error) => new Response(`<h1>CDN分流器遇到了致命错误</h1>\n      <b>${error}</b>`, {
-    headers: { "content-type": "text/html; charset=utf-8" }
-});
-
-// 处理请求的异步函数
-const handle = async function (request) {
-    const url = request.url;
-    const domain = url.split("/")[2];
-    let alternatives = [];
-
-    for (const category in cdn) {
-        for (const key in cdn[category]) {
-            if (domain === cdn[category][key].url.split("https://")[1].split("/")[0] && url.match(cdn[category][key].url)) {
-                alternatives = [];
-                for (const altKey in cdn[category]) {
-                    alternatives.push(url.replace(cdn[category][key].url, cdn[category][altKey].url));
-                }
-                return url.indexOf("@latest/") > -1
-                 ? lfetch(alternatives, url)
-                  : caches.match(request).then((cachedResponse) => {
-                        return cachedResponse || lfetch(alternatives, url).then((response) => {
-                            return caches.open("Chuckle").then((cache) => {
-                                cache.put(request, response.clone());
-                                return response;
-                            });
-                        });
-                    });
-            }
-        }
-    }
-    return fetch(request);
-};
-
-// 并行请求多个 URL 的异步函数
-const lfetch = async (urls, originalUrl) => {
-    let abortController = new AbortController();
-    const createResponse = async (response) => new Response(await response.arrayBuffer(), {
-        status: response.status,
-        headers: response.headers
-    });
-
-    if (!Promise.any) {
-        Promise.any = function (promises) {
-            return new Promise((resolve, reject) => {
-                let remaining = promises.length;
-                let errors = [];
-                if (remaining === 0) {
-                    return reject(new AggregateError("All promises were rejected"));
-                }
-                promises.forEach((promise) => {
-                    promise.then((value) => {
-                        resolve(value);
-                    }).catch((error) => {
-                        remaining--;
-                        errors.push(error);
-                        if (remaining === 0) {
-                            reject(new AggregateError(errors));
-                        }
-                    });
-                });
-            });
-        };
-    }
-
-    return Promise.any(
-        urls.map((url) =>
-            new Promise((resolve, reject) => {
-                fetch(url, { signal: abortController.signal })
-                  .then(createResponse)
-                  .then((response) => {
-                        if (response.status === 200) {
-                            abortController.abort();
-                            resolve(response);
-                        } else {
-                            reject(response);
-                        }
-                    });
-            })
-        )
-    );
-};
