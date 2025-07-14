@@ -1,20 +1,23 @@
-<script setup>
-import { onMounted } from 'vue';
-
-// 页面完全加载后注册（与原 JS 逻辑完全一致）
-window.addEventListener('load', () => {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/assets/js/service_worker.js')
-      .then(registration => {
-        console.log('Service Worker 注册成功，作用域：', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker 注册失败：', error);
+<script>
+export default {
+  name: 'ServiceWorkerRegistration',
+  mounted() {
+    // 确保在客户端环境执行（避免 SSR 场景下访问 navigator）
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      // 监听页面完全加载事件
+      window.addEventListener('load', () => {
+        // 注册 Service Worker
+        navigator.serviceWorker.register('/assets/js/service_worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
       });
-  } else {
-    console.warn('当前浏览器不支持 Service Worker');
+    }
   }
-});
+};
 </script>
 
 <template>
