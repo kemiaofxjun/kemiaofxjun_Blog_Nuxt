@@ -72,19 +72,13 @@ self.addEventListener("install", async (event) => {
 // 扩展缓存规则（新增 LCP 资源优先级）
 const cacheList = {
     // 原有 CDN 规则（保留）
-    sxiaohecdn: { url: /(^(https:\/\/jsd\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
-    hyperos: { url: /(^(https:\/\/cdn-file\.hyperos\.mi\.com)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 259200, clean: true },
-    source_s3_bitful: { url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 259200, clean: true },
-    alfonts: { url: /(^(https:\/\/at\.alicdn\.com).*@\d.*)/g, time: 259200, clean: true },
-    fastly: { url: /(^(https:\/\/fastly\.jsdelivr\.net).*@\d.*)/g, time: 259200, clean: true },
-    resources: { url: /(^(https:\/\/www\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
-    myxz_site_blog: { url: /(^(https:\/\/blog\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 259200, clean: true },
-    // 新增 LCP 资源优先级规则（覆盖原规则）
-    lcp_priority: {
-        url: new RegExp(LCP_CRITICAL_ASSETS.join("|")), // 匹配所有 LCP 关键资源
-        time: 31536000, // 1 年（长期缓存）
-        clean: false // 不主动清理（避免影响 LCP）
-    }
+    sxiaohecdn: { url: /(^(https:\/\/jsd\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 31536000, clean: false },
+    hyperos: { url: /(^(https:\/\/cdn-file\.hyperos\.mi\.com)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 31536000, clean: false },
+    source_s3_bitful: { url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g, time: 31536000, clean: false },
+    alfonts: { url: /(^(https:\/\/at\.alicdn\.com).*@\d.*)/g, time: 31536000, clean: false },
+    fastly: { url: /(^(https:\/\/fastly\.jsdelivr\.net).*@\d.*)/g, time: 31536000, clean: false },
+    resources: { url: /(^(https:\/\/www\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 31536000, clean: false },
+    myxz_site_blog: { url: /(^(https:\/\/blog\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g, time: 31536000, clean: false },
 };
 
 // 替换列表（保留原逻辑）
@@ -94,7 +88,7 @@ const replaceList = {};
 function findCache(url) {
     // 优先匹配 LCP 关键资源规则
     if (LCP_CRITICAL_ASSETS.some(asset => url.includes(asset))) {
-        return { ...cacheList.lcp_priority, isLCP: true };
+        return { ...cacheList.lcp_priority, isLCP: false };
     }
     // 再匹配其他规则
     for (const key in cacheList) {
@@ -168,7 +162,7 @@ async function fetchEvent(request, cachedResponse, cacheRule) {
         if (lastUpdatedTime && currentTime - lastUpdatedTime < cacheTime) {
             return cachedResponse;
         }
-        shouldFetch = true;
+        shouldFetch = false;
     }
 
     const fetchResource = () => fetch(request)
