@@ -37,28 +37,34 @@ const dbAccess = {
 };
 
 // ====================== LCP 关键资源预缓存 ======================
-// 首屏关键资源列表（根据实际页面调整）
-const LCP_CRITICAL_ASSETS = [
-    // LCP 图片（示例）
-    "https://www.myxz.top/img/2025/01/daohanglan/cover.avif",
-    // 核心 CSS/JS
-    "https://www.myxz.top/styles/main.css",
-    "https://www.myxz.top/assets/js/main.js",
-    // 首页 HTML（若为 SPA 可忽略）
-    "https://www.myxz.top/"
-];
-
 // 预缓存关键资源（安装时执行）
 self.addEventListener("install", async (event) => {
     self.skipWaiting();
     event.waitUntil(
-        // 1. 预缓存 LCP 关键资源
         caches.open("Chuckle").then(async (cache) => {
-            await cache.addAll(LCP_CRITICAL_ASSETS);
-            console.log("预缓存 LCP 关键资源完成");
-        }),
-        // 2. 初始化通用缓存（保留原逻辑）
-        caches.open("Chuckle").then((cache) => cache.addAll([])) // 原 cachelist 为空，暂不填充
+            try {
+                // 预缓存 LCP 关键资源（示例）
+                const LCP_CRITICAL_ASSETS = [
+                    "https://sourceimage.s3.bitiful.net/img%2Fdefault_cover_8.avif", // 确保 URL 正确
+                    "https://zhi.zhilu.cyou/api/send", // 确保存在
+                ];
+
+                // 分批次添加（每批 10 个）
+                const batchSize = 10;
+                for (let i = 0; i < LCP_CRITICAL_ASSETS.length; i += batchSize) {
+                    const batch = LCP_CRITICAL_ASSETS.slice(i, i + batchSize);
+                    await cache.addAll(batch);
+                    console.log(`预缓存批次 ${i/10 + 1} 完成`);
+                }
+
+                console.log("所有 LCP 关键资源预缓存成功");
+            } catch (error) {
+                console.error("预缓存失败，错误详情：", error);
+                // 可选：删除已部分添加的缓存
+                await cache.delete("Chuckle");
+                throw error; // 终止安装流程（避免不完整缓存）
+            }
+        })
     );
 });
 
