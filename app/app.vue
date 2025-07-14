@@ -7,7 +7,7 @@ export default {
       // 监听页面完全加载事件
       window.addEventListener('load', () => {
         // 注册 Service Worker
-        navigator.serviceWorker.register('/assets/js/service_worker.js')
+        navigator.serviceWorker.register('/service_worker.js')
           .then(registration => {
             console.log('Service Worker registered with scope:', registration.scope);
           })
