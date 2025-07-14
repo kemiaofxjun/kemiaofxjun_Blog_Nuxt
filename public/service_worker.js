@@ -75,32 +75,12 @@ self.addEventListener("install", () => self.skipWaiting());
 // 缓存列表对象，包含不同类型的缓存规则
 const cacheList = {
     sxiaohecdn: {
-        url: /(^(https:\/\/jsd\.myxz\.top).*@\d.*)/g,
+        url: /(^(https:\/\/jsd\.myxz\.top)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg)$/g,
         time: 259200,
         clean: true
     },
     source_s3_bitful: {
-        url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    pai: {
-        url: /(^(https:\/\/jsdelivr\.pai233\.top).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    n: {
-        url: /(^(https:\/\/img\.cdn\.nesxc\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    jsdcdn: {
-        url: /(^(https:\/\/cdn\.jsdelivr\.net).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    bootcdn: {
-        url: /(^(https:\/\/cdn\.bootcdn\.net).*@\d.*)/g,
+        url: /(^(https:\/\/sourceimage\.s3\.bitiful\.net)).*\.(css|html|webp|png|jpg|gif|ico|js|woff2|woff|ttf|json|svg|avif)$/g,
         time: 259200,
         clean: true
     },
@@ -121,31 +101,6 @@ const cacheList = {
     },
     lf26: {
         url: /(^(https:\/\/lf26-cdn-tos\.bytecdntp\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    zhimg: {
-        url: /(^(https:\/\/unpkg\.zhimg\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    unpkg: {
-        url: /(^(https:\/\/unpkg\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    elemecdn: {
-        url: /(^(https:\/\/npm\.elemecdn\.com).*@\d.*)/g,
-        time: 259200,
-        clean: true
-    },
-    update: {
-        url: /.*((\/article.*\/)|search\.xml)$/g,
-        time: 259200,
-        clean: true
-    },
-    chuckle: {
-        url: /(^(https:\/\/www\.myxz\.top).*(\/)$)/g,
         time: 259200,
         clean: true
     },
