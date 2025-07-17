@@ -7,10 +7,10 @@ cover: https://sourceimage.s3.bitiful.net/img/default_cover_29.avif
 categories: [hexo]
 tags: [hexo, butterfly]
 ---
-# 前言
+## 前言
 此篇文章改动性质大，魔改前需备份。
 
-# 页面核心内容修改
+## 页面核心内容修改
 
 1. 打开[Blogroot:]\themes\BUTTERFLY\layout\includes\mixins\article-sort.pug，并覆盖以下内容：
 ```pug
@@ -89,7 +89,7 @@ mixin articleSort(posts, current)
 //-     - })
 ```
 
-# 样式表添加 
+## 样式表添加 
 在自定义文件中添加以下内容：
 ```CSS
 /* 归档，分类，标签三个页面调整 */
@@ -255,6 +255,6 @@ mixin articleSort(posts, current)
 }
 ```
 
-# 效果展示
+## 效果展示
 [分类](https://www.myxz.top/categories/hexo/)
 [归档](https://www.myxz.top/archives/)
