@@ -9,9 +9,11 @@ tags: [hexo, butterfly]
 recommend: true
 ---
 ## 一.添加iconfont
+
 打开[iconfont](https://www.iconfont.cn/)，进行注册，注册完毕后在搜索栏中进行搜索，搜索到对应图标选择图标，点击右上角进入添加图标到选定的图标库名称。
 进入到图标库后可以选择项目设置，设置彩色图标,设置页面如下，我们选择彩色，如果需要自定义图标，可以在这里自定义, **这里不推荐自定义**
 ![如图所示](https://blog.myxz.top/img/2025/01/iconfont/1.avif)
+
 ## 二.添加到菜单
 
 前置教程：[Hexo引入阿里矢量图标库-iconfont inject](https://akilar.top/posts/d2ebecef/)和[基于Butterfly的外挂标签引入-Tag Plugins Plus](https://akilar.top/posts/615e2dec/#%E5%8A%A8%E6%80%81%E6%A0%87%E7%AD%BE-anima)中关于动态标签anima的内容。请确保您已经完成了前置教程，并实现了在文章中使用symbol写法来引入iconfont图标。同时引入了fontawesome_animation的前置依赖。
@@ -27,10 +29,12 @@ inject:
     - <script async src="//at.alicdn.com/t/font_2032782_ev6ytrh30f.js"></script>
 ```
 
-### 1.修改pug文件**
+### 1.修改pug文件
+
 替换**BlogRoot\themes\butterfly\layout\includes\header\menu_item.pug**为以下代码，本方案默认使用观感最佳的悬停父元素触发子元素动画效果，默认动画为faa-tada。**注意：可以把之前的代码注释掉，再在后面加上如下代码，以便于回滚**。我这里放出fomal的4.3.1版本以及我修改的4.5.0版本（当然4.5.1也可以自己进行修改）。
 
 #### 4.3.1版本
+
 ```pug
 if theme.menu
   .menus_items
@@ -131,7 +135,9 @@ if theme.menu
 ```
 
 ### 2.修改配置文件
+
 以下是填写示例，在[BlogRoot]\_config.butterfly.yml中修改。icon-xxx字样的为iconfont的symbol引入方案的id值，可以在你的iconfont图标库内查询，其中hide属性也是可以用的。
+
 ```YML
 menu:
   首页: / || icon-home || faa-tada
@@ -141,7 +147,9 @@ menu:
     分类: /categories/ || icon-fenlei || faa-tada
     随便逛逛: javascript:randomPost(); || icon-zuji1 || faa-tada
 ```
+
 ### 3.添加css样式表
+
 ```CSS
 svg.icon {
   width: 1.28em;

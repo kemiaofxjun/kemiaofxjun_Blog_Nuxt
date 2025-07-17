@@ -9,16 +9,20 @@ top_img: false
 tags: [hexo, butterfly, 美化]
 recommend: true
 ---
-
 ## 前言
+
 为了实现部分功能所以采用了大多数教程进行挑选，修改后进行优化（对于部分在yml配置文件的进行保留，还不是最终版本）
-所采用的模块来自于
+所采用的模块来自于:
+
 - 1. [安知鱼主题友链页面部分模块](https://github.com/anzhiyu-c/hexo-theme-anzhiyu/blob/dev/layout/includes/page/flink.pug)
 - 2. [柳神友链页面大部分UI](https://blog.liushen.fun/posts/59fe844d/)
 
 ## 页面内容
+
 ### 友链页面覆盖
+
 在flink.pug中使用以下代码进行覆盖：
+
 ```pug
 #article-container
   include ./flink_css.pug
@@ -100,7 +104,9 @@ recommend: true
 ```
 
 ### 友链页面样式
+
 在自定义css文件下添加：
+
 ```CSS
   /* 友链页面模块美化 */
   /* 由苏晓河进行编写以及调整 */
@@ -617,8 +623,10 @@ recommend: true
 ```
 
 ### 友链页面特定触发
+
 功能：识别json内容传到触发网页div元素中oclink值，并采用snankbar（提示框）中，通过修改网站名称以及指定的链接进行传送，可以在这个基础上添加几秒自动跳转。
 在自定义js文件中添加以下js,并将链接替换为自己的链接（需要部署友链朋友圈）:
+
 ```JS
 function travelling() {
     fetch("https://moments.myxz.top/randomfriend").then((e=>e.json())).then((e=>{
@@ -671,5 +679,6 @@ function addFriendLinksInFooter() {
 ```
 
 ## 后记
+
 因为最近一些事情，比如：把stellar的wiki页面搬过来（无法使用，放弃），完善部分代码以及调整样式表整理资料，尝试使用css函数调用来简单化样式表（50%进度）。
 大部分原因是因为没有什么可以写的导致断更以及部分小伙伴说标题与链接中的标题不匹配，这些也在优化调整。

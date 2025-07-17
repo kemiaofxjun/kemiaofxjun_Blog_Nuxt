@@ -9,14 +9,18 @@ tags: [hexo, butterfly]
 ---
 
 ## 前言
+
 魔改到一定程度，会跟轻笑的风格大致一样，同时这篇文章大概是魔改分类，归档以及标签（没有存在感的）的最后修改，也是目前完善的一版，基于轻笑的版本且适配4.5.0（4.5.1大概能用），其实想起来还有这么一个压箱底的东西没有发表，轻笑只写了pug内容。
 
 ## 本篇环境
+
 主题：butterfly 4.5.0
 博客框架：hexo 6.3.0
 
 ## 实现
+
 1. 打开[BlogRoot:]\themes\butterfly\layout\includes\mixins\article-sort.pug修改：
+
 ```pug
 mixin articleSort(posts)
   .article-sort
@@ -58,6 +62,7 @@ mixin articleSort(posts)
 ```
 
 2. 打开[BlogRoot]\source\css，并新建自定义css文件：
+
 ```CSS
 /* 归档，分类，标签三个页面调整 */
 /* 由苏晓河进行编写以及调整 */
@@ -224,7 +229,9 @@ mixin articleSort(posts)
 ```
 
 ## 后续
+
 如果你已经按照上面的方案进行修改，就会出现这样子：
+
 ![归档](https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%BD%92%E6%A1%A3%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%96%87%E7%AB%A0%E5%8D%A1%E7%89%87%E5%8A%A0%E4%B8%8A%E6%89%80%E5%B1%9E%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%88%E8%BD%BB%E7%AC%91%E7%89%88%E6%9C%AC%E9%87%8D%E5%88%B6%E7%89%88%EF%BC%89%2F1.avif)
 ![分类文章](https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%BD%92%E6%A1%A3%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%96%87%E7%AB%A0%E5%8D%A1%E7%89%87%E5%8A%A0%E4%B8%8A%E6%89%80%E5%B1%9E%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%88%E8%BD%BB%E7%AC%91%E7%89%88%E6%9C%AC%E9%87%8D%E5%88%B6%E7%89%88%EF%BC%89%2F2.avif)
 ![标签文章](https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%BD%92%E6%A1%A3%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%96%87%E7%AB%A0%E5%8D%A1%E7%89%87%E5%8A%A0%E4%B8%8A%E6%89%80%E5%B1%9E%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2%EF%BC%88%E8%BD%BB%E7%AC%91%E7%89%88%E6%9C%AC%E9%87%8D%E5%88%B6%E7%89%88%EF%BC%89%2F3.avif)

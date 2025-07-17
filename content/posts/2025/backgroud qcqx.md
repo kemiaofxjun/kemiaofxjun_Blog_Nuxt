@@ -8,16 +8,20 @@ categories: [hexo]
 tags: [hexo, butterfly]
 ---
 一.前言
+
 因为这部分内容轻笑并没有有关于这个内容，所以我在这里写好了，方便以后查找
 
 二.教程开始
+
 1.在 [BlogRoot]\themes\butterfly\layout\includes\head.pug 中引入 div模块
+
 ```pug
 #web_bg
 #svg_bg
 ```
 
 2.在自定义css里面引入以下样式
+
 ```css
 #web_bg {
     position: fixed;

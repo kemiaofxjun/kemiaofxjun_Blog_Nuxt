@@ -8,10 +8,13 @@ categories: [hexo]
 tags: [hexo, butterfly]
 ---
 ## 前言
+
 因为这部分内容轻笑并没有有关于这个内容，所以我在这里写好了，方便以后查找，喜欢这个风格的可以进行CTRL+C和CTRL+V
 
 ## 侧边栏美化以及侧边栏卡片美化
+
 大部分已经有进行标识，对于以后可以进行维护
+
 ```css
 /* 侧边栏整体卡片样式调整 */
 #aside-content .card-widget {
@@ -84,7 +87,9 @@ tags: [hexo, butterfly]
 ```
 
 ## 首页文章卡片美化
+
 在[BlogRoot]\source\css下新建自定义css并粘贴：
+
 ```css
 /* 首页文章卡片样式表调整 */
 #recent-posts > .recent-post-item >.recent-post-info > .article-title {
@@ -136,7 +141,9 @@ tags: [hexo, butterfly]
     transform: none;
 }
 ```
+
 以下代码为高级代码，需要完成隐藏文字后方可使用。
+
 ```css
 /* 首页文章卡片颜色 */
 #recent-posts>.recent-post-item {

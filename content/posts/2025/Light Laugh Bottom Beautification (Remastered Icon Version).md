@@ -9,10 +9,13 @@ tags: [hexo, butterfly, 美化]
 recommend: true
 ---
 ## 1.前言
+
 这篇文章根据[轻笑](https://qcqx.cn)的css文件和html进行美化，本篇文章的主题为：4.5.0，其他版本需自己适配
 
 ## 2.页脚Html文件（默认已经添加js）
+
 打开[BlogRoot]/sxiaohe/layout/includes/footer.pug，把以下代码添加进来：
+
 ```pug
 #footer-wrap
   #footer_icon
@@ -93,13 +96,17 @@ recommend: true
     a.github-badge(href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" target="_blank")
       img.entered.loaded(data-lazy-src="/img/footer_svg/cc.svg" data-ll-status="loaded" src="/img/footer_svg/cc.svg")
 ```
+
 ### 2.1修改pug文件中的内容
+
 href中的链接修改为你自己的链接
 data-lazy-src中的图片链接修改为自己的图片链接
 src中的图片链接修改为自己的图片链接
 
 ## 3.添加css
+
 在自定义的css文件中添加以下内容：
+
 ```CSS
 /* 底部透明 */
 #footer:before {

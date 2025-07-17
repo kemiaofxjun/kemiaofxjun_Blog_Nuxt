@@ -10,6 +10,7 @@ tags: [hexo, butterfly]
 ## 首页文章隐藏文字
 
 这种隐藏文字的方式可以给大家展示出来，整个效果是非常可观的。
+
 ```css
 #recent-posts>.recent-post-item:hover .recent-post-info .content {
     opacity: 1;
