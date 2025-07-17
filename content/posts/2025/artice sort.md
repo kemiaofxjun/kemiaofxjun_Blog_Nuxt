@@ -15,7 +15,7 @@ tags: [hexo, butterfly]
 
 1. 打开[Blogroot:]\themes\BUTTERFLY\layout\includes\mixins\article-sort.pug，并覆盖以下内容：
 
-```pug [article-sort.pug]
+```pg [article-sort.pug]
 mixin articleSort(posts, current)
   .article-sort
     - var year

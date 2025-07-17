@@ -23,7 +23,7 @@ recommend: true
 
 在flink.pug中使用以下代码进行覆盖：
 
-```pug [flink.pug]
+```pg [flink.pug]
 #article-container
   include ./flink_css.pug
   style.

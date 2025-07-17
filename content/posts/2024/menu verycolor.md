@@ -35,7 +35,7 @@ inject:
 
 #### 4.3.1版本
 
-```pug
+```pg [menu_item.pug]
 if theme.menu
   .menus_items
     each value, label in theme.menu

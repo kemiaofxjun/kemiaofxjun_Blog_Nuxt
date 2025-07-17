@@ -16,7 +16,7 @@ recommend: true
 
 打开[BlogRoot]/sxiaohe/layout/includes/footer.pug，把以下代码添加进来：
 
-```pug [footer.pug]
+```pg [footer.pug]
 #footer-wrap
   #footer_icon
     .icon_left
