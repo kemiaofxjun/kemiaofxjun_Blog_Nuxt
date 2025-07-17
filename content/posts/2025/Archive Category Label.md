@@ -21,7 +21,7 @@ tags: [hexo, butterfly]
 
 1. 打开[BlogRoot:]\themes\butterfly\layout\includes\mixins\article-sort.pug修改：
 
-```pg [article-sort.pug]
+```pug [article-sort.pug]
 mixin articleSort(posts)
   .article-sort
     - var year

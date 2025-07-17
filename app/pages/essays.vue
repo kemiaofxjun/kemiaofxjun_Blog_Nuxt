@@ -69,74 +69,76 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- 说说内容区域 -->
-    <div id="bber">
-      <section class="timeline page-1">
-        <ul id="waterfall" class="list">
-          <li 
-            v-for="(item, index) in customEssays" 
-            :key="index"
-            class="bber-item"
-          >
-            <div class="bber-content">
-              <!-- 内容 -->
-              <p class="datacont">{{ item.content }}</p>
-              
-              <!-- 图片展示 -->
-              <div 
-                v-if="item.image" 
-                class="bber-container-img"
-                style="width: auto!important"
-              >
-                <div v-if="item.image && item.image.length > 0">
-                  <a 
-                    class="bber-content-img" 
-                    :href="item.image" 
-                    target="_blank" 
-                    data-fancybox="gallery" 
-                    data-caption=""
-                    style="width: 100%!important"
-                  >
-                    <img :src="item.image">
-                  </a>
-                </div>
+    <div class="page-essay" style="margin: 1rem;">
+      <!-- 说说内容区域 -->
+      <div id="bber">
+        <section class="timeline page-1">
+          <ul id="waterfall" class="list">
+            <li 
+              v-for="(item, index) in customEssays" 
+              :key="index"
+              class="bber-item"
+            >
+              <div class="bber-content">
+                <!-- 内容 -->
+                <p class="datacont">{{ item.content }}</p>
                 
-                <!-- 占位格 -->
+                <!-- 图片展示 -->
                 <div 
-                  v-if="!item.image || item.image === ''" 
-                  class="bber-content-noimg"
-                ></div>
-                <div class="bber-content-noimg"></div>
-                <div class="bber-content-noimg"></div>
-              </div>
-            </div>
-            
-            <!-- 分隔线 -->
-            <hr>
-            
-            <!-- 底部信息 -->
-            <div class="bber-bottom">
-              <div class="bber-info">
-                <!-- 发布时间 -->
-                <div class="bber-info-time">
-                  <i class="anzhiyufont anzhiyu-icon-clock"></i>
-                  <time class="datatime" :datetime="item.date">{{ item.date }}</time>
+                  v-if="item.image" 
+                  class="bber-container-img"
+                  style="width: auto!important"
+                >
+                  <div v-if="item.image && item.image.length > 0">
+                    <a 
+                      class="bber-content-img" 
+                      :href="item.image" 
+                      target="_blank" 
+                      data-fancybox="gallery" 
+                      data-caption=""
+                      style="width: 100%!important"
+                    >
+                      <img :src="item.image">
+                    </a>
+                  </div>
+                  
+                  <!-- 占位格 -->
+                  <div 
+                    v-if="!item.image || item.image === ''" 
+                    class="bber-content-noimg"
+                  ></div>
+                  <div class="bber-content-noimg"></div>
+                  <div class="bber-content-noimg"></div>
                 </div>
-                
-                <!-- 来源信息 -->
-                <div class="bber-info-from">
-                  <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
-                  <span>{{ essayConstants.siteName }}</span>
+              </div>
+              
+              <!-- 分隔线 -->
+              <hr>
+              
+              <!-- 底部信息 -->
+              <div class="bber-bottom">
+                <div class="bber-info">
+                  <!-- 发布时间 -->
+                  <div class="bber-info-time">
+                    <i class="anzhiyufont anzhiyu-icon-clock"></i>
+                    <time class="datatime" :datetime="item.date">{{ item.date }}</time>
+                  </div>
+                  
+                  <!-- 来源信息 -->
+                  <div class="bber-info-from">
+                    <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
+                    <span>{{ essayConstants.siteName }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
-      </section>
-      
-      <!-- 底部提示 -->
-      <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
-        只展示最近{{ bannerData.limit }}条短文
+            </li>
+          </ul>
+        </section>
+        
+        <!-- 底部提示 -->
+        <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
+          只展示最近{{ bannerData.limit }}条短文
+        </div>
       </div>
     </div>
   </div>

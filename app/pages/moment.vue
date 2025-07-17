@@ -184,99 +184,113 @@ const hideModal = () => {
 
 <template>
   <link rel="stylesheet" href="/assets/css/moments.css">
-  <div class="article-list">
-    <!-- 随机文章区域 -->
-    <div v-if="randomArticle" class="random-article">
-      <div class="random-container-title">随机钓鱼</div>
-      <a href="#" @click.prevent="openRandomArticle" class="article-item">
-        <div class="article-container gradient-card">
-          <div class="article-author">{{ randomArticle.author }}</div>
-          <div class="article-title">{{ randomArticle.title }}</div>
-          <div class="article-date">{{ randomArticle.created }}</div>
-        </div>
-      </a>
-      <button class="refresh-btn gradient-card" @click="displayRandomArticle">
-        <span class="iconify i-ph:arrows-clockwise" aria-hidden="true"></span>
-      </button>
-    </div>
+  <div class="page-banner" style="background-image: url(/assets/img/page_backgroud/moment.webp)">
+      <div class="banner-content">
+          <h1>博友圈</h1>
+          <p>发现更多有趣的博主</p>
+      </div>
+      <div class="banner-extra">
+          <div class="friend-stats">
+              <div class="update-time">Updated at 2025-07-17</div>
+              <div class="powered-by">Powered by FriendCircleLite</div>
+          </div>
+      </div>
+  </div>
+  <div class="page-fcircle">
+    <div class="article-list">
+      <!-- 随机文章区域 -->
+      <div v-if="randomArticle" class="random-article">
+        <div class="random-container-title">随机钓鱼</div>
+        <a href="#" @click.prevent="openRandomArticle" class="article-item">
+          <div class="article-container gradient-card">
+            <div class="article-author">{{ randomArticle.author }}</div>
+            <div class="article-title">{{ randomArticle.title }}</div>
+            <div class="article-date">{{ randomArticle.created }}</div>
+          </div>
+        </a>
+        <button class="refresh-btn gradient-card" @click="displayRandomArticle">
+          <span class="iconify i-ph:arrows-clockwise" aria-hidden="true"></span>
+        </button>
+      </div>
 
-    <!-- 文章列表区域 -->
-    <div class="articles-list">
-      <div v-for="(article, index) in displayedArticles" :key="index" class="article-item">
-        <div class="article-image" @click="showAuthorArticles(article.author, article.avatar, article.link)">
+      <!-- 文章列表区域 -->
+      <div class="articles-list">
+        <div v-for="(article, index) in displayedArticles" :key="index" class="article-item">
+          <div class="article-image" @click="showAuthorArticles(article.author, article.avatar, article.link)">
+            <img 
+              :src="avatarOrDefault(article.avatar)" 
+              @error="handleAvatarError" 
+            />
+          </div>
+          <div class="article-container gradient-card">
+            <div class="article-author">{{ article.author }}</div>
+            <div class="article-title" @click="openArticle(article.link)">
+              {{ article.title }}
+            </div>
+            <div class="article-date">{{ formatDate(article.created) }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more-container">
+        <!-- 加载更多按钮 -->
+        <button 
+          v-show="hasMoreArticles" 
+          class="load-more gradient-card" 
+          @click="loadMoreArticles"
+        >
+          再来亿点
+        </button>
+      </div>
+
+      <!-- 作者模态框 -->
+      <div 
+        v-if="showModal" 
+        id="modal" 
+        class="modal" 
+        :class="{'modal-open': showModal}"
+        @click.self="hideModal"
+      >
+        <div class="modal-content">
           <img 
-            :src="avatarOrDefault(article.avatar)" 
+            id="modal-author-avatar" 
+            :src="avatarOrDefault(currentAuthorAvatar)" 
+            @error="handleAvatarError" 
+          />
+          <a id="modal-author-name-link" :href="authorOrigin" target="_blank">
+            {{ currentAuthor }}
+          </a>
+          
+          <div id="modal-articles-container">
+            <div 
+              v-for="(article, index) in authorArticles" 
+              :key="index" 
+              class="modal-article"
+            >
+              <a 
+                class="modal-article-title" 
+                :href="article.link" 
+                target="_blank"
+              >
+                {{ article.title }}
+              </a>
+              <div class="modal-article-date">📅{{ formatDate(article.created) }}</div>
+            </div>
+          </div>
+          
+          <img 
+            id="modal-bg" 
+            :src="avatarOrDefault(currentAuthorAvatar)" 
             @error="handleAvatarError" 
           />
         </div>
-        <div class="article-container gradient-card">
-          <div class="article-author">{{ article.author }}</div>
-          <div class="article-title" @click="openArticle(article.link)">
-            {{ article.title }}
-          </div>
-          <div class="article-date">{{ formatDate(article.created) }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="load-more-container">
-      <!-- 加载更多按钮 -->
-      <button 
-        v-show="hasMoreArticles" 
-        class="load-more gradient-card" 
-        @click="loadMoreArticles"
-      >
-        再来亿点
-      </button>
-    </div>
-
-    <!-- 作者模态框 -->
-    <div 
-      v-if="showModal" 
-      id="modal" 
-      class="modal" 
-      :class="{'modal-open': showModal}"
-      @click.self="hideModal"
-    >
-      <div class="modal-content">
-        <img 
-          id="modal-author-avatar" 
-          :src="avatarOrDefault(currentAuthorAvatar)" 
-          @error="handleAvatarError" 
-        />
-        <a id="modal-author-name-link" :href="authorOrigin" target="_blank">
-          {{ currentAuthor }}
-        </a>
-        
-        <div id="modal-articles-container">
-          <div 
-            v-for="(article, index) in authorArticles" 
-            :key="index" 
-            class="modal-article"
-          >
-            <a 
-              class="modal-article-title" 
-              :href="article.link" 
-              target="_blank"
-            >
-              {{ article.title }}
-            </a>
-            <div class="modal-article-date">📅{{ formatDate(article.created) }}</div>
-          </div>
-        </div>
-        
-        <img 
-          id="modal-bg" 
-          :src="avatarOrDefault(currentAuthorAvatar)" 
-          @error="handleAvatarError" 
-        />
       </div>
     </div>
   </div>
 </template>
 
 <style>
-.moment_page_banner {
+.page-banner {
     background-position: 50%;
     background-size: cover;
     border-radius: 8px;
@@ -287,7 +301,7 @@ const hideModal = () => {
     position: relative
 }
 
-.moment_page_banner .moment_banner_content {
+.page-banner .banner-content {
     color: #eee;
     display: flex;
     flex-direction: column;
@@ -301,16 +315,16 @@ const hideModal = () => {
     text-shadow: 0 4px 5px rgba(0,0,0,.5)
 }
 
-.moment_page_banner .moment_banner_content h1 {
+.page-banner .banner-content h1 {
     font-size: 2rem
 }
 
-.moment_page_banner .moment_banner_content p {
+.page-banner .banner-content p {
     font-size: 1rem;
     opacity: .9
 }
 
-.moment_page_banner .moment_banner_extra {
+.page-banner .banner-extra {
     align-items: flex-end;
     display: flex;
     top: 0;
@@ -322,7 +336,7 @@ const hideModal = () => {
     position: absolute
 }
 
-.moment_page_banner .banner-btn {
+.page-banner .banner-btn {
     align-items: center;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -337,31 +351,12 @@ const hideModal = () => {
     transition: all .3s
 }
 
-.moment_page_banner .banner-btn:hover {
+.page-banner .banner-btn:hover {
     background: #0003
 }
 
-.moment_page_banner .banner-btn .icon {
+.page-banner .banner-btn .icon {
     font-size: 1.2rem
 }
 
-.moment_friend_stats {
-    align-items: flex-end;
-    color: #eee;
-    display: flex;
-    flex-direction: column;
-    font-family: var(--font-monospace);
-    font-size: .7rem;
-    gap: .1rem;
-    opacity: .7;
-    text-shadow: 0 4px 5px rgba(0,0,0,.5)
-}
-
-.moment_friend_stats .moment_update_time {
-    opacity: 1
-}
-
-.moment_friend_stats .moment_powered_by {
-    opacity: .8
-}
 </style>
