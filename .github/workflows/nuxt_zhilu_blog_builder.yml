@@ -40,8 +40,7 @@ jobs:
 
       - name: 5. 开始构建
         run: |
-          npm run build
-          npm run generate
+          nuxt generate
 
       - name: 6. 推送到vercel分支
         uses: peaceiris/actions-gh-pages@v3
