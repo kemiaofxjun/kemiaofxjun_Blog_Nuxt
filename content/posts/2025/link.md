@@ -23,7 +23,7 @@ recommend: true
 
 在flink.pug中使用以下代码进行覆盖：
 
-```pg [flink.pug]
+```pug [flink.pug]
 #article-container
   include ./flink_css.pug
   style.
@@ -63,10 +63,10 @@ recommend: true
                   - let oddNumAvatar = getAvatarWithoutExclamationMark(oddNum[index].avatar);
                   - let evenNumAvatar = getAvatarWithoutExclamationMark(evenNum[index].avatar);
                   .tags-group-icon-pair
-                    a.tags-group-icon.no-text-decoration(href=url_for(evenNum[index].link), title=evenNum[index].name)
-                      img.no-lightbox(title=evenNum[index].name, src=url_for(evenNumAvatar + hundredSuffix) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=evenNum[index].name)
-                    a.tags-group-icon.no-text-decoration(href=url_for(oddNum[index].link), title=oddNum[index].name)
-                      img.no-lightbox(title=oddNum[index].name, src=url_for(oddNumAvatar + hundredSuffix) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=oddNum[index].name)
+                    a.tags-group-icon.no-text-decoration(href=evenNum[index].link, title=evenNum[index].name)
+                      img.no-lightbox(title=evenNum[index].name, src=evenNumAvatar + hundredSuffix onerror=`this.onerror=null;this.src='` + theme.error_img.flink + `'` alt=evenNum[index].name)
+                    a.tags-group-icon.no-text-decoration(href=oddNum[index].link, title=oddNum[index].name)
+                      img.no-lightbox(title=oddNum[index].name, src=oddNumAvatar + hundredSuffix onerror=`this.onerror=null;this.src='` + theme.error_img.flink + `'` alt=oddNum[index].name)
   .flink
     if site.data.link
       each i in site.data.link
@@ -76,27 +76,21 @@ recommend: true
           .flink-desc!=i.class_desc
         if i.flink_style === 'img-link'
           .volantis-flink-list
-            - let randomList = i.link_list.slice()
-            if i.random
-              - randomList.sort(() => Math.random() - 0.5)
-            each item in randomList
-              a.site-card(target='_blank' rel='noopener' href=url_for(item.link))
+            each item in i.link_list
+              a.site-card(target='_blank' rel='noopener' href=item.link)
                 .img
-                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
-                  img.nolazyload.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                  - var siteshot = item.siteshot ? item.siteshot : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
+                  img.nolazyload.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + theme.error_img.post_page + `'` alt='' )
                 .info
-                  img.nolazyload.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  img.nolazyload.no-lightbox(src=item.avatar onerror=`this.onerror=null;this.src='` + theme.error_img.flink + `'` alt='' )
                   span.title= item.name
                   span.desc(title=item.descr)= item.descr
         else if i.flink_style === 'not-img-link'
           .site-card-group.link-no-img
-            - let randomList = i.link_list.slice()
-            if i.random
-              - randomList.sort(() => Math.random() - 0.5)
-            each item in randomList
-              a.site-card(target='_blank' rel='noopener' href=url_for(item.link))
+            each item in i.link_list
+              a.site-card(target='_blank' rel='noopener' href=item.link)
                 .info
-                  img.nolazyload.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  img.nolazyload.no-lightbox(src=item.avatar onerror=`this.onerror=null;this.src='` + theme.error_img.flink + `'` alt='' )
                   span.title= item.name
                   span.desc(title=item.descr)= item.descr
 
