@@ -40,7 +40,7 @@ jobs:
 
       - name: 5. 开始构建
         run: |
-          pnpm generate
+          pnpm build
 
       - name: 6. 推送到vercel分支
         uses: peaceiris/actions-gh-pages@v3
