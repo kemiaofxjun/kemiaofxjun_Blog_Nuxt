@@ -1,6 +1,6 @@
 ---
 title: 友链魔改
-description: 这篇文章讲述了在友链页面中进行魔改，对清羽飞扬的PUG页面模板进行修改，套用轻笑的友链卡片样式。
+description: 这篇文章讲述了在友链页面中进行魔改，对清羽飞扬的pug页面模板进行修改，套用轻笑的友链卡片样式。
 date: 2025-04-19 10:00
 updated: 2025-04-19 12:09
 image: https://sourceimage.s3.bitiful.net/img/default_cover_18.avif
@@ -19,7 +19,7 @@ recommend: true
 ## 页面内容
 ### 友链页面覆盖
 在flink.pug中使用以下代码进行覆盖：
-``` PUG
+```pug
 #article-container
   include ./flink_css.pug
   style.
@@ -101,7 +101,7 @@ recommend: true
 
 ### 友链页面样式
 在自定义css文件下添加：
-``` CSS
+```CSS
   /* 友链页面模块美化 */
   /* 由苏晓河进行编写以及调整 */
   /* 时间：2025年3月7日 */
@@ -619,7 +619,7 @@ recommend: true
 ### 友链页面特定触发
 功能：识别json内容传到触发网页div元素中oclink值，并采用snankbar（提示框）中，通过修改网站名称以及指定的链接进行传送，可以在这个基础上添加几秒自动跳转。
 在自定义js文件中添加以下js,并将链接替换为自己的链接（需要部署友链朋友圈）:
-``` JS
+```JS
 function travelling() {
     fetch("https://moments.myxz.top/randomfriend").then((e=>e.json())).then((e=>{
             var t = e.link

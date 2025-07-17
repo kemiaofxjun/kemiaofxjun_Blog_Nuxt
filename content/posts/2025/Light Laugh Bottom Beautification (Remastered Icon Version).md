@@ -13,7 +13,7 @@ recommend: true
 
 ## 2.页脚Html文件（默认已经添加js）
 打开[BlogRoot]/sxiaohe/layout/includes/footer.pug，把以下代码添加进来：
-``` PUG
+```pug
 #footer-wrap
   #footer_icon
     .icon_left
@@ -100,7 +100,7 @@ src中的图片链接修改为自己的图片链接
 
 ## 3.添加css
 在自定义的css文件中添加以下内容：
-``` CSS
+```CSS
 /* 底部透明 */
 #footer:before {
     position: absolute;

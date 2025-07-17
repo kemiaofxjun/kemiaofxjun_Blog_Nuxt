@@ -9,7 +9,7 @@ tags: [hexo, butterfly]
 ---
 
 ## 前言
-魔改到一定程度，会跟轻笑的风格大致一样，同时这篇文章大概是魔改分类，归档以及标签（没有存在感的）的最后修改，也是目前完善的一版，基于轻笑的版本且适配4.5.0（4.5.1大概能用），其实想起来还有这么一个压箱底的东西没有发表，轻笑只写了PUG内容。
+魔改到一定程度，会跟轻笑的风格大致一样，同时这篇文章大概是魔改分类，归档以及标签（没有存在感的）的最后修改，也是目前完善的一版，基于轻笑的版本且适配4.5.0（4.5.1大概能用），其实想起来还有这么一个压箱底的东西没有发表，轻笑只写了pug内容。
 
 ## 本篇环境
 主题：butterfly 4.5.0
@@ -17,7 +17,7 @@ tags: [hexo, butterfly]
 
 ## 实现
 1. 打开[BlogRoot:]\themes\butterfly\layout\includes\mixins\article-sort.pug修改：
-``` PUG
+```pug
 mixin articleSort(posts)
   .article-sort
     - var year
@@ -58,7 +58,7 @@ mixin articleSort(posts)
 ```
 
 2. 打开[BlogRoot]\source\css，并新建自定义css文件：
-``` CSS
+```CSS
 /* 归档，分类，标签三个页面调整 */
 /* 由苏晓河进行编写以及调整 */
 /* 时间：2025年2月4日 */

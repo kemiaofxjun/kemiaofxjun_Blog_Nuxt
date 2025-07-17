@@ -9,11 +9,9 @@ tags: [hexo, butterfly, 美化]
 ---
 ## 1.前言
 为了把lighthouse的性能优化到极致，所以采用了这种轻笑方案的随机banner来优化
-文章来源：
-{% link Banner随机文章展示,『轻笑Chuckle』,https://www.qcqx.cn/article/a1bf85bf.html %}
 ## 2.添加hometop
 ### 1.在 [BlogRoot]\themes\sxiaohe\scripts\helpers中新建home_random_post.js:
-``` JS
+```JS
 hexo.extend.generator.register('thePosts', function (locals) {
     const jsonData = locals.posts
       .filter(post => post.random !== false)
@@ -37,7 +35,7 @@ hexo.extend.generator.register('thePosts', function (locals) {
 {% note info flat %}
 提示：如果在页面中添加js文件，会导致浏览器一直读取js，从而让用户无法看到页面内容，所以这里采用pug内嵌js文件展示出来
 {% endnote %}
-``` PUG
+```pug
 #home_top
   .home_top_group
     #homeTopGroup.homeTopGroup
@@ -164,7 +162,7 @@ hexo.extend.generator.register('thePosts', function (locals) {
         | }catch(e){}
 ```
 ### 3.在自定义css文件中添加：
-``` CSS
+```CSS
 :root{
     --mj-white: #fff;
     --mj-card-bg: rgba(255,255,255,0.67);

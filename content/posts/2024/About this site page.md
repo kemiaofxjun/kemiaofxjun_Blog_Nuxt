@@ -16,10 +16,10 @@ tags: [hexo, butterfly]
 ### 效果
 ![效果](https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96%2F1.avif)
 
-### 覆盖PUG文件内容
+### 覆盖pug文件内容
 1. 覆盖 \themes\butterfly\layout\includes\page\about.pug（如果没有就新建）: 
 
-``` PUG
+```pug
 #about-page
   .author-main
     style.

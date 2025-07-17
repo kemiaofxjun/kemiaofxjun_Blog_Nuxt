@@ -12,13 +12,13 @@ tags: [hexo, butterfly]
 
 二.教程开始
 1. 在 [BlogRoot]\themes\butterfly\layout\includes\head.pug 中引入 div模块
-``` pug
+```pug
 #web_bg
 #svg_bg
 ```
 
 2. 在自定义css里面引入以下样式
-``` css
+```css
 #web_bg {
     position: fixed;
     z-index: -999;

@@ -12,7 +12,7 @@ tags: [hexo, butterfly]
 
 # 侧边栏美化以及侧边栏卡片美化
 大部分已经有进行标识，对于以后可以进行维护
-``` CSS
+```css
 /* 侧边栏整体卡片样式调整 */
 #aside-content .card-widget {
     border-width: 2px;
@@ -85,7 +85,7 @@ tags: [hexo, butterfly]
 
 # 首页文章卡片美化
 在[BlogRoot]\source\css下新建自定义css并粘贴：
-``` CSS
+```css
 /* 首页文章卡片样式表调整 */
 #recent-posts > .recent-post-item >.recent-post-info > .article-title {
     text-align: center;
@@ -137,7 +137,7 @@ tags: [hexo, butterfly]
 }
 ```
 以下代码为高级代码，需要完成隐藏文字后方可使用。
-``` CSS
+```css
 /* 首页文章卡片颜色 */
 #recent-posts>.recent-post-item {
     border: 2px solid rgba(0, 255, 255, .6);

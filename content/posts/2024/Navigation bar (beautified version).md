@@ -15,7 +15,7 @@ recommend: true
 因为我们要先对导航栏修改为居中，把搜索以及其他功能分离到右侧，增加导航其他网站的区域，并且对魔改内容的一部分按钮进行兼容，**剔除返回内容**，防止不兼容
 那么就是以下整个文件内容了
 **主体内容修改**
-``` PUG
+```pug
 - const { darkmode } = theme
 nav#nav
   span#blog_name
@@ -63,7 +63,7 @@ nav#nav
 css也是进行一部分的魔改，去除一部分的颜色和样式更新以支持部分内容
 **css内容**
 第一个:**菜单主体样式**，放到自定义css内容，也可以在主题内搞一个文件夹来存放**不太建议**，如果想要以后会发布并引用到整套魔改文章中。
-``` CSS
+```CSS
 #nav a:hover {
   background: var(--anzhiyu-main);
   transition: 0.3s;
@@ -526,7 +526,7 @@ center#name-container {
 }
 ```
 第二个:**整体的颜色样式表**，还是那句话不建议放在主题内，除非有解决这个问题的方式，否则放到自定义文件
-``` CSS
+```CSS
 /* 颜色 */
 :root {
     --anzhiyu-theme-op: #4259ef23;
