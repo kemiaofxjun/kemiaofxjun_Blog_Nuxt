@@ -16,7 +16,7 @@ const blogConfig = {
         name: '莫言',
         avatar: 'https://blog.myxz.top/img/avatar.avif',
         email: '3227988255@qq.com',
-        homepage: '/',
+        homepage: 'https://www.myxz.top/',
     },
     copyright: {
         abbr: 'CC BY-NC-SA 4.0',
@@ -28,7 +28,7 @@ const blogConfig = {
     qqGroup: '169994096',
     timeEstablished: '2020-07-19',
     timezone: 'Asia/Shanghai',
-    url: '/',
+    url: 'https://www.myxz.top/',
 
     feed: {
         limit: 50,
