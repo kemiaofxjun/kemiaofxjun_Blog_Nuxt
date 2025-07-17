@@ -23,7 +23,7 @@ recommend: true
 
 在flink.pug中使用以下代码进行覆盖：
 
-```pug
+```pug [flink.pug]
 #article-container
   include ./flink_css.pug
   style.
@@ -107,7 +107,7 @@ recommend: true
 
 在自定义css文件下添加：
 
-```CSS
+```css [flink.css]
   /* 友链页面模块美化 */
   /* 由苏晓河进行编写以及调整 */
   /* 时间：2025年3月7日 */

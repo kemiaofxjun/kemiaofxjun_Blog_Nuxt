@@ -41,7 +41,7 @@ hexo.extend.generator.register('thePosts', function (locals) {
 提示：如果在页面中添加js文件，会导致浏览器一直读取js，从而让用户无法看到页面内容，所以这里采用pug内嵌js文件展示出来
 ::
 
-```pug
+```pug [hometop.pug]
 #home_top
   .home_top_group
     #homeTopGroup.homeTopGroup

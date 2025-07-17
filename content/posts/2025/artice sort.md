@@ -15,7 +15,7 @@ tags: [hexo, butterfly]
 
 1. 打开[Blogroot:]\themes\BUTTERFLY\layout\includes\mixins\article-sort.pug，并覆盖以下内容：
 
-```pug
+```pug [article-sort.pug]
 mixin articleSort(posts, current)
   .article-sort
     - var year
@@ -95,7 +95,7 @@ mixin articleSort(posts, current)
 
 在自定义文件中添加以下内容：
 
-```CSS
+```css
 /* 归档，分类，标签三个页面调整 */
 /* 由苏晓河进行编写以及调整 */
 /* 时间：2025年2月4日 */
