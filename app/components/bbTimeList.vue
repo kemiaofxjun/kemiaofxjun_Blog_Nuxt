@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue';
-import { EssayItem, BannerConfig, Constants } from '~/essay';
+import { EssayItem, BannerConfig, Constants } from '~/essayd';
 
 export default defineComponent({
   props: {
