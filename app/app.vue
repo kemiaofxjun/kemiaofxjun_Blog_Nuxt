@@ -26,6 +26,7 @@ export default {
     <ZSidebar />
     <div id="content">
         <main id="main-content">
+            <bbTimeList />
             <NuxtPage />
             <ZFooter />
         </main>
