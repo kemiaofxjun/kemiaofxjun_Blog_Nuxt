@@ -209,7 +209,7 @@ const hideModal = () => {
           </div>
         </a>
         <button class="refresh-btn gradient-card" @click="displayRandomArticle">
-          <span class="iconify i-ph:arrows-clockwise" aria-hidden="true"></span>
+          <span class="iconify i-ph:link-bold" aria-hidden="true"></span>
         </button>
       </div>
 
