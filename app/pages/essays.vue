@@ -79,6 +79,20 @@ onMounted(() => {
               :key="index"
               class="bber-item"
             >
+              <div class="bber-header">
+                <img class="avatar" :src="essayConstants.siteAvatar">
+                </img>
+                <div class="info">
+                  <div class="info-name">
+                    {{ essayConstants.siteName }}
+                    <span class="iconify i-material-symbols:verified verified">
+                    </span>
+                  </div>
+                  <div class="info-date" class="info-date" :datetime="item.date">
+                    {{ item.date }}
+                  </div>
+                </div>
+              </div>
               <div class="bber-content">
                 <!-- 内容 -->
                 <p class="datacont">{{ item.content }}</p>
@@ -111,24 +125,18 @@ onMounted(() => {
                   <div class="bber-content-noimg"></div>
                 </div>
               </div>
-              
-              <!-- 分隔线 -->
-              <hr>
-              
+
               <!-- 底部信息 -->
               <div class="bber-bottom">
-                <div class="bber-info">
-                  <!-- 发布时间 -->
-                  <div class="bber-info-time">
-                    <i class="anzhiyufont anzhiyu-icon-clock"></i>
-                    <time class="datatime" :datetime="item.date">{{ item.date }}</time>
-                  </div>
-                  
-                  <!-- 来源信息 -->
-                  <div class="bber-info-from">
-                    <i class="anzhiyufont anzhiyu-icon-fw-fire"></i>
-                    <span>{{ essayConstants.siteName }}</span>
-                  </div>
+                <div class="bber-tags">
+                  {{ item.tags }}
+                <div>
+                <div class="bber-url" :herf="item.url">
+                  <span class="iconify i-ph:link-bold" aria-hidden="true" style="" data-v-37fa4724="">
+                  </span>
+                  <span>
+                    {{ item.urlName }}
+                  </span>
                 </div>
               </div>
             </li>
