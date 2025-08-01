@@ -88,6 +88,7 @@ onMounted(() => {
                     <span class="iconify i-material-symbols:verified verified">
                     </span>
                   </div>
+                  <div class="info-date" class="info-date" :datetime="item.date"></div>
                 </div>
               </div>
               <div class="bber-content">
@@ -126,11 +127,12 @@ onMounted(() => {
               <!-- 底部信息 -->
               <div class="bber-bottom">
                 <div class="bber-tags">
-                  {{ item.tags }}
-                <div>
-                <div class="bber-url" :herf="item.url">
-                  <span class="iconify i-ph:link-bold" aria-hidden="true" style="" data-v-37fa4724="">
+                  <span class="bber-tags-name">
+                    {{ item.tags }}
                   </span>
+                </div>
+                <div class="bber-url" :herf="item.url">
+                  <span class="iconify i-ph:link-bold" aria-hidden="true" style="" data-v-37fa4724=""></span>
                   <span>
                     {{ item.urlName }}
                   </span>

@@ -23,7 +23,7 @@ export const customEssays: EssayItem[] = [
   },
   {
     content: '最近长牙包了，没办法完善一些东西',
-    date: '2025/03/03',
+    date: '2025-03-03',
     image: '',
     tags: '闲言',
     url: '',
@@ -31,7 +31,7 @@ export const customEssays: EssayItem[] = [
   },
   {
     content: '目前基本上已经完成了仿照轻笑的博客样式',
-    date: '2025/02/07',
+    date: '2025-02-07',
     image: 'https://blog.myxz.top/img/screen.avif',
     tags: '仿站',
     url: 'https://blog.myxz.top',
@@ -39,7 +39,7 @@ export const customEssays: EssayItem[] = [
   },
   {
     content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
-    date: '2025/02/03',
+    date: '2025-02-03',
     image: '',
     tags: '梦开始的地方',
     url: '',
