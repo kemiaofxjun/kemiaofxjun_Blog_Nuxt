@@ -1,14 +1,12 @@
 export interface EssayItem {
   content: string
   date: string
+  tags: string
   image?: string
   video?: string[]
   link?: string
   from?: string
   address?: string
-  tags?: string
-  url?: string
-  urlName?: string
 }
 
 // 说说数据集合
@@ -26,24 +24,18 @@ export const customEssays: EssayItem[] = [
     date: '2025-03-03',
     image: '',
     tags: '闲言',
-    url: '',
-    urlName: '',
   },
   {
     content: '目前基本上已经完成了仿照轻笑的博客样式',
     date: '2025-02-07',
     image: 'https://blog.myxz.top/img/screen.avif',
     tags: '仿站',
-    url: 'https://blog.myxz.top',
-    urlName: '莫言小栈Hexo',
   },
   {
     content: '有新电脑，基本上已经不太想用动态博客，所以最近准备从动态博客迁移到静态博客',
     date: '2025-02-03',
     image: '',
     tags: '梦开始的地方',
-    url: '',
-    urlName: '',
   },
 ]
 

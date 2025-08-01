@@ -80,13 +80,12 @@ onMounted(() => {
               class="bber-item"
             >
               <div class="bber-header">
-                <img class="avatar" :src="essayConstants.siteAvatar">
+                <img class="avatar" src="https://blog.myxz.top/img/avatar.avif">
                 </img>
                 <div class="info">
                   <div class="info-name">
                     <span> {{ essayConstants.siteName }} </span>
-                    <span class="iconify i-material-symbols:verified verified">
-                    </span>
+                    <span class="iconify i-material-symbols:verified verified"></span>
                   </div>
                   <div class="info-date"> {{ item.date }} </div>
                 </div>
@@ -129,12 +128,6 @@ onMounted(() => {
                 <div class="bber-tags">
                   <span class="bber-tags-name">
                     {{ item.tags }}
-                  </span>
-                </div>
-                <div class="bber-url" :herf="item.url">
-                  <span class="iconify i-ph:link-bold" aria-hidden="true" style="" data-v-37fa4724=""></span>
-                  <span>
-                    {{ item.urlName }}
                   </span>
                 </div>
               </div>
