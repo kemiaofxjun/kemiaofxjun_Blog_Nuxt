@@ -88,8 +88,6 @@ onMounted(() => {
                     <span class="iconify i-material-symbols:verified verified">
                     </span>
                   </div>
-                  <div class="info-date" class="info-date" :datetime="item.date">
-                  </div>
                 </div>
               </div>
               <div class="bber-content">
