@@ -16,8 +16,6 @@ export const customEssays: EssayItem[] = [
     date: '2025/3/20',
     image: 'https://bcjyn0fc8o7wifyp.public.blob.vercel-storage.com/img/b486dd9b02c8081a42f7161aa135da0-lUIahC6nFeKNkSKlHnHa38kuYGMlnU.png',
     tags: '喜报',
-    url: '',
-    urlName: '',
   },
   {
     content: '最近长牙包了，没办法完善一些东西',
