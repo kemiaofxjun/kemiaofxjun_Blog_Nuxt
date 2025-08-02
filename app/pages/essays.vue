@@ -95,16 +95,12 @@ onMounted(() => {
                 <p class="datacont">{{ item.content }}</p>
                 
                 <!-- 图片展示 -->
-                <div 
-                  v-if="item.image" 
-                  class="bber-imgbox"    
-                >
+                <div class="bber-imgbox">
                   <figure class="imgBox-item" v-if="item.image && item.image.length > 0">
                     <figure 
                       class="image bber-image-content"
-                      data-fancybox="gallery" 
-                      data-caption=""
-                      style="width: 100%!important"
+                      loading="lazy"
+                      fetchpriority="high"
                     >
                       <img class="image" :src="item.image" style="cursor: zoom-in;">
                     </figure>
