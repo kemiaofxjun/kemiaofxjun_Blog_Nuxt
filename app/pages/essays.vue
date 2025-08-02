@@ -97,21 +97,20 @@ onMounted(() => {
                 <!-- 图片展示 -->
                 <div 
                   v-if="item.image" 
-                  class="bber-container-img"
-                  style="width: auto!important"
+                  class="bber-imgbox"    
                 >
-                  <div v-if="item.image && item.image.length > 0">
-                    <a 
-                      class="bber-content-img" 
+                  <figure class="imgBox-item" v-if="item.image && item.image.length > 0">
+                    <figure 
+                      class="image bber-image-content" 
                       :href="item.image" 
                       target="_blank" 
                       data-fancybox="gallery" 
                       data-caption=""
                       style="width: 100%!important"
                     >
-                      <img :src="item.image">
-                    </a>
-                  </div>
+                      <img class="image" :src="item.image">
+                    </figure>
+                  </figure>
                   
                   <!-- 占位格 -->
                   <div 
