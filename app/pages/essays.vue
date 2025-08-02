@@ -126,9 +126,7 @@ onMounted(() => {
               <!-- 底部信息 -->
               <div class="bber-bottom">
                 <div class="bber-tags">
-                  <span class="bber-tags-name">
-                    {{ item.tags }}
-                  </span>
+                  <span class="bber-tags-name"> {{ item.tags }} </span>
                 </div>
               </div>
             </li>
