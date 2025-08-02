@@ -101,9 +101,7 @@ onMounted(() => {
                 >
                   <figure class="imgBox-item" v-if="item.image && item.image.length > 0">
                     <figure 
-                      class="image bber-image-content" 
-                      :href="item.image" 
-                      target="_blank" 
+                      class="image bber-image-content"
                       data-fancybox="gallery" 
                       data-caption=""
                       style="width: 100%!important"
