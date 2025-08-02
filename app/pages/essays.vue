@@ -108,7 +108,7 @@ onMounted(() => {
                       data-caption=""
                       style="width: 100%!important"
                     >
-                      <img class="image" :src="item.image">
+                      <img class="image" :src="item.image" style="cursor: zoom-in;">
                     </figure>
                   </figure>
                   
