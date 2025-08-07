@@ -101,6 +101,9 @@ onMounted(() => {
                       class="image bber-image-content"
                       loading="lazy"
                       fetchpriority="high"
+                      target="_blank"
+                      data-fancybox="gallery"
+                      data-caption=""
                     >
                       <img class="image" :src="item.image" style="cursor: zoom-in;">
                     </figure>

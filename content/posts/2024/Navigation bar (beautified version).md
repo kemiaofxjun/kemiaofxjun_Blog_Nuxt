@@ -628,5 +628,15 @@ center#name-container {
 
 ## 三.原教程
 
+::link-card
+---
+icon: https://blog.anheyu.com/posts/e62b.html
+title: butterfly魔改关于页面
+description: 安知鱼
+link: "#link-card"
+# mirror: # 是否借助第三方图片加载服务，见源代码
+---
+::
+
 ## 四.声明
 我这篇文章主要是用于自己的美化。

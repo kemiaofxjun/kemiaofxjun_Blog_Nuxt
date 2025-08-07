@@ -14,7 +14,15 @@ tags: [hexo, butterfly]
 ## 实现
 
 ### 效果
-![效果](https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96%2F1.avif)
+
+::pic
+---
+src: https://sourceimage.s3.bitiful.net/post%2Fimg%2F%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96%2F1.avif
+# mirror: # 是否借助第三方图片加载服务，见源代码
+caption: 关于页面展示
+# zoom: false # 是否开启灯箱缩放，默认开启
+---
+::
 
 ### 覆盖pug文件内容
 1. 覆盖 \themes\butterfly\layout\includes\page\about.pug（如果没有就新建）: 
