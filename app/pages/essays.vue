@@ -10,7 +10,7 @@ import {
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
-layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log', 'menu-group'])
 
 useSeoMeta({
   title: '说说',
