@@ -6,12 +6,8 @@ const bannerInfo = [
   {
     title: "友情链接",
     description: "与数百名博主无限进步",
-    group: [
-      {
-        buttonTextOne: "随机访问",
-        buttonTextTwo: "申请友链",
-      }
-    ]
+    buttonTextOne: "随机访问",
+    buttonTextTwo: "申请友链",
   }
 ]
 </script>
@@ -28,11 +24,11 @@ const bannerInfo = [
         <div class="banner-button-group">
           <a class="banner-button secondary no-text-decoration" onclick="travelling()">
             <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right: 8px;"></i>
-            <span class="banner-button-text"> {{ info.group.buttonTextOne }} </span>
+            <span class="banner-button-text"> {{ info.buttonTextOne }} </span>
           </a>
           <a class="banner-button.no-text-decoration" onclick="addFriendLinksInFooter()">
             <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
-            <span class="banner-button-text"> {{ info.group.buttonTextTwo }} </span>
+            <span class="banner-button-text"> {{ info.buttonTextTwo }} </span>
           </a>
         </div>
       </div>
