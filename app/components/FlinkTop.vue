@@ -7,8 +7,10 @@ const bannerInfo = [
     title: "友情链接",
     description: "与数百名博主无限进步",
     group: [
-      buttonTextOne: "随机访问",
-      buttonTextTwo: "申请友链",
+      {
+        buttonTextOne: "随机访问",
+        buttonTextTwo: "申请友链",
+      }
     ]
   }
 ]
