@@ -14,9 +14,9 @@ const bannerInfo = [
 
 <template>
   <link rel="stylesheet" href="/assets/css/flinktop.css">
-  <div class="flink_top">
-    <div class="flink-banners" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
-      <div class="banner-top-box">
+  <div id="flink_top">
+    <div id="flink-banners">
+      <div class="banner-top-box" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
         <div class="flink-banners-title">
           <div class="banners-title-small"> {{ info.title }} </div>
           <div class="banners-title-big"> {{ info.description }} </div>
