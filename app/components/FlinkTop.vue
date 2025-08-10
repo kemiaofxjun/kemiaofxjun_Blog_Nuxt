@@ -3,10 +3,6 @@
 export default {
   name: 'FlinkTop',
   props: {
-    theme: {
-      type: Object,
-      required: true
-    },
     friends: {
       type: Array,
       required: true

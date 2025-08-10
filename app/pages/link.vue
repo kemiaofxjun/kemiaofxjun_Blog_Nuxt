@@ -2,6 +2,7 @@
 import { myFeed } from '~~/blog.config'
 import friends from '~/friends'
 import subscriptions from '~/subscriptions'
+import FlinkTop from '~/components/FlinkTop.vue'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -22,6 +23,12 @@ const copyFields = {
 }
 
 const { data: postLink } = await useAsyncData('/link', () => queryContent('/link').findOne())
+
+export default defineComponent({
+    components: {
+        FlinkTop
+    }
+})
 </script>
 
 <template>
