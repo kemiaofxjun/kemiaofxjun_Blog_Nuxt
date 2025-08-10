@@ -1,135 +1,48 @@
 <!-- components/FlinkTop.vue -->
-<script>
-export default {
-  name: 'FlinkTop',
-  props: {
-    friends: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    titleText() {
-      return this.theme?.linkPageTop?.title || "与数百名博主无限进步"
-    },
-    paginatedLinks() {
-      if (!this.friends || this.friends.length === 0) return [];
-      
-      // 转换为与原始Pug结构兼容的数据格式
-      return [{
-        link_list: this.friends,
-        hundredSuffix: this.theme?.imageSuffix || ""
-      }]
-    }
-  },
-  methods: {
-    urlFor(path) {
-      // 在实际应用中，这里可能有更复杂的路径处理逻辑
-      return path;
-    },
-    getAvatarWithoutExclamationMark(url) {
-      if (!url) return '';
-      const index = url.indexOf('!');
-      return index !== -1 ? url.substring(0, index) : url;
-    },
-    avatarUrl(avatar, suffix) {
-      if (!avatar) return '';
-      let cleanedAvatar = this.getAvatarWithoutExclamationMark(avatar);
-      
-      // 处理不同格式的头像URL
-      if (cleanedAvatar.startsWith('http')) {
-        return cleanedAvatar + suffix;
-      }
-      
-      return this.urlFor(cleanedAvatar + suffix);
-    },
-    handleImgError(e, fallbackImg) {
-      if (fallbackImg) {
-        e.target.src = this.urlFor(fallbackImg);
-      } else {
-        // 默认备用图片
-        e.target.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23eeeeee"/><text x="50" y="50" text-anchor="middle" fill="%23999999" font-family="sans-serif" font-size="14">Avatar</text></svg>';
-      }
-    }
+<script lang="ts" setup>
+import friends from '~/friends'
+
+const bannerInfo = [
+  {
+    title: "友情链接",
+    description: "与数百名博主无限进步",
+    group: [
+      buttonTextOne: "随机访问",
+      buttonTextTwo: "申请友链",
+    ]
   }
-}
+]
 </script>
 
 <template>
-  <div id="flink_top">
-    <div id="flink-banners">
+  <div class="flink_top">
+    <div class="flink-banners" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
       <div class="banner-top-box">
         <div class="flink-banners-title">
-          <div class="banners-title-small">友情链接</div>
-          <div class="banners-title-big">{{ titleText }}</div>
+          <div class="banners-title-small"> {{ info.title }} </div>
+          <div class="banners-title-big"> {{ info.description }} </div>
         </div>
         <div class="banner-button-group">
-          <a 
-            class="banner-button secondary no-text-decoration" 
-            @click.prevent="$emit('random-visit')"
-          >
+          <a class="banner-button secondary no-text-decoration" onclick="travelling()">
             <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right: 8px;"></i>
-            <span class="banner-button-text">随机访问</span>
+            <span class="banner-button-text"> {{ info.group.buttonTextOne }} </span>
           </a>
-          <a 
-            class="banner-button no-text-decoration" 
-            @click.prevent="$emit('apply-friendlink')"
-          >
+          <a class="banner-button.no-text-decoration" onclick="addFriendLinksInFooter()">
             <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
-            <span class="banner-button-text">申请友链</span>
+            <span class="banner-button-text"> {{ info.group.buttonTextTwo }} </span>
           </a>
         </div>
       </div>
-      
-      <div id="skills-tags-group-all">
-        <div class="tags-group-wrapper">
-          <template v-for="(group, groupIndex) in paginatedLinks" :key="`group_${groupIndex}`">
-            <template v-if="group.link_list && group.link_list.length > 0">
-              <!-- 创建奇偶项配对 -->
-              <div 
-                v-for="index in Math.ceil(group.link_list.length / 2)" 
-                :key="`pair_${groupIndex}_${index}`"
-                class="tags-group-icon-pair" 
-                style="margin-left: 1rem;"
-              >
-                <!-- 偶数索引项 -->
-                <template v-if="group.link_list[(index - 1) * 2]">
-                  <a 
-                    class="tags-group-icon no-text-decoration" 
-                    :href="urlFor(group.link_list[(index - 1) * 2].link)" 
-                    :title="group.link_list[(index - 1) * 2].name"
-                    target="_blank"
-                  >
-                    <img 
-                      class="no-lightbox"
-                      :title="group.link_list[(index - 1) * 2].name"
-                      :src="avatarUrl(group.link_list[(index - 1) * 2].avatar, group.hundredSuffix)"
-                      :alt="group.link_list[(index - 1) * 2].name"
-                      @error="(e) => handleImgError(e, theme?.error_img?.flink)"
-                    />
-                  </a>
-                </template>
-                
-                <!-- 奇数索引项 -->
-                <template v-if="group.link_list[(index - 1) * 2 + 1]">
-                  <a 
-                    class="tags-group-icon no-text-decoration" 
-                    :href="urlFor(group.link_list[(index - 1) * 2 + 1].link)" 
-                    :title="group.link_list[(index - 1) * 2 + 1].name"
-                    target="_blank"
-                  >
-                    <img 
-                      class="no-lightbox"
-                      :title="group.link_list[(index - 1) * 2 + 1].name"
-                      :src="avatarUrl(group.link_list[(index - 1) * 2 + 1].avatar, group.hundredSuffix)"
-                      :alt="group.link_list[(index - 1) * 2 + 1].name"
-                      @error="(e) => handleImgError(e, theme?.error_img?.flink)"
-                    />
-                  </a>
-                </template>
-              </div>
-            </template>
-          </template>
+    </div>
+    <div class="skills-tags-group-all">
+      <div class="tags-group-wrapper" v-for="(flink, friend) in friends" :key="friends">
+        <div class="tags-group-icon-pair" style="margin-left:1rem">
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.entries.link" :title="flink.entries.author">
+            <img class="no-lightbox" :title="flink.entries.author" :src="flink.entries.avatar" :alt="flink.entries.author">
+          </a>
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.entries.link" :title="flink.entries.author">
+            <img class="no-lightbox" :title="flink.entries.author" :src="flink.entries.avatar" :alt="flink.entries.author">
+          </a>
         </div>
       </div>
     </div>
