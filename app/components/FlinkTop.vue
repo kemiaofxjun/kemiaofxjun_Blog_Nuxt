@@ -26,7 +26,7 @@ const bannerInfo = [
             <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right: 8px;"></i>
             <span class="banner-button-text"> {{ info.buttonTextOne }} </span>
           </a>
-          <a class="banner-button.no-text-decoration" onclick="addFriendLinksInFooter()">
+          <a class="banner-button no-text-decoration" onclick="addFriendLinksInFooter()">
             <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
             <span class="banner-button-text"> {{ info.buttonTextTwo }} </span>
           </a>
@@ -34,8 +34,8 @@ const bannerInfo = [
       </div>
     </div>
     <div class="skills-tags-group-all">
-      <div class="tags-group-wrapper" v-for="(groups, index) in friends" :key="index">
-        <div v-for="(flink, entries) in groups.entries" :key="entries">
+      <div class="tags-group-wrapper" v-for="(groups, index) in friendsInfo" :key="index">
+        <div v-for="(flink, entrie) in groups.entries" :key="entrie">
           <div class="tags-group-icon-pair" style="margin-left:1rem" >
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
               <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
