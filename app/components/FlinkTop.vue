@@ -37,13 +37,13 @@ const bannerInfo = [
       </div>
     </div>
     <div class="skills-tags-group-all">
-      <div class="tags-group-wrapper" v-for="(link, friend) in friends" :key="friends">
-        <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="(flink, friend) in link" :key="friend">
-          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.entries.link" :title="flink.entries.author">
-            <img class="no-lightbox" :title="flink.entries.author" :src="flink.entries.avatar" :alt="flink.entries.author">
+      <div class="tags-group-wrapper" v-for="groups in friends" :key="group.name">
+        <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="flink in groups.entries" :key="group">
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+            <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
           </a>
-          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.entries.link" :title="flink.entries.author">
-            <img class="no-lightbox" :title="flink.entries.author" :src="flink.entries.avatar" :alt="flink.entries.author">
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+            <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
           </a>
         </div>
       </div>
