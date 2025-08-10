@@ -113,7 +113,7 @@ export default [{
         feed: '',
         icon: '/assets/img/link/Ariasaka.jpg',
         avatar: '/assets/img/link/Ariasaka.jpg',
-        archs: ['Next', 'Vercel'],
+        archs: ['Nuxt', 'Vercel'],
         date: '2025-03-25',
         comment: '',
     },{
