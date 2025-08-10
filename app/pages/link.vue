@@ -24,11 +24,6 @@ const copyFields = {
 
 const { data: postLink } = await useAsyncData('/link', () => queryContent('/link').findOne())
 
-export default defineComponent({
-    components: {
-        FlinkTop
-    }
-})
 </script>
 
 <template>
