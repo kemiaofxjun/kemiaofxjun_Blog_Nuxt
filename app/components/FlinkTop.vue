@@ -37,8 +37,8 @@ const bannerInfo = [
       </div>
     </div>
     <div class="skills-tags-group-all">
-      <div class="tags-group-wrapper" v-for="groups in friends" :key="group.name">
-        <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="flink in groups.entries" :key="group">
+      <div class="tags-group-wrapper" v-for="(groups, index) in friends" :key="index">
+        <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="(flink, link) in groups.entries" :key="link">
           <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
             <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
           </a>
