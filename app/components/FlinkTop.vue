@@ -39,7 +39,7 @@ const bannerInfo = [
     </div>
     <div class="skills-tags-group-all">
       <div class="tags-group-wrapper" v-for="(groups, index) in friends" :key="index">
-        <template v-for="flink in groups.entries" :key="flink.entries">
+        <div v-for="(flink, entries) in groups.entries" :key="entries">
           <div class="tags-group-icon-pair" style="margin-left:1rem" >
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
               <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
@@ -48,7 +48,7 @@ const bannerInfo = [
               <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
             </a>
           </div>
-        </template>
+        </div>
       </div>
     </div>
   </div>
