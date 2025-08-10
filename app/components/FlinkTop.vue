@@ -1,5 +1,6 @@
 <!-- components/FlinkTop.vue -->
 <script lang="ts" setup>
+import friendsInfo from '~/friends'
 
 const bannerInfo = [
   {
@@ -34,8 +35,8 @@ const bannerInfo = [
       </div>
     </div>
     <div class="skills-tags-group-all">
-      <div class="tags-group-wrapper" v-for="(flink, friend) in friends" :key="friends">
-        <div class="tags-group-icon-pair" style="margin-left:1rem">
+      <div class="tags-group-wrapper" v-for="(link, friend) in friends" :key="friends">
+        <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="(flink, friend) in link" :key="friend">
           <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.entries.link" :title="flink.entries.author">
             <img class="no-lightbox" :title="flink.entries.author" :src="flink.entries.avatar" :alt="flink.entries.author">
           </a>
