@@ -1,6 +1,5 @@
 <!-- components/FlinkTop.vue -->
 <script lang="ts" setup>
-import friends from '~/friends'
 
 const bannerInfo = [
   {
