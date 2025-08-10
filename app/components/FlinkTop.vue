@@ -36,22 +36,20 @@ const bannerInfo = [
         </div>
       </div>
     </div>
-    <template v-for="(groups, index) in friends" :key="index">
-      <template v-for="(flink, fromindex) in friend.entries" :key="fromindex">
-        <div class="skills-tags-group-all">
-          <div class="tags-group-wrapper">
-            <div class="tags-group-icon-pair" style="margin-left:1rem">
-              <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
-                <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
-              </a>
-              <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
-                <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
-              </a>
-            </div>
+    <div class="skills-tags-group-all">
+      <div class="tags-group-wrapper" v-for="(groups, index) in friends" :key="index">
+        <template v-for="flink in groups.entries" :key="group.entries">
+          <div class="tags-group-icon-pair" style="margin-left:1rem" >
+            <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+              <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
+            </a>
+            <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+              <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
+            </a>
           </div>
-        </div>    
-      </template>
-    </template>
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 
