@@ -48,5 +48,5 @@ const bannerInfo = [
 </template>
 
 <style scoped>
-@import url(/public/assets/css/flinktop.css);
+@import url(/assets/css/flinktop.css);
 </style>
