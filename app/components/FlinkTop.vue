@@ -26,7 +26,7 @@ const urlFor = (path: string): string => {
 // 主题配置（根据实际项目调整）
 const theme = ref({
   error_img: {
-    flink: '/assets/images/error-flink.png' // 默认错误图片路径
+    flink: '/assets/img/link/ciraos.webp' // 默认错误图片路径
   }
 });
 
@@ -122,15 +122,11 @@ const processedLinks = computed(() => {
           <div class="banners-title-big">{{ info.description }}</div>
         </div>
         <div class="banner-button-group">
-          <a 
-            class="banner-button secondary no-text-decoration" 
-          >
+          <a class="banner-button secondary no-text-decoration">
             <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right: 8px;"></i>
             <span class="banner-button-text">{{ info.buttonTextOne }}</span>
           </a>
-          <a 
-            class="banner-button no-text-decoration" 
-          >
+          <a class="banner-button no-text-decoration">
             <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
             <span class="banner-button-text">{{ info.buttonTextTwo }}</span>
           </a>
@@ -139,54 +135,18 @@ const processedLinks = computed(() => {
 
       <!-- 技能标签组区域（修正后） -->
       <div id="skills-tags-group-all">
-        <div class="tags-group-wrapper">
-          <!-- 遍历预处理后的链接组 -->
-          <div 
-            v-for="(group, groupIndex) in processedLinks" 
-            :key="groupIndex"
-            class="tags-group-group"
-          >
-            <!-- 遍历当前组的图标对 -->
-            <div 
-              v-for="(pair, pairIndex) in group.pairs" 
-              :key="pairIndex"
-              class="tags-group-icon-pair"
-              style="margin-left: 1rem;"
-            >
-              <!-- 偶数项图标 -->
-              <a 
-                class="tags-group-icon no-text-decoration" 
-                target="_blank" 
-                rel="noopener" 
-                :href="urlFor(pair.even.link)" 
-                :title="pair.even.author"
-              >
-                <img 
-                  class="no-lightbox" 
-                  :title="pair.even.author" 
-                  :src="urlFor(pair.evenAvatar + group.hundredSuffix)" 
-                  @error="handleImageError" 
-                  :alt="pair.even.author"
-                >
-              </a>
+        <div class="tags-group-wrapper" v-for="(group, groupIndex) in processedLinks" :key="groupIndex">
+          <!-- 遍历当前组的图标对 -->
+          <div v-for="(pair, pairIndex) in group.pairs" :key="pairIndex" class="tags-group-icon-pair" style="margin-left: 1rem;">
+            <!-- 偶数项图标 -->
+            <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.even.link)" :title="pair.even.author">
+              <img class="no-lightbox" :title="pair.even.author" :src="urlFor(pair.evenAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.even.author">
+            </a>
 
-              <!-- 奇数项图标 -->
-              <a 
-                class="tags-group-icon no-text-decoration" 
-                target="_blank" 
-                rel="noopener" 
-                :href="urlFor(pair.odd.link)" 
-                :title="pair.odd.author"
-              >
-                <img 
-                  class="no-lightbox" 
-                  :title="pair.odd.author" 
-                  :src="urlFor(pair.oddAvatar + group.hundredSuffix)" 
-                  @error="handleImageError" 
-                  :alt="pair.odd.author"
-                >
-              </a>
-            </div>
+            <!-- 奇数项图标 -->
+            <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.odd.link)" :title="pair.odd.author">
+              <img class="no-lightbox" :title="pair.odd.author" :src="urlFor(pair.oddAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.odd.author">
+            </a>
           </div>
         </div>
       </div>
