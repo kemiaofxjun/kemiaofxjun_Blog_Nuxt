@@ -56,7 +56,6 @@ const bannerInfo = ref([
 // 友情链接数据加载状态
 const friendsData = ref<LinkGroup[]>([]);
 const isLoading = ref(true);
-const dataError = ref<string | null>(null);
 
 // 异步加载数据（若 friendsInfo 是同步数据，直接赋值即可）
 onMounted(() => {
@@ -88,7 +87,7 @@ const handleImageError = (event: Event): void => {
 //  * 预处理链接数据（生成图标对）
 //  */
 const processedLinks = computed(() => {
-  return friendsData.value.slice(0, 99).map((group: LinkGroup) => {
+  return friendsData.value.slice(999).map((group: LinkGroup) => {
     const linkList = [...group.entries];
     const evenNum = linkList.filter((_, index) => index % 2 === 0);
     const oddNum = linkList.filter((_, index) => index % 2 === 1);
