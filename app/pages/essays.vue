@@ -136,7 +136,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@import url(/assets/css/essay.css);
+@import url(@/public/assets/css/essay.css);
 </style>
 
 <style>
