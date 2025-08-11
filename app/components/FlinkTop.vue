@@ -102,7 +102,7 @@ const processedLinks = computed(() => {
 
     const maxPairCount = Math.min(evenNum.length, oddNum.length);
     // 最多显示8对（可根据需求调整）
-    const maxShowPairs = 8; 
+    const maxShowPairs = 20; 
     const loopCount = Math.min(maxPairCount, maxShowPairs);
 
     for (let i = 0; i < loopCount; i++) {
