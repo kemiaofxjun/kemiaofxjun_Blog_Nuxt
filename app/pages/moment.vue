@@ -289,7 +289,7 @@ const hideModal = () => {
 </template>
 
 <style scoped>
-@import url(@/public/assets/css/moments.css);
+@import url(~/public/assets/css/moments.css);
 </style>
 
 <style>
