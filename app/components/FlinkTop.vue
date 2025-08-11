@@ -13,7 +13,7 @@ const bannerInfo = [
 </script>
 
 <template>
-  <link rel="stylesheet" href="/assets/css/authorItemtop.css">
+  <link rel="stylesheet" href="/assets/css/flinktop.css">
   <div id="authorItem_top">
     <div id="authorItem-banners">
       <div class="banner-top-box" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
