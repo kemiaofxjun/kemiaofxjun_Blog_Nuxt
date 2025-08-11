@@ -1,35 +1,25 @@
-<script setup lang="ts">
-import { ref, computed } from 'vue';
+<!-- components/FlinkTop.vue -->
+<script lang="ts" setup>
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import friendsDataRaw from '~/friends'; // 导入用户提供的 friends 数据
+import friendsInfo from '~/friends'; // 假设同步导入数据（或替换为异步）
 
-// ------------------------------
-// 定义类型接口（关键修复）
-// ------------------------------
-// /​**​ 友链条目接口（匹配 friends.entries 中的对象） */
+// 定义类型接口
 interface FriendEntry {
-  author: string;       // 作者名（如 "LiuShen"）
-  sitenick: string;     // 站点昵称（如 "清羽 〄 飞扬"）
-  title: string;        // 友链标题（如 "清羽飞扬"）
-  desc: string;         // 友链描述（如 "柳影曳曳..."）
-  link: string;         // 友链地址（如 "https://blog.liushen.fun/"）
-  avatar: string;       // 头像 URL（如 "https://blog.liushen.fun/info/avatar.ico"）
-  feed?: string;        // 订阅源（可选，如 "https://blog.liushen.fun/atom.xml"）
-  archs?: string[];     // 技术栈（可选，如 ["Hexo", "服务器"]）
-  date?: string;        // 日期（可选，如 "2025-03-15"）
-  comment?: string;     // 备注（可选）
+  author: string;
+  link: string;
+  avatar: string;
+  hundredSuffix?: string;
+  date?: string;
 }
 
-// /​**​ 友链分组接口（匹配 friends 数组中的对象） */
-interface FriendGroup {
-  name: string;         // 分组名称（如 "『推荐友链』"）
-  desc: string;         // 分组描述（如 ""）
-  entries: FriendEntry[]; // 友链条目数组（如上面的 FriendEntry 数组）
+interface LinkGroup {
+  name: string;
+  entries: FriendEntry[];
+  hundredSuffix?: string;
 }
 
-// ------------------------------
-// 其他逻辑（保持不变）
-// ------------------------------
+// 获取路由实例
 const router = useRouter();
 
 // 从环境变量获取域名（需配置 .env 文件）
@@ -42,14 +32,14 @@ const domain = 'https://www.myxz.top';
 //  */
 const urlFor = (path: string): string => {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
-  if (path.startsWith('/')) return `${domain}${path}`;
+  if (path.startsWith('')) return `${domain}${path}`;
   return path;
 };
 
 // 主题配置
 const theme = ref({
   error_img: {
-    flink: '/assets/images/error-flink.png' // 错误图片路径（根据实际项目调整）
+    flink: '/assets/images/error-flink.png'
   }
 });
 
@@ -63,13 +53,22 @@ const bannerInfo = ref([
   }
 ]);
 
-// 友情链接数据（使用用户提供的 raw 数据）
-const friendsData = ref<FriendGroup[]>(friendsDataRaw);
+// 友情链接数据加载状态
+const friendsData = ref<LinkGroup[]>([]);
+const isLoading = ref(true);
+const dataError = ref<string | null>(null);
+
+// 异步加载数据（若 friendsInfo 是同步数据，直接赋值即可）
+onMounted(() => {
+  // 模拟异步加载（实际根据项目调整）
+  setTimeout(() => {
+    friendsData.value = friendsInfo as LinkGroup[]; // 假设 friendsInfo 符合 LinkGroup 结构
+    isLoading.value = false;
+  }, 500);
+});
 
 // /​**​
-//  * 处理头像 URL（移除感叹号及之后的内容）
-//  * @param url 原始头像 URL
-//  * @returns 处理后的 URL
+//  * 处理头像 URL（移除感叹号）
 //  */
 const getAvatarWithoutExclamationMark = (url: string): string => {
   const exclamationIndex = url.indexOf('!');
@@ -81,22 +80,20 @@ const getAvatarWithoutExclamationMark = (url: string): string => {
 //  */
 const handleImageError = (event: Event): void => {
   const target = event.target as HTMLImageElement;
-  target.onerror = null; // 防止无限循环
-  target.src = urlFor(theme.value.error_img.flink); // 使用主题配置的错误图片
+  target.onerror = null;
+  target.src = urlFor(theme.value.error_img.flink);
 };
 
 // /​**​
-//  * 预处理友链数据，生成图标对（核心逻辑）
+//  * 预处理链接数据（生成图标对）
 //  */
 const processedLinks = computed(() => {
-  return friendsData.value.map((group: FriendGroup) => {
-    const entries = [...group.entries]; // 复制原数组避免修改原始数据
+  return friendsData.value.slice(0, 99).map((group: LinkGroup) => {
+    const linkList = [...group.entries];
+    const evenNum = linkList.filter((_, index) => index % 2 === 0);
+    const oddNum = linkList.filter((_, index) => index % 2 === 1);
+    const hundredSuffix = group.hundredSuffix || '';
 
-    // 按奇偶索引分组
-    const evenEntries = entries.filter((_, index) => index % 2 === 0); // 偶数索引（0,2,4...）
-    const oddEntries = entries.filter((_, index) => index % 2 === 1); // 奇数索引（1,3,5...）
-
-    // 生成有效图标对（取偶数和奇数数组的最小长度）
     const validPairs: Array<{
       even: FriendEntry;
       odd: FriendEntry;
@@ -104,10 +101,13 @@ const processedLinks = computed(() => {
       oddAvatar: string;
     }> = [];
 
-    const maxPairCount = Math.min(evenEntries.length, oddEntries.length);
+    const maxPairCount = Math.min(evenNum.length, oddNum.length);
     for (let i = 0; i < maxPairCount; i++) {
-      const evenItem = evenEntries[i];
-      const oddItem = oddEntries[i];
+      const baseIndex = i * 2;
+      if (baseIndex > 15) break;
+
+      const evenItem = evenNum[baseIndex];
+      const oddItem = oddNum[baseIndex];
       if (evenItem && oddItem) {
         validPairs.push({
           even: evenItem,
@@ -118,11 +118,7 @@ const processedLinks = computed(() => {
       }
     }
 
-    // 返回处理后的分组（保留原分组信息）
-    return {
-      ...group,
-      pairs: validPairs
-    };
+    return { ...group, hundredSuffix, pairs: validPairs };
   });
 });
 </script>
@@ -156,12 +152,12 @@ const processedLinks = computed(() => {
           <div v-for="(pair, pairIndex) in group.pairs" :key="pairIndex" class="tags-group-icon-pair" style="margin-left: 1rem;">
             <!-- 偶数项图标 -->
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.even.link)" :title="pair.even.author">
-              <img class="no-lightbox" :title="pair.even.author" :src="urlFor(pair.evenAvatar)" @error="handleImageError" :alt="pair.even.author">
+              <img class="no-lightbox" :title="pair.even.author" :src="urlFor(pair.evenAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.even.author">
             </a>
 
             <!-- 奇数项图标 -->
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.odd.link)" :title="pair.odd.author">
-              <img class="no-lightbox" :title="pair.odd.author" :src="urlFor(pair.evenAvatar)" @error="handleImageError" :alt="pair.odd.author">
+              <img class="no-lightbox" :title="pair.odd.author" :src="urlFor(pair.oddAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.odd.author">
             </a>
           </div>
         </div>
