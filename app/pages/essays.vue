@@ -40,6 +40,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <link rel="stylesheet" href="/assets/css/essay.css">
   <div id="essay_page">
     <!-- 顶部横幅区域 -->
     <div 
@@ -134,11 +135,6 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url(~/public/assets/css/essay.css);
-</style>
-
 <style>
 .essay_page_banner {
     background-position: 50%;

@@ -183,6 +183,7 @@ const hideModal = () => {
 </script>
 
 <template>
+  <link rel="stylesheet" href="/assets/css/moments.css">
   <div class="page-banner" style="background-image: url(/assets/img/page_backgroud/moment.webp)">
       <div class="banner-content">
           <h1>博友圈</h1>
@@ -287,11 +288,6 @@ const hideModal = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url(~/public/assets/css/moments.css);
-</style>
-
 <style>
 .page-banner {
     background-position: 50%;

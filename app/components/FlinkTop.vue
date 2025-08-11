@@ -13,6 +13,7 @@ const bannerInfo = [
 </script>
 
 <template>
+  <link rel="stylesheet" href="/assets/css/flinktop.css">
   <div id="flink_top">
     <div id="flink-banners">
       <div class="banner-top-box" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
@@ -46,7 +47,3 @@ const bannerInfo = [
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url(~/public/assets/css/flinktop.css);
-</style>
