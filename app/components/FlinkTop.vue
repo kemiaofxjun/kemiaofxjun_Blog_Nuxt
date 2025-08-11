@@ -39,7 +39,7 @@ const urlFor = (path: string): string => {
 // 主题配置
 const theme = ref({
   error_img: {
-    flink: '/assets/images/error-flink.png'
+    flink: 'https://www.myxz.top/assets/img/friend_404.gif'
   }
 });
 
