@@ -164,5 +164,17 @@ export default [{
         archs: ['Hexo', 'Vercel'],
         date: '2025-03-19',
         comment: '',
+    },{
+        author: 'xyx404',
+        sitenick: '',
+        title: 'xyx404',
+        desc: '在努力和摆烂中选择了努力摆烂AWA',
+        link: 'https://blog.xyx404.us.kg/',
+        feed: '',
+        icon: 'https://fastly.jsdelivr.net/npm/xyx404blogphoto@1.2.23/avatar.webp',
+        avatar: 'https://fastly.jsdelivr.net/npm/xyx404blogphoto@1.2.23/avatar.webp',
+        archs: ['Hexo', 'Vercel'],
+        date: '2025-08-11',
+        comment: '',
     }],
 }] satisfies FeedGroup[]
