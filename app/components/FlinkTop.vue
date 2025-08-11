@@ -43,7 +43,7 @@ const domain = 'https://www.myxz.top';
 //  */
 const urlFor = (path: string): string => {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
-  if (path.startsWith('')) return `${domain}${path}`;
+  if (path.startsWith('/')) return `${domain}${path}`;
   return path;
 };
 
