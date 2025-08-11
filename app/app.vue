@@ -1,25 +1,3 @@
-<script>
-export default {
-  name: 'ServiceWorkerRegistration',
-  mounted() {
-    // 确保在客户端环境执行（避免 SSR 场景下访问 navigator）
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      // 监听页面完全加载事件
-      window.addEventListener('load', () => {
-        // 注册 Service Worker
-        navigator.serviceWorker.register('/service_worker.js')
-          .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-          })
-          .catch(error => {
-            console.error('Service Worker registration failed:', error);
-          });
-      });
-    }
-  }
-};
-</script>
-
 <template>
     <NuxtLoadingIndicator />
     <SkipToContent />
