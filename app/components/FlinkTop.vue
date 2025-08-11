@@ -15,7 +15,6 @@ interface FriendEntry {
   link: string;         // 友链地址（如 "https://blog.liushen.fun/"）
   avatar: string;       // 头像 URL（如 "https://blog.liushen.fun/info/avatar.ico"）
   feed?: string;        // 订阅源（可选，如 "https://blog.liushen.fun/atom.xml"）
-  icon?: string;        // 图标 URL（可选，如 "/assets/img/link/LiuShen.webp"）
   archs?: string[];     // 技术栈（可选，如 ["Hexo", "服务器"]）
   date?: string;        // 日期（可选，如 "2025-03-15"）
   comment?: string;     // 备注（可选）
