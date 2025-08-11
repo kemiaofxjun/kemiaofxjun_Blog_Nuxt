@@ -1,4 +1,4 @@
-<!-- components/authorItemTop.vue -->
+<!-- components/FlinkTop.vue -->
 <script lang="ts" setup>
 import friendsInfo from '~/friends'
 
@@ -14,10 +14,10 @@ const bannerInfo = [
 
 <template>
   <link rel="stylesheet" href="/assets/css/flinktop.css">
-  <div id="authorItem_top">
-    <div id="authorItem-banners">
+  <div id="flink_top">
+    <div id="flink-banners">
       <div class="banner-top-box" v-for="(info, infoItem) in bannerInfo" :key="infoItem">
-        <div class="authorItem-banners-title">
+        <div class="flink-banners-title">
           <div class="banners-title-small"> {{ info.title }} </div>
           <div class="banners-title-big"> {{ info.description }} </div>
         </div>
@@ -34,17 +34,13 @@ const bannerInfo = [
       </div>
       <div id="skills-tags-group-all">
         <div class="tags-group-wrapper" v-for="groups in friendsInfo" :key="groups.name">
-          <div class="tags-group-icon-pair" style="margin-left:1rem">
-            <div v-for="authorItemOne in groups.entries" :key="authorItemOne.date">
-              <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="authorItemOne.link" :title="authorItemOne.author">
-                <img class="no-lightbox" :title="authorItemOne.author" :src="authorItemOne.avatar" :alt="authorItemOne.author">
-              </a>
-            </div>
-            <div v-for="authorItem in groups.entries" :key="authorItem.date" >
-              <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="authorItem.link" :title="authorItem.author">
-                <img class="no-lightbox" :title="authorItem.author" :src="authorItem.avatar" :alt="authorItem.author">
-              </a>
-            </div>
+          <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="flink in groups.entries" :key="flink.date" >
+            <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+              <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
+            </a>
+            <!-- <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+              <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
+            </a> -->
           </div>
         </div>
       </div>
