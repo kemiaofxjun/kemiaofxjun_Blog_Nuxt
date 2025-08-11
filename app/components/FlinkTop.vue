@@ -36,10 +36,10 @@ const bannerInfo = [
     <div id="skills-tags-group-all">
       <div class="tags-group-wrapper" v-for="groups in friendsInfo" :key="groups.name">
         <div class="tags-group-icon-pair" style="margin-left:1rem" v-for="flink in groups.entries" :key="flink.author" >
-          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author" :key="flink.author">
             <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
           </a>
-          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author">
+          <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="flink.link" :title="flink.author" :key="flink.author">
             <img class="no-lightbox" :title="flink.author" :src="flink.avatar" :alt="flink.author">
           </a>
         </div>

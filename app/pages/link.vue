@@ -53,7 +53,7 @@ const { data: postLink } = await useAsyncData('/link', () => queryContent('/link
         </div>
     </header>
 
-    <FlinkTop :friends="friends" @random-visit="travelling" @apply-friendlink="addFriendLinksInFooter"/>
+    <FlinkTop/>
 
     <FeedGroup label="友链" :feeds="friends" />
     <FeedGroup label="订阅" :feeds="subscriptions" />
