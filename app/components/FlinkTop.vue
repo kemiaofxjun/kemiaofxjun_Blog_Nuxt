@@ -89,8 +89,8 @@ const handleImageError = (event: Event): void => {
 const processedLinks = computed(() => {
   return friendsData.value.slice(0, 999).map((group: LinkGroup) => {
     const linkList = [...group.entries];
-    const evenNum = linkList.filter((_, index) => index % 2 === 0);
-    const oddNum = linkList.filter((_, index) => index % 2 === 1);
+    const evenNum = linkList.filter((_, index) => index % 2 === 0); // 原数组偶数索引元素（0,2,4...）
+    const oddNum = linkList.filter((_, index) => index % 2 === 1);  // 原数组奇数索引元素（1,3,5...）
     const hundredSuffix = group.hundredSuffix || '';
 
     const validPairs: Array<{
@@ -101,12 +101,14 @@ const processedLinks = computed(() => {
     }> = [];
 
     const maxPairCount = Math.min(evenNum.length, oddNum.length);
-    for (let i = 0; i < maxPairCount; i++) {
-      const baseIndex = i * 2;
-      if (baseIndex > 15) break;
+    // 最多显示8对（可根据需求调整）
+    const maxShowPairs = 8; 
+    const loopCount = Math.min(maxPairCount, maxShowPairs);
 
-      const evenItem = evenNum[baseIndex];
-      const oddItem = oddNum[baseIndex];
+    for (let i = 0; i < loopCount; i++) {
+      // 直接用i作为evenNum和oddNum的索引（对应原数组的2i和2i+1位置）
+      const evenItem = evenNum[i];
+      const oddItem = oddNum[i];
       if (evenItem && oddItem) {
         validPairs.push({
           even: evenItem,
