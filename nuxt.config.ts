@@ -28,6 +28,7 @@ export default defineNuxtConfig({
                 // 自定义字体存放区域
                 { rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
                 { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/HuangYinQiZhaoPai/result.css', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  }
 
                 // Fira Code 没有斜体
                 // { rel: 'stylesheet', href: 'https://fonts.googleapis.cn/css2?family=Fira+Code:wght@300..700&family=Noto+Serif+SC:wght@200..900&display=swap', media: 'none', onload: 'this.media="all"' },

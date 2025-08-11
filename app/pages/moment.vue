@@ -289,7 +289,7 @@ const hideModal = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .page-banner {
     background-position: 50%;
     background-size: cover;

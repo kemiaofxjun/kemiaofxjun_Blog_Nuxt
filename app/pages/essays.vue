@@ -10,7 +10,7 @@ import {
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
-layoutStore.setAside(['blog-stats', 'contentivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 useSeoMeta({
   title: '说说',
@@ -40,10 +40,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/assets/css/essay.css">
-  <link rel="stylesheet" href="https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css">
   <div id="essay_page">
-
     <!-- 顶部横幅区域 -->
     <div 
       class="essay_page_banner" 
@@ -137,6 +134,10 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@import url(/public/assets/css/essay.css);
+</style>
 
 <style>
 .essay_page_banner {
