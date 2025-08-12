@@ -4,14 +4,14 @@ import { equipment } from "~/equipment"
 
 <template>
     <div id="icat-equipment">
-        <div v-for="i in equipment" :key="i.name">
+        <div v-for="i in equipment" :key="i.class_name">
             <h2 :id="i.class_name">
                 {{ i.class_name }}
             </h2>
             <div class="equipment-desc">
                 {{ i.class_desc }}
             </div>
-            <div class="equipment" v-for="item in equipment.equipment_list" :key="item.name">
+            <div class="equipment" v-for="item in i.equipmentList" :key="item.name">
                 <div class="icat-equipment-box">
                     <img :src="item.image">
                     <div class="icat-equipment-content">
