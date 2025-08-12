@@ -1,8 +1,8 @@
 ---
 title: 在友链页面添加滚动头像banner
 description: 本篇文章讲述了添加模块代码并在博客的友情链接中添加模块，且使用css美化
-date: 2025-02-27 10:00
-update: 2025-02-28 10:00
+date: 2025-08-11 10:00
+update: 2025-08-11 20:49
 image: https://sourceimage.s3.bitiful.net/img/default_cover_25.avif
 categories: [博客魔改]
 tags: [Nuxt, 魔改, 美化]
@@ -28,7 +28,7 @@ flink: '/assets/images/error-flink.png'
 
 在 [Blogroot:]/app/components 中 添加 **FlinkTop.vue**：
 
-``` Vue FlinkTop.vue wrap
+``` Vue [FlinkTop.vue] wrap
 <!-- components/FlinkTop.vue -->
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue';
@@ -201,7 +201,7 @@ const processedLinks = computed(() => {
 
 ## 修改Vue页面
 在 [Blogroot:]/app/pages/link.vue中添加以下代码：
-``` Vue link.vue wrap
+``` Vue [link.vue] wrap
     <header class="link-reminder">
         <div class="content">
             <p><Icon name="ph:newspaper-clipping-bold" /> 我会通过订阅源阅读友链文章。</p>

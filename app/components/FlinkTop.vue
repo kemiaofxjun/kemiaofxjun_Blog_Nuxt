@@ -64,6 +64,49 @@ onMounted(() => {
     friendsData.value = friendsInfo as LinkGroup[]; // 假设 friendsInfo 符合 LinkGroup 结构
     isLoading.value = false;
   }, 500);
+
+  // 动态加载外部 JS 脚本
+  const loadScript = (url: string, callback?: () => void) => {
+    return new Promise<void>((resolve, reject) => {
+      // 检查是否已加载
+      if (document.querySelector(`script[src="${url}"]`)) {
+        console.log('JS脚本已加载');
+        resolve();
+        return;
+      }
+
+      // 创建 script 标签
+      const script = document.createElement('script');
+      script.src = url;
+      script.type = 'text/javascript';
+      script.async = true; // 异步加载（不阻塞页面渲染）
+
+      // 加载成功回调
+      script.onload = () => {
+        console.log('脚本加载完成');
+        callback?.();
+        resolve();
+      };
+
+      // 加载失败回调
+      script.onerror = (err) => {
+        console.error('脚本加载失败', err);
+        reject(err);
+      };
+
+      // 添加到 DOM（推荐添加到 head 或 body 末尾）
+      document.head.appendChild(script);
+    });
+  };
+
+  // 使用示例：加载百度统计脚本
+  loadScript('https://www.myxz.top/assets/js/FlinkTop.js')
+    .then(() => {
+      console.log('友链顶部重要JS加载完毕');
+    })
+    .catch((err) => {
+      console.error('友链顶部重要JS加载完毕', err);
+    });
 });
 
 // /​**​
@@ -83,14 +126,12 @@ const handleImageError = (event: Event): void => {
   target.src = urlFor(theme.value.error_img.flink);
 };
 
-// /​**​
-//  * 预处理链接数据（生成图标对）
-//  */
-const processedLinks = computed(() => {
-  return friendsData.value.slice(0, 999).map((group: LinkGroup) => {
+const allPairs = computed(() => {
+  return friendsData.value.flatMap((group: LinkGroup) => {
     const linkList = [...group.entries];
-    const evenNum = linkList.filter((_, index) => index % 2 === 0); // 原数组偶数索引元素（0,2,4...）
-    const oddNum = linkList.filter((_, index) => index % 2 === 1);  // 原数组奇数索引元素（1,3,5...）
+    const evenNum = linkList.filter((_, index) => index % 2 === 0);
+    const oddNum = linkList.filter((_, index) => index % 2 === 1);
+    // 获取当前组的 hundredSuffix（关键！）
     const hundredSuffix = group.hundredSuffix || '';
 
     const validPairs: Array<{
@@ -98,15 +139,12 @@ const processedLinks = computed(() => {
       odd: FriendEntry;
       evenAvatar: string;
       oddAvatar: string;
+      // 新增：将 hundredSuffix 存储到 pair 对象中
+      hundredSuffix: string; 
     }> = [];
 
     const maxPairCount = Math.min(evenNum.length, oddNum.length);
-    // 最多显示8对（可根据需求调整）
-    const maxShowPairs = 20; 
-    const loopCount = Math.min(maxPairCount, maxShowPairs);
-
-    for (let i = 0; i < loopCount; i++) {
-      // 直接用i作为evenNum和oddNum的索引（对应原数组的2i和2i+1位置）
+    for (let i = 0; i < maxPairCount; i++) {
       const evenItem = evenNum[i];
       const oddItem = oddNum[i];
       if (evenItem && oddItem) {
@@ -114,12 +152,13 @@ const processedLinks = computed(() => {
           even: evenItem,
           odd: oddItem,
           evenAvatar: getAvatarWithoutExclamationMark(evenItem.avatar),
-          oddAvatar: getAvatarWithoutExclamationMark(oddItem.avatar)
+          oddAvatar: getAvatarWithoutExclamationMark(oddItem.avatar),
+          // 赋值当前组的 hundredSuffix
+          hundredSuffix: hundredSuffix 
         });
       }
     }
-
-    return { ...group, hundredSuffix, pairs: validPairs };
+    return validPairs;
   });
 });
 </script>
@@ -135,11 +174,11 @@ const processedLinks = computed(() => {
           <div class="banners-title-big">{{ info.description }}</div>
         </div>
         <div class="banner-button-group">
-          <a class="banner-button secondary no-text-decoration">
+          <a class="banner-button secondary no-text-decoration" onclick="friendChainRandomTransmission()">
             <i class="anzhiyufont anzhiyu-icon-paper-plane1" style="margin-right: 8px;"></i>
             <span class="banner-button-text">{{ info.buttonTextOne }}</span>
           </a>
-          <a class="banner-button no-text-decoration">
+          <a class="banner-button no-text-decoration" onclick="anzhiyu.addFriendLink()">
             <i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i>
             <span class="banner-button-text">{{ info.buttonTextTwo }}</span>
           </a>
@@ -148,17 +187,17 @@ const processedLinks = computed(() => {
 
       <!-- 技能标签组区域（修正后） -->
       <div id="skills-tags-group-all">
-        <div class="tags-group-wrapper" v-for="group in processedLinks" :key="group.name">
+        <div class="tags-group-wrapper">
           <!-- 遍历当前组的图标对 -->
-          <div v-for="(pair, pairIndex) in group.pairs" :key="pairIndex" class="tags-group-icon-pair" style="margin-left: 1rem;">
-            <!-- 偶数项图标 -->
+          <div v-for="(pair, pairIndex) in allPairs" :key="pairIndex" class="tags-group-icon-pair" style="margin-left: 1rem;">
+            <!-- 渲染偶数项头像 -->
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.even.link)" :title="pair.even.author">
-              <img class="no-lightbox" :title="pair.even.author" :src="urlFor(pair.evenAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.even.author">
+              <img class="no-lightbox" :title="pair.even.author" :src="urlFor(pair.evenAvatar + pair.hundredSuffix)" @error="handleImageError" :alt="pair.even.author">
             </a>
 
-            <!-- 奇数项图标 -->
+            <!-- 渲染奇数项头像 -->
             <a class="tags-group-icon no-text-decoration" target="_blank" rel="noopener" :href="urlFor(pair.odd.link)" :title="pair.odd.author">
-              <img class="no-lightbox" :title="pair.odd.author" :src="urlFor(pair.oddAvatar + group.hundredSuffix)" @error="handleImageError" :alt="pair.odd.author">
+              <img class="no-lightbox" :title="pair.odd.author" :src="urlFor(pair.oddAvatar + pair.hundredSuffix)" @error="handleImageError" :alt="pair.odd.author">
             </a>
           </div>
         </div>
