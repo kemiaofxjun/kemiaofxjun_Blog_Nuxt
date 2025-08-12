@@ -37,6 +37,7 @@ import { equipment } from "~/equipment"
 </template>
 
 <style scoped>
+/* 颜色变量定义 */
 :root {
     --icat-white: #fff;
     --icat-white-op: rgba(255, 255, 255, 0.2);
@@ -66,7 +67,7 @@ import { equipment } from "~/equipment"
     --style-border-hover-always: 1px solid var(--icat-blue)
 }
 
-.light,:root {
+.light, :root {
     --icat-theme: #425AEF;
     --icat-theme-op: #4259ef23;
     --icat-theme-op-deep: #4259efdd;
