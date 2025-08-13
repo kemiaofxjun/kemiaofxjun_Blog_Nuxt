@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 import {customPodCast} from '~/podcast';
+const props = defineProps<{
+    /** tab 下标从 1 开始 */
+    tabs: string[]
+    center?: boolean
+    active?: number
+}>()
+// 使用 v-bind:active 以传递 Number 值
+const activeTab = ref(Number(props.active) || 1)
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
@@ -7,45 +15,56 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 <template>
     <h2 class="feed-label"> 收听的播客 </h2>
-    <main class="container">
-        <div v-for="(podcast, index) in customPodCast" :key="index">
-        <div class="tabs">
-            <button>{{ podcast.tabname }}</button>
-        </div>
-        <div class="tab-content" v-for="(content, card) in podcast.tabItem" :key="card">
-            <div class="podcast-list" style="margin-top: 20px;">
-                <div class="podcast-item">
-                    <img :src="content.podcastTmage">
-                        <main>
-                            <header>
-                                <h2 class="title">
-                                    <a :herf="content.podcastLink" rel="noopener noreferrer" target="_blank">{{ content.podcastTitle }}</a>
-                                    <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                                </h2>
-                            </header>
-                            <section>
-                                <div class="badges" v-for="(badges, badgesIndex) in content.podcastBadge" :key="badgesIndex">
-                                    <a :herf="badges.BadgeLink" rel="noopener noreferrer" target="_blank" class="badge badge-img">
-                                        <img class="badge-icon" :src="badges.BadgeImage" :alt="badges.BadgeName"></img>
-                                        <span class="badge-text">{{ badges.BadgeName }}</span>
-                                    </a>
-                                </div>
-                                <div class="description">
-                                    {{ content.podcastDesc }}
-                                </div>
-                            </section>
-                            <footer>
-                                <h5 class="rss">
-                                    <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
-                                    <a :href="content.podcastLink" rel="noopener noreferrer" target="_blank">
-                                        {{ content.podcastLink }}
-                                    </a>
-                                </h5>
-                            </footer>
-                        </main>
+    <main class="container" v-for="(podcast, index) in customPodCast" :key="index">
+        <div :class="{ center }">
+            <div class="tabs">
+                <button
+                    v-for="(tab, tabIndex) in tabs"
+                    :key="tabIndex"
+                    :class="{ active: activeTab === tabIndex + 1 }"
+                    @click="activeTab = tabIndex + 1"
+                >
+                    {{ tab }}
+                </button>
+            </div>
+            <div class="tab-content" >
+                <!-- <Transition>
+                <slot :name="`tab${activeTab}`" /> -->
+                <!-- </Transition> -->
+                <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
+                    <div class="podcast-item">
+                        <img :src="content.podcastTmage">
+                            <main>
+                                <header>
+                                    <h2 class="title">
+                                        <a :herf="content.podcastLink" rel="noopener noreferrer" target="_blank">{{ content.podcastTitle }}</a>
+                                        <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
+                                    </h2>
+                                </header>
+                                <section>
+                                    <div class="badges" v-for="(badges, badgesIndex) in content.podcastBadge" :key="badgesIndex">
+                                        <a :herf="badges.BadgeLink" rel="noopener noreferrer" target="_blank" class="badge badge-img">
+                                            <img class="badge-icon" :src="badges.BadgeImage" :alt="badges.BadgeName"></img>
+                                            <span class="badge-text">{{ badges.BadgeName }}</span>
+                                        </a>
+                                    </div>
+                                    <div class="description">
+                                        {{ content.podcastDesc }}
+                                    </div>
+                                </section>
+                                <footer>
+                                    <h5 class="rss">
+                                        <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
+                                        <a :href="content.podcastLink" rel="noopener noreferrer" target="_blank">
+                                            {{ content.podcastLink }}
+                                        </a>
+                                    </h5>
+                                </footer>
+                            </main>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
         </div>
     </main>
 </template>
