@@ -27,7 +27,7 @@ export default defineNuxtConfig({
                 
                 // 自定义字体存放区域
                 { rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
-                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/HuangYinQiZhaoPai/result.css', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
                 { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
                 { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  }
 
