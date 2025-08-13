@@ -27,7 +27,7 @@ const { data: postLink } = await useAsyncData('/link', () => queryContent('/link
 </script>
 
 <template>
-    <header class="link-reminder">
+    <!-- <header class="link-reminder">
         <div class="content">
             <p><Icon name="ph:newspaper-clipping-bold" /> 我会通过订阅源阅读友链文章。</p>
             <p>
@@ -37,9 +37,9 @@ const { data: postLink } = await useAsyncData('/link', () => queryContent('/link
             </p>
             <p>
                 我制作了本站的
-                <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
+                eslint-disable-next-line vue/singleline-html-element-content-newline
                 <ProseA href="/zhilu.opml">友链源 OPML 聚合</ProseA>，可导入阅读器或
-                <!-- eslint-disable-next-line vue/singleline-html-element-content-newline -->
+                eslint-disable-next-line vue/singleline-html-element-content-newline
                 <ProseA href="https://app.follow.is/share/lists/72840182614552576">订阅 Folo List</ProseA>。
             </p>
         </div>
@@ -51,7 +51,7 @@ const { data: postLink } = await useAsyncData('/link', () => queryContent('/link
                 在 Folo 上订阅
             </ProseA>
         </div>
-    </header>
+    </header> -->
 
     <FlinkTop/>
 
