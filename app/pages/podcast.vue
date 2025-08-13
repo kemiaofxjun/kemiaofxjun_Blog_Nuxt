@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import {customPodCast} from '~/podcast';
 
+const layoutStore = useLayoutStore()
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 </script>
 
 <template>
