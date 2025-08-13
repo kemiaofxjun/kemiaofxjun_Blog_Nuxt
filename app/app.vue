@@ -1,14 +1,9 @@
-<script setup lang="ts">
-import { customEssays } from '~/essay'; // 替换为实际TS文件路径
-</script>
-
 <template>
     <NuxtLoadingIndicator />
     <SkipToContent />
     <ZSidebar />
     <div id="content">
         <main id="main-content">
-            <EssayTop :essay-list="customEssays" />
             <NuxtPage />
             <ZFooter />
         </main>
