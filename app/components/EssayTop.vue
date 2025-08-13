@@ -1,37 +1,21 @@
 <template>
-  <div id="bbTimeList" class="bb-time-list">
+  <div id="bbTimeList" class="bbTimeList container">
+    <svg class="icon bber-logo iconfont icon-chrome" onclick="loadUrl(/essay/)" title="即刻短文" aria-hidden="true">
+        <use xlink:href="#icon-chrome"></use>
+    </svg>
     <!-- 文章滑动容器 -->
     <div 
       id="bbtalk" 
-      class="swiper-container essay-swiper"
+      class="swiper-container swiper-no-swiping essay_bar_swiper_container"
       :class="{ 'no-swiping': !enableSwiping }"
     >
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper" id="bber-talk" onclick="loadUrl(/essay/)">
         <!-- 遍历文章列表（限制前10条） -->
-        <div 
-          v-for="(item, index) in filteredEssays" 
-          :key="getItemKey(item, index)"
-          class="swiper-slide essay-item"
-        >
-          <!-- 时间标签 -->
-          <div class="item-meta">
-            <span class="date">{{ formatDate(item.date) }}</span>
-            <span class="tag">#{{ item.tags }}</span>
-          </div>
-
+        <div v-for="(item, index) in filteredEssays" :key="getItemKey(item, index)">
           <!-- 内容主体 -->
-          <div class="item-content">
+          <div class="li-style swiper-slide">
             <!-- 文本内容 -->
             <p class="content-text">{{ item.content }}</p>
-            
-            <!-- 图片展示（如果有） -->
-            <div v-if="item.image" class="item-images">
-              <img 
-                :src="item.image" 
-                :alt="`${item.tags}相关图片`" 
-                class="content-image"
-              >
-            </div>
           </div>
         </div>
       </div>
