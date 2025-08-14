@@ -161,7 +161,7 @@ export default {
 
     // 数据获取与渲染（移除瀑布流相关逻辑）
     const fetchAndRenderTalks = async () => {
-      const url = 'https://mm.liushen.fun/api/memo/list';
+      const url = 'https://tjwtcyjnrpvx.ap-northeast-1.clawcloudrun.com/api/memo/list';
       const cachedData = localStorage.getItem('talksCache');
       const cachedTime = localStorage.getItem('talksCacheTime');
       const currentTime = Date.now();
