@@ -58,7 +58,7 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
     imgDiv.className = 'zone_imgbox';
     imgs.forEach((e: string) => {
       const figurefother = document.createElement('figure');
-      figurefother.className = "img-item"
+      figurefother.className = "img-item";
 
       const imgLink = document.createElement('figure');
       imgLink.className = 'image talk-img';
