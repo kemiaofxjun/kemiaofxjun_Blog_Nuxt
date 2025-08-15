@@ -46,7 +46,7 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
   
   // 链接替换
   content = content
-    .replace(/$$(.*?)$$$(.*?)$/g, `<a href="$2">@$1</a>`)
+    .replace(/$$(.*?)$$$(.*?)$/g)
     .replace(/- $$ $$/g, '⚪')
     .replace(/- $$x$$/g, '⚫')
     .replace(/\n/g, '<br>');
