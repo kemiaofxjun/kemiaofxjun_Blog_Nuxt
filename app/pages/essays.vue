@@ -184,7 +184,7 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
 
 // 数据获取与渲染函数
 const fetchAndRenderTalks = async (): Promise<void> => {
-  const url = 'https://tjwtcyjnrpvx.ap-northeast-1.clawcloudrun.com/api/memo/list';
+  const url = 'https://avvlqyndvewl.ap-northeast-1.clawcloudrun.com/api/memo/list';
   
   // 读取缓存
   const cachedData = localStorage.getItem(CACHE_KEY);
