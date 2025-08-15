@@ -103,7 +103,7 @@ export default defineNuxtConfig({
 	},
 
 	hooks: {
-		'content:file:afterParse': (ctx) => {
+		'content:file:afterParse': (ctx: { content: { path: string; original_dir: string } }) => {
 			// 在 URL 中隐藏指定目录前缀的路径
 			for (const prefix of blogConfig.hideContentPrefixes) {
 				const realPath = ctx.content.path as string
