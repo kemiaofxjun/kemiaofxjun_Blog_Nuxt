@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { domainToUnicode } from 'url';
 import { ref, onMounted } from 'vue';
 const layoutStore = useLayoutStore()
 
@@ -56,13 +57,14 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
     const imgDiv = document.createElement('div');
     imgDiv.className = 'zone_imgbox';
     imgs.forEach((e: string) => {
-      const imgLink = document.createElement('a');
-      imgLink.href = e;
-      imgLink.setAttribute('data-fancybox', 'gallery');
-      imgLink.className = 'fancybox';
-      imgLink.setAttribute('data-thumb', e);
+      const figurefother = document.createElement('figure');
+      figurefother.className = "img-item"
+
+      const imgLink = document.createElement('figure');
+      imgLink.className = 'image talk-img';
       
       const imgTag = document.createElement('img');
+      imgTag.className="image";
       imgTag.src = e;
       imgLink.appendChild(imgTag);
       imgDiv.appendChild(imgLink);
