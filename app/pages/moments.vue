@@ -1,6 +1,8 @@
 <script>
 import { ref, onMounted } from 'vue';
 
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+
 export default {
   name: 'TalkList',
   setup() {
@@ -240,20 +242,22 @@ export default {
              
         <!-- 底部标签 -->
         <div class="talk-bottom">
-          <div class="TagContainer">
-            <span class="talk-tag">🏷️{{ item.tags.join(' ') }}</span>
-            <span class="location-tag">🌍{{ item.location }}</span>
+          <div class="talk-tags">
+            <span class="tag">🏷️{{ item.tags.join(' ') }}</span>
+            <span class="location">
+              <span data-v-1f067c47="" class="iconify i-ph:map-pin-bold location-icon" aria-hidden="true"></span>
+              {{ item.location }}
+            </span>
           </div>
           <a href="javascript:;" class="comment-link" @click="goComment(item.text)">
-            <span class="icon">
-              <i class="fa-solid fa-message fa-fw"></i>
-            </span>
+            <span class="iconify i-ph:chats-bold icon"></span>
           </a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<PostComment key="/moments" />
 </template>
 
 <style scoped>
