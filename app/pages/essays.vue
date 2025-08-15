@@ -174,7 +174,7 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
 
   return {
     user: item.user.nickname || '匿名',
-    avatar: item.user.avatarUrl || 'https://p.liiiu.cn/i/2024/03/29/66061417537af.png',
+    avatar: item.avatarUrl || 'https://p.liiiu.cn/i/2024/03/29/66061417537af.png',
     date,
     content,
     tags: item.tags ? item.tags.split(',').filter((tag: string) => tag.trim()) : ['无标签'],
@@ -287,7 +287,7 @@ onMounted(() => {
     </div>
   </div>
 </div>
-<!-- <PostComment key="/moments" /> -->
+<PostComment key="/essays" />
 </template>
 
 <style scoped>
