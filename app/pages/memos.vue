@@ -161,7 +161,7 @@ export default {
 
     // 数据获取与渲染（移除瀑布流相关逻辑）
     const fetchAndRenderTalks = async () => {
-      const url = 'https://bvwghyktnrxo.cloud.sealos.io/api/memo/list';
+      const url = 'https://test.memos.myxz.top/api/memo/list';
       const cachedData = localStorage.getItem('talksCache');
       const cachedTime = localStorage.getItem('talksCacheTime');
       const currentTime = Date.now();
