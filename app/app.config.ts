@@ -103,7 +103,7 @@ export default defineAppConfig({
                 { icon: 'ph:link-bold', text: '竹林旧友', url: '/link' },
                 { icon: 'ph:fish-bold', text: '塘文集锦', url: '/fcircle' },
                 { icon: 'ph:chats-bold', text:'​纸笺寄语', url:'/comments' },
-                { icon: 'ph:lightning-bold', text:'闲言碎语', url:'/essays' },
+                // { icon: 'ph:lightning-bold', text:'闲言碎语', url:'/essays' },
                 { icon: 'fa-fw anzhiyufont anzhiyu-icon-dice-d20', text:'优良精装', url:'/equipment'},
 			],
 		},
