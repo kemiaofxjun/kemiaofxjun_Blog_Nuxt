@@ -270,7 +270,7 @@ onMounted(() => {
             </div>
         </div>
         <!-- 说说内容 -->
-        <div class="talk-content" v-html="item.content"></div>
+        <div class="talk-content">{{ item.content }}</div>
              
         <!-- 底部标签 -->
         <div class="talk-bottom">
