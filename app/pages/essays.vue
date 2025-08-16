@@ -68,7 +68,6 @@ const formatTalk = (item: any, url: string): TalkItem => {
     });
     content += imgDiv.outerHTML;
   }
-
   // 外链处理
   if (item.externalUrl) {
     content += `
@@ -178,7 +177,7 @@ const formatTalk = (item: any, url: string): TalkItem => {
     content,
     location: item.location || '陕西西安',
     tags: item.tags ? item.tags.split(',').filter((tag: string) => tag.trim()) : ['无标签'],
-    text: content.replace('[链接]' + `${imgs.length ? '[图片]' : ''}`) || '', // 防止content为undefined
+    text: content.replace('[链接]') || '',
   };
 }
 // 数据获取与渲染函数
@@ -191,13 +190,13 @@ const fetchAndRenderTalks = async (): Promise<void> => {
   const currentTime = Date.now();
 
   // 检查缓存有效性
-  if (cachedData && cachedTime && (currentTime - Number(cachedTime) < CACHE_DURATION)) {
-    try {
-      const data = JSON.parse(cachedData) as any[];
-      talkList.value = data.map((item: any) => formatTalk(item, url));
-      return;
-    } catch (error) {
-      console.error('缓存数据解析失败:', error);
+  if (cachedData && cachedTime) {
+    const parsedTime = Number(cachedTime);
+    if (!isNaN(parsedTime) && currentTime - parsedTime < CACHE_DURATION) {
+      // 解析缓存
+    } else {
+      localStorage.removeItem(CACHE_KEY); // 清除过期缓存
+      localStorage.removeItem(CACHE_TIME_KEY);
     }
   }
 
@@ -268,7 +267,14 @@ onMounted(() => {
             </div>
         </div>
         <!-- 说说内容 -->
-        <div class="talk-content" v-html="item.content"></div>
+        <div class="talk-content">
+          {{item.content}}
+          <div class="zone_imgbox">
+            <figure class="image img-item">
+                <pic class="talk-img" :src="imgs.length" :caption="item.caption || ''" :width="item.width || '100%'" :height="item.height || 'auto'" :zoom="true" />
+            </figure>
+          </div>
+        </div>
              
         <!-- 底部标签 -->
         <div class="talk-bottom">
