@@ -289,10 +289,7 @@ onMounted(() => {
     </div>
   </div>
 </div>
-<PostComment key="/essays" />
-</template>
-
-<style scoped>
+<style>
 .zone_imgbox {
     display: grid;
     gap: 8px;
@@ -318,7 +315,11 @@ img.image {
     transition: transform .3s;
     width: 100%;
 }
+</style>
+<PostComment key="/essays" />
+</template>
 
+<style scoped>
 .essay-stats {
     align-items: flex-end;
     color: #eee;
