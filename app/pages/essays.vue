@@ -626,4 +626,27 @@ onMounted(() => {
     }
 }
 
+.zone_imgbox {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.img-item {
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+}
+.image {
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    transition: transform .3s;
+    width: 100%;
+}
 </style>
