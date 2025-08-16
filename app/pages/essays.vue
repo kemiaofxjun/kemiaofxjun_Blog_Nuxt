@@ -173,7 +173,7 @@ const formatTalk = (item: any, url: string): TalkItem => {
 
   return {
     user: item.user.nickname || '匿名',
-    avatar: item.avatarUrl,
+    avatar: item.user.avatarUrl || 'https://p.liiiu.cn/i/2024/03/29/66061417537af.png',
     date,
     content,
     location: item.location || '陕西西安',
