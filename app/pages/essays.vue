@@ -38,12 +38,11 @@ const formatTime = (time: string | number): string => {
 // 内容格式化函数（核心逻辑，带类型）
 const formatTalk = (item: any): TalkItem => {
   const date = formatTime(item.createdAt);
-  let content = item.content || '';
+  let content = item.content;
   const imgs = item.imgs ? item.imgs.split(',') : [];
   
   // 链接替换
   content = content
-    .replace(/$$(.*?)$$$(.*?)$/g)
     .replace(/- $$ $$/g, '⚪')
     .replace(/- $$x$$/g, '⚫')
     .replace(/\n/g, '<br>');
