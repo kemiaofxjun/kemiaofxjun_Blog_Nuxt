@@ -67,7 +67,8 @@ const formatTalk = (item: any, baseUrl: string): TalkItem => {
       imgTag.className="image";
       imgTag.src = e;
       imgLink.appendChild(imgTag);
-      imgDiv.appendChild(imgLink);
+      figurefother.appendChild(imgLink)
+      imgDiv.appendChild(figurefother);
     });
     content += imgDiv.outerHTML;
   }
