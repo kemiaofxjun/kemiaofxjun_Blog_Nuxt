@@ -177,7 +177,7 @@ const formatTalk = (item: any): TalkItem => {
     date,
     content,
     tags: item.tags ? item.tags.split(',').filter((tag: string) => tag.trim()) : ['无标签'],
-    text: content.replace(/$$(.*?)$$$$(.*?)$$/g, '[链接]' + `${imgs.length ? '[图片]' : ''}`) || '', // 防止content为undefined
+    text: content.replace(/$$(.*?)$$$$(.*?)$$/g  + `${imgs.length ? '[图片]' : ''}`) || '', // 防止content为undefined
   };
 };
 
