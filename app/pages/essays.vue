@@ -299,14 +299,14 @@ onMounted(() => {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.img-item {
+figure.img-item {
     border-radius: 8px;
     overflow: hidden;
     padding-bottom: 100%;
     position: relative;
 }
 
-.image {
+img.image {
     height: 100%;
     top: 0;
     right: 0;
