@@ -10,8 +10,8 @@ interface TalkItem {
   avatar: string;
   date: string;
   content: string;
-  tags: string[];
   location: string;
+  tags: string[];
   text: string;
 }
 
@@ -37,7 +37,7 @@ const formatTime = (time: string | number): string => {
 };
 
 // 内容格式化函数（核心逻辑，带类型）
-const formatTalk = (item: any): TalkItem => {
+const formatTalk = (item: any, url: string): TalkItem => {
   const date = formatTime(item.createdAt);
   let content = item.content;
   const imgs = item.imgs ? item.imgs.split(',') : [];
@@ -176,11 +176,11 @@ const formatTalk = (item: any): TalkItem => {
     avatar: item.avatarUrl,
     date,
     content,
+    location: item.location || '陕西西安',
     tags: item.tags ? item.tags.split(',').filter((tag: string) => tag.trim()) : ['无标签'],
     text: content.replace('[链接]' + `${imgs.length ? '[图片]' : ''}`) || '', // 防止content为undefined
   };
-};
-
+}
 // 数据获取与渲染函数
 const fetchAndRenderTalks = async (): Promise<void> => {
   const url = 'https://avvlqyndvewl.ap-northeast-1.clawcloudrun.com/api/memo/list';
