@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import sanitizeHtml from 'sanitize-html';
 import { ref, onMounted } from 'vue';
 const layoutStore = useLayoutStore()
 
@@ -68,6 +69,7 @@ const formatTalk = (item: any, url: string): TalkItem => {
     });
     content += imgDiv.outerHTML;
   }
+
   // 外链处理
   if (item.externalUrl) {
     content += `
@@ -177,7 +179,8 @@ const formatTalk = (item: any, url: string): TalkItem => {
     content,
     location: item.location || '陕西西安',
     tags: item.tags ? item.tags.split(',').filter((tag: string) => tag.trim()) : ['无标签'],
-    text: content.replace('[链接]') || '',
+    text: content.replace('[链接]' + `${imgs.length ? '[图片]' : ''}`) || '', // 防止content为undefined
+    images: processImages(item.imgs?.split(',') || []),
   };
 }
 // 数据获取与渲染函数
@@ -267,14 +270,7 @@ onMounted(() => {
             </div>
         </div>
         <!-- 说说内容 -->
-        <div class="talk-content">
-          {{item.content}}
-          <div class="zone_imgbox">
-            <figure class="image img-item">
-                <pic class="talk-img" :src="imgs.length" :caption="item.caption || ''" :width="item.width || '100%'" :height="item.height || 'auto'" :zoom="true" />
-            </figure>
-          </div>
-        </div>
+        <div class="talk-content" v-html="sanitizeHtml(item.content)"></div>
              
         <!-- 底部标签 -->
         <div class="talk-bottom">
