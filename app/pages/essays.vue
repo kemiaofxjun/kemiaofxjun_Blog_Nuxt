@@ -249,6 +249,7 @@ onMounted(() => {
 
 <template>
 <div class="page-essay">
+  <link rel='stylesheet' href="/assets/css/essays.css">
   <div class="talk-container">
     <div id="talk" class="talks-list">
       <div v-for="(item, index) in talkList" :key="index" class="talk-item">
@@ -285,33 +286,6 @@ onMounted(() => {
     </div>
   </div>
 </div>
-<style>
-.zone_imgbox {
-    display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-figure.img-item {
-    border-radius: 8px;
-    overflow: hidden;
-    padding-bottom: 100%;
-    position: relative;
-}
-
-img.image {
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    -o-object-fit: cover;
-    object-fit: cover;
-    position: absolute;
-    transition: transform .3s;
-    width: 100%;
-}
-</style>
 <PostComment key="/essays" />
 </template>
 
