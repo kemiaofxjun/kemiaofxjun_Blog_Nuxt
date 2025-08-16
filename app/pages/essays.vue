@@ -11,6 +11,7 @@ interface TalkItem {
   date: string;
   content: string;
   tags: string[];
+  location: string;
   text: string;
 }
 
