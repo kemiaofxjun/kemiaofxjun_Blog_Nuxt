@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { aboutPage } from '~/about',
+import { aboutPage } from '~/about'
 
+const layoutStore = useLayoutStore()
+layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
 </script>
 
 <template>
