@@ -7,7 +7,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
 
 <template>
     <link href="/assets/css/about.css" rel="stylesheet"></link>
-    <div id="about-page" v-for="about in aboutPage" :key="about.author">
+    <div id="about-page" v-for="about in aboutPage" :key="about.author" style="margin-top: 1rem;">
         <div class="author-main" v-for="author in about.author" :key="author.left">
             <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
                 <span class="author-tag">{{ left.tag1 }}</span>
@@ -15,7 +15,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                 <span class="author-tag">{{ left.tag3 }}</span>
                 <span class="author-tag">{{ left.tag4 }}</span>
             </div>
-            <div class="author-box">
+            <div class="author-box" style="z-index:0">
                 <span></span>
                 <div class="author-img">
                     <img class="no-lightbox" :src="author.logo">
