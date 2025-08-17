@@ -100,9 +100,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     </span>
                 </span>
             </div>
-            <div class="author-content-item myphoto">
-                <img class="author-content-img no-lightbox" alt="自拍" :src="maxim.image" />
-            </div>
+            <div class="author-content-item myphoto"></div>
         </div>
         <div class="author-content">
             <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip">

@@ -1,7 +1,7 @@
 export interface aboutConnect {
     author: author[]; //头像数据
     large: string; //标题数据
-    myInfo: myinfo[]; //个人介绍数据
+    myinfo: myinfo[]; //个人介绍数据
     hello: string; //Hello there数据
     maxim: maxim[]; //左右铭数据
     technology: technology[]; //偏好数据
@@ -65,7 +65,6 @@ export interface maxim {
     tip: string;
     title1: string;
     title2: string;
-    image: string;
 }
 
 //偏好数据
@@ -80,7 +79,6 @@ export interface game {
     tip: string;
     title: string;
     uid: string;
-    image: string;
 }
 
 //历程数据
@@ -113,7 +111,7 @@ export const aboutPage: aboutConnect[] = [
             }
         ],
         large: "关于本站",
-        myInfo: [{
+        myinfo: [{
             title1: "你好，很高兴认识你👋",
             title2: "我叫",
             inlineword1: "渊",
@@ -137,18 +135,16 @@ export const aboutPage: aboutConnect[] = [
             tip: "座右铭",
             title1: "生活明朗，",
             title2: "万物可爱。",
-            image: "",
         }],
         technology: [{
-            tip: "",
-            title: "",
-            bottomTip: ""
+            tip: "关注偏好",
+            title: "数码科技",
+            bottomTip: "手机、电脑软硬件"
         }],
         game: [{
-            tip: "",
-            title: "",
-            uid: "",
-            image: "",
+            tip: "爱好游戏",
+            title: "暂时未公开",
+            uid: "暂时未公开",
         }],
         single: [{
             tip: "",
