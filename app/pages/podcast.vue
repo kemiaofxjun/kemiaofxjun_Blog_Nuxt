@@ -1,19 +1,19 @@
-<script lang="ts" setup>
-import {customPodCast} from '~/podcast';
-const props = defineProps<{
-    /** tab 下标从 1 开始 */
-    tabs: string[]
-    center?: boolean
-    active?: number
-}>()
-// 使用 v-bind:active 以传递 Number 值
-const activeTab = ref(Number(props.active) || 1)
+<!-- <script lang="ts" setup>
+// import {customPodCast} from '~/podcast';
+// const props = defineProps<{
+//     /** tab 下标从 1 开始 */
+//     tabs: string[]
+//     center?: boolean
+//     active?: number
+// }>()
+// // 使用 v-bind:active 以传递 Number 值
+// const activeTab = ref(Number(props.active) || 1)
 
-const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
-</script>
+// const layoutStore = useLayoutStore()
+// layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+</script> -->
 
-<template>
+<!-- <template>
     <h2 class="feed-label"> 收听的播客 </h2>
     <main class="container" v-for="(podcast, index) in customPodCast" :key="index">
         <div :class="{ center }">
@@ -27,11 +27,11 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
                     {{ tab }}
                 </button>
             </div>
-            <div class="tab-content" >
+            <div class="tab-content" > -->
                 <!-- <Transition>
                 <slot :name="`tab${activeTab}`" /> -->
                 <!-- </Transition> -->
-                <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
+                <!-- <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
                     <div class="podcast-item">
                         <img :src="content.podcastTmage">
                             <main>
@@ -67,7 +67,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
             
         </div>
     </main>
-</template>
+</template> -->
 
 <style scoped>
 .tabs{
