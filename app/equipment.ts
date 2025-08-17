@@ -1,24 +1,11 @@
-export interface equipmentItem {
-  class_name: string,
-  class_desc: string,
-  infoname: string,
-  equipmentList: equipmentEntry[],
-}
+import { equipment } from "./types/tabCard";
 
-export interface equipmentEntry {
-  name: string,
-  custom: string,
-  opinion: string,
-  details_flink: string,
-  image: string,
-}
-
-export const equipment: equipmentItem[] = [
+export const eqment: equipment[] = [
   {
     class_name: "日常生产力",
     class_desc: "平常生活、工作增添效率的产品",
     infoname: "详情",
-    equipmentList: [
+    List: [
       {
         name: "iPhone XR",
         custom: "主力 | 128G",
