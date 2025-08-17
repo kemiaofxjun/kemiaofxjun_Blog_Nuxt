@@ -1,7 +1,7 @@
 export interface aboutConnect {
     author: author[]; //头像数据
     large: string; //标题数据
-    myInfo: myInfo[]; //个人介绍数据
+    myInfo: myinfo[]; //个人介绍数据
     hello: string; //Hello there数据
     maxim: maxim[]; //左右铭数据
     technology: technology[]; //偏好数据
@@ -36,7 +36,7 @@ export interface right {
 }
 
 //个人介绍数据
-export interface myInfo {
+export interface myinfo {
     title1: string;
     title2: string;
     inlineword1: string;

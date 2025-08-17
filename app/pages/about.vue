@@ -29,25 +29,25 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             </div>
         </div>
         <p class="p center logo large">{{ about.large }}</p>
-        <div class="author-content" v-for="myinfo in author.myInfo" :key="myinfo.title1">
+        <div class="author-content" v-for="info in author.myinfo" :key="info.title1">
             <div class="author-content-item myInfoAndSayHello">
                 <div class="title1">
-                    {{ myinfo.title1 }}
+                    {{ info.title1 }}
                 </div>
                 <div class="title2">
-                    {{ myinfo.title2 }}
+                    {{ info.title2 }}
                     <span class="inline-word">
-                        {{ myinfo.inlineword1 }}
+                        {{ info.inlineword1 }}
                     </span>
                 </div>
                 <div class="title1">
-                    {{ myinfo.title3 }}
+                    {{ info.title3 }}
                     <span class="inline-word">
-                        {{ myinfo.inlineword2 }}
+                        {{ info.inlineword2 }}
                     </span>
                 </div>
             </div>
-            <div class="aboutsiteTips author-content-item" v-for="card in myinfo.card" :key="card.tips">
+            <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
                 <div class="author-content-item-tips">
                     {{ card.tips }}
                 </div>
