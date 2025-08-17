@@ -1,6 +1,20 @@
-import { equipment } from "./types/tabCard";
 
-export const eqment: equipment[] = [
+export interface item {
+  class_name: string,
+  class_desc: string,
+  infoname: string,
+  List: entry[],
+}
+
+export interface entry {
+  name: string,
+  custom: string,
+  opinion: string,
+  details_flink: string,
+  image: string,
+}
+
+export const equipment: item[] = [
   {
     class_name: "日常生产力",
     class_desc: "平常生活、工作增添效率的产品",

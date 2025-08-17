@@ -15,18 +15,3 @@ export interface Badge {
     Image: string;
     Link: string;
 }
-
-export interface equipment {
-  class_name: string,
-  class_desc: string,
-  infoname: string,
-  List: entry[],
-}
-
-export interface entry {
-  name: string,
-  custom: string,
-  opinion: string,
-  details_flink: string,
-  image: string,
-}

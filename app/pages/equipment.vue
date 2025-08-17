@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { equipment } from "~/equipment"
+import { equipment } from '~/equipment'
 </script>
 
 <template>
