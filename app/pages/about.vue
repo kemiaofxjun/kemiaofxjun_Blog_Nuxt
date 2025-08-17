@@ -29,7 +29,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             </div>
         </div>
         <p class="p center logo large">{{ about.large }}</p>
-        <div class="author-content" v-for="info in author.myinfo" :key="info.title1">
+        <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
             <div class="author-content-item myInfoAndSayHello">
                 <div class="title1">
                     {{ info.title1 }}
