@@ -13,8 +13,8 @@
 // layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 </script> -->
 
-<!-- <template>
-    <h2 class="feed-label"> 收听的播客 </h2>
+<template>
+    <!-- <h2 class="feed-label"> 收听的播客 </h2>
     <main class="container" v-for="(podcast, index) in customPodCast" :key="index">
         <div :class="{ center }">
             <div class="tabs">
@@ -66,8 +66,8 @@
                 </div>
             
         </div>
-    </main>
-</template> -->
+    </main> -->
+</template>
 
 <style scoped>
 .tabs{
