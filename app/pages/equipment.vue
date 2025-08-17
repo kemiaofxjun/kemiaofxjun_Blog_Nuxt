@@ -11,7 +11,7 @@ import { equipment } from '~/equipment'
             <div class="equipment-desc">
                 {{ i.class_desc }}
             </div>
-            <div class="equipment" v-for="item in i.equipmentList" :key="item.name">
+            <div class="equipment" v-for="item in i.List" :key="item.name">
                 <div class="icat-equipment-box" style="width: calc(35% - 12px)!important;">
                     <img :src="item.image">
                     <div class="icat-equipment-content">

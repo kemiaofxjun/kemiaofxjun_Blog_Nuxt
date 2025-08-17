@@ -4,7 +4,7 @@ description: 本篇文章讲述了如何在博客的底部模块进行魔改添�
 date: 2025-02-27 10:00
 update: 2025-02-28 10:00
 image: https://sourceimage.s3.bitiful.net/img/default_cover_15.avif
-categories: [hexo]
+categories: [博客魔改]
 tags: [hexo, butterfly, 美化]
 recommend: true
 ---

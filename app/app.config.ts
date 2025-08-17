@@ -10,9 +10,9 @@ export default defineAppConfig({
 
 	article: {
 		categories: <{ [category: string]: { icon: string, color?: string } }>{
-			经验分享: { icon: 'ph:mouse-bold', color: '#3af' },
+			搭建: { icon: 'ph:mouse-bold', color: '#3af' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
-			代码: { icon: 'ph:code-bold', color: '#77f' },
+			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',

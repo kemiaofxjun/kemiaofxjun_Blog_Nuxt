@@ -4,7 +4,7 @@ description: 本文依照轻笑的部分内容，参考首页banner写法以及�
 date: 2025-03-01 10:00
 updated: 2025-03-05 12:09
 image: https://sourceimage.s3.bitiful.net/img/default_cover_10.avif
-categories: [hexo]
+categories: [博客魔改]
 tags: [hexo, butterfly, 美化]
 ---
 ## 1.前言
