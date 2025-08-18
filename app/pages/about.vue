@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { group } from 'console'
 import { aboutPage } from '~/about'
-import { creativityData } from '~/creativity'
+import { creativity } from '~/creativity'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
@@ -78,7 +77,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             </div>
         </div>
         <div class="author-content">
-            <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
+            <div class="author-content-item skills" v-for="creativity in creativity" :key="creativity.class_name">
                 <div class="card-content">
                     <div class="author-content-item-tips">
                         技能
