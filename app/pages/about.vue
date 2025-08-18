@@ -91,7 +91,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </span>
                     </div>
                 </div>
-                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="max-width: 32%;">
+                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="max-width: 35%;">
                     <div class="author-content-item-tips">
                         {{ card.tips }}
                     </div>
@@ -118,7 +118,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </div>
                     </h2>
                 </div>
-                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="max-width: 33%;">
+                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="max-width: 30%;">
                     <div class="author-content-item-tips">
                         {{ maxim.tip }}
                     </div>
