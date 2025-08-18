@@ -82,16 +82,11 @@ const skillTagGroups = computed(() => {
               >
                 <img 
                   v-if="tag.img" 
-                  :src="tag.img" 
-                  :title="tag.name" 
+                  :src="tag.icon" 
+                  :title="tag.name"
+                  :style="{ color: tag.icon_color || '' }"
                   alt=""
                 >
-                <i 
-                  v-else-if="tag.icon" 
-                  :class="tag.icon" 
-                  :title="tag.name" 
-                  :style="{ color: tag.icon_color || '' }"
-                ></i>
               </div>
               <div class="skill-name">
                 <span>{{ tag.name }}</span>
