@@ -14,6 +14,8 @@ useSeoMeta({
 	description: `${appConfig.title}的友链页面，收集了添加他为友链的网站和他订阅的网站列表。`,
 })
 
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+
 const copyFields = {
 	博主: myFeed.author,
 	标题: myFeed.title,
