@@ -12,7 +12,7 @@ interface CreativityData {
 }
 
 // 具体数据（与 YAML 结构完全对应）
-const creativity: CreativityData[] = [
+const creativityData: CreativityData[] = [
   {
     class_name: "开启创造力",
     creativity_list: [
