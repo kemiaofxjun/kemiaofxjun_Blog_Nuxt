@@ -1,6 +1,7 @@
 // 定义外层分类的类型接口
 export interface CreativityData {
   class_name: string;       // 分类名称
+  subtitle: string;
   creativity_list: CreativityItem[];  // 创意项列表
 }
 
@@ -15,6 +16,7 @@ export interface CreativityItem {
 export const creativityData: CreativityData[] = [
   {
     class_name: "开启创造力",
+    subtitle: '技能',
     creativity_list: [
       {
         name: "Vue",
@@ -71,6 +73,6 @@ export const creativityData: CreativityData[] = [
         color: "#f7cb4f",
         icon: "https://cdn.sxiaohe.top/img/banners/js.webp"
       }
-    ]
+    ],
   },
 ];

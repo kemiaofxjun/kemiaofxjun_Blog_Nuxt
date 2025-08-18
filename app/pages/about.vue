@@ -46,21 +46,6 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
     .catch((err) => {
       console.error('友链顶部重要JS加载完毕', err);
     });
-
-// 新增：对 creativity_list 去重（根据 name 字段）
-const uniqueCreativityData = computed(() => {
-  const seen = new Set<string>()
-  return {
-    ...creativityData,
-    creativity_list: creativityData.creativity_list.filter(group => {
-      if (seen.has(group.name)) {
-        return false // 已存在则过滤
-      }
-      seen.add(group.name)
-      return true // 不存在则保留
-    })
-  }
-})
 </script>
 
 <template>
@@ -134,7 +119,7 @@ const uniqueCreativityData = computed(() => {
             </div>
         </div>
         <div class="author-content">
-            <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
+            <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
                 <div class="card-content">
                     <div class="author-content-item-tips">
                         技能
@@ -145,7 +130,7 @@ const uniqueCreativityData = computed(() => {
                     <div class="skills-style-group">
                         <div class="tags-group-all">
                             <div class="tags-group-wrapper">
-                                <div class="tags-group-icon-pair" v-for="group in uniqueCreativityData.creativity_list" :key="group.name">
+                                <div class="tags-group-icon-pair"v-for="group in creativity.creativity_list" :key="group.name">
                                     <div class="tags-group-icon" :style="{ background:group.color, }">
                                         <img :title="group.name" class="entered exited" :src="group.icon">
                                     </div>
@@ -170,7 +155,8 @@ const uniqueCreativityData = computed(() => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <skillinfo />
             <div class="author-content-item careers">
                 <div class="card-content">
                     <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
