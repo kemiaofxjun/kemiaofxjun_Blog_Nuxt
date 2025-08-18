@@ -85,9 +85,9 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     <span class="author-content-item-title">
                         {{ creativity.class_name }}
                     </span>
-                    <div class="skills-style-group" v-for="group in creativity.creativity_list" :key="group.name">
+                    <div class="skills-style-group">
                         <div class="tags-group-all">
-                            <div class="tags-group-wrapper">
+                            <div class="tags-group-wrapper" v-for="group in creativity.creativity_list" :key="group.name">
                                 <div class="tags-group-icon-pair" v-for="color in group.color">
                                     <div class="tags-group-icon" :style="{ background:color, }">
                                         <img :title="group.name" class="entered exited" :src="group.icon">
@@ -99,7 +99,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                             </div>
                         </div>
                         <div class="skills-list">
-                            <div class="skill-info">
+                            <div class="skill-info" v-for="group in creativity.creativity_list" :key="group.name">
                                 <div class="skill-icon" :style="{ background:color, }">
                                   <img :title="group.name" class="entered loading" :src="group.icon" data-ll-status="loading">
                                 </div>
