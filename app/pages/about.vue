@@ -50,7 +50,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
 
 <template>
     <link href="/assets/css/about.css" rel="stylesheet"></link>
-    <div id="about-page" v-for="about in aboutPage" :key="about.author" style="margin-top: 1rem;">
+    <div id="about-page" v-for="about in aboutPage" :key="about.author" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
         <div class="author-main" v-for="author in about.author" :key="author.left">
             <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
                 <span class="author-tag">{{ left.tag1 }}</span>
@@ -73,7 +73,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
         </div>
         <p class="p center logo large">{{ about.large }}</p>
         <div class="author-page-content">
-            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
+            <div class="author-content" v-for="info in about.myinfo" :key="info.title1" style="max-width: 25%;">
                 <div class="author-content-item myInfoAndSayHello">
                     <div class="title1">
                         {{ info.title1 }}
@@ -91,7 +91,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </span>
                     </div>
                 </div>
-                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
+                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="max-width: 25%;">
                     <div class="author-content-item-tips">
                         {{ card.tips }}
                     </div>
@@ -118,6 +118,20 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </div>
                     </h2>
                 </div>
+                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="max-width: 25%;">
+                    <div class="author-content-item-tips">
+                        {{ maxim.tip }}
+                    </div>
+                    <span class="maxim-title">
+                        <span style="opacity:.6;margin-bottom:8px">
+                            {{ maxim.title1 }}
+                        </span>
+                        <span>
+                            {{ maxim.title2 }}
+                        </span>
+                    </span>
+                </div>
+                <div class="author-content-item myphoto" style="max-width: 25%;"></div>
             </div>
             <div class="author-content">
                 <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
@@ -185,22 +199,6 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     <h1>{{ about.hello }}</h1>
                 </div>
             </div> -->
-            <div class="author-content">
-                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
-                    <div class="author-content-item-tips">
-                        {{ maxim.tip }}
-                    </div>
-                    <span class="maxim-title">
-                        <span style="opacity:.6;margin-bottom:8px">
-                            {{ maxim.title1 }}
-                        </span>
-                        <span>
-                            {{ maxim.title2 }}
-                        </span>
-                    </span>
-                </div>
-                <div class="author-content-item myphoto"></div>
-            </div>
             <div class="author-content">
                 <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip">
                     <div class="card-content">
