@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { group } from 'console'
 import { aboutPage } from '~/about'
+import { creativityData } from '~/creativity'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
@@ -75,7 +77,61 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                 </h2>
             </div>
         </div>
-        <div class="hello-about">
+        <div class="author-content">
+            <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
+                <div class="card-content">
+                    <div class="author-content-item-tips">
+                        技能
+                    </div>
+                    <span class="author-content-item-title">
+                        {{ creativity.class_name }}
+                    </span>
+                    <div class="skills-style-group" v-for="group in creativity.creativity_list" :key="group.name">
+                        <div class="tags-group-all">
+                            <div class="tags-group-wrapper">
+                                <div class="tags-group-icon-pair" v-for="color in group.color">
+                                    <div class="tags-group-icon" :style="{ background:color, }">
+                                        <img :title="group.name" class="entered exited" :src="group.icon">
+                                    </div>
+                                    <div class="tags-group-icon" :style="{ background:color, }">
+                                        <img :title="group.name" class="entered exited" :src="group.icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-info">
+                                <div class="skill-icon" :style="{ background:color, }">
+                                  <img :title="group.name" class="entered loading" :src="group.icon" data-ll-status="loading">
+                                </div>
+                                <div class="skill-name"> 
+                                  <span>
+                                    {{ group.name }}
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="etc">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="author-content-item careers">
+                <div class="card-content">
+                    <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
+                    <div class="careers-group">
+                        <div class="careers-item">
+                            <div class="circle" style="background: #357ef5"></div>
+                            <div class="name">DLPU,产品设计专业</div>
+                        </div>
+                        <div class="careers-item">
+                            <div class="circle" style="background: #eb372a"></div>
+                            <div class="name">ITSO,UI/产品经理</div>
+                        </div>
+                    </div><img class="author-content-img entered loading" alt="生涯" src="https://p.zhheo.com/jSNB8A24190681748947001875.png!cover" data-ll-status="loading">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="hello-about">
             <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
             <div class="shapes">
                 <div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
@@ -85,7 +141,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             <div class="content">
                 <h1>{{ about.hello }}</h1>
             </div>
-        </div>
+        </div> -->
         <div class="author-content">
             <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
                 <div class="author-content-item-tips">
@@ -118,7 +174,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     </div>
                 </div>
             </div>
-            <div class="author-content-item game-yuanshen" v-for="game in about.game">
+            <div class="author-content-item game" v-for="game in about.game">
                 <div class="card-content">
                     <div class="author-content-item-tips">
                         {{ game.tip }}
