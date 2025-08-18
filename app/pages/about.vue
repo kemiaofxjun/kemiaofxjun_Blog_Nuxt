@@ -158,7 +158,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     </div>
                 </div> -->
                 <skillinfo />
-                <div class="author-content-item careers">
+                <!-- <div class="author-content-item careers">
                     <div class="card-content">
                         <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
                         <div class="careers-group">
@@ -172,7 +172,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                             </div>
                         </div><img class="author-content-img entered loading" alt="生涯" src="https://p.zhheo.com/jSNB8A24190681748947001875.png!cover" data-ll-status="loading">
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- <div class="hello-about">
                 <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
