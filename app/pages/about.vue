@@ -73,8 +73,8 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
         </div>
         <p class="p center logo large">{{ about.large }}</p>
         <div class="author-page-content">
-            <div class="author-content" v-for="info in about.myinfo" :key="info.title1" style="max-width: 25%;">
-                <div class="author-content-item myInfoAndSayHello">
+            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
+                <div class="author-content-item myInfoAndSayHello" style="max-width: 45%;">
                     <div class="title1">
                         {{ info.title1 }}
                     </div>
@@ -91,7 +91,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </span>
                     </div>
                 </div>
-                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="max-width: 25%;">
+                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="max-width: 32%;">
                     <div class="author-content-item-tips">
                         {{ card.tips }}
                     </div>
@@ -118,7 +118,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </div>
                     </h2>
                 </div>
-                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="max-width: 25%;">
+                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="max-width: 33%;">
                     <div class="author-content-item-tips">
                         {{ maxim.tip }}
                     </div>
@@ -131,7 +131,6 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </span>
                     </span>
                 </div>
-                <div class="author-content-item myphoto" style="max-width: 25%;"></div>
             </div>
             <div class="author-content">
                 <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
