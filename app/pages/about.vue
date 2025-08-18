@@ -72,166 +72,168 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             </div>
         </div>
         <p class="p center logo large">{{ about.large }}</p>
-        <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
-            <div class="author-content-item myInfoAndSayHello">
-                <div class="title1">
-                    {{ info.title1 }}
-                </div>
-                <div class="title2">
-                    {{ info.title2 }}
-                    <span class="inline-word">
-                        {{ info.inlineword1 }}
-                    </span>
-                </div>
-                <div class="title1">
-                    {{ info.title3 }}
-                    <span class="inline-word">
-                        {{ info.inlineword2 }}
-                    </span>
-                </div>
-            </div>
-            <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
-                <div class="author-content-item-tips">
-                    {{ card.tips }}
-                </div>
-                <h2>
-                    {{ card.conect1 }}
-                    <br />
-                    {{ card.conect2 }}
-                    <span class="inline-word">
-                        {{ card.inlineword }}
-                    </span>
-                    <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
-                        <span class="first-tips">
-                            {{ mask.firstTips }}
-                        </span>
-                        <span>
-                            {{ mask.span }}
-                        </span>
-                        <span data-up="data-up">
-                            {{ mask.up }}
-                        </span>
-                        <span data-show="data-show">
-                            {{ mask.show }}
+        <div class="author-page-content">
+            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
+                <div class="author-content-item myInfoAndSayHello">
+                    <div class="title1">
+                        {{ info.title1 }}
+                    </div>
+                    <div class="title2">
+                        {{ info.title2 }}
+                        <span class="inline-word">
+                            {{ info.inlineword1 }}
                         </span>
                     </div>
-                </h2>
-            </div>
-        </div>
-        <div class="author-content">
-            <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
-                <div class="card-content">
+                    <div class="title1">
+                        {{ info.title3 }}
+                        <span class="inline-word">
+                            {{ info.inlineword2 }}
+                        </span>
+                    </div>
+                </div>
+                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
                     <div class="author-content-item-tips">
-                        技能
+                        {{ card.tips }}
                     </div>
-                    <span class="author-content-item-title">
-                        {{ creativity.class_name }}
-                    </span>
-                    <div class="skills-style-group">
-                        <div class="tags-group-all">
-                            <div class="tags-group-wrapper">
-                                <div class="tags-group-icon-pair"v-for="group in creativity.creativity_list" :key="group.name">
-                                    <div class="tags-group-icon" :style="{ background:group.color, }">
-                                        <img :title="group.name" class="entered exited" :src="group.icon">
-                                    </div>
-                                    <div class="tags-group-icon" :style="{ background:group.color, }">
-                                        <img :title="group.name" class="entered exited" :src="group.icon">
+                    <h2>
+                        {{ card.conect1 }}
+                        <br />
+                        {{ card.conect2 }}
+                        <span class="inline-word">
+                            {{ card.inlineword }}
+                        </span>
+                        <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
+                            <span class="first-tips">
+                                {{ mask.firstTips }}
+                            </span>
+                            <span>
+                                {{ mask.span }}
+                            </span>
+                            <span data-up="data-up">
+                                {{ mask.up }}
+                            </span>
+                            <span data-show="data-show">
+                                {{ mask.show }}
+                            </span>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+            <div class="author-content">
+                <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">
+                            技能
+                        </div>
+                        <span class="author-content-item-title">
+                            {{ creativity.class_name }}
+                        </span>
+                        <div class="skills-style-group">
+                            <div class="tags-group-all">
+                                <div class="tags-group-wrapper">
+                                    <div class="tags-group-icon-pair"v-for="group in creativity.creativity_list" :key="group.name">
+                                        <div class="tags-group-icon" :style="{ background:group.color, }">
+                                            <img :title="group.name" class="entered exited" :src="group.icon">
+                                        </div>
+                                        <div class="tags-group-icon" :style="{ background:group.color, }">
+                                            <img :title="group.name" class="entered exited" :src="group.icon">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="skills-list">
-                            <div class="skill-info" v-for="group in creativity.creativity_list" :key="group.name">
-                                <div class="skill-icon" :style="{ background:color, }">
-                                  <img :title="group.name" class="entered loading" :src="group.icon" data-ll-status="loading">
+                            <div class="skills-list">
+                                <div class="skill-info" v-for="group in creativity.creativity_list" :key="group.name">
+                                    <div class="skill-icon" :style="{ background:color, }">
+                                    <img :title="group.name" class="entered loading" :src="group.icon" data-ll-status="loading">
+                                    </div>
+                                    <div class="skill-name"> 
+                                    <span>
+                                        {{ group.name }}
+                                    </span>
+                                    </div>
                                 </div>
-                                <div class="skill-name"> 
-                                  <span>
-                                    {{ group.name }}
-                                  </span>
-                                </div>
+                                <div class="etc">...</div>
                             </div>
-                            <div class="etc">...</div>
                         </div>
                     </div>
+                </div> -->
+                <skillinfo />
+                <div class="author-content-item careers">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
+                        <div class="careers-group">
+                            <div class="careers-item">
+                                <div class="circle" style="background: #357ef5"></div>
+                                <div class="name">DLPU,产品设计专业</div>
+                            </div>
+                            <div class="careers-item">
+                                <div class="circle" style="background: #eb372a"></div>
+                                <div class="name">ITSO,UI/产品经理</div>
+                            </div>
+                        </div><img class="author-content-img entered loading" alt="生涯" src="https://p.zhheo.com/jSNB8A24190681748947001875.png!cover" data-ll-status="loading">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="hello-about">
+                <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
+                <div class="shapes">
+                    <div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
+                    <div class="shape shape-2" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
+                    <div class="shape shape-3" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
+                </div>
+                <div class="content">
+                    <h1>{{ about.hello }}</h1>
                 </div>
             </div> -->
-            <skillinfo />
-            <div class="author-content-item careers">
-                <div class="card-content">
-                    <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
-                    <div class="careers-group">
-                        <div class="careers-item">
-                            <div class="circle" style="background: #357ef5"></div>
-                            <div class="name">DLPU,产品设计专业</div>
-                        </div>
-                        <div class="careers-item">
-                            <div class="circle" style="background: #eb372a"></div>
-                            <div class="name">ITSO,UI/产品经理</div>
-                        </div>
-                    </div><img class="author-content-img entered loading" alt="生涯" src="https://p.zhheo.com/jSNB8A24190681748947001875.png!cover" data-ll-status="loading">
-                </div>
-            </div>
-        </div>
-        <!-- <div class="hello-about">
-            <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-            <div class="shapes">
-                <div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                <div class="shape shape-2" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                <div class="shape shape-3" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-            </div>
-            <div class="content">
-                <h1>{{ about.hello }}</h1>
-            </div>
-        </div> -->
-        <div class="author-content">
-            <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
-                <div class="author-content-item-tips">
-                    {{ maxim.tip }}
-                </div>
-                <span class="maxim-title">
-                    <span style="opacity:.6;margin-bottom:8px">
-                        {{ maxim.title1 }}
-                    </span>
-                    <span>
-                        {{ maxim.title2 }}
-                    </span>
-                </span>
-            </div>
-            <div class="author-content-item myphoto"></div>
-        </div>
-        <div class="author-content">
-            <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip">
-                <div class="card-content">
+            <div class="author-content">
+                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
                     <div class="author-content-item-tips">
-                        {{ technology.tip }}
+                        {{ maxim.tip }}
                     </div>
-                    <span class="author-content-item-title">
-                        {{ technology.title }}
+                    <span class="maxim-title">
+                        <span style="opacity:.6;margin-bottom:8px">
+                            {{ maxim.title1 }}
+                        </span>
+                        <span>
+                            {{ maxim.title2 }}
+                        </span>
                     </span>
-                    <div class="content-bottom">
-                        <div class="tips">
-                            {{ technology.bottomTip }}
-                        </div>
-                    </div>
                 </div>
+                <div class="author-content-item myphoto"></div>
             </div>
-            <div class="author-content-item game" v-for="game in about.game">
-                <div class="card-content">
-                    <div class="author-content-item-tips">
-                        {{ game.tip }}
-                    </div>
-                    <span class="author-content-item-title">
-                        {{ game.title }}
-                    </span>
-                    <div class="content-bottom">
-                        <!-- <div class="icon-group">
-                            <div class="loading-bar" role="presentation" aria-hidden="true">
-                                <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
+            <div class="author-content">
+                <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">
+                            {{ technology.tip }}
+                        </div>
+                        <span class="author-content-item-title">
+                            {{ technology.title }}
+                        </span>
+                        <div class="content-bottom">
+                            <div class="tips">
+                                {{ technology.bottomTip }}
                             </div>
-                        </div> -->
-                        <div class="tips game-yuanshen-uid">
-                            {{ game.uid }}
+                        </div>
+                    </div>
+                </div>
+                <div class="author-content-item game" v-for="game in about.game">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">
+                            {{ game.tip }}
+                        </div>
+                        <span class="author-content-item-title">
+                            {{ game.title }}
+                        </span>
+                        <div class="content-bottom">
+                            <!-- <div class="icon-group">
+                                <div class="loading-bar" role="presentation" aria-hidden="true">
+                                    <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
+                                </div>
+                            </div> -->
+                            <div class="tips game-yuanshen-uid">
+                                {{ game.uid }}
+                            </div>
                         </div>
                     </div>
                 </div>
