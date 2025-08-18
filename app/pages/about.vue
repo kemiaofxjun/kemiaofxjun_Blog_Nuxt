@@ -61,7 +61,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
             <div class="author-box" style="z-index:0">
                 <span></span>
                 <div class="author-img">
-                    <img class="no-lightbox" :src="author.logo">
+                    <img class="no-lightbox" :src="author.logo" style="width: 100%;">
                 </div>
             </div>
             <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
