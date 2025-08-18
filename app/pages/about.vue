@@ -128,12 +128,12 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                     </span>
                     <div class="skills-style-group">
                         <div class="tags-group-all">
-                            <div class="tags-group-wrapper" v-for="group in creativity.creativity_list" :key="group.name">
-                                <div class="tags-group-icon-pair" v-for="color in group.color">
-                                    <div class="tags-group-icon" :style="{ background:color, }">
+                            <div class="tags-group-wrapper">
+                                <div class="tags-group-icon-pair"v-for="group in creativity.creativity_list" :key="group.name">
+                                    <div class="tags-group-icon" :style="{ background:group.color, }">
                                         <img :title="group.name" class="entered exited" :src="group.icon">
                                     </div>
-                                    <div class="tags-group-icon" :style="{ background:color, }">
+                                    <div class="tags-group-icon" :style="{ background:group.color, }">
                                         <img :title="group.name" class="entered exited" :src="group.icon">
                                     </div>
                                 </div>
