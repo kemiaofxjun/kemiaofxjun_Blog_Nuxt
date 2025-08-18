@@ -58,17 +58,12 @@ const skillTagGroups = computed(() => {
                   :style="{ background: tag.color }"
                 >
                   <img 
-                    v-if="tag.img" 
-                    :src="tag.img" 
-                    :title="tag.name" 
+                    class="entered loading"
+                    :src="tag.icon" 
+                    :title="tag.name"
+                    :style="{ color: tag.icon_color || '' }"
                     alt=""
                   >
-                  <i 
-                    v-else-if="tag.icon" 
-                    :class="tag.icon" 
-                    :title="tag.name" 
-                    :style="{ color: tag.icon_color || '' }"
-                  ></i>
                 </div>
               </div>
             </div>
