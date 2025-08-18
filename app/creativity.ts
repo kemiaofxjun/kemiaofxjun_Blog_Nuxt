@@ -1,18 +1,18 @@
+// 定义外层分类的类型接口
+export interface CreativityData {
+  class_name: string;       // 分类名称
+  creativity_list: CreativityItem[];  // 创意项列表
+}
+
 // 定义最内层创意项的类型接口
-interface CreativityItem {
+export interface CreativityItem {
   name: string;       // 技术名称
   color: string;      // 颜色值（十六进制/关键字）
   icon: string;       // 图标 URL 地址
 }
 
-// 定义外层分类的类型接口
-interface CreativityData {
-  class_name: string;       // 分类名称
-  creativity_list: CreativityItem[];  // 创意项列表
-}
-
 // 具体数据（与 YAML 结构完全对应）
-const creativityData: CreativityData[] = [
+export const creativityData: CreativityData[] = [
   {
     class_name: "开启创造力",
     creativity_list: [
@@ -72,5 +72,5 @@ const creativityData: CreativityData[] = [
         icon: "https://cdn.sxiaohe.top/img/banners/js.webp"
       }
     ]
-  }
+  },
 ];
