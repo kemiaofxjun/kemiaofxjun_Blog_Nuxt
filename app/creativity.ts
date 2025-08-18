@@ -6,13 +6,13 @@ interface CreativityItem {
 }
 
 // 定义外层分类的类型接口
-interface CreativityCategory {
+interface CreativityData {
   class_name: string;       // 分类名称
   creativity_list: CreativityItem[];  // 创意项列表
 }
 
 // 具体数据（与 YAML 结构完全对应）
-const creativity: CreativityCategory[] = [
+const creativity: CreativityData[] = [
   {
     class_name: "开启创造力",
     creativity_list: [
