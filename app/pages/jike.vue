@@ -1,10 +1,10 @@
 <!-- ~/pages/essays.vue -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { 
-  customEssays, 
-  bannerData, 
-  essayConstants 
+import { onMounted } from 'vue'
+import {
+	bannerData,
+	customEssays,
+	essayConstants,
 } from '~/essay'
 
 const appConfig = useAppConfig()
@@ -13,128 +13,133 @@ const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 useSeoMeta({
-  title: '说说',
-  ogType: 'profile',
-  description: `${appConfig.title}的说说页面。`,
+	title: '说说',
+	ogType: 'profile',
+	description: `${appConfig.title}的说说页面。`,
 })
 
 // 加载外部脚本
 onMounted(() => {
-  const loadScript = (src: string) => {
-    return new Promise((resolve, reject) => {
-      if (document.querySelector(`script[src="${src}"]`)) return resolve(null)
-      
-      const script = document.createElement('script')
-      script.src = src
-      script.async = true
-      script.onload = resolve
-      script.onerror = reject
-      document.head.appendChild(script)
-    })
-  }
+	const loadScript = (src: string) => {
+		return new Promise((resolve, reject) => {
+			if (document.querySelector(`script[src="${src}"]`))
+				return resolve(null)
 
-  loadScript('/assets/js/essay.js')
-    .catch(err => console.error('脚本加载失败:', err))
+			const script = document.createElement('script')
+			script.src = src
+			script.async = true
+			script.onload = resolve
+			script.onerror = reject
+			document.head.appendChild(script)
+		})
+	}
+
+	loadScript('/assets/js/essay.js')
+		.catch(err => console.error('脚本加载失败:', err))
 })
-
 </script>
 
 <template>
-  <link rel="stylesheet" href="/assets/css/essay.css">
-  <div id="essay_page">
-    <!-- 顶部横幅区域 -->
-    <div 
-      class="essay_page_banner" 
-      :style="`background-image:url(${bannerData.top_background})`"
-    >
-      <div class="essay_banner_content">
-        <h1>
-          即刻短文
-        </h1>
-        <p>
-          {{ essayConstants.pageDescription }}
-        </p>
-      </div>
-      <div class="essay_banner_extra">
-        <div class="essay_friend_stats">
-          <div class="essay_update_time">
-            Updated at {{ essayConstants.lastUpdate }}
-          </div>
-          <div class="essay_powered_by">
-            Powered by {{ essayConstants.poweredBy }}
-          </div>
-        </div>
-      </div>
-    </div>
+<link rel="stylesheet" href="/assets/css/essay.css">
+<div id="essay_page">
+	<!-- 顶部横幅区域 -->
+	<div
+		class="essay_page_banner"
+		:style="`background-image:url(${bannerData.top_background})`"
+	>
+		<div class="essay_banner_content">
+			<h1>
+				即刻短文
+			</h1>
+			<p>
+				{{ essayConstants.pageDescription }}
+			</p>
+		</div>
+		<div class="essay_banner_extra">
+			<div class="essay_friend_stats">
+				<div class="essay_update_time">
+					Updated at {{ essayConstants.lastUpdate }}
+				</div>
+				<div class="essay_powered_by">
+					Powered by {{ essayConstants.poweredBy }}
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="page-essay" style="margin: 1rem;">
-      <!-- 说说内容区域 -->
-      <div id="bber">
-        <section class="timeline page-1">
-          <ul id="waterfall" class="list">
-            <li 
-              v-for="(item, index) in customEssays" 
-              :key="index"
-              class="bber-item"
-            >
-              <div class="bber-header">
-                <img class="avatar" src="https://blog.myxz.top/img/avatar.avif">
-                </img>
-                <div class="info">
-                  <div class="info-name">
-                    <span> {{ essayConstants.siteName }} </span>
-                    <span class="iconify i-material-symbols:verified verified"></span>
-                  </div>
-                  <div class="info-date"> {{ item.date }} </div>
-                </div>
-              </div>
-              <div class="bber-content">
-                <!-- 内容 -->
-                <p class="datacont">{{ item.content }}</p>
-                
-                <!-- 图片展示 -->
-                <div class="bber-imgbox">
-                  <figure class="imgBox-item" v-if="item.image && item.image.length > 0">
-                    <figure 
-                      class="image bber-image-content"
-                      loading="lazy"
-                      fetchpriority="high"
-                      target="_blank"
-                      data-fancybox="gallery"
-                      data-caption=""
-                    >
-                      <img class="image" :src="item.image" style="cursor: zoom-in;">
-                    </figure>
-                  </figure>
-                  
-                  <!-- 占位格 -->
-                  <div 
-                    v-if="!item.image || item.image === ''" 
-                    class="bber-content-noimg"
-                  ></div>
-                  <div class="bber-content-noimg"></div>
-                  <div class="bber-content-noimg"></div>
-                </div>
-              </div>
+	<div class="page-essay" style="margin: 1rem;">
+		<!-- 说说内容区域 -->
+		<div id="bber">
+			<section class="timeline page-1">
+				<ul id="waterfall" class="list">
+					<li
+						v-for="(item, index) in customEssays"
+						:key="index"
+						class="bber-item"
+					>
+						<div class="bber-header">
+							<img class="avatar" src="https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp">
+							</img>
+							<div class="info">
+								<div class="info-name">
+									<span> {{ essayConstants.siteName }} </span>
+									<span class="iconify i-material-symbols:verified verified" />
+								</div>
+								<div class="info-date">
+									{{ item.date }}
+								</div>
+							</div>
+						</div>
+						<div class="bber-content">
+							<!-- 内容 -->
+							<p class="datacont">
+								{{ item.content }}
+							</p>
 
-              <!-- 底部信息 -->
-              <div class="bber-bottom">
-                <div class="bber-tags">
-                  <span class="bber-tags-name"> {{ item.tags }} </span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
-        
-        <!-- 底部提示 -->
-        <div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
-          只展示最近{{ bannerData.limit }}条短文
-        </div>
-      </div>
-    </div>
-  </div>
+							<!-- 图片展示 -->
+							<div class="bber-imgbox">
+								<figure v-if="item.image && item.image.length > 0" class="imgBox-item">
+									<figure
+										class="image bber-image-content"
+										loading="lazy"
+										fetchpriority="high"
+										target="_blank"
+										data-fancybox="gallery"
+										data-caption=""
+									>
+										<img class="image" :src="item.image" style="cursor: zoom-in;">
+									</figure>
+								</figure>
+
+								<!-- 占位格 -->
+								<div
+									v-if="!item.image || item.image === ''"
+									class="bber-content-noimg"
+								/>
+								<div class="bber-content-noimg" />
+								<div class="bber-content-noimg" />
+							</div>
+						</div>
+
+						<!-- 底部信息 -->
+						<div class="bber-bottom">
+							<div class="bber-tags">
+								<span class="bber-tags-name"> {{ item.tags }} </span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+			<!-- 底部提示 -->
+			<div id="bber-tips" style="color: var(--anzhiyu-secondtext);">
+				只展示最近{{ bannerData.limit }}条短文
+			</div>
+		</div>
+	</div>
+</div>
 </template>
+
 <style>
 .essay_page_banner {
     background-position: 50%;

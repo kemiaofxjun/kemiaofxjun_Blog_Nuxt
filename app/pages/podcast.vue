@@ -14,7 +14,7 @@
 </script> -->
 
 <template>
-    <!-- <h2 class="feed-label"> 收听的播客 </h2>
+	<!-- <h2 class="feed-label"> 收听的播客 </h2>
     <main class="container" v-for="(podcast, index) in customPodCast" :key="index">
         <div :class="{ center }">
             <div class="tabs">
@@ -28,10 +28,10 @@
                 </button>
             </div>
             <div class="tab-content" > -->
-                <!-- <Transition>
+	<!-- <Transition>
                 <slot :name="`tab${activeTab}`" /> -->
-                <!-- </Transition> -->
-                <!-- <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
+	<!-- </Transition> -->
+	<!-- <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
                     <div class="podcast-item">
                         <img :src="content.podcastTmage">
                             <main>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            
+
         </div>
     </main> -->
 </template>
