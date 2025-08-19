@@ -1,87 +1,88 @@
 <script lang="ts" setup>
 const appConfig = useAppConfig()
 const sco = {
-  musicSkipBack() {
-    document.querySelector("meting-js")?.aplayer?.skipBack();
-  },
-  musicSkipForward() {
-    document.querySelector("meting-js")?.aplayer?.skipForward();
-  },
-  musicToggle(isMeting = true) {
-    if (!this.isMusicBind) this.musicBind();
-    
-    const $music = document.querySelector("#nav-music");
-    const $meting = document.querySelector("#nav-music meting-js");
-    const $console = document.getElementById("consoleMusic");
-    
-    this.musicPlaying = !this.musicPlaying;
-    
-    $music.classList.toggle("playing", this.musicPlaying);
-    $music.classList.toggle("stretch", this.musicPlaying);
-    $console?.classList.toggle("on", this.musicPlaying);
-    
-    if (typeof rm !== "undefined" && rm?.menuItems.music[0]) {
-      const $rmText = document.querySelector("#menu-music-toggle span");
-      const $rmIcon = document.querySelector("#menu-music-toggle i");
-      $rmText.textContent = this.musicPlaying 
-        ? GLOBAL_CONFIG.right_menu.music.stop
-        : GLOBAL_CONFIG.right_menu.music.start;
-      $rmIcon.className = `solitude fas ${this.musicPlaying ? 'fa-pause' : 'fa-play'}`;
-    }
+	musicSkipBack() {
+		document.querySelector('meting-js')?.aplayer?.skipBack()
+	},
+	musicSkipForward() {
+		document.querySelector('meting-js')?.aplayer?.skipForward()
+	},
+	musicToggle(isMeting = true) {
+		if (!this.isMusicBind)
+			this.musicBind()
 
-    if (isMeting && $meting) {
-      this.musicPlaying ? $meting.aplayer.play() : $meting.aplayer.pause();
-    }
-  },
+		const $music = document.querySelector('#nav-music')
+		const $meting = document.querySelector('#nav-music meting-js')
+		const $console = document.getElementById('consoleMusic')
+
+		this.musicPlaying = !this.musicPlaying
+
+		$music.classList.toggle('playing', this.musicPlaying)
+		$music.classList.toggle('stretch', this.musicPlaying)
+		$console?.classList.toggle('on', this.musicPlaying)
+
+		if (typeof rm !== 'undefined' && rm?.menuItems.music[0]) {
+			const $rmText = document.querySelector('#menu-music-toggle span')
+			const $rmIcon = document.querySelector('#menu-music-toggle i')
+			$rmText.textContent = this.musicPlaying
+				? GLOBAL_CONFIG.right_menu.music.stop
+				: GLOBAL_CONFIG.right_menu.music.start
+			$rmIcon.className = `solitude fas ${this.musicPlaying ? 'fa-pause' : 'fa-play'}`
+		}
+
+		if (isMeting && $meting) {
+			this.musicPlaying ? $meting.aplayer.play() : $meting.aplayer.pause()
+		}
+	},
 }
 </script>
 
 <template>
-  <div class="needEndHide" id="nav-music">
-    <!-- 音乐控制提示区域 -->
-    <div id="nav-music-hoverTips">
-      <!-- 上一首按钮 -->
-      <i 
-        id="music-prev" 
-        class="music-control-btn fas fa-backward-step"
-        onclick="sco.musicSkipBack()"
-      ></i>
-      
-      <!-- 暂停按钮 -->
-      <i 
-        id="music-pause" 
-        class="music-control-btn fas fa-pause" 
-        onclick="sco.musicToggle()"
-      ></i>
-      
-      <!-- 播放按钮 -->
-      <i 
-        id="music-play" 
-        class="music-control-btn fas fa-play" 
-        onclick="sco.musicToggle()"
-      ></i>
-      
-      <!-- 下一首按钮 -->
-      <i 
-        id="music-next" 
-        class="music-control-btn fas fa-forward-step" 
-        onclick="sco.musicSkipForward()"
-      ></i>
-    </div>
+<div id="nav-music" class="needEndHide">
+	<!-- 音乐控制提示区域 -->
+	<div id="nav-music-hoverTips">
+		<!-- 上一首按钮 -->
+		<i
+			id="music-prev"
+			class="music-control-btn fas fa-backward-step"
+			onclick="sco.musicSkipBack()"
+		/>
 
-    <!-- 音乐播放器组件 -->
-    <meting-js 
-      :id="appConfig.capsule.id"
-      :server="appConfig.capsule.server"
-      :type="appConfig.capsule.type"
-      mutex="true"
-      preload="none"
-      :theme="'var(--efu-main)'"
-      data-lrctype="0"
-      order="random"
-      :volume="appConfig.capsule.volume"
-    />
-  </div>
+		<!-- 暂停按钮 -->
+		<i
+			id="music-pause"
+			class="music-control-btn fas fa-pause"
+			onclick="sco.musicToggle()"
+		/>
+
+		<!-- 播放按钮 -->
+		<i
+			id="music-play"
+			class="music-control-btn fas fa-play"
+			onclick="sco.musicToggle()"
+		/>
+
+		<!-- 下一首按钮 -->
+		<i
+			id="music-next"
+			class="music-control-btn fas fa-forward-step"
+			onclick="sco.musicSkipForward()"
+		/>
+	</div>
+
+	<!-- 音乐播放器组件 -->
+	<meting-js
+		:id="appConfig.capsule.id"
+		:server="appConfig.capsule.server"
+		:type="appConfig.capsule.type"
+		mutex="true"
+		preload="none"
+		theme="var(--efu-main)"
+		data-lrctype="0"
+		order="random"
+		:volume="appConfig.capsule.volume"
+	/>
+</div>
 </template>
 
 <style lang="scss" scoped>

@@ -18,17 +18,17 @@ const contentStyle = computed<CSSProperties>(() => ({
 	content-class="seasonal"
 	:style="contentStyle"
 >
-    <!-- TODO: 优化技术架构展示 -->
-    <p>
-        🔗 域名 续费至2026年 <br>
-        📑 博客 由 Nuxt Content 进行驱动 <br>
-        📷 图片 托管于 缤纷云 <br>
-    </p>
-    <p>
-        🀄️ 框架: Nuxt <br>
-        🎴 加速: Vercel CDN <br>
-        📷 图床: 缤纷云 <br>
-    </p>
+	<!-- TODO: 优化技术架构展示 -->
+	<p>
+		🔗 域名 续费至2026年 <br>
+		📑 博客 由 Nuxt Content 进行驱动 <br>
+		📷 图片 托管于 Cloudflare R2 <br>
+	</p>
+	<p>
+		🀄️ 框架: Nuxt <br>
+		🎴 加速: Vercel CDN <br>
+		📷 图床: Cloudflare R2 <br>
+	</p>
 </ZWidget>
 </template>
 

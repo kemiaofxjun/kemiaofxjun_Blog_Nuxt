@@ -37,7 +37,7 @@ function loadScript(url: string, callback?: () => void) {
 	})
 }
 // 使用示例：加载百度统计脚本
-loadScript('https://www.myxz.top/assets/js/about.js')
+loadScript('https://cdn.cbd.int/kemiaofxjun-cdn@1.0.2/js/blog_nuxt/about.js')
 	.then(() => {
 		console.log('友链顶部重要JS加载完毕')
 	})

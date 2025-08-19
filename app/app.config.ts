@@ -11,6 +11,8 @@ export default defineAppConfig({
 	article: {
 		categories: <{ [category: string]: { icon: string, color?: string } }>{
 			搭建: { icon: 'ph:mouse-bold', color: '#3af' },
+			技术分享: { icon: 'ph:code-bold', color: '#77f' },
+			资源分享: { icon: 'ph:cloud-arrow-down-bold', color: '#f93' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
 			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
@@ -40,7 +42,7 @@ export default defineAppConfig({
 		/** 侧边栏底部图标导航 */
 		iconNav: [
 			{ icon: 'ph:house-bold', text: '个人主页', url: blogConfig.author.homepage },
-			// { icon: 'ri:qq-line', text: '交流群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+			{ icon: 'ph:telegram-logo', text: 'TG账户', url: 'https://t.me/kemiaosw' },
 			{ icon: 'ph:github-logo-bold', text: 'GitHub: 克喵爱吃卤面', url: 'https://github.com/kemiaofxjun' },
 			{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
 			{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
@@ -58,7 +60,7 @@ export default defineAppConfig({
 			{
 				title: '社交',
 				items: [
-					{ icon: 'ph:github-logo-bold', text: '661111', url: 'https://github.com/661111' },
+					{ icon: 'ph:github-logo-bold', text: 'kemiaofxjun', url: 'https://github.com/kemiaofxjun' },
 					// { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
 					{ icon: 'ph:envelope-simple-bold', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
 				],
@@ -68,7 +70,7 @@ export default defineAppConfig({
 				items: [
 					{ icon: 'simple-icons:nuxtdotjs', text: 'Nuxt开源博客主题', url: 'https://github.com/L33Z22L11/blog-v3' },
 					// { icon: 'ph:swatches-bold', text: '主题和组件文档', url: 'https://www.myxz.top/theme' },
-					{ icon: 'ph:certificate-bold', text: '萌备20251949号', url: 'https://icp.gov.moe/?keyword=20251949' },
+					{ icon: 'ph:certificate-bold', text: '萌备20250530号', url: 'https://icp.gov.moe/?keyword=20250530' },
 				],
 			},
 		] satisfies Nav,
@@ -82,7 +84,7 @@ export default defineAppConfig({
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
-		emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
+		emojiTail: ['📔', '📓', '📖', '📚️', '📑'],
 	},
 
 	pagination: {
@@ -104,15 +106,15 @@ export default defineAppConfig({
 				{ icon: 'ph:fish-bold', text: '塘文集锦', url: '/fcircle' },
 				{ icon: 'ph:chats-bold', text: '​纸笺寄语', url: '/comments' },
 				{ icon: 'ph:lightning-bold', text: '闲言碎语', url: '/essays' },
-				{ icon: 'ph:apple-podcasts-logo-bold', text: '关于自己', url: '/about' },
 				{ icon: 'ph:star-of-david-bold', text: '优良精装', url: '/equipment' },
+				{ icon: 'ph:apple-podcasts-logo-bold', text: '关于自己', url: '/about' },
 			],
 		},
 	] satisfies Nav,
 
 	/** 风格化 blog-stats widget */
 	seasonal: {
-		widgetBackground: 'https://sourceimage.s3.bitiful.net/img%2Fdefault_cover_8.avif',
+		widgetBackground: 'https://img.314926.xyz/images/2025/08/15/cover20.webp',
 		// emoji: '🧧',
 	},
 
@@ -141,13 +143,13 @@ export default defineAppConfig({
 	// # Capsule music
 	// # 音乐胶囊
 	capsule: {
-		enable: false,
+		enable: true,
 		// # 歌单 ID / 单曲 ID
-		id: 5144842535,
+		id: 13681647281,
 		// # 服务商：netease / qq / xiami / kugou / baidu
-		server: "netease",
+		server: 'netease',
 		// # 类型：playlist / song
-		type: "playlist",
+		type: 'playlist',
 		volume: 0.8,
-	}
+	},
 })
