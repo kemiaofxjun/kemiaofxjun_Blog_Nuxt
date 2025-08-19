@@ -2,7 +2,7 @@
 #about-page .author-info {
     display: flex;
     align-items: center;
-    margin: 0 0 16px 0;
+    margin: 0 0 16px;
 }
 
 #about-page .author-tag-left {
@@ -360,7 +360,7 @@
     font-weight: 700;
     line-height: 1.1;
     display: flex
-;
+;    
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
@@ -383,7 +383,7 @@
     background: url(https://p.zhheo.com/1Z29e0210….png!cover) no-repeat;
     background-size: cover;
     min-height: 230px;
-    color: var(--heo-white);
+    color: var(--heo-lighttext);
 }
 
 .author-content-item .author-content-item-tips {
@@ -421,7 +421,7 @@
     background-size: cover;
     min-height: 300px;
     overflow: hidden;
-    color: var(--heo-white);
+    color: var(--heo-green);
     width: 59%;
 }
 
