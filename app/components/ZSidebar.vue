@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import CardRender from './music/CardRender.vue'
+
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 const searchStore = useSearchStore()
@@ -38,6 +40,8 @@ const keycut = computed(() => navigator?.userAgent.includes('Mac OS') ? '⌘K' :
 				</li>
 			</menu>
 		</template>
+
+		<CardRender/>
 	</nav>
 
 	<footer class="sidebar-footer">
