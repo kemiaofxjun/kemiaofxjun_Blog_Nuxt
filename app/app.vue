@@ -1,6 +1,7 @@
 <template>
 <NuxtLoadingIndicator />
 <SkipToContent />
+<MusicWidget/>
 <ZSidebar />
 <div id="content" style="width: 1150px;">
 	<main id="main-content">
