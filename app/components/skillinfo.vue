@@ -70,7 +70,7 @@ const skillTagGroups = computed(() => {
           </div>
 
           <!-- 全部技能列表 -->
-          <div class="skills-list">
+          <!-- <div class="skills-list">
             <div 
               v-for="(tag, tagIdx) in skills.creativity_list" 
               :key="tagIdx" 
@@ -93,7 +93,7 @@ const skillTagGroups = computed(() => {
               </div>
             </div>
             <div class="etc ...">...</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
