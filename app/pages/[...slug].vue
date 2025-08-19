@@ -64,11 +64,11 @@ else {
 
 <template v-else-if="preview">
 	<PreViewHeader />
-	<PostHeader v-bind="post" />
+	<PostHeader v-bind="preview" />
 	<PostExcerpt v-if="excerpt" :excerpt />
 	<ContentRenderer
 		class="article"
-		:class="getPostTypeClassName(post?.type, { prefix: 'md' })"
+		:class="getPostTypeClassName(preview?.type, { prefix: 'md' })"
 		:value="post"
 		tag="article"
 	/>
