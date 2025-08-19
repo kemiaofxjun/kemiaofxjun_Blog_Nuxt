@@ -23,6 +23,21 @@ export default defineAppConfig({
 			// title: '标题',
 		},
 	},
+	preview: {
+		categories: <{ [category: string]: { icon: string, color?: string } }>{
+			搭建: { icon: 'ph:mouse-bold', color: '#3af' },
+			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
+			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
+			未分类: { icon: 'ph:folder-dotted-bold' },
+		},
+		defaultCategoryIcon: 'ph:folder-bold',
+		/** 分类排序方式，键为排序字段，值为显示名称 */
+		order: {
+			date: '创建日期',
+			updated: '更新日期',
+			// title: '标题',
+		},
+	}
 
 	content: {
 		/** 代码块自动折叠触发行数 */
