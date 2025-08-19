@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
 import { aboutPage } from '~/about'
-import { creativityData } from '~/creativity'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
@@ -214,7 +212,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </div>
                     </div>
                 </div>
-                <div class="author-content-item game" v-for="game in about.game"  style="width: 50%;">
+                <div class="author-content-item game" v-for="game in about.game"  style="width: 49%;">
                     <div class="card-content">
                         <div class="author-content-item-tips">
                             {{ game.tip }}

@@ -1,5 +1,4 @@
 <template>
-<LoadIngBox />
 <NuxtLoadingIndicator />
 <SkipToContent />
 <ZSidebar />
