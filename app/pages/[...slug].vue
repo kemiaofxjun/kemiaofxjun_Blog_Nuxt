@@ -62,18 +62,18 @@ else {
 	<PostComment />
 </template>
 
-<template v-else-if="preview">
+<template v-else-if="previews">
 	<PreViewHeader />
-	<PostHeader v-bind="preview" />
+	<PostHeader v-bind="previews" />
 	<PostExcerpt v-if="excerpt" :excerpt />
 	<ContentRenderer
 		class="article"
-		:class="getPostTypeClassName(preview?.type, { prefix: 'md' })"
-		:value="post"
+		:class="getPostTypeClassName(previews?.type, { prefix: 'md' })"
+		:value="previews"
 		tag="article"
 	/>
 
-	<PostFooter v-bind="post" />
+	<PostFooter v-bind="previews" />
 	<PostSurround />
 	<PostComment />
 </template>
