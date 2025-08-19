@@ -37,7 +37,7 @@ export default defineAppConfig({
 			updated: '更新日期',
 			// title: '标题',
 		},
-	}
+	},
 
 	content: {
 		/** 代码块自动折叠触发行数 */
