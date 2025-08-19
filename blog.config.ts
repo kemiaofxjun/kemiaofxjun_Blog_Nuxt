@@ -7,26 +7,26 @@ export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
 // 存储 nuxt.config 和 app.config 共用的配置
 // 此处为启动时需要的配置，启动后可变配置位于 app/app.config.ts
 const blogConfig = {
-	title: '莫言小栈',
-    subtitle: '生生不息，永无止息。',
-    // 长 description 利好于 SEO
-    description: '莫言的博客网站，分享技术和魔改。网站界面简洁美观，涵盖了魔改、教程等多个领域，为读者提供了卓越的阅读体验。',
+	title: '喵洛阁',
+	subtitle: '克喵的小站',
+	// 长 description 利好于 SEO
+	description: '愿你看清一切真相后，依旧热爱你的家人和朋友。',
 	author: {
-        name: '莫言',
-        avatar: 'https://blog.myxz.top/img/avatar.avif',
-        email: '3227988255@qq.com',
-        homepage: 'https://www.myxz.top/',
-    },
+		name: '克喵爱吃卤面',
+		avatar: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
+		email: 'me@mail.kemeow.top',
+		homepage: 'https://www.kemiao.online/',
+	},
 	copyright: {
 		abbr: 'CC BY-NC-SA 4.0',
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: 'https://blog.myxz.top/img/avatar.avif',
+	favicon: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
 	language: 'zh-CN',
-	timeEstablished: '2020-07-19',
-    timezone: 'Asia/Shanghai',
-    url: 'https://www.myxz.top/',   
+	timeEstablished: '2025-08-19',
+	timezone: 'Asia/Shanghai',
+	url: 'https://kemeow.kemiaosw.top/',
 
 	defaultCategory: ['未分类'],
 
@@ -56,10 +56,10 @@ const blogConfig = {
 	],
 
 	// 自己部署的 Twikoo 服务
-    twikoo: {
-        envId: 'https://twikoo.sxiaohe.top/',
-        preload: 'https://twikoo.sxiaohe.top/',
-    },
+	twikoo: {
+		envId: 'https://kemiao-twikoo.050815.xyz/',
+		preload: 'https://kemiao-twikoo.050815.xyz/',
+	},
 }
 
 // 用于生成 OPML 和友链页面配置

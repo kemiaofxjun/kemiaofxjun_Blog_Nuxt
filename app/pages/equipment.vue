@@ -3,37 +3,37 @@ import { equipment } from '~/equipment'
 </script>
 
 <template>
-    <div id="icat-equipment">
-        <div v-for="i in equipment" :key="i.class_name">
-            <h2 :id="i.class_name">
-                {{ i.class_name }}
-            </h2>
-            <div class="equipment-desc">
-                {{ i.class_desc }}
-            </div>
-            <div class="equipment" v-for="item in i.List" :key="item.name">
-                <div class="icat-equipment-box" style="width: calc(35% - 12px)!important;">
-                    <img :src="item.image">
-                    <div class="icat-equipment-content">
-                        <div class="icat-equipment-name">
-                            {{ item.name }}
-                        </div>
-                        <div class="icat-equipment-custom">
-                            {{ item.custom }}
-                        </div>
-                        <div class="icat-equipment-opinion">
-                            {{ item.opinion }}
-                        </div>
-                        <div class="icat-equipment-box-more">
-                            <a :herf="item.details_flink" title="跳转到{{ item.name }}的产品详情">
-                                {{ i.infoname }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="icat-equipment">
+	<div v-for="i in equipment" :key="i.class_name">
+		<h2 :id="i.class_name">
+			{{ i.class_name }}
+		</h2>
+		<div class="equipment-desc">
+			{{ i.class_desc }}
+		</div>
+		<div v-for="item in i.List" :key="item.name" class="equipment">
+			<div class="icat-equipment-box" style="width: calc(35% - 12px)!important;">
+				<img :src="item.image">
+				<div class="icat-equipment-content">
+					<div class="icat-equipment-name">
+						{{ item.name }}
+					</div>
+					<div class="icat-equipment-custom">
+						{{ item.custom }}
+					</div>
+					<div class="icat-equipment-opinion">
+						{{ item.opinion }}
+					</div>
+					<div class="icat-equipment-box-more">
+						<a :herf="item.details_flink" title="跳转到{{ item.name }}的产品详情">
+							{{ i.infoname }}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </template>
 
 <style scoped>
@@ -58,7 +58,7 @@ import { equipment } from '~/equipment'
     gap: 16px;
   }
   /* 初始化 */
-  
+
   #icat-equipment .equipment > .icat-equipment-box {
     border: 1px solid var(--icat-secondbg);
     background: var(--icat-card-bg);
@@ -114,7 +114,7 @@ import { equipment } from '~/equipment'
     display: flex;
     justify-content: space-between;
   }
-  
+
   #icat-equipment .equipment .icat-equipment-box .icat-equipment-content .icat-equipment-box-more a {
     font-size: 12px;
     background: var(--icat-gray-op);
@@ -129,7 +129,7 @@ import { equipment } from '~/equipment'
     box-shadow: 0 8px 16px -4px var(--icat-black-op);
   }
   /* 好物页基础样式 */
-  
+
   @media screen and (max-width: 900px) {
     #icat-equipment .equipment {
       gap: 10px;
@@ -150,6 +150,6 @@ import { equipment } from '~/equipment'
     }
   }
   /* 响应式 */
-  
+
   /* 我的好物样式 */
 </style>
