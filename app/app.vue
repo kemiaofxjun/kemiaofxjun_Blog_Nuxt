@@ -1,5 +1,5 @@
-<LoadIngBox />
 <template>
+<LoadIngBox />
 <NuxtLoadingIndicator />
 <SkipToContent />
 <ZSidebar />
