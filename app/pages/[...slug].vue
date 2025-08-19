@@ -4,7 +4,7 @@ import PreViewHeader from '../components/preview/PreViewHeader.vue'
 const route = useRoute()
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['toc', 'blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'toc'])
 
 const { data: post } = await useAsyncData(
 	() => route.path,
