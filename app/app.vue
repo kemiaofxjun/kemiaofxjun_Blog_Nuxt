@@ -1,7 +1,7 @@
+<LoadIngBox />
 <template>
 <NuxtLoadingIndicator />
 <SkipToContent />
-<LoadIngBox />
 <ZSidebar />
 <div id="content" style="width: 1150px;">
 	<main id="main-content">
