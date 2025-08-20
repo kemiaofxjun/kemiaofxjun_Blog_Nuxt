@@ -18,9 +18,6 @@ onMounted(() => {
 
   loadScript('https://blog.zhheo.com/plugin/aplayer/APlayer.min.js')
     .catch(err => console.error('脚本加载失败:', err))
-
-  loadScript('/assets/js/music.js')
-    .catch(err => console.error('脚本加载失败:', err))	
 })
 </script>
 

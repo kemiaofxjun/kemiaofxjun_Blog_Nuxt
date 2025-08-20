@@ -53,6 +53,7 @@ const blogConfig = {
 		// { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
 		// Twikoo 评论系统
 		{ src: 'https://lib.baomitu.com/twikoo/1.6.39/twikoo.all.min.js', defer: true },
+		{ src: '/assets/js/music.js', defer: true},
 	],
 
 	// 自己部署的 Twikoo 服务

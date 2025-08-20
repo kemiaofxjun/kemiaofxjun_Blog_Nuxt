@@ -1,6 +1,7 @@
 import process from 'node:process'
 import blogConfig, { routeRules } from './blog.config'
 import packageJson from './package.json'
+import { Script } from 'node:vm';
 
 // 此处配置无需修改
 export default defineNuxtConfig({
@@ -21,7 +22,8 @@ export default defineNuxtConfig({
 				{ rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
                 { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
                 { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
-                { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  }
+                { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
+				{ rel: 'stylesheet', href: 'https://blog.zhheo.com/plugin/aplayer/APlayer.min.css', media: 'none', onload: 'this.media="all"'}
 			],
 			templateParams: {
 				separator: '|',
