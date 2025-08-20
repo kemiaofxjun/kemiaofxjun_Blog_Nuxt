@@ -9,7 +9,7 @@ export default defineNuxtConfig({
 			meta: [
 				{
 					name: 'google-site-verification',
-					content: '7Nebq9WeE49fvW5yWORhuSHIEMx9Pc2Z1HRzA683ZBs', // 这里替换成你的验证字符串
+					content: '7Nebq9WeE49fvW5yWORhuSHIEMx9Pc2Z1HRzA683ZBs',
 				},
 				{ name: 'description', content: blogConfig.description },
 				{ name: 'keywords', content: [blogConfig.keywords, ...process.env.KEYWORDS?.split(',')].filter(Boolean).join(', ') },
