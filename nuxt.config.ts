@@ -7,8 +7,9 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			meta: [
+				{ name: 'google-site-verification', content: blogConfig.google },
 				{ name: 'description', content: blogConfig.description },
-				{ name: 'keywords', content: [blogConfig.keywords, ...process.env.KEYWORDS?.split(',')].filter(Boolean).join(', ') },
+				{ name: 'keywords', content: [blogConfig.keywords, ...(process.env.KEYWORDS?.split(',') ?? [])].filter(Boolean).join(', ') },
 				{ name: 'author', content: [blogConfig.author.name, blogConfig.author.email].filter(Boolean).join(', ') },
 				// 此处为元数据的生成器标识，不建议修改
 				{ 'name': 'generator', 'content': packageJson.name, 'data-github-repo': packageJson.homepage, 'data-version': packageJson.version },
@@ -105,11 +106,11 @@ export default defineNuxtConfig({
 	},
 
 	hooks: {
-		'content:file:afterParse': (ctx: { content: { path: string, original_dir: string } }) => {
+		'content:file:afterParse': (ctx) => {
 			// 在 URL 中隐藏指定目录前缀的路径
 			for (const prefix of blogConfig.hideContentPrefixes) {
-				const realPath = ctx.content.path as string
-				if (realPath.startsWith(prefix)) {
+				const realPath = ctx.content?.path as string
+				if (realPath && realPath.startsWith(prefix)) {
 					ctx.content.original_dir = prefix
 					ctx.content.path = realPath.replace(prefix, '')
 				}

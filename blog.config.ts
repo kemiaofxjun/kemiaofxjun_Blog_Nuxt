@@ -11,6 +11,8 @@ const blogConfig = {
 	subtitle: '克喵的小站',
 	// 长 description 利好于 SEO
 	description: '愿你看清一切真相后，依旧热爱你的家人和朋友。',
+	keywords: '博客, 个人网站, 克喵',
+	google: '7Nebq9WeE49fvW5yWORhuSHIEMx9Pc2Z1HRzA683ZBs', // 这里替换成你的验证字符串
 	author: {
 		name: '克喵爱吃卤面',
 		avatar: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
