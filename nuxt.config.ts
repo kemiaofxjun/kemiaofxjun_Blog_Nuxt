@@ -7,6 +7,12 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			meta: [
+				{
+					name: 'google-site-verification',
+					content: '7Nebq9WeE49fvW5yWORhuSHIEMx9Pc2Z1HRzA683ZBs', // 这里替换成你的验证字符串
+				},
+				{ name: 'description', content: blogConfig.description },
+				{ name: 'keywords', content: [blogConfig.keywords, ...process.env.KEYWORDS?.split(',')].filter(Boolean).join(', ') },
 				{ name: 'author', content: [blogConfig.author.name, blogConfig.author.email].filter(Boolean).join(', ') },
 				// 此处为元数据的生成器标识，不建议修改
 				{ 'name': 'generator', 'content': packageJson.name, 'data-github-repo': packageJson.homepage, 'data-version': packageJson.version },
@@ -19,9 +25,9 @@ export default defineNuxtConfig({
 				{ rel: 'preconnect', href: blogConfig.twikoo.preload },
 				// 思源黑体 "Noto Sans SC", 思源宋体 "Noto Serif SC", "JetBrains Mono"
 				{ rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
-                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
-                { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
-                { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  }
+				{ rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
+				{ rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"' },
+				{ rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"' },
 			],
 			templateParams: {
 				separator: '|',
@@ -103,7 +109,7 @@ export default defineNuxtConfig({
 	},
 
 	hooks: {
-		'content:file:afterParse': (ctx: { content: { path: string; original_dir: string } }) => {
+		'content:file:afterParse': (ctx: { content: { path: string, original_dir: string } }) => {
 			// 在 URL 中隐藏指定目录前缀的路径
 			for (const prefix of blogConfig.hideContentPrefixes) {
 				const realPath = ctx.content.path as string
