@@ -1145,10 +1145,10 @@ git push origin master
 #2020年10月后github新建仓库默认分支改为main，注意更改
 ```
 3. 可能遇到的 bug
-因为 butterfly 主题文件夹下的.git 文件夹的存在，那么主题文件夹会被识别子项目。从而无法被上传到源码仓库。若是遇到添加屏蔽项，但是还是无法正常上传主题文件夹的情况。请先将本地源码中的 themes 文件夹移动到别的目录下。然后 commit 一次。接着将 themes 文件夹移动回来，再 commit 一次。
+因为 solitude 主题文件夹下的.git 文件夹的存在，那么主题文件夹会被识别子项目。从而无法被上传到源码仓库。若是遇到添加屏蔽项，但是还是无法正常上传主题文件夹的情况。请先将本地源码中的 themes 文件夹移动到别的目录下。然后 commit 一次。接着将 themes 文件夹移动回来，再 commit 一次。
     ::alert{type="error"}
     #default
-    要是还不行，那就删了 butterfly 主题文件夹下的.git 文件夹，然后再重复上述的 commit 操作。
+    要是还不行，那就删了 solitude 主题文件夹下的.git 文件夹，然后再重复上述的 commit 操作。
     ::
 ::
 
