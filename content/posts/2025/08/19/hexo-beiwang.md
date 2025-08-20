@@ -167,7 +167,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://myboke.kemiaosw.to
+url: # 你的域名
 permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -991,9 +991,10 @@ game: # 游戏设置，仅支持source: bgmv0
 
 ![](https://img.314926.xyz/images/2025/08/19/hexo-beiwang2.webp)
 
-> [!TIP]
->
-> 这里之所以是私有仓库，是因为在接下来的配置中会用到 `Token`，如果 `Token` 被盗用，别人可以肆意操作你的 github 仓库内容，为了避免这一风险，才选择的博客源码闭源。
+::alert{type="warning"}
+#default
+这里之所以是私有仓库，是因为在接下来的配置中会用到 `Token`，如果 `Token` 被盗用，别人可以肆意操作你的 github 仓库内容，为了避免这一风险，才选择的博客源码闭源。
+::
 
 ### 配置 Github Action
 
