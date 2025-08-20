@@ -1,6 +1,7 @@
 import process from 'node:process'
 import blogConfig, { routeRules } from './blog.config'
 import packageJson from './package.json'
+import { Script } from 'node:vm';
 
 // 此处配置无需修改
 export default defineNuxtConfig({
@@ -22,9 +23,10 @@ export default defineNuxtConfig({
 				{ rel: 'preconnect', href: blogConfig.twikoo.preload },
 				// 思源黑体 "Noto Sans SC", 思源宋体 "Noto Serif SC", "JetBrains Mono"
 				{ rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
-				{ rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
-				{ rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"' },
-				{ rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
+                { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
+                { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
+				{ rel: 'stylesheet', href: 'https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css', media: 'none', onload: 'this.media="all"'}
 			],
 			templateParams: {
 				separator: '|',

@@ -12,9 +12,10 @@ export default defineAppConfig({
 		categories: <{ [category: string]: { icon: string, color?: string } }>{
 			搭建: { icon: 'ph:mouse-bold', color: '#3af' },
 			技术分享: { icon: 'ph:code-bold', color: '#77f' },
-			资源分享: { icon: 'ph:cloud-arrow-down-bold', color: '#f93' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
 			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
+			站历史: { icon: 'ph:desktop-bold', color: '#72e'},
+			分享: { icon:'ph:desktop-tower-bold', color: '#3ab' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',
