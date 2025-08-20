@@ -3,6 +3,7 @@
 <SkipToContent />
 <ZSidebar />
 <div id="content" style="width: 1150px;">
+	<MusicWidget />
 	<main id="main-content">
 		<NuxtPage />
 		<ZFooter />
