@@ -3,7 +3,7 @@ const appConfig = useAppConfig()
 const timeEstablished = appConfig.timeEstablished
 
 const blogLog = [
-	{ date: timeEstablished, content: '更换框架Nuxt 4，域名kemeow..top' },
+	{ date: timeEstablished, content: '更换框架Nuxt 4，域名kemiaosw.top' },
 ]
 </script>
 
