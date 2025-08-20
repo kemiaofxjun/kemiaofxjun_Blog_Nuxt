@@ -23,7 +23,7 @@ export default defineNuxtConfig({
                 { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
                 { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
                 { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
-				{ rel: 'stylesheet', href: 'https://blog.zhheo.com/plugin/aplayer/APlayer.min.css', media: 'none', onload: 'this.media="all"'}
+				{ rel: 'stylesheet', href: 'https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css', media: 'none', onload: 'this.media="all"'}
 			],
 			templateParams: {
 				separator: '|',
