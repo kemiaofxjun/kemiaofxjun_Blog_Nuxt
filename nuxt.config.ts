@@ -7,10 +7,6 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			meta: [
-				{
-					name: 'google-site-verification',
-					content: '7Nebq9WeE49fvW5yWORhuSHIEMx9Pc2Z1HRzA683ZBs',
-				},
 				{ name: 'description', content: blogConfig.description },
 				{ name: 'keywords', content: [blogConfig.keywords, ...process.env.KEYWORDS?.split(',')].filter(Boolean).join(', ') },
 				{ name: 'author', content: [blogConfig.author.name, blogConfig.author.email].filter(Boolean).join(', ') },
