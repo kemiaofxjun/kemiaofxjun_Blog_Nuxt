@@ -14,8 +14,8 @@ export default defineAppConfig({
 			技术分享: { icon: 'ph:code-bold', color: '#77f' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
 			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
-			站历史: { icon: 'ph:desktop-bold', color: '#72e'},
-			分享: { icon:'ph:desktop-tower-bold', color: '#3ab' },
+			站历史: { icon: 'ph:desktop-bold', color: '#72e' },
+			分享: { icon: 'ph:desktop-tower-bold', color: '#3ab' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',
@@ -49,6 +49,14 @@ export default defineAppConfig({
 			{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
 		] satisfies NavItem[],
 		/** 页脚站点地图 */
+		deal: [{
+			left: [
+				{ icon: 'ph:envelope-simple-bold', name: '邮箱', link: 'mailto:3227988255@qq.com' },
+			],
+			miniLogo: [
+				{ name: '莫言小栈', icon: 'https://blog.myxz.top/img/avatar.avif' },
+			],
+		}],
 		nav: [
 			{
 				title: '探索',
@@ -139,18 +147,5 @@ export default defineAppConfig({
 			icon: 'ph:moon-bold',
 			tip: '深色模式',
 		},
-	},
-
-	// # Capsule music
-	// # 音乐胶囊
-	capsule: {
-		enable: true,
-		// # 歌单 ID / 单曲 ID
-		id: 13681647281,
-		// # 服务商：netease / qq / xiami / kugou / baidu
-		server: 'netease',
-		// # 类型：playlist / song
-		type: 'playlist',
-		volume: 0.8,
 	},
 })

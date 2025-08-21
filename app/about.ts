@@ -79,6 +79,7 @@ export interface game {
 	tip: string
 	title: string
 	uid: string
+	image: string
 }
 
 // 历程数据
@@ -145,6 +146,7 @@ export const aboutPage: aboutConnect[] = [
 			tip: '爱好游戏',
 			title: '饥荒',
 			uid: 'Krylin',
+			image: 'https://img.314926.xyz/images/2025/07/30/jihuangcover.webp',
 		}],
 		single: [{
 			tip: '',
