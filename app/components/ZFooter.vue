@@ -6,21 +6,15 @@ const appConfig = useAppConfig()
 <footer class="z-footer">
 	<nav class="footer-nav">
 		<div id="footer_deal" v-for="deal in appConfig.footer.deal" :key="deal.name">
-			<div v-for="left in deal.left" :key="left.icon">
-				<a class="deal_link" target="_blank" rel="noopener" :href="left.link" :title="left.name">
-					<i :class="left.icon"></i>
-				</a>
+			<a class="deal_link" target="_blank" rel="noopener" v-for="left in deal.left" :key="left.icon" :href="left.link" :title="left.name">
+				<i :class="left.icon"></i>
+			</a>
+			<div class="nolazyload footer_mini_logo" id="footer_mini_logo" v-for="miniLogo in deal.miniLogo" :key="miniLogo.title" :title="miniLogo.name" onclick="sco.toTop()">
+				<img :src="miniLogo.icon" :alt="miniLogo.name">
 			</div>
-			<div v-for="miniLogo in deal.miniLogo" :key="miniLogo.title">
-				<div class="nolazyload footer_mini_logo" id="footer_mini_logo" :title="miniLogo.name" onclick="sco.toTop()">
-					<img :src="miniLogo.icon" :alt="miniLogo.name">
-				</div>
-			</div>
-			<div v-for="right in deal.right" :key="right.icon">
-				<a class="deal_link" target="_blank" rel="noopener" :href="right.link" :title="right.name">
-					<i :class="right.icon"></i>
-				</a>
-			</div>
+			<a class="deal_link" target="_blank" rel="noopener" v-for="right in deal.right" :key="right.icon" :href="right.link" :title="right.name">
+				<i :class="right.icon"></i>
+			</a>
 		</div>
 		<div v-for="(group, groupIndex) in appConfig.footer.nav" :key="groupIndex" class="footer-nav-group">
 			<h3 v-if="group.title">
