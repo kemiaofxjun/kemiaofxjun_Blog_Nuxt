@@ -54,10 +54,7 @@ export default defineAppConfig({
 			],
 			miniLogo: [
 				{ name:'莫言小栈', icon: 'https://blog.myxz.top/img/avatar.avif'}
-			],
-			// right: [
-			// 	{ icon: 'ph:envelope-simple-bold', name: '邮箱', link: 'https://www.myxz.top', }
-			// ],
+			]
 		}],
 		nav: [
 			{

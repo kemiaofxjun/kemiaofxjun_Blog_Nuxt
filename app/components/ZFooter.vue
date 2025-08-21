@@ -12,9 +12,6 @@ const appConfig = useAppConfig()
 			<div class="nolazyload footer_mini_logo" id="footer_mini_logo" :title="deal.miniLogo.name" onclick="sco.toTop()">
 				<img :src="deal.miniLogo.icon" :alt="deal.miniLogo.name">
 			</div>
-			<!-- <a class="deal_link" target="_blank" rel="noopener" :href="deal.right.link" :title="deal.right.name">
-				<i :class="deal.right.icon"></i>
-			</a> -->
 		</div>
 		<div v-for="(group, groupIndex) in appConfig.footer.nav" :key="groupIndex" class="footer-nav-group">
 			<h3 v-if="group.title">
