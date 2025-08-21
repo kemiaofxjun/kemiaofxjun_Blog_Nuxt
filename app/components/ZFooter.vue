@@ -79,13 +79,13 @@ const appConfig = useAppConfig()
 		margin: 0.5em;
 	}
 }
-#footer #footer_deal {
+#footer_deal {
     justify-content: center;
     display: flex;
     padding-top: 2rem;
     align-items: center;
 
-	#footer #footer_deal .deal_link {
+	#footer_deal .deal_link {
 		display: flex;
 		color: var(--efu-card-bg);
 		width: 32px;
@@ -96,14 +96,14 @@ const appConfig = useAppConfig()
 		border-radius: 3rem;
 		background: var(--efu-fontcolor);
 		transition: 0.3s;
-		#footer #footer_deal i {
+		#footer_deal i {
 			font-size: 0.8rem;
 			line-height: 0.9rem;
 			height: 0.9rem;
 		}
 	}
 
-	#footer #footer_deal .footer_mini_logo {
+	#footer_deal .footer_mini_logo {
 		width: 50px;
 		height: 50px;
 		cursor: pointer;
