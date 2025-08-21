@@ -79,6 +79,7 @@ export interface game {
     tip: string;
     title: string;
     uid: string;
+    image: string;
 }
 
 //历程数据
@@ -145,6 +146,7 @@ export const aboutPage: aboutConnect[] = [
             tip: "爱好游戏",
             title: "暂时未公开",
             uid: "暂时未公开",
+            image: ""
         }],
         single: [{
             tip: "",

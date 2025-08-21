@@ -48,6 +48,17 @@ export default defineAppConfig({
             { icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
 		] satisfies NavItem[],
 		/** 页脚站点地图 */
+		deal: [{
+			left: [
+				{ icon: 'ph:envelope-simple-bold', name: '邮箱', link: 'mailto:3227988255@qq.com', }
+			],
+			miniLogo: [
+				{ name:'莫言小栈', icon: 'https://blog.myxz.top/img/avatar.avif'}
+			],
+			right: [
+				{ icon: 'ph:envelope-simple-bold', name: '邮箱', link: 'mailto:3227988255@qq.com', }
+			],
+		}],
 		nav: [
 			{
                 title: '探索',
@@ -139,17 +150,4 @@ export default defineAppConfig({
 			tip: '深色模式',
 		},
 	},
-
-	// # Capsule music
-	// # 音乐胶囊
-	capsule: {
-		enable: false,
-		// # 歌单 ID / 单曲 ID
-		id: 5144842535,
-		// # 服务商：netease / qq / xiami / kugou / baidu
-		server: "netease",
-		// # 类型：playlist / song
-		type: "playlist",
-		volume: 0.8,
-	}
 })
