@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { dealData } from '~/deal.ts',
+import { dealData } from '~/deal.ts'
 </script>
 
 <template>
