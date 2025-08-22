@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import FooterDeal from './footerDeal.vue';
-
 const appConfig = useAppConfig()
 </script>
 
 <template>
 <footer class="z-footer">
-	<FooterDeal />
 	<nav class="footer-nav">
 		<div v-for="(group, groupIndex) in appConfig.footer.nav" :key="groupIndex" class="footer-nav-group">
 			<h3 v-if="group.title">
