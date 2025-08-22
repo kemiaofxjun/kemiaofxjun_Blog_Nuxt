@@ -14,7 +14,7 @@ recommend: true
 
 ::pic
 ---
-src: \assets\img\postImage\08\22\prview.png
+src: https://www.myxz.top/assets/img/postImage/08/22/prview.png
 # mirror: # 是否借助第三方图片加载服务，见源代码
 caption: 关于页面展示
 # zoom: false # 是否开启灯箱缩放，默认开启
@@ -127,7 +127,7 @@ const skillTagGroups = computed(() => {
 ```
 
 ## 添加Vue页面
-在 [BlogRoot:]\app\pages 中添加 about.vue
+在 [BlogRoot:]/app/pages 中添加 about.vue
 
 ::alert{type="warning"}
 #title
