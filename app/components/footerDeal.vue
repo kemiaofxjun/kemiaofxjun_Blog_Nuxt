@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { dealData } from '~/deal.ts'
+import { dealLeft, dealMiniLogo } from '~/deal.ts'
 </script>
 
 <template>
-  <div id="footer_deal" v-for="deal in dealData" :key="deal.name">
-		<a class="deal_link" target="_blank" rel="noopener" :href="deal.left.link" :title="deal.left.name">
-			<i :class="deal.left.icon"></i>
+  <div id="footer_deal">
+		<a class="deal_link" target="_blank" rel="noopener" :href="dealLeft.link" :title="dealLeft.name">
+			<i :class="dealLeft.icon"></i>
 		</a>
-		<div class="nolazyload footer_mini_logo" id="footer_mini_logo" :title="deal.miniLogo.name" onclick="sco.toTop()">
-			<img :src="deal.miniLogo.icon" :alt="deal.miniLogo.name">
+		<div class="nolazyload footer_mini_logo" id="footer_mini_logo" :title="dealMiniLogo.name" onclick="sco.toTop()">
+			<img :src="dealMiniLogo.icon" :alt="dealMiniLogo.name">
 		</div>
 	</div>
 </template>
