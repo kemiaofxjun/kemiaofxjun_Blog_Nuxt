@@ -50,11 +50,11 @@ const blogConfig = {
 
 	scripts: [
 		// 自己部署的 Umami 统计服务
-		// { 'src': 'https://zhi.zhilu.cyou/zhi.js', 'data-website-id': 'a1997c81-a42b-46f6-8d1d-8fbd67a8ef41', 'defer': true },
+		{ 'src': 'https://unami-kemiao.kemiaosw.top/String', 'data-website-id': 'c3aa4023-a3e2-4831-add6-bd30ba29d393', 'defer': true },
 		// 自己网站的 Cloudflare Insights 统计服务
 		// { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
 		// Twikoo 评论系统
-		{ src: 'https://lib.baomitu.com/twikoo/1.6.39/twikoo.all.min.js', defer: true },
+		{ src: 'https://cdn.cbd.int/kemiao-gitee-static@1.0.0/js/twikoo/twikoo@1.6.44.min.js', defer: true },
 	],
 
 	// 自己部署的 Twikoo 服务
