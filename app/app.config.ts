@@ -49,14 +49,7 @@ export default defineAppConfig({
 			{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
 		] satisfies NavItem[],
 		/** 页脚站点地图 */
-		deal: [{
-			left: [
-				{ icon: 'ph:envelope-simple-bold', name: '邮箱', link: 'mailto:3227988255@qq.com' },
-			],
-			miniLogo: [
-				{ name: '莫言小栈', icon: 'https://blog.myxz.top/img/avatar.avif' },
-			],
-		}],
+
 		nav: [
 			{
 				title: '探索',
