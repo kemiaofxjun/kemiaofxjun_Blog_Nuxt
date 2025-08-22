@@ -1,6 +1,6 @@
 ---
 title: 添加关于页面
-description: 本篇文章讲述了添加模块代码并在博客的友情链接中添加模块，且使用css美化
+description: 近期将博客迁移至Nuxt框架时，重新搭建了「关于页面」。过程中添加了技能展示组件（skillinfo.vue），实现标签分组渲染；新建about.vue页面，整合个人信息、技能、偏好等多模块内容，并通过TS定义数据接口（about.ts/creativity.ts）。
 date: 2025-08-22 10:00
 update: 2025-08-22 20:49
 image: https://sourceimage.s3.bitiful.net/img/default_cover_27.avif
@@ -11,7 +11,6 @@ recommend: true
 ## 前言
 在我把博客的框架迁移到Nuxt的时候，关于页面也一并迁移过来了，而在当时还没学会Nuxt的数据语法，只能按照原样的结构继续使用并不公开。当我学会了父类的子类数据架构之后。回过头来重写关于页面，尽管呈现出来是不太完美的。
 ## 效果展示
-
 ::pic
 ---
 src: https://www.myxz.top/assets/img/postImage/08/22/prview.png
