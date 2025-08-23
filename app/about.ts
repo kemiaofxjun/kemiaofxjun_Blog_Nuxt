@@ -144,8 +144,8 @@ export const aboutPage: aboutConnect[] = [
         }],
         game: [{
             tip: "爱好游戏",
-            title: "暂时未公开",
-            uid: "暂时未公开",
+            title: "使命召唤",
+            uid: "",
             image: ""
         }],
         single: [{
