@@ -47,7 +47,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
 </script>
 
 <template>
-    <link href="/assets/css/about.css" rel="stylesheet"></link>
+    <!-- <link href="/assets/css/about.css" rel="stylesheet"></link> -->
     <div id="about-page" v-for="about in aboutPage" :key="about.author" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
         <div class="author-main" v-for="author in about.author" :key="author.left">
             <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
