@@ -71,7 +71,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
         </div>
         <div class="author-page-content">
             <div class="author-content">
-                <div class="author-content-item myInfoAndSayHello" v-for="info in about.myinfo" :key="info.title1" style="text-align: center;">
+                <div class="author-content-item myInfoAndSayHello" v-for="info in about.myinfo" :key="info.title1" style="text-align: center; width: 100%">
                     <div class="title1">
                         {{ info.title1 }}
                     </div>
