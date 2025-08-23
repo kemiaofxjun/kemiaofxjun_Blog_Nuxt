@@ -69,10 +69,9 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                 <span class="author-tag">{{ right.tag4 }}</span>
             </div>
         </div>
-        <p class="p center logo large">{{ about.large }}</p>
         <div class="author-page-content">
-            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
-                <div class="author-content-item myInfoAndSayHello" style="width: 45%;">
+            <div class="author-content">
+                <div class="author-content-item myInfoAndSayHello" v-for="info in about.myinfo" :key="info.title1" style="text-align: center;">
                     <div class="title1">
                         {{ info.title1 }}
                     </div>
@@ -89,7 +88,9 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </span>
                     </div>
                 </div>
-                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips" style="width: 35%;">
+            </div>
+            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
+                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
                     <div class="author-content-item-tips">
                         {{ card.tips }}
                     </div>
@@ -116,7 +117,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                         </div>
                     </h2>
                 </div>
-                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip" style="width: 30%;">
+                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
                     <div class="author-content-item-tips">
                         {{ maxim.tip }}
                     </div>
@@ -131,71 +132,8 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                 </div>
             </div>
             <div class="author-content">
-                <!-- <div class="author-content-item skills" v-for="creativity in creativityData" :key="creativity.class_name">
-                    <div class="card-content">
-                        <div class="author-content-item-tips">
-                            技能
-                        </div>
-                        <span class="author-content-item-title">
-                            {{ creativity.class_name }}
-                        </span>
-                        <div class="skills-style-group">
-                            <div class="tags-group-all">
-                                <div class="tags-group-wrapper">
-                                    <div class="tags-group-icon-pair"v-for="group in creativity.creativity_list" :key="group.name">
-                                        <div class="tags-group-icon" :style="{ background:group.color, }">
-                                            <img :title="group.name" class="entered exited" :src="group.icon">
-                                        </div>
-                                        <div class="tags-group-icon" :style="{ background:group.color, }">
-                                            <img :title="group.name" class="entered exited" :src="group.icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skills-list">
-                                <div class="skill-info" v-for="group in creativity.creativity_list" :key="group.name">
-                                    <div class="skill-icon" :style="{ background:color, }">
-                                    <img :title="group.name" class="entered loading" :src="group.icon" data-ll-status="loading">
-                                    </div>
-                                    <div class="skill-name"> 
-                                    <span>
-                                        {{ group.name }}
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="etc">...</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <skillinfo />
-                <!-- <div class="author-content-item careers">
-                    <div class="card-content">
-                        <div class="author-content-item-tips">生涯</div><span class="author-content-item-title">无限进步</span>
-                        <div class="careers-group">
-                            <div class="careers-item">
-                                <div class="circle" style="background: #357ef5"></div>
-                                <div class="name">DLPU,产品设计专业</div>
-                            </div>
-                            <div class="careers-item">
-                                <div class="circle" style="background: #eb372a"></div>
-                                <div class="name">ITSO,UI/产品经理</div>
-                            </div>
-                        </div><img class="author-content-img entered loading" alt="生涯" src="https://p.zhheo.com/jSNB8A24190681748947001875.png!cover" data-ll-status="loading">
-                    </div>
-                </div> -->
             </div>
-            <!-- <div class="hello-about">
-                <div class="cursor" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                <div class="shapes">
-                    <div class="shape shape-1" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                    <div class="shape shape-2" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                    <div class="shape shape-3" style="translate:none;rotate:none;scale:none;transform:translate(721px,180px)"></div>
-                </div>
-                <div class="content">
-                    <h1>{{ about.hello }}</h1>
-                </div>
-            </div> -->
             <div class="author-content">
                 <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip" style="width: 50%;">
                     <div class="card-content">
@@ -236,158 +174,3 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
         </div>
     </div>
 </template>
-
-<style lang="css" scoped>
-  /* 1.基础架构 */
-  #about-page .author-main {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: box;
-    display: flex;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -o-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -o-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    margin: 0 0 16px 0;
-    user-select: none;
-  }
-  #about-page .author-box {
-    position: relative;
-    width: 189px;
-    height: 189px;
-    background: rgba(253, 253, 253, 0.8);
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #about-page .author-img {
-    margin: auto;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 180px;
-    height: 180px;
-    z-index: 10;
-    background: var(--mj-card-bg);
-  }
-  .author-tag-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: 30px;
-  }
-  .author-tag-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 30px;
-  }
-  /* 2.头像美化 */
-  #about-page .author-box span {
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    background: rgba(253, 253, 253, 0.8);
-    z-index: 1;
-  }
-  #about-page .author-box::before {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background-image: conic-gradient(transparent, transparent, transparent, #8758FF);
-    animation: animate 4s linear infinite;
-    animation-delay: -2s;
-  }
-  #about-page .author-box::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background-image: conic-gradient(transparent, transparent, transparent, #5CB8E4);
-    animation: animate 4s linear infinite;
-  }
-  /* 3.列表卡片美化 */
-  .author-tag {
-    transform: translate(0, -4px);
-    padding: 1px 8px;
-    background: var(--heo-card-bg);
-    border: var(--style-border-always);
-    border-radius: 40px;
-    margin-top: 6px;
-    font-size: 14px;
-    font-weight: bold;
-    box-shadow: var(--heo-shadow-lightblack);
-    animation: 6s ease-in-out 0s infinite normal none running floating;
-  }
-  /* 4.列表卡片美化以及动画 */
-  /* 4.1.左序列 */
-  .author-tag-left .author-tag:first-child, .author-tag-left .author-tag:last-child {
-    margin-right: -16px;
-  }
-  /* 4.2.右序列 */
-  .author-tag-right .author-tag:first-child, .author-tag-right .author-tag:last-child {
-    margin-left: -16px;
-  }
-  .author-tag:nth-child(1) {
-    animation-delay: 0s;
-  }
-  .author-tag:nth-child(2) {
-    animation-delay: 0.6s;
-  }
-  .author-tag:nth-child(3) {
-    animation-delay: 1.2s;
-  }
-  .author-tag:nth-child(4) {
-    animation-delay: 1.8s;
-  }
-  /* 5.动画css */
-  @keyframes floating {
-    0% {
-      transform: translate(0, -4px);
-    }
-    50% {
-      transform: translate(0, 4px);
-    }
-    100% {
-      transform: translate(0, -4px);
-    }
-  }
-  @keyframes animate {
-    0% {
-      transform: rotate(0)
-    }
-    100% {
-      transform: rotate(360deg)
-    }
-  }
-  /* 6.关于本站文字样式美化 */
-  [data-theme=dark] #about-page .author-title {
-    text-stroke: 1px #bccbe4;
-    -webkit-text-stroke: 1px #bccbe4;
-  }
-  #about-page .author-title {
-    font-size: 2.7rem;
-    font-weight: 700;
-    margin-top: 1px;
-    letter-spacing: 6px;
-    -webkit-background-clip: text;
-    background-image: linear-gradient(90deg, #2ca2b4, #5598de 24%, #7f87ff 45%, #f65aad 85%, #df80b4);
-    background-clip: text;
-    display: inline-block;
-    color: transparent;
-    text-stroke: 2px #3fdaee;
-    -webkit-text-stroke: 1px #3fdaee;
-  }
-</style>
