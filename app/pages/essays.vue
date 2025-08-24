@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { server } from 'typescript'
+import { onMounted, ref } from 'vue'
+
 // 全局配置
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
 // 设置侧边栏组件
-layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 // SEO 配置
 useSeoMeta({
@@ -19,10 +22,38 @@ const API_CONFIG = {
 	PAGE_SIZE: 30,
 }
 
+// 加载外部脚本
+onMounted(() => {
+	const loadScript = (src: string) => {
+		return new Promise((resolve, reject) => {
+			if (document.querySelector(`script[src="${src}"]`))
+				return resolve(null)
+
+			const script = document.createElement('script')
+			script.src = src
+			script.async = true
+			script.onload = resolve
+			script.onerror = reject
+			document.head.appendChild(script)
+		})
+	}
+
+	loadScript('https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.js')
+		.catch(err => console.error('脚本加载失败:', err))
+	loadScript('https://jsd.myxz.top/npm/meting@2/dist/Meting.min.js')
+		.catch(err => console.error('脚本加载失败:', err))
+})
+
 interface TalkItem {
 	content: {
 		text: string
 		images: string[]
+		music?: {
+			type: 'tencent'
+			id: string
+			server: string
+			api: string
+		}
 		video?: {
 			type: 'bilibili' | 'youtube' | 'online'
 			url: string
@@ -96,6 +127,14 @@ function formatContent(item: any) {
 	return {
 		text: content,
 		images: imgs.map((img: string) => img.startsWith('http') ? img : `https:${img}`),
+		music: ext.music.type === 'tencent'
+			? {
+					type: 'tencent',
+					server: ext.music.server,
+					id: ext.music.id,
+					api: ext.music.api,
+				}
+			: null,
 		video: ext.video?.type === 'bilibili'
 			? {
 					type: 'bilibili',
@@ -274,6 +313,16 @@ function searchLocation(location: string) {
 					</div>
 					<div class="talk-content">
 						<div class="talk_content_text" v-html="item.content.text" />
+
+						<div v-if="item.content.music">
+							<link src="https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
+							<meting-js
+								v-if="item.music.type.type === 'tencent'"
+								:id="item.content.music.id"
+								:server="item.content.music.server"
+								:api="item.content.music.api"
+							/>
+						</div>
 
 						<div v-if="item.content.images.length" class="zone_imgbox">
 							<figure

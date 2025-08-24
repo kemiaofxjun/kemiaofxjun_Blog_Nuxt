@@ -106,9 +106,9 @@
     flex-direction: column;
     justify-content: center;
     color: var(--heo-white);
-    background: linear-gradient(120deg, #5b27ff 0, #00d4ff 100%);
+    background: linear-gradient(120deg, #9a79fa 0, #00d4ff 100%);
     background-size: 200%;
-    min-height: 200px;
+    min-height: 175px;
 }
 
 #about-page .myInfoAndSayHello .title1 {
@@ -216,7 +216,6 @@
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
-    min-height: 450px;
 }
 
 .author-content-item.skills .skills-style-group {
@@ -252,9 +251,9 @@
 }
 
 .tags-group-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
     position: relative;
 }
 
@@ -359,12 +358,10 @@
     font-size: 36px;
     font-weight: 700;
     line-height: 1.1;
-    display: flex
-;    
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    width: 39%;
 }
 
 .author-content-item .author-content-item-tips {
@@ -380,10 +377,11 @@
 
 /* technology */
 .author-content-item.like-technology {
-    background: url(https://p.zhheo.com/1Z29e0210….png!cover) no-repeat;
+    /* background: url(https://p.zhheo.com/1Z29e0210….png!cover) no-repeat; */
     background-size: cover;
     min-height: 230px;
-    color: var(--heo-lighttext);
+    /* color: var(--heo-lighttext); */
+    /* color: var(--heo-white); */
 }
 
 .author-content-item .author-content-item-tips {
@@ -417,11 +415,11 @@
 
 /* game */
 .author-content-item.game {
-    background: url(https://p.zhheo.com/gkGHlM2499088….png!cover) no-repeat top;
+    background: url(https://img.314926.xyz/images/2025/07/30/jihuangcover.webp) no-repeat top;
     background-size: cover;
     min-height: 300px;
     overflow: hidden;
-    color: var(--heo-green);
+    color: var(--heo-yellow);
     width: 59%;
 }
 
@@ -446,6 +444,19 @@
     }
 }
 
+@keyframes  floating {
+    0% {
+        transform: translate(0, -4px);
+    }
+
+    50% {
+        transform: translate(0, 4px);
+    }
+
+    100% {
+        transform: translate(0, -4px);
+    }
+}
 /* 移动端页面 */
 @media screen and (max-width: 768px) {
     .author-content {
@@ -461,9 +472,9 @@
     }
 }
 
-/* hover */
+/* hover
 @media (hover: hover) {
     .author-content-item.skills:hover .skills-style-group .skills-list {
         opacity: 1;
     }
-}
+} */

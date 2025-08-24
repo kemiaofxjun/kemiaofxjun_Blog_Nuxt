@@ -4,7 +4,7 @@ import { equipment } from '~/equipment'
 
 <template>
 <div id="icat-equipment">
-	<div v-for="i in equipment" :key="i.class_name">
+	<div v-for="i in equipment" :key="i.class_name" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
 		<h2 :id="i.class_name">
 			{{ i.class_name }}
 		</h2>

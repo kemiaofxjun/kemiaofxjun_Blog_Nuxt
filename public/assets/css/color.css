@@ -75,6 +75,7 @@
     --heo-shadow-lightblack:0 5px 12px -5px rgba(102, 68, 68, 0.0);
     --heo-shadow-light2black:0 5px 12px -5px rgba(102, 68, 68, 0.0);
     --heo-card-border: #42444a;
+    --heo-card-jihuang: #fdd300ff;
 }
   
 @media screen and (max-width: 768px){
