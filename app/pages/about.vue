@@ -184,7 +184,7 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
                     <div class="lishi">
                         {{ single.lishi }}
                     </div>
-                    <div class="singlePost">
+                    <!-- <div class="singlePost">
                         <ContentRenderer
                           v-if="singlePost"
                           :value="singlePost"
@@ -193,7 +193,7 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
                         <p v-else class="text-center">
                             可于 about.md 配置友链补充说明。
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
