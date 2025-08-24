@@ -22,18 +22,26 @@ const API_CONFIG = {
     PAGE_SIZE: 30,
 }
 
+// 加载外部脚本
 onMounted(() => {
-  // 动态加载 CSS（可选，若已在全局引入可省略）
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css';
-  document.head.appendChild(link);
+  const loadScript = (src: string) => {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) return resolve(null)
+      
+      const script = document.createElement('script')
+      script.src = src
+      script.async = true
+      script.onload = resolve
+      script.onerror = reject
+      document.head.appendChild(script)
+    })
+  }
 
-  // 动态加载 JS 并初始化播放器（推荐在 public/index.html 全局引入 JS）
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js';
-  document.body.appendChild(script);
-});
+  loadScript('https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.js')
+    .catch(err => console.error('脚本加载失败:', err))
+  loadScript('https://jsd.myxz.top/npm/meting@2/dist/Meting.min.js')
+    .catch(err => console.error('脚本加载失败:', err))
+})
 
 interface TalkItem {
     content: {
@@ -302,7 +310,13 @@ function searchLocation(location: string) {
                             <div class="talk_content_text" v-html="item.content.text"></div>
                             
                             <div v-if="item.content.music">
-                                <meting-js :server="item.content.music.server" :id="item.content.music.id" :type="item.content.music.type" :api="item.content.music.api"></meting-js>
+                                <link src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
+                                <meting-js 
+                                    v-if="item.content.music.type === 'song'" 
+                                    :server="item.content.music.server"
+                                    :id="item.content.music.id"
+                                    :api="item.content.music.api" 
+                                />
                             </div>
 
                             <div v-if="item.content.images.length" class="zone_imgbox">
