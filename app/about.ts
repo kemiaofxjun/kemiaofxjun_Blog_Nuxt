@@ -7,6 +7,7 @@ export interface aboutConnect {
     technology: technology[]; //偏好数据
     game: game[]; //游戏数据
     single: single[]; //历程数据
+    social: social[];
 }
 
 // 头像数据
@@ -90,6 +91,12 @@ export interface single {
     content: string;
 }
 
+// 社交数据
+export interface social {
+    herf: string;
+    class: string;
+}
+
 export const aboutPage: aboutConnect[] = [
     {
         author: [
@@ -130,6 +137,9 @@ export const aboutPage: aboutConnect[] = [
             }]
         }],
         hello: "Main Dis My Blogs",
+        social: [
+            { herf: "", class: "" },
+        ],
         maxim: [{
             tip: "座右铭",
             title1: "生活明朗，",

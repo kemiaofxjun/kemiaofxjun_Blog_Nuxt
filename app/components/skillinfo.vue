@@ -37,7 +37,7 @@ const skillTagGroups = computed(() => {
 });
 </script>
 <template>
-    <div v-if="skills" class="author-content-item skills">
+    <div v-if="skills" class="author-content-item skills" style="max-width: 60%;">
       <div class="card-content">
         <div class="author-content-item-tips">{{ skills.class_name }}</div>
         <span class="author-content-item-title">{{ skills.subtitle }}</span>
