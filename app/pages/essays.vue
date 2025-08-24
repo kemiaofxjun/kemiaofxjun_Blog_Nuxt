@@ -126,7 +126,7 @@ function formatContent(item: any) {
     return {
         text: content,
         images: imgs.map((img: string) => img.startsWith('http') ? img : `https:${img}`),
-        music: ext.music?.type == ext.music.type
+        music: ext.music
             ?{
                     type: ext.music.type,
                     server: ext.music.server,
