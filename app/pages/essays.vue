@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { server } from 'typescript'
+import { ref, onMounted } from 'vue';
+
 // 全局配置
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
@@ -19,10 +22,29 @@ const API_CONFIG = {
     PAGE_SIZE: 30,
 }
 
+onMounted(() => {
+  // 动态加载 CSS（可选，若已在全局引入可省略）
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css';
+  document.head.appendChild(link);
+
+  // 动态加载 JS 并初始化播放器（推荐在 public/index.html 全局引入 JS）
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js';
+  document.body.appendChild(script);
+});
+
 interface TalkItem {
     content: {
         text: string
         images: string[]
+        music?: {
+            type: 'song' | '' | ''
+            id: string
+            server: string
+            api: string
+        }
         video?: {
             type: 'bilibili' | 'youtube' | 'online'
             url: string
@@ -96,6 +118,14 @@ function formatContent(item: any) {
     return {
         text: content,
         images: imgs.map((img: string) => img.startsWith('http') ? img : `https:${img}`),
+        music: ext.music?.type == 'song'
+            ?{
+                    type: 'song',
+                    server: ext.music.server,
+                    id: ext.music.id,
+                    api: ext.music.api
+                }
+            : null,
         video: ext.video?.type === 'bilibili'
             ? {
                     type: 'bilibili',
@@ -270,6 +300,10 @@ function searchLocation(location: string) {
                         </div>
                         <div class="talk-content">
                             <div class="talk_content_text" v-html="item.content.text"></div>
+                            
+                            <div v-if="item.content.music">
+                                <meting-js :server="item.content.music.server" :id="item.content.music.id" :type="item.content.music.type" :api="item.content.music.api"></meting-js>
+                            </div>
 
                             <div v-if="item.content.images.length" class="zone_imgbox">
                                 <figure
