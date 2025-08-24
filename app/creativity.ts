@@ -19,59 +19,84 @@ export const creativityData: CreativityData[] = [
     subtitle: '技能',
     creativity_list: [
       {
-        name: "Vue",
-        color: "#b8f0ae",
-        icon: "https://cdn.sxiaohe.top/img/banners/vue.webp"
-      },
-      {
         name: "Java",
         color: "#fff",
-        icon: "https://cdn.sxiaohe.top/img/banners/Java.webp"
+        icon: "https://bu.dusays.com/2021/01/15/3015783c55c50.png"
       },
       {
         name: "Docker",
         color: "#57b6e6",
-        icon: "https://cdn.sxiaohe.top/img/banners/docker.webp"
-      },
-      {
-        name: "Webpack",
-        color: "#2e3a41",
-        icon: "https://cdn.sxiaohe.top/img/banners/webpack.webp"
+        icon: "https://bu.dusays.com/2021/01/15/3098eabc4fad5.png"
       },
       {
         name: "Photoshop",
         color: "#4082c3",
-        icon: "https://cdn.sxiaohe.top/img/banners/PS.webp"
-      },
-      {
-        name: "Swift",
-        color: "#eb6840",
-        icon: "https://cdn.sxiaohe.top/img/banners/swift.webp"
-      },
-      {
-        name: "Python",
-        color: "#fff",
-        icon: "https://cdn.sxiaohe.top/img/banners/python.webp"
+        icon: "https://bu.dusays.com/2021/01/15/264705e09d189.png"
       },
       {
         name: "Node",
         color: "#333",
-        icon: "https://cdn.sxiaohe.top/img/banners/node-logo.svg"
+        icon: "https://bu.dusays.com/2021/01/15/b54430e7a6fe8.png"
+      },
+      {
+        name: "Webpack",
+        color: "#2e3a41",
+        icon: "https://bu.dusays.com/2021/01/15/5ab4cd50d5d35.png"
+      },
+      {
+        name: "Pinia",
+        color: "#fff",
+        icon: "https://bu.dusays.com/2021/01/15/8f632bfd90059.png"
+      },
+      {
+        name: "Python",
+        color: "#fff",
+        icon: "https://bu.dusays.com/2021/01/15/b37f959f4f221.png"
+      },
+      {
+        name: "Vite",
+        color: "#937df7",
+        icon: "https://bu.dusays.com/2021/01/15/d99cca731ae25.png"
+      },
+      {
+        name: "Flutter",
+        color: "#4499e4",
+        icon: "https://bu.dusays.com/2021/01/15/a6e1e9e3b6735.png"
+      },
+      {
+        name: "Vue",
+        color: "#b8f0ae",
+        icon: "https://bu.dusays.com/2021/01/15/185712ef6a931.png"
+      },
+      {
+        name: "React",
+        color: "#222",
+        icon: "https://bu.dusays.com/2021/01/15/24979ac342d0a.png"
+      },
+      {
+        name: "CSS3",
+        color: "#2c51db",
+        icon: "https://bu.dusays.com/2021/01/15/fe90b52e443dc.png"
+      },
+      {
+        name: "JS",
+        color: "#f7cb4f",
+        icon: "https://bu.dusays.com/2021/01/15/5644ac2b9c63d.png"
+      },
+      {
+        name: "HTML",
+        color: "#e9572b",
+        icon: "https://bu.dusays.com/2021/01/15/aaaf518aec9c1.png"
       },
       {
         name: "Git",
         color: "#df5b40",
-        icon: "https://cdn.sxiaohe.top/img/banners/git.webp"
+        icon: "https://bu.dusays.com/2021/01/15/8530f48b07ad0.png"
       },
       {
-        name: "Css",
-        color: "#2c51db",
-        icon: "https://cdn.sxiaohe.top/img/banners/css.webp"
-      },
-      {
-        name: "Js",
-        color: "#f7cb4f",
-        icon: "https://cdn.sxiaohe.top/img/banners/js.webp"
+        name: "Apifox",
+        color: "#e65164",
+        icon: "https://bu.dusays.com/2021/01/15/d24ffd2267904.png"
       }
     ],
   },
