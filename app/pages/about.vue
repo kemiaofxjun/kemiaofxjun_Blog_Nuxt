@@ -3,6 +3,8 @@ import { aboutPage } from '~/about'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
+
+const { data: singlePost } = await useAsyncData('/about', () => queryCollection('content').path('/about').first())
 // 动态加载外部 JS 脚本
   const loadScript = (url: string, callback?: () => void) => {
     return new Promise<void>((resolve, reject) => {
@@ -168,6 +170,29 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
                                 {{ game.uid }}
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="author-content">
+                <div class="create-site-post author-content-item single" v-for="single in about.single" :key="single.tip">
+                    <div class="author-content-item-tips">
+                        {{ single.tip }}
+                    </div>
+                    <div class="author-content-item-title">
+                        {{ single.title }}
+                    </div>
+                    <div class="lishi">
+                        {{ single.lishi }}
+                    </div>
+                    <div class="singlePost">
+                        <ContentRenderer
+                          v-if="singlePost"
+                          :value="singlePost"
+                          class="article"
+                        />
+                        <p v-else class="text-center">
+                            可于 about.md 配置友链补充说明。
+                        </p>
                     </div>
                 </div>
             </div>

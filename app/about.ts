@@ -85,11 +85,8 @@ export interface game {
 //历程数据
 export interface single {
     tip: string;
-    conect1: string;
-    strong1: string;
-    conect2: string;
-    strong2: string;
-    conect3: string
+    title: string;
+    lishi: string;
 }
 
 export const aboutPage: aboutConnect[] = [
@@ -149,12 +146,9 @@ export const aboutPage: aboutConnect[] = [
             image: ""
         }],
         single: [{
-            tip: "",
-            conect1: "",
-            strong1: "",
-            conect2: "",
-            strong2: "",
-            conect3: ""
+            tip: "心路历程",
+            title: "为何而建站",
+            lishi: "『莫言小栈』历史进程",
         }]
     }
 ]
