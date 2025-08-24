@@ -312,8 +312,8 @@ function searchLocation(location: string) {
                             <div v-if="item.content.music">
                                 <link src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
                                 <meting-js 
-                                    :type= "item.music.type", 
-                                    :server="item.content.music.server",
+                                    :type= "item.music.type"
+                                    :server="item.content.music.server"
                                     :id="item.content.music.id"
                                     :api="item.content.music.api" 
                                 ></meting-js>
