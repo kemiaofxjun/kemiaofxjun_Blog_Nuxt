@@ -310,7 +310,7 @@ function searchLocation(location: string) {
                             <div class="talk_content_text" v-html="item.content.text"></div>
                             
                             <div v-if="item.content.music">
-                                <link src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
+                                <link src="https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
                                 <meting-js 
                                     :type= "item.music.type"
                                     :server="item.content.music.server"
