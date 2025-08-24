@@ -48,7 +48,7 @@ interface TalkItem {
         text: string
         images: string[]
         music?: {
-            type: string
+            type: 'tencent'
             id: string
             server: string
             api: string
@@ -126,9 +126,9 @@ function formatContent(item: any) {
     return {
         text: content,
         images: imgs.map((img: string) => img.startsWith('http') ? img : `https:${img}`),
-        music: ext.music
+        music: ext.music.type === 'tencent'
             ?{
-                    type: ext.music.type,
+                    type: 'tencent',
                     server: ext.music.server,
                     id: ext.music.id,
                     api: ext.music.api
@@ -312,7 +312,7 @@ function searchLocation(location: string) {
                             <div v-if="item.content.music">
                                 <link src="https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
                                 <meting-js 
-                                    :type= "item.music.type"
+                                    v-if="item.music.type.type === 'tencent'"
                                     :server="item.content.music.server"
                                     :id="item.content.music.id"
                                     :api="item.content.music.api" 
