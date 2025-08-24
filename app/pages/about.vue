@@ -174,26 +174,29 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
                 </div>
             </div>
             <div class="author-content">
-                <div class="create-site-post author-content-item single" v-for="single in about.single" :key="single.tip">
+                <div class="create-site-post author-content-item single" v-for="single in about.single" :key="single.tip" style="width: 100%">
                     <div class="author-content-item-tips">
                         {{ single.tip }}
                     </div>
                     <div class="author-content-item-title">
                         {{ single.title }}
                     </div>
+                    <p class="author-content-item-content">
+                        {{ single.content }}
+                    </p>
                     <div class="lishi">
                         {{ single.lishi }}
                     </div>
-                    <!-- <div class="singlePost">
+                    <div class="singlePost">
                         <ContentRenderer
                           v-if="singlePost"
                           :value="singlePost"
                           class="article"
                         />
                         <p v-else class="text-center">
-                            可于 about.md 配置友链补充说明。
+                            可于 about.md 配置补充说明。
                         </p>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

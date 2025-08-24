@@ -87,6 +87,7 @@ export interface single {
     tip: string;
     title: string;
     lishi: string;
+    content: string;
 }
 
 export const aboutPage: aboutConnect[] = [
@@ -149,6 +150,7 @@ export const aboutPage: aboutConnect[] = [
             tip: "心路历程",
             title: "为何而建站",
             lishi: "『莫言小栈』历史进程",
+            content: "『莫言小栈』是综合类型博客，集成文章、说说、友链、留言、装备等栏目。目前魔改内容已经公开，可进行使用需署名。"
         }]
     }
 ]
