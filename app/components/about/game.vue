@@ -3,7 +3,7 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item game" v-for="(gameItem, index) in gameItem" :key="index" style="width: 49%;">
+    <div class="author-content-item game" v-for="(gameItem, index) in about" :key="index" style="width: 49%;">
         <div v-for="game in gameItem.game" :key="game.tip">
             <div class="card-content">
                 <div class="author-content-item-tips">
