@@ -44,3 +44,12 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           full_commit_message: ${{ github.event.head_commit.message }}
+
+      - name: 6.推送到仓库
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.nuxttoken }}
+          repository-name: 661111/hexo-site-page
+          branch: main
+          folder: .output/public
+          commit-message: "${{ github.event.head_commit.message }} Updated By Github Actions"
