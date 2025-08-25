@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { equipment } from '~/equipment'
+const layoutStore = useLayoutStore()
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 </script>
 
 <template>
