@@ -13,7 +13,7 @@ const blogConfig = {
     description: '莫言的博客网站，分享技术和魔改。网站界面简洁美观，涵盖了魔改、教程等多个领域，为读者提供了卓越的阅读体验。',
 	author: {
         name: '莫言',
-        avatar: 'https://blog.myxz.top/img/avatar.avif',
+        avatar: '/avatar.avif',
         email: '3227988255@qq.com',
         homepage: 'https://www.myxz.top/',
     },
@@ -22,7 +22,7 @@ const blogConfig = {
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: 'https://blog.myxz.top/img/avatar.avif',
+	favicon: '/avatar.avif',
 	language: 'zh-CN',
 	timeEstablished: '2020-07-19',
     timezone: 'Asia/Shanghai',

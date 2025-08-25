@@ -107,7 +107,7 @@ export const about: aboutConnect[] = [
                     tag3: "🕊 咕咕咕咕咕咕~",
                     tag4: "🧱 CV工程师"
                 }],
-                logo: "https://blog.myxz.top/img/avatar.avif",
+                logo: "/avatar.avif",
                 right: [{
                     tag1: "吃饭不如碎觉 💤",
                     tag2: "乐观 积极 向上 🤝",
