@@ -135,10 +135,12 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
             </div>
             <div class="author-content">
                 <skillinfo />
-                <div class="author-content-item social" v-for="social in about.social" :key="social.herf">
-                    <a :herf="social.herf">
-                        <span :class="social.class" aria-hidden="true"></span>
-                    </a>
+                <div class="author-content-item social">
+                    <div  v-for="social in about.social" :key="social.herf">
+                        <a :herf="social.herf">
+                            <span :class="social.class" aria-hidden="true" style="width: 32px; height: 32px; margin: 0 auto;"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="author-content">
