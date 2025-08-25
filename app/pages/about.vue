@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import { aboutPage } from '~/about'
+import Skillinfo from '../components/about/skillinfo.vue';
+import Social from '../components/about/social.vue';
+import Technology from '../components/about/technology.vue';
+import Author from '../components/about/author.vue';
+import Game from '../components/about/game.vue';
+import Aboutsitetips from '../components/about/aboutsitetips.vue';
+import Maxim from '../components/about/maxim.vue';
+import MyInfoAndSayHello from '../components/about/myInfoAndSayHello.vue';
+import Single from '../components/about/single.vue';
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
 
-const { data: singlePost } = await useAsyncData('/about', () => queryCollection('content').path('/about').first())
 // 动态加载外部 JS 脚本
   const loadScript = (url: string, callback?: () => void) => {
     return new Promise<void>((resolve, reject) => {
       // 检查是否已加载
       if (document.querySelector(`script[src="${url}"]`)) {
-        console.log('JS脚本已加载');
-        resolve();
-        return;
+console.log('JS脚本已加载');
+resolve();
+return;
       }
 
       // 创建 script 标签
@@ -23,15 +30,15 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
 
       // 加载成功回调
       script.onload = () => {
-        console.log('脚本加载完成');
-        callback?.();
-        resolve();
+console.log('脚本加载完成');
+callback?.();
+resolve();
       };
 
       // 加载失败回调
       script.onerror = (err) => {
-        console.error('脚本加载失败', err);
-        reject(err);
+console.error('脚本加载失败', err);
+reject(err);
       };
 
       // 添加到 DOM（推荐添加到 head 或 body 末尾）
@@ -49,165 +56,32 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
 </script>
 
 <template>
-    <link href="/assets/css/about.css" rel="stylesheet"></link>
-    <div id="about-page" v-for="about in aboutPage" :key="about.author" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
-        <div class="author-main" v-for="author in about.author" :key="author.left">
-            <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
-                <span class="author-tag">{{ left.tag1 }}</span>
-                <span class="author-tag">{{ left.tag2 }}</span>
-                <span class="author-tag">{{ left.tag3 }}</span>
-                <span class="author-tag">{{ left.tag4 }}</span>
-            </div>
-            <div class="author-box" style="z-index:0">
-                <span></span>
-                <div class="author-img">
-                    <img class="no-lightbox" :src="author.logo" style="width: 100%;">
-                </div>
-            </div>
-            <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
-                <span class="author-tag">{{ right.tag1 }}</span>
-                <span class="author-tag">{{ right.tag2 }}</span>
-                <span class="author-tag">{{ right.tag3 }}</span>
-                <span class="author-tag">{{ right.tag4 }}</span>
-            </div>
-        </div>
-        <div class="author-page-content">
-            <div class="author-content">
-                <div class="author-content-item myInfoAndSayHello" v-for="info in about.myinfo" :key="info.title1" style="text-align: center; width: 100%">
-                    <div class="title1">
-                        {{ info.title1 }}
-                    </div>
-                    <div class="title2">
-                        {{ info.title2 }}
-                        <span class="inline-word">
-                            {{ info.inlineword1 }}
-                        </span>
-                    </div>
-                    <div class="title1">
-                        {{ info.title3 }}
-                        <span class="inline-word">
-                            {{ info.inlineword2 }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="author-content" v-for="info in about.myinfo" :key="info.title1">
-                <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
-                    <div class="author-content-item-tips">
-                        {{ card.tips }}
-                    </div>
-                    <h2>
-                        {{ card.conect1 }}
-                        <br />
-                        {{ card.conect2 }}
-                        <span class="inline-word">
-                            {{ card.inlineword }}
-                        </span>
-                        <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
-                            <span class="first-tips">
-                                {{ mask.firstTips }}
-                            </span>
-                            <span>
-                                {{ mask.span }}
-                            </span>
-                            <span data-up="data-up">
-                                {{ mask.up }}
-                            </span>
-                            <span data-show="data-show">
-                                {{ mask.show }}
-                            </span>
-                        </div>
-                    </h2>
-                </div>
-                <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
-                    <div class="author-content-item-tips">
-                        {{ maxim.tip }}
-                    </div>
-                    <span class="maxim-title">
-                        <span style="opacity:.6;margin-bottom:8px">
-                            {{ maxim.title1 }}
-                        </span>
-                        <span>
-                            {{ maxim.title2 }}
-                        </span>
-                    </span>
-                </div>
-            </div>
-            <div class="author-content">
-                <skillinfo />
-                <div class="author-content-item social">
-                    <div  v-for="social in about.social" :key="social.herf">
-                        <a :herf="social.herf">
-                            <span :class="social.class" aria-hidden="true" style="width: 32px; height: 32px; margin: 0 auto;"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="author-content">
-                <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip" style="width: 50%;">
-                    <div class="card-content">
-                        <div class="author-content-item-tips">
-                            {{ technology.tip }}
-                        </div>
-                        <span class="author-content-item-title">
-                            {{ technology.title }}
-                        </span>
-                        <div class="content-bottom">
-                            <div class="tips">
-                                {{ technology.bottomTip }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="author-content-item game" v-for="game in about.game"  style="width: 49%;">
-                    <div class="card-content">
-                        <div class="author-content-item-tips">
-                            {{ game.tip }}
-                        </div>
-                        <span class="author-content-item-title">
-                            {{ game.title }}
-                        </span>
-                        <div class="content-bottom">
-                            <!-- <div class="icon-group">
-                                <div class="loading-bar" role="presentation" aria-hidden="true">
-                                    <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
-                                </div>
-                            </div> -->
-                            <div class="tips game-yuanshen-uid">
-                                {{ game.uid }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="author-content">
-                <div class="create-site-post author-content-item single" v-for="single in about.single" :key="single.tip" style="width: 100%">
-                    <div class="author-content-item-tips">
-                        {{ single.tip }}
-                    </div>
-                    <div class="author-content-item-title">
-                        {{ single.title }}
-                    </div>
-                    <p class="author-content-item-content">
-                        {{ single.content }}
-                    </p>
-                    <div class="lishi">
-                        {{ single.lishi }}
-                    </div>
-                    <div class="singlePost">
-                        <ContentRenderer
-                          v-if="singlePost"
-                          :value="singlePost"
-                          class="article"
-                        />
-                        <p v-else class="text-center">
-                            可于 about.md 配置补充说明。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- <link href="/assets/css/about.css" rel="stylesheet"></link> -->
+  <div id="about-page" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
+    <Author />
+    <div class="author-page-content">
+      <div class="author-content">
+        <MyInfoAndSayHello />
+      </div>
+      <div class="author-content">
+        <Aboutsitetips />
+        <Maxim />
+      </div>
+      <div class="author-content">
+        <!-- 来自于主流HEO主题的衍生版本 -->
+        <Skillinfo />
+        <!-- 来自于柳神的关于页面版本 -->
+        <Social />
+      </div>
+      <div class="author-content">
+        <Technology />
+        <Game />
+      </div>
+      <div class="author-content">
+        <Single />
+      </div>
     </div>
+  </div>
 </template>
 
 <style lang="css" scoped>
@@ -363,4 +237,89 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
     text-stroke: 2px #3fdaee;
     -webkit-text-stroke: 1px #3fdaee;
   }
+/* 7.面板样式 */
+.author-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.author-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: .5rem;
+}
+
+.author-content-item {
+    width: 49%;
+    border-radius: 12px;
+    background: var(--heo-card-bg);
+    border: var(--style-border-always);
+    box-shadow: var(--heo-shadow-border);
+    position: relative;
+    padding: 1rem 2rem;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1300px) {
+    .author-content-item {
+animation: slide-in .6s 0s backwards;
+    }
+}
+/* 8.动画组件 */
+@keyframes rowleft {
+    from {
+transform: translateX(0)
+    }
+
+    to {
+transform: translateX(-50%)
+    }
+}
+
+@keyframes rowup {
+    from {
+transform: translateY(0)
+    }
+
+    to {
+transform: translateY(-50%)
+    }
+}
+
+@keyframes  floating {
+    0% {
+transform: translate(0, -4px);
+    }
+
+    50% {
+transform: translate(0, 4px);
+    }
+
+    100% {
+transform: translate(0, -4px);
+    }
+}
+/* 9.移动端页面 */
+@media screen and (max-width: 768px) {
+    .author-content {
+margin-top: 0;
+flex-direction: column;
+    }
+    .author-content-item {
+width: 100% !important;
+padding: 1rem;
+    }
+    #about-page .author-tag-left, #about-page .author-tag-right {
+display: none;
+    }
+    .author-content-item.skills {
+max-width: 100%!important;
+    }
+    .author-content-item.social{
+max-width: 100%!important;
+    }
+}
 </style>

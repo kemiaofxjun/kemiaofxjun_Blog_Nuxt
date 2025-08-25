@@ -97,7 +97,7 @@ export interface social {
     class: string;
 }
 
-export const aboutPage: aboutConnect[] = [
+export const about: aboutConnect[] = [
     {
         author: [
             {
