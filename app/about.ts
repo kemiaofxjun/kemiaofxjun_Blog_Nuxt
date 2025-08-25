@@ -7,6 +7,7 @@ export interface aboutConnect {
 	technology: technology[] // 偏好数据
 	game: game[] // 游戏数据
 	single: single[] // 历程数据
+	social: social[]
 }
 
 // 头像数据
@@ -85,14 +86,18 @@ export interface game {
 // 历程数据
 export interface single {
 	tip: string
-	conect1: string
-	strong1: string
-	conect2: string
-	strong2: string
-	conect3: string
+	title: string
+	lishi: string
+	content: string
 }
 
-export const aboutPage: aboutConnect[] = [
+// 社交数据
+export interface social {
+	herf: string
+	class: string
+}
+
+export const about: aboutConnect[] = [
 	{
 		author: [
 			{
@@ -132,6 +137,10 @@ export const aboutPage: aboutConnect[] = [
 			}],
 		}],
 		hello: 'Main Dis My Blogs',
+		social: [
+			{ herf: 'https://github.com/kemiaofxjun', class: 'ph:github-logo-bold' },
+			{ herf: 'mailto:me@mail.kemeow.top', class: 'ph:envelope' },
+		],
 		maxim: [{
 			tip: '座右铭',
 			title1: '愿你看轻一切真相后，',
@@ -149,12 +158,10 @@ export const aboutPage: aboutConnect[] = [
 			image: 'https://img.314926.xyz/images/2025/07/30/jihuangcover.webp',
 		}],
 		single: [{
-			tip: '',
-			conect1: '',
-			strong1: '',
-			conect2: '',
-			strong2: '',
-			conect3: '',
+			tip: '心路历程',
+			title: '为何而建站',
+			lishi: '『喵洛阁』历史进程',
+			content: '『喵洛阁』是综合类型博客，感谢『莫言小栈』的修改开源！我在这个博客分享我找到的资源、踩坑教程和生活经历。',
 		}],
 	},
 ]

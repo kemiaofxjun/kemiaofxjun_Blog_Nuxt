@@ -251,8 +251,8 @@
 }
 
 .tags-group-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 20px;
     position: relative;
 }
@@ -377,7 +377,7 @@
 
 /* technology */
 .author-content-item.like-technology {
-    /* background: url(https://p.zhheo.com/1Z29e0210….png!cover) no-repeat; */
+    background: url(https://sourceimage.s3.bitiful.net/img/default_cover_25.avif) no-repeat;
     background-size: cover;
     min-height: 230px;
     /* color: var(--heo-lighttext); */
@@ -423,6 +423,47 @@
     width: 59%;
 }
 
+/* single */
+.author-content-item.single {
+    width: 100%;
+}
+.author-content-item .author-content-item-tips {
+    opacity: .8;
+    font-size: 12px;
+    margin-bottom: .5rem;
+}
+.author-content-item-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+.lishi {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+.author-content-item-content {
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+    vertical-align: middle;
+}
+
+/* 社交 */
+.author-content-item.social{
+    display: flex;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    max-width: 39%;
+}
+.author-content-item.social a {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 12px;
+    background: rgb(153, 169, 191);
+}
 /* 动画组件 */
 @keyframes rowleft {
     from {
@@ -470,7 +511,15 @@
     #about-page .author-tag-left, #about-page .author-tag-right {
         display: none;
     }
+    .author-content-item.skills {
+        max-width: 100%!important;
+    }
+    .author-content-item.social{
+        max-width: 100%!important;
+    }
 }
+
+
 
 /* hover
 @media (hover: hover) {

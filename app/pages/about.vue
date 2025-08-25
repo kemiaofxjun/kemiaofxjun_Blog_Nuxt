@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { aboutPage } from '~/about'
+import Aboutsitetips from '../components/about/aboutsitetips.vue'
+import Author from '../components/about/author.vue'
+import Game from '../components/about/game.vue'
+import Maxim from '../components/about/maxim.vue'
+import MyInfoAndSayHello from '../components/about/myInfoAndSayHello.vue'
+import Single from '../components/about/single.vue'
+import Skillinfo from '../components/about/skillinfo.vue'
+import Social from '../components/about/social.vue'
+import Technology from '../components/about/technology.vue'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
+
 // 动态加载外部 JS 脚本
 function loadScript(url: string, callback?: () => void) {
 	return new Promise<void>((resolve, reject) => {
@@ -48,128 +57,28 @@ loadScript('https://cdn.cbd.int/kemiaofxjun-cdn@1.0.2/js/blog_nuxt/about.js')
 
 <template>
 <link href="/assets/css/about.css" rel="stylesheet"></link>
-<div v-for="about in aboutPage" id="about-page" :key="about.author" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
-	<div v-for="author in about.author" :key="author.left" class="author-main">
-		<div v-for="left in author.left" :key="left.tag1" class="author-tag-left">
-			<span class="author-tag">{{ left.tag1 }}</span>
-			<span class="author-tag">{{ left.tag2 }}</span>
-			<span class="author-tag">{{ left.tag3 }}</span>
-			<span class="author-tag">{{ left.tag4 }}</span>
-		</div>
-		<div class="author-box" style="z-index:0">
-			<span />
-			<div class="author-img">
-				<img class="no-lightbox" :src="author.logo" style="width: 100%;">
-			</div>
-		</div>
-		<div v-for="right in author.right" :key="right.tag1" class="author-tag-right">
-			<span class="author-tag">{{ right.tag1 }}</span>
-			<span class="author-tag">{{ right.tag2 }}</span>
-			<span class="author-tag">{{ right.tag3 }}</span>
-			<span class="author-tag">{{ right.tag4 }}</span>
-		</div>
-	</div>
+<div id="about-page" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
+	<Author />
 	<div class="author-page-content">
 		<div class="author-content">
-			<div v-for="info in about.myinfo" :key="info.title1" class="author-content-item myInfoAndSayHello" style="text-align: center; width: 100%">
-				<div class="title1">
-					{{ info.title1 }}
-				</div>
-				<div class="title2">
-					{{ info.title2 }}
-					<span class="inline-word">
-						{{ info.inlineword1 }}
-					</span>
-				</div>
-				<div class="title1">
-					{{ info.title3 }}
-					<span class="inline-word">
-						{{ info.inlineword2 }}
-					</span>
-				</div>
-			</div>
-		</div>
-		<div v-for="info in about.myinfo" :key="info.title1" class="author-content">
-			<div v-for="card in info.card" :key="card.tips" class="aboutsiteTips author-content-item">
-				<div class="author-content-item-tips">
-					{{ card.tips }}
-				</div>
-				<h2>
-					{{ card.conect1 }}
-					<br>
-					{{ card.conect2 }}
-					<span class="inline-word">
-						{{ card.inlineword }}
-					</span>
-					<div v-for="mask in card.mask" :key="mask.firstTips" class="mask">
-						<span class="first-tips">
-							{{ mask.firstTips }}
-						</span>
-						<span>
-							{{ mask.span }}
-						</span>
-						<span data-up="data-up">
-							{{ mask.up }}
-						</span>
-						<span data-show="data-show">
-							{{ mask.show }}
-						</span>
-					</div>
-				</h2>
-			</div>
-			<div v-for="maxim in about.maxim" :key="maxim.tip" class="author-content-item maxim">
-				<div class="author-content-item-tips">
-					{{ maxim.tip }}
-				</div>
-				<span class="maxim-title">
-					<span style="opacity:.6;margin-bottom:8px">
-						{{ maxim.title1 }}
-					</span>
-					<span>
-						{{ maxim.title2 }}
-					</span>
-				</span>
-			</div>
+			<MyInfoAndSayHello />
 		</div>
 		<div class="author-content">
-			<skillinfo />
+			<Aboutsitetips />
+			<Maxim />
 		</div>
 		<div class="author-content">
-			<div v-for="technology in about.technology" :key="technology.tip" class="author-content-item like-technology" style="width: 50%;">
-				<div class="card-content">
-					<div class="author-content-item-tips">
-						{{ technology.tip }}
-					</div>
-					<span class="author-content-item-title">
-						{{ technology.title }}
-					</span>
-					<div class="content-bottom">
-						<div class="tips">
-							{{ technology.bottomTip }}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div v-for="game in about.game" class="author-content-item game" style="width: 49%;">
-				<div class="card-content">
-					<div class="author-content-item-tips">
-						{{ game.tip }}
-					</div>
-					<span class="author-content-item-title">
-						{{ game.title }}
-					</span>
-					<div class="content-bottom">
-						<!-- <div class="icon-group">
-                                <div class="loading-bar" role="presentation" aria-hidden="true">
-                                    <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
-                                </div>
-                            </div> -->
-						<div class="tips game-yuanshen-uid">
-							{{ game.uid }}
-						</div>
-					</div>
-				</div>
-			</div>
+			<!-- 来自于主流HEO主题的衍生版本 -->
+			<Skillinfo />
+			<!-- 来自于柳神的关于页面版本 -->
+			<Social />
+		</div>
+		<div class="author-content">
+			<Technology />
+			<Game />
+		</div>
+		<div class="author-content">
+			<Single />
 		</div>
 	</div>
 </div>
@@ -328,4 +237,90 @@ loadScript('https://cdn.cbd.int/kemiaofxjun-cdn@1.0.2/js/blog_nuxt/about.js')
     text-stroke: 2px #3fdaee;
     -webkit-text-stroke: 1px #3fdaee;
   }
+
+/* 7.面板样式 */
+.author-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.author-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: .5rem;
+}
+
+.author-content-item {
+    width: 49%;
+    border-radius: 12px;
+    background: var(--heo-card-bg);
+    border: var(--style-border-always);
+    box-shadow: var(--heo-shadow-border);
+    position: relative;
+    padding: 1rem 2rem;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1300px) {
+    .author-content-item {
+        animation: slide-in .6s 0s backwards;
+    }
+}
+/* 8.动画组件 */
+@keyframes rowleft {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(-50%)
+    }
+}
+
+@keyframes rowup {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(-50%)
+    }
+}
+
+@keyframes  floating {
+    0% {
+        transform: translate(0, -4px);
+    }
+
+    50% {
+        transform: translate(0, 4px);
+    }
+
+    100% {
+        transform: translate(0, -4px);
+    }
+}
+/* 9.移动端页面 */
+@media screen and (max-width: 768px) {
+    .author-content {
+        margin-top: 0;
+        flex-direction: column;
+    }
+    .author-content-item {
+        width: 100% !important;
+        padding: 1rem;
+    }
+    #about-page .author-tag-left, #about-page .author-tag-right {
+        display: none;
+    }
+    .author-content-item.skills {
+        max-width: 100%!important;
+    }
+    .author-content-item.social{
+        max-width: 100%!important;
+    }
+}
 </style>

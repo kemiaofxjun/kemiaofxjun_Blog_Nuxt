@@ -7,7 +7,7 @@ const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
 // 设置侧边栏组件
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
 
 // SEO 配置
 useSeoMeta({
@@ -49,7 +49,7 @@ interface TalkItem {
 		text: string
 		images: string[]
 		music?: {
-			type: 'tencent'
+			type: 'song' | 'playlist'
 			id: string
 			server: string
 			api: string
@@ -127,9 +127,9 @@ function formatContent(item: any) {
 	return {
 		text: content,
 		images: imgs.map((img: string) => img.startsWith('http') ? img : `https:${img}`),
-		music: ext.music.type === 'tencent'
+		music: ext.music?.type === 'tencent'
 			? {
-					type: 'tencent',
+					type: ext.music.type,
 					server: ext.music.server,
 					id: ext.music.id,
 					api: ext.music.api,
@@ -317,7 +317,7 @@ function searchLocation(location: string) {
 						<div v-if="item.content.music">
 							<link src="https://jsd.myxz.top/npm/aplayer/dist/APlayer.min.css" rel="stylesheet">
 							<meting-js
-								v-if="item.music.type.type === 'tencent'"
+								v-if="item.music.type === 'tencent'"
 								:id="item.content.music.id"
 								:server="item.content.music.server"
 								:api="item.content.music.api"
