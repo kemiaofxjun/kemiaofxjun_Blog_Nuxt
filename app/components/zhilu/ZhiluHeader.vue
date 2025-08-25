@@ -72,6 +72,7 @@ const appConfig = useAppConfig()
 	width: 3em;
 	z-index: 1;
 }
+
 .header-title {
 	font-family: "Yozai Medium", "Noto Sans SC", sans-serif;
 	font-size: 1.5em;
