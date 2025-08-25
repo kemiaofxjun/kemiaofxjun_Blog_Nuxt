@@ -13,12 +13,20 @@ const appConfig = useAppConfig()
 			v-text="emoji"
 		/>
 	</div>
-	<NuxtImg
-		:src="appConfig.header.logo"
-		class="zhilu-logo"
-		:class="{ circle: appConfig.header.showTitle }"
-		:alt="appConfig.title"
-	/>
+	<div class="Avatar frame">
+		<NuxtImg
+			:src="appConfig.header.avatarFrame"
+			class="avatarFrame"
+			alt="头像框占位"
+		/>
+		<NuxtImg
+			:src="appConfig.header.logo"
+			class="zhilu-logo"
+			:class="{ circle: appConfig.header.showTitle }"
+			:alt="appConfig.title"
+		/>
+	</div>
+
 	<div v-if="appConfig.header.showTitle" class="zhilu-text">
 		<div class="header-title">
 			<span
@@ -57,7 +65,13 @@ const appConfig = useAppConfig()
 		box-shadow: 2px 4px 1rem var(--ld-shadow);
 	}
 }
-
+.avatarFrame {
+	top: 0px;
+    transform: scale(1.3);
+    position: absolute;
+	width: 3em;
+	z-index: 1;
+}
 .header-title {
 	font-family: "Yozai Medium", "Noto Sans SC", sans-serif;
 	font-size: 1.5em;

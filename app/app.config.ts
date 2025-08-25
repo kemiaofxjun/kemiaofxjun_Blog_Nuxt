@@ -80,11 +80,12 @@ export default defineAppConfig({
 
 	/** 左侧栏顶部 Logo */
 	header: {
-		logo: 'https://blog.myxz.top/img/avatar.avif',
+		logo: 'https://sourceimage.s3.bitiful.net/myxz.avif',
 		/** 展示标题文本，否则展示纯 Logo */
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
 		emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
+		avatarFrame: 'https://www.bpwzj.com/wp-content/uploads/2024/10/20241013201108780-bj-150x117.jpeg',
 	},
 
 	pagination: {
