@@ -87,6 +87,7 @@ export default defineAppConfig({
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
 		emojiTail: ['📔', '📓', '📖', '📚️', '📑'],
+		avatarFrame: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
 	},
 
 	pagination: {

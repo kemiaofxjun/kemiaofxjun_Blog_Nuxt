@@ -17,7 +17,7 @@ const blogConfig = {
 		name: '克喵爱吃卤面',
 		avatar: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
 		email: 'me@mail.kemeow.top',
-		homepage: 'https://www.kemiao.online/',
+		homepage: 'https://home.kemeow.top/',
 	},
 	copyright: {
 		abbr: 'CC BY-NC-SA 4.0',

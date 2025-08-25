@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { about } from '~/about'
+
+const appConfig = useAppConfig()
 </script>
 
 <template>
@@ -12,9 +14,9 @@ import { about } from '~/about'
                 <span class="author-tag">{{ left.tag4 }}</span>
             </div>
             <div class="author-box" style="z-index:0">
-                <span></span>
                 <div class="author-img">
-                    <img class="no-lightbox" :src="author.logo" style="width: 100%;">
+                    <img class="no-lightbox" :src="author.logo" style="width: 180px;">
+                    <NuxtImg :src="appConfig.header.avatarFrame" class="avatarFrame" alt="头像框占位"/>
                 </div>
             </div>
             <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
@@ -53,8 +55,8 @@ import { about } from '~/about'
 }
 .author-box {
     position: relative;
-    width: 189px;
-    height: 189px;
+    width: 180px;
+    height: 180px;
     background: rgba(253, 253, 253, .8);
     border-radius: 50%;
     overflow: hidden;
@@ -80,6 +82,7 @@ import { about } from '~/about'
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-right: 18px;
 }
 
 .author-tag-left .author-tag:first-child, .author-tag-left .author-tag:last-child {
@@ -89,6 +92,7 @@ import { about } from '~/about'
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-right: 18px;
 }
 .author-tag:nth-child(1) {
     animation-delay: 0s;

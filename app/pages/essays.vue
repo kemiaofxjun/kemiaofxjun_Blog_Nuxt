@@ -7,7 +7,7 @@ const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
 // 设置侧边栏组件
-layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
 
 // SEO 配置
 useSeoMeta({

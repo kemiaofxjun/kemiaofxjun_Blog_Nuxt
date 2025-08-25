@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity', 'toc'])
+layoutStore.setAside(['blog-stats', 'connectivity'])
 
 const { data: post } = await useAsyncData(
 	() => route.path,
