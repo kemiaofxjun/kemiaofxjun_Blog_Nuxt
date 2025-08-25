@@ -12,7 +12,6 @@ import { about } from '~/about'
                 <span class="author-tag">{{ left.tag4 }}</span>
             </div>
             <div class="author-box" style="z-index:0">
-                <span></span>
                 <div class="author-img">
                     <img class="no-lightbox" :src="author.logo" style="width: 100%;">
                 </div>
