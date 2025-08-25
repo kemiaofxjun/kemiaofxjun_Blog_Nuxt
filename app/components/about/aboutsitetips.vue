@@ -3,32 +3,34 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="aboutsiteTips author-content-item" v-for="card in about.myinfo.card" :key="card.tips">
-        <div class="author-content-item-tips">
-            {{ card.tips }}
-        </div>
-        <h2>
-            {{ card.conect1 }}
-            <br />
-            {{ card.conect2 }}
-            <span class="inline-word">
-                {{ card.inlineword }}
-            </span>
-            <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
-                <span class="first-tips">
-                    {{ mask.firstTips }}
-                </span>
-                <span>
-                    {{ mask.span }}
-                </span>
-                <span data-up="data-up">
-                    {{ mask.up }}
-                </span>
-                <span data-show="data-show">
-                    {{ mask.show }}
-                </span>
+    <div v-for="info in about.myinfo" :key="info.title1">
+        <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
+            <div class="author-content-item-tips">
+                {{ card.tips }}
             </div>
-        </h2>
+            <h2>
+                {{ card.conect1 }}
+                <br />
+                {{ card.conect2 }}
+                <span class="inline-word">
+                    {{ card.inlineword }}
+                </span>
+                <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
+                    <span class="first-tips">
+                        {{ mask.firstTips }}
+                    </span>
+                    <span>
+                        {{ mask.span }}
+                    </span>
+                    <span data-up="data-up">
+                        {{ mask.up }}
+                    </span>
+                    <span data-show="data-show">
+                        {{ mask.show }}
+                    </span>
+                </div>
+            </h2>
+        </div>
     </div>
 </template>
 
