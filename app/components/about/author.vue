@@ -4,7 +4,7 @@ import { about } from '~/about'
 
 <template>
     <div class="author-main" v-for="(aboutItem, aboutIndex) in about" :key="aboutIndex">
-        <div v-for="(author, authorIndex) in aboutItem.author":key="authorIndex">
+        <div id="author-main" v-for="(author, authorIndex) in aboutItem.author":key="authorIndex">
             <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
                 <span class="author-tag">{{ left.tag1 }}</span>
                 <span class="author-tag">{{ left.tag2 }}</span>
@@ -29,7 +29,7 @@ import { about } from '~/about'
 
 <style lang="css" scoped>
 /* author */
-.author-main {
+#author-main {
     display: -webkit-box;
     display: -moz-box;
     display: -webkit-flex;
@@ -51,7 +51,7 @@ import { about } from '~/about'
     margin: 0 0 16px 0;
     user-select: none;
 }
-#about-page .author-box {
+.author-box {
     position: relative;
     width: 189px;
     height: 189px;
@@ -62,7 +62,7 @@ import { about } from '~/about'
     align-items: center;
     justify-content: center;
 }
-#about-page .author-box span {
+.author-box span {
     position: absolute;
     inset: 5px;
     border-radius: 50%;
@@ -70,39 +70,39 @@ import { about } from '~/about'
     z-index: 1;
 }
 
-#about-page .author-info {
+.author-info {
     display: flex;
     align-items: center;
     margin: 0 0 16px 0;
 }
 
-#about-page .author-tag-left {
+.author-tag-left {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-#about-page .author-tag-left .author-tag:first-child, #about-page .author-tag-left .author-tag:last-child {
+.author-tag-left .author-tag:first-child, .author-tag-left .author-tag:last-child {
     margin-right: -16px;
 }
-#about-page .author-tag-right {
+.author-tag-right {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-#about-page .author-tag:nth-child(1) {
+.author-tag:nth-child(1) {
     animation-delay: 0s;
 }
-#about-page .author-tag:nth-child(2) {
+.author-tag:nth-child(2) {
     animation-delay: .6s;
 }
-#about-page .author-tag:nth-child(3) {
+.author-tag:nth-child(3) {
     animation-delay: 1.2s;
 }
-#about-page .author-tag:nth-child(4) {
+.author-tag:nth-child(4) {
     animation-delay: 1.8s;
 }
-#about-page .author-tag {
+.author-tag {
     transform: translate(0, -4px);
     padding: 1px 8px;
     background: var(--heo-card-bg);
@@ -114,7 +114,7 @@ import { about } from '~/about'
     box-shadow: var(--heo-shadow-lightblack);
     animation: 6s ease-in-out 0s infinite normal none running floating;
 }
-#about-page .author-img {
+.author-img {
     margin: 0 30px;
     border-radius: 50%;
     width: 180px;
@@ -124,7 +124,7 @@ import { about } from '~/about'
     user-select: none;
     transition: .3s;
 }
-#about-page .author-img #lottie_avatar {
+.author-img #lottie_avatar {
     border-radius: 200px;
     overflow: hidden;
     width: 180px;
