@@ -3,7 +3,7 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item myInfoAndSayHello" v-for="(myinfo, index) in about.myinfo" :key="index" style="text-align: center; width: 100%">
+    <div class="author-content-item myInfoAndSayHello" v-for="(myinfo, index) in about" :key="index" style="text-align: center; width: 100%">
         <div v-for="info in myinfo.myinfo" :key="info.title1">
             <div class="title1">
                 {{ info.title1 }}

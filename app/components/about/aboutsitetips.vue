@@ -3,33 +3,35 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="aboutsiteTips author-content-item" v-for="info in about.myinfo" :key="info.tips">
-        <div v-for="card in info.card" :key="card.title1">
-            <div class="author-content-item-tips">
-                {{ card.tips }}
-            </div>
-            <h2>
-                {{ card.conect1 }}
-                <br />
-                {{ card.conect2 }}
-                <span class="inline-word">
-                    {{ card.inlineword }}
-                </span>
-                <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
-                    <span class="first-tips">
-                        {{ mask.firstTips }}
-                    </span>
-                    <span>
-                        {{ mask.span }}
-                    </span>
-                    <span data-up="data-up">
-                        {{ mask.up }}
-                    </span>
-                    <span data-show="data-show">
-                        {{ mask.show }}
-                    </span>
+    <div class="aboutsiteTips author-content-item" v-for="(myinfo, index) in about" :key="index">
+        <div v-for="(info, index) in myinfo.myinfo" :key="index">
+            <div v-for="card in info.card" :key="card.title1">
+                <div class="author-content-item-tips">
+                    {{ card.tips }}
                 </div>
-            </h2>
+                <h2>
+                    {{ card.conect1 }}
+                    <br />
+                    {{ card.conect2 }}
+                    <span class="inline-word">
+                        {{ card.inlineword }}
+                    </span>
+                    <div class="mask" v-for="mask in card.mask" :key="mask.firstTips">
+                        <span class="first-tips">
+                            {{ mask.firstTips }}
+                        </span>
+                        <span>
+                            {{ mask.span }}
+                        </span>
+                        <span data-up="data-up">
+                            {{ mask.up }}
+                        </span>
+                        <span data-show="data-show">
+                            {{ mask.show }}
+                        </span>
+                    </div>
+                </h2>
+            </div>
         </div>
     </div>
 </template>
