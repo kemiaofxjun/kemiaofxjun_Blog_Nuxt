@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { about } from '~/about'
+
+const appConfig = useAppConfig()
 </script>
 
 <template>
@@ -13,7 +15,8 @@ import { about } from '~/about'
             </div>
             <div class="author-box" style="z-index:0">
                 <div class="author-img">
-                    <img class="no-lightbox" :src="author.logo" style="width: 100%;">
+                    <img class="no-lightbox" :src="author.logo" style="width: 180px;">
+                    <NuxtImg :src="appConfig.header.avatarFrame" class="avatarFrame" alt="头像框占位"/>
                 </div>
             </div>
             <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
