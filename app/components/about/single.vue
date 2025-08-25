@@ -52,5 +52,5 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
     margin-bottom: 1rem;
     margin-top: .5rem;
     vertical-align: middle;
-}
+}   
 </style>

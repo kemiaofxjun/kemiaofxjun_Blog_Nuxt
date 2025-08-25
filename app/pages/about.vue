@@ -17,9 +17,9 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
     return new Promise<void>((resolve, reject) => {
       // 检查是否已加载
       if (document.querySelector(`script[src="${url}"]`)) {
-console.log('JS脚本已加载');
-resolve();
-return;
+        console.log('JS脚本已加载');
+        resolve();
+        return;
       }
 
       // 创建 script 标签
@@ -30,15 +30,15 @@ return;
 
       // 加载成功回调
       script.onload = () => {
-console.log('脚本加载完成');
-callback?.();
-resolve();
+        console.log('脚本加载完成');
+        callback?.();
+        resolve();
       };
 
       // 加载失败回调
       script.onerror = (err) => {
-console.error('脚本加载失败', err);
-reject(err);
+        console.error('脚本加载失败', err);
+        reject(err);
       };
 
       // 添加到 DOM（推荐添加到 head 或 body 末尾）
