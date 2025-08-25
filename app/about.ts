@@ -120,7 +120,7 @@ export const about: aboutConnect[] = [
         myinfo: [{
             title1: "你好，很高兴认识你👋",
             title2: "我叫",
-            inlineword1: "渊",
+            inlineword1: "柒渊",
             title3: "是一名 前端工程师、学生、",
             inlineword2: "博主",
             card: [{

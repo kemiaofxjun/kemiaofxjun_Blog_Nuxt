@@ -53,8 +53,8 @@ import { about } from '~/about'
 }
 .author-box {
     position: relative;
-    width: 189px;
-    height: 189px;
+    width: 180px;
+    height: 180px;
     background: rgba(253, 253, 253, .8);
     border-radius: 50%;
     overflow: hidden;
@@ -80,6 +80,7 @@ import { about } from '~/about'
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-right: 18px;
 }
 
 .author-tag-left .author-tag:first-child, .author-tag-left .author-tag:last-child {
@@ -89,6 +90,7 @@ import { about } from '~/about'
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-right: 18px;
 }
 .author-tag:nth-child(1) {
     animation-delay: 0s;

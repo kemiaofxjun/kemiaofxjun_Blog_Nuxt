@@ -85,7 +85,7 @@ export default defineAppConfig({
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
 		emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
-		avatarFrame: 'https://www.bpwzj.com/wp-content/uploads/2024/10/20241013201108780-bj-150x117.jpeg',
+		avatarFrame: 'https://sourceimage.s3.bitiful.net/avatarFrame/%20144.avif',
 	},
 
 	pagination: {

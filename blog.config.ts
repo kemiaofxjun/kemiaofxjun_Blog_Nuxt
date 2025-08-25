@@ -7,12 +7,12 @@ export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
 // 存储 nuxt.config 和 app.config 共用的配置
 // 此处为启动时需要的配置，启动后可变配置位于 app/app.config.ts
 const blogConfig = {
-	title: '莫言小栈',
-    subtitle: '生生不息，永无止息。',
+	title: '柒渊阁',
+    subtitle: '柒上月日，无铭之阁',
     // 长 description 利好于 SEO
     description: '莫言的博客网站，分享技术和魔改。网站界面简洁美观，涵盖了魔改、教程等多个领域，为读者提供了卓越的阅读体验。',
 	author: {
-        name: '莫言',
+        name: '柒渊',
         avatar: 'https://sourceimage.s3.bitiful.net/myxz.avif',
         email: '3227988255@qq.com',
         homepage: 'https://www.myxz.top/',
