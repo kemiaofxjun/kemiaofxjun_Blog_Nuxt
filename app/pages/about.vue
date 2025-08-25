@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import Skillinfo from '../components/about/skillinfo.vue';
-import Social from '../components/about/social.vue';
-import Technology from '../components/about/technology.vue';
-import Author from '../components/about/author.vue';
-import Game from '../components/about/game.vue';
-import Aboutsitetips from '../components/about/aboutsitetips.vue';
-import Maxim from '../components/about/maxim.vue';
-import MyInfoAndSayHello from '../components/about/myInfoAndSayHello.vue';
-import Single from '../components/about/single.vue';
+import Skillinfo from '../components/about/skillinfo.vue'
+import Social from '../components/about/social.vue'
+import Technology from '../components/about/technology.vue'
+import Author from '../components/about/author.vue'
+import Game from '../components/about/game.vue'
+import Aboutsitetips from '../components/about/aboutsitetips.vue'
+import Maxim from '../components/about/maxim.vue'
+import MyInfoAndSayHello from '../components/about/myInfoAndSayHello.vue'
+import Single from '../components/about/single.vue'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log'])
