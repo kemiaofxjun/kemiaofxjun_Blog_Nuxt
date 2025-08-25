@@ -18,7 +18,7 @@ useSeoMeta({
 
 // API 配置常量
 const API_CONFIG = {
-    MEMO_API: 'https://avvlqyndvewl.ap-northeast-1.clawcloudrun.com/api/memo/list',
+    MEMO_API: 'https://essay.myxz.top/api/memo/list',
     PAGE_SIZE: 30,
 }
 

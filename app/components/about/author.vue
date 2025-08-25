@@ -92,7 +92,7 @@ const appConfig = useAppConfig()
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 18px;
+    margin-left: 18px;
 }
 .author-tag:nth-child(1) {
     animation-delay: 0s;
