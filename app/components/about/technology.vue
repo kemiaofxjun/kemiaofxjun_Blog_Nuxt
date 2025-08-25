@@ -3,17 +3,19 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item like-technology" v-for="technology in about.technology" :key="technology.tip" style="width: 50%;">
-        <div class="card-content">
-            <div class="author-content-item-tips">
-                {{ technology.tip }}
-            </div>
-            <span class="author-content-item-title">
-                {{ technology.title }}
-            </span>
-            <div class="content-bottom">
-                <div class="tips">
-                    {{ technology.bottomTip }}
+    <div class="author-content-item like-technology" v-for="(technologyItem, index) in about" :key="index" style="width: 50%;">
+        <div v-for="technology in technologyItem.technology" :key="technology.tip">
+            <div class="card-content">
+                <div class="author-content-item-tips">
+                    {{ technology.tip }}
+                </div>
+                <span class="author-content-item-title">
+                    {{ technology.title }}
+                </span>
+                <div class="content-bottom">
+                    <div class="tips">
+                        {{ technology.bottomTip }}
+                    </div>
                 </div>
             </div>
         </div>

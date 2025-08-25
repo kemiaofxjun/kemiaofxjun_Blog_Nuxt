@@ -3,22 +3,24 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item game" v-for="game in about.game"  style="width: 49%;">
-        <div class="card-content">
-            <div class="author-content-item-tips">
-                {{ game.tip }}
-            </div>
-            <span class="author-content-item-title">
-                {{ game.title }}
-            </span>
-            <div class="content-bottom">
-                <!-- <div class="icon-group">
-                    <div class="loading-bar" role="presentation" aria-hidden="true">
-                        <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
+    <div class="author-content-item game" v-for="(gameItem, index) in game" :key="index" style="width: 49%;">
+        <div v-for="game in gameItem.game" :key="game.tip">
+            <div class="card-content">
+                <div class="author-content-item-tips">
+                    {{ game.tip }}
+                </div>
+                <span class="author-content-item-title">
+                    {{ game.title }}
+                </span>
+                <div class="content-bottom">
+                    <!-- <div class="icon-group">
+                        <div class="loading-bar" role="presentation" aria-hidden="true">
+                            <img class="no-lightbox" :src="game.image" alt="Loading..." longdesc="https://ys.mihoyo.com/main/" />
+                        </div>
+                    </div> -->
+                    <div class="tips game-yuanshen-uid">
+                        {{ game.uid }}
                     </div>
-                </div> -->
-                <div class="tips game-yuanshen-uid">
-                    {{ game.uid }}
                 </div>
             </div>
         </div>

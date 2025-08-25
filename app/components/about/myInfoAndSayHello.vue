@@ -3,21 +3,23 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item myInfoAndSayHello" v-for="info in about.myinfo" :key="info.title1" style="text-align: center; width: 100%">
-        <div class="title1">
-            {{ info.title1 }}
-        </div>
-        <div class="title2">
-            {{ info.title2 }}
-            <span class="inline-word">
-                {{ info.inlineword1 }}
-            </span>
-        </div>
-        <div class="title1">
-            {{ info.title3 }}
-            <span class="inline-word">
-                {{ info.inlineword2 }}
-            </span>
+    <div class="author-content-item myInfoAndSayHello" v-for="(myinfo, index) in about.myinfo" :key="index" style="text-align: center; width: 100%">
+        <div v-for="info in myinfo.myinfo" :key="info.title1">
+            <div class="title1">
+                {{ info.title1 }}
+            </div>
+            <div class="title2">
+                {{ info.title2 }}
+                <span class="inline-word">
+                    {{ info.inlineword1 }}
+                </span>
+            </div>
+            <div class="title1">
+                {{ info.title3 }}
+                <span class="inline-word">
+                    {{ info.inlineword2 }}
+                </span>
+            </div>
         </div>
     </div>
 </template>

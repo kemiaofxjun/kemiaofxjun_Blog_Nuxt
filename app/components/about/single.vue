@@ -4,28 +4,30 @@ const { data: singlePost } = await useAsyncData('/about', () => queryCollection(
 </script>
 
 <template>
-    <div class="create-site-post author-content-item single" v-for="single in about.single" :key="single.tip" style="width: 100%">
-        <div class="author-content-item-tips">
-            {{ single.tip }}
-        </div>
-        <div class="author-content-item-title">
-            {{ single.title }}
-        </div>
-        <p class="author-content-item-content">
-            {{ single.content }}
-        </p>
-        <div class="lishi">
-            {{ single.lishi }}
-        </div>
-        <div class="singlePost">
-            <ContentRenderer
-            v-if="singlePost"
-            :value="singlePost"
-            class="article"
-            />
-            <p v-else class="text-center">
-                可于 about.md 配置补充说明。
+    <div class="create-site-post author-content-item single" v-for="(singleItem, index) in about" :key="index" style="width: 100%">
+        <div v-for="single in singleItem.single" :key="single.tip">
+            <div class="author-content-item-tips">
+                {{ single.tip }}
+            </div>
+            <div class="author-content-item-title">
+                {{ single.title }}
+            </div>
+            <p class="author-content-item-content">
+                {{ single.content }}
             </p>
+            <div class="lishi">
+                {{ single.lishi }}
+            </div>
+            <div class="singlePost">
+                <ContentRenderer
+                v-if="singlePost"
+                :value="singlePost"
+                class="article"
+                />
+                <p v-else class="text-center">
+                    可于 about.md 配置补充说明。
+                </p>
+            </div>
         </div>
     </div>
 </template>

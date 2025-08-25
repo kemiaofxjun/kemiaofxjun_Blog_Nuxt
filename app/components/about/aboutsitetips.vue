@@ -3,8 +3,8 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div v-for="info in about.myinfo" :key="info.title1">
-        <div class="aboutsiteTips author-content-item" v-for="card in info.card" :key="card.tips">
+    <div class="aboutsiteTips author-content-item" v-for="info in about.myinfo" :key="info.tips">
+        <div v-for="card in info.card" :key="card.title1">
             <div class="author-content-item-tips">
                 {{ card.tips }}
             </div>

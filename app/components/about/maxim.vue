@@ -3,18 +3,20 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div class="author-content-item maxim" v-for="maxim in about.maxim" :key="maxim.tip">
-        <div class="author-content-item-tips">
-            {{ maxim.tip }}
+    <div class="author-content-item maxim" v-for="(maximItem, index) in about" :key="index">
+        <div v-for="maxim in maximItem.maxim" :key="maxim.tip">
+            <div class="author-content-item-tips">
+                {{ maxim.tip }}
+            </div>
+            <span class="maxim-title">
+                <span style="opacity:.6;margin-bottom:8px">
+                    {{ maxim.title1 }}
+                </span>
+                <span>
+                    {{ maxim.title2 }}
+                </span>
+            </span>
         </div>
-        <span class="maxim-title">
-            <span style="opacity:.6;margin-bottom:8px">
-                {{ maxim.title1 }}
-            </span>
-            <span>
-                {{ maxim.title2 }}
-            </span>
-        </span>
     </div>
 </template>
 
