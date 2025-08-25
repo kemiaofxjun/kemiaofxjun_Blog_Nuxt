@@ -3,26 +3,24 @@ import { about } from '~/about'
 </script>
 
 <template>
-    <div v-for="(aboutItem, aboutIndex) in about" :key="aboutIndex">
-        <div class="author-main" v-for="(author, index) in aboutItem.author" :key="index">
-            <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
-                <span class="author-tag">{{ left.tag1 }}</span>
-                <span class="author-tag">{{ left.tag2 }}</span>
-                <span class="author-tag">{{ left.tag3 }}</span>
-                <span class="author-tag">{{ left.tag4 }}</span>
+    <div class="author-main" v-for="(author, index) in about.author" :key="index">
+        <div class="author-tag-left" v-for="left in author.left" :key="left.tag1">
+            <span class="author-tag">{{ left.tag1 }}</span>
+            <span class="author-tag">{{ left.tag2 }}</span>
+            <span class="author-tag">{{ left.tag3 }}</span>
+            <span class="author-tag">{{ left.tag4 }}</span>
+        </div>
+        <div class="author-box" style="z-index:0">
+            <span></span>
+            <div class="author-img">
+                <img class="no-lightbox" :src="author.logo" style="width: 100%;">
             </div>
-            <div class="author-box" style="z-index:0">
-                <span></span>
-                <div class="author-img">
-                    <img class="no-lightbox" :src="author.logo" style="width: 100%;">
-                </div>
-            </div>
-            <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
-                <span class="author-tag">{{ right.tag1 }}</span>
-                <span class="author-tag">{{ right.tag2 }}</span>
-                <span class="author-tag">{{ right.tag3 }}</span>
-                <span class="author-tag">{{ right.tag4 }}</span>
-            </div>
+        </div>
+        <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
+            <span class="author-tag">{{ right.tag1 }}</span>
+            <span class="author-tag">{{ right.tag2 }}</span>
+            <span class="author-tag">{{ right.tag3 }}</span>
+            <span class="author-tag">{{ right.tag4 }}</span>
         </div>
     </div>
 </template>
