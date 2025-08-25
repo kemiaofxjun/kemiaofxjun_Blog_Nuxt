@@ -29,6 +29,47 @@ import { about } from '~/about'
 
 <style lang="css" scoped>
 /* author */
+.author-main {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -o-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -o-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: 0 0 16px 0;
+    user-select: none;
+}
+#about-page .author-box {
+    position: relative;
+    width: 189px;
+    height: 189px;
+    background: rgba(253, 253, 253, .8);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#about-page .author-box span {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: rgba(253, 253, 253, .8);
+    z-index: 1;
+}
+
 #about-page .author-info {
     display: flex;
     align-items: center;

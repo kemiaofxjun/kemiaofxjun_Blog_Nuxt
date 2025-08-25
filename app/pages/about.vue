@@ -56,7 +56,7 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
 </script>
 
 <template>
-  <link href="/assets/css/about.css" rel="stylesheet"></link>
+  <!-- <link href="/assets/css/about.css" rel="stylesheet"></link> -->
   <div id="about-page" style="margin-top: 1rem;margin-left: 1rem;margin-right: 1rem;">
     <Author />
     <div class="author-page-content">
@@ -265,61 +265,61 @@ layoutStore.setAside(['blog-stats', 'connectivity', 'latest-comments', 'blog-log
 
 @media screen and (min-width: 1300px) {
     .author-content-item {
-animation: slide-in .6s 0s backwards;
+        animation: slide-in .6s 0s backwards;
     }
 }
 /* 8.动画组件 */
 @keyframes rowleft {
     from {
-transform: translateX(0)
+        transform: translateX(0)
     }
 
     to {
-transform: translateX(-50%)
+        transform: translateX(-50%)
     }
 }
 
 @keyframes rowup {
     from {
-transform: translateY(0)
+        transform: translateY(0)
     }
 
     to {
-transform: translateY(-50%)
+        transform: translateY(-50%)
     }
 }
 
 @keyframes  floating {
     0% {
-transform: translate(0, -4px);
+        transform: translate(0, -4px);
     }
 
     50% {
-transform: translate(0, 4px);
+        transform: translate(0, 4px);
     }
 
     100% {
-transform: translate(0, -4px);
+        transform: translate(0, -4px);
     }
 }
 /* 9.移动端页面 */
 @media screen and (max-width: 768px) {
     .author-content {
-margin-top: 0;
-flex-direction: column;
+        margin-top: 0;
+        flex-direction: column;
     }
     .author-content-item {
-width: 100% !important;
-padding: 1rem;
+        width: 100% !important;
+        padding: 1rem;
     }
     #about-page .author-tag-left, #about-page .author-tag-right {
-display: none;
+        display: none;
     }
     .author-content-item.skills {
-max-width: 100%!important;
+        max-width: 100%!important;
     }
     .author-content-item.social{
-max-width: 100%!important;
+        max-width: 100%!important;
     }
 }
 </style>
