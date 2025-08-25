@@ -138,7 +138,8 @@ export const aboutPage: aboutConnect[] = [
         }],
         hello: "Main Dis My Blogs",
         social: [
-            { herf: "", class: "" },
+            { herf: "https://github.com/661111", class: "ph:github-logo-bold" },
+            { herf: "", class:"ph:tiktok-logo-bold" }
         ],
         maxim: [{
             tip: "座右铭",
