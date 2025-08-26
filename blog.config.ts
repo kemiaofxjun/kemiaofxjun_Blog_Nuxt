@@ -1,6 +1,8 @@
 import type { NitroConfig } from 'nitropack'
 import type { FeedEntry } from './app/types/feed'
 import redirectList from './redirects.json'
+import { server } from 'typescript'
+import { defer } from 'radash'
 
 export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
 
@@ -53,6 +55,8 @@ const blogConfig = {
 		// { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
 		// Twikoo 评论系统
 		{ src: 'https://lib.baomitu.com/twikoo/1.6.39/twikoo.all.min.js', defer: true },
+		// Artalk
+		{ src: 'https://artalk.myxz.top/dist/Artalk.js', defer: true }
 	],
 
 	// 自己部署的 Twikoo 服务
@@ -60,6 +64,11 @@ const blogConfig = {
         envId: 'https://twikoo.sxiaohe.top/',
         preload: 'https://twikoo.sxiaohe.top/',
     },
+
+	artalk: {
+		server: 'https://artalk.myxz.top',
+		sitename: '柒渊阁',
+	}
 }
 
 // 用于生成 OPML 和友链页面配置

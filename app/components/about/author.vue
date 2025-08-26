@@ -13,10 +13,10 @@ const appConfig = useAppConfig()
                 <span class="author-tag">{{ left.tag3 }}</span>
                 <span class="author-tag">{{ left.tag4 }}</span>
             </div>
+            <NuxtImg :src="appConfig.header.avatarFrame" class="avatarFrame" alt="头像框占位"/>
             <div class="author-box" style="z-index:0">
                 <div class="author-img">
                     <img class="no-lightbox" :src="author.logo" style="width: 180px;">
-                    <NuxtImg :src="appConfig.header.avatarFrame" class="avatarFrame" alt="头像框占位"/>
                 </div>
             </div>
             <div class="author-tag-right" v-for="right in author.right" :key="right.tag1">
@@ -30,6 +30,13 @@ const appConfig = useAppConfig()
 </template>
 
 <style lang="css" scoped>
+.avatarFrame {
+    position: absolute;
+    top: -18px;
+    transform: scale(1.3);
+    width: 180px;
+    z-index: 1;
+}
 /* author */
 #author-main {
     display: -webkit-box;
