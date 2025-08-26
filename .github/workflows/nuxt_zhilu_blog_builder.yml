@@ -10,9 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22.13.0]
     steps:
       # check it to your workflow can access it
       # from: https://github.com/actions/checkout
@@ -23,12 +20,12 @@ jobs:
       - name: 2. 设置Node.js
         uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22.13.0'
 
       - name: 3. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          npm install -g pnpm@latest
+          npm install -g pnpm
           pnpm i
 
       - name: 4. 开始构建
