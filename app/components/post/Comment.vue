@@ -10,8 +10,8 @@ onMounted(() => {
         el: '#artalk',
         pageKey: '',
         pageTitle: '',
-        server:    appConfig.artalk?.server,
-        site:      appConfig.artalk?.sitename,
+        server: appConfig.artalk?.server,
+        site: appConfig.artalk?.sitename,
 	})
 })
 </script>
@@ -21,7 +21,7 @@ onMounted(() => {
 	<h3 class="text-creative">
 		评论区
 	</h3>
-	<div id="artalk">
+	<div id="artalk" style="margin: 2em 0;">
 		<p>评论加载中...</p>
 	</div>
 </section>
