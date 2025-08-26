@@ -21,7 +21,7 @@ jobs:
 
       # from: https://github.com/actions/setup-node
       - name: 2. 设置Node.js
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -45,7 +45,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           full_commit_message: ${{ github.event.head_commit.message }}
 
-      - name: 6.推送到仓库
+      - name: 6. 推送到仓库
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.nuxttoken }}
