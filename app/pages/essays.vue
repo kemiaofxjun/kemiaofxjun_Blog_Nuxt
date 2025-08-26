@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { server } from 'typescript'
 import { ref, onMounted } from 'vue';
 
 // 全局配置
