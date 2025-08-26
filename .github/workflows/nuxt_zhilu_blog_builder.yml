@@ -21,10 +21,23 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: '22.13.0'
+
       - name: 3. 设置Pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: latest # 或指定具体版本，例如 '9.0.0'
+          version: latest
+
+      - name: 缓存依赖
+        uses: actions/cache@v3
+        id: cache-dependencies
+        with:
+          path: |
+            ~/.pnpm-store
+            node_modules
+            ​**​/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('​**​/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: 4. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
@@ -32,6 +45,8 @@ jobs:
           pnpm install
 
       - name: 5. 开始构建
+        env:
+          NODE_ENV: production
         run: |
           pnpm generate
 
