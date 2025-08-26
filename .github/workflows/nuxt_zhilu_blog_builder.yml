@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.13.0]
     steps:
       # check it to your workflow can access it
       # from: https://github.com/actions/checkout
@@ -20,37 +23,19 @@ jobs:
       - name: 2. 设置Node.js
         uses: actions/setup-node@master
         with:
-          node-version: '22.13.0'
+          node-version: ${{ matrix.node-version }}
 
-      - name: 3. 设置Pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: 缓存依赖
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            ~/.pnpm-store
-            node_modules
-            ​**​/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('​**​/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: 4. 安装插件
+      - name: 3. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          pnpm install
+          npm install -g pnpm@latest
+          pnpm i
 
-      - name: 5. 开始构建
-        env:
-          NODE_ENV: production
+      - name: 4. 开始构建
         run: |
           pnpm generate
 
-      - name: 6. 推送到vercel分支
+      - name: 5. 推送到vercel分支
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +45,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           full_commit_message: ${{ github.event.head_commit.message }}
 
-      - name: 7. 推送到仓库
+      - name: 6. 推送到仓库
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.nuxttoken }}
