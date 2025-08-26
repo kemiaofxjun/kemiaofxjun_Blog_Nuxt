@@ -49,7 +49,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.nuxttoken }}
-          repository-name: 661111/Myxz_Blog_Nuxt_builder
+          repository-name: kemiaofxjun/kemiaofxjun-blog-v3-output
           branch: main
           folder: .output/public
           commit-message: "${{ github.event.head_commit.message }} Updated By Github Actions"
