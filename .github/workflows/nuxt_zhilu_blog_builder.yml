@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.13.0]
+        node-version: [24.6.0]
     steps:
       # check it to your workflow can access it
       # from: https://github.com/actions/checkout
