@@ -21,18 +21,21 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: '22.13.0'
+      - name: 3. 设置Pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest # 或指定具体版本，例如 '9.0.0'
 
-      - name: 3. 安装插件
+      - name: 4. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          npm install -g pnpm
           pnpm install
 
-      - name: 4. 开始构建
+      - name: 5. 开始构建
         run: |
           pnpm generate
 
-      - name: 5. 推送到vercel分支
+      - name: 6. 推送到vercel分支
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +45,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           full_commit_message: ${{ github.event.head_commit.message }}
 
-      - name: 6.推送到仓库
+      - name: 7. 推送到仓库
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.nuxttoken }}
