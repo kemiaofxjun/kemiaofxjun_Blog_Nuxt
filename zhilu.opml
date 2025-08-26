@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>喵洛阁的友链订阅</title>
+    <dateCreated>2025-08-19T00:00:00.000Z</dateCreated>
+    <dateModified>2025-08-26T12:34:12.888Z</dateModified>
+    <ownerName>克喵爱吃卤面</ownerName>
+    <ownerEmail>me@mail.kemeow.top</ownerEmail>
+    <ownerId>https://home.kemeow.top/</ownerId>
+    <docs>https://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+    <outline text="喵洛阁" type="rss" xmlUrl="https://kemeow.kemiaosw.top/atom.xml" created="2025-08-19T00:00:00.000Z" description="克喵的小站" htmlUrl="https://kemeow.kemiaosw.top/"></outline>
+    <outline text="风记星辰" type="rss" xmlUrl="https://www.thyuu.com/feed" created="2024-02-01T00:00:00.000Z" description="热爱你来过的每度温暖" htmlUrl="https://thyuu.com/"></outline>
+    <outline text="静かな森" type="rss" xmlUrl="https://innei.in/feed" created="2024-02-13T00:00:00.000Z" description="致虚极，守静笃。" htmlUrl="https://innei.in/"></outline>
+    <outline text="Randwind&apos;s Blog" type="rss" xmlUrl="https://randwind.com/feed.xml" created="2024-02-03T00:00:00.000Z" description="你可以期待太阳从东方升起，而风却随心所欲地从四面八方吹来。" htmlUrl="https://www.randwind.com/"></outline>
+    <outline text="Myth&apos;s Blog | Myth 的小站" type="rss" xmlUrl="https://myth.cx/index.xml" created="2024-04-11T00:00:00.000Z" description="荒唐无聊正经有趣的大学生 | 业余 Minecraft 腐竹 | PTer" htmlUrl="https://myth.cx/"></outline>
+    <outline text="Dejavu&apos;s Blog" type="rss" xmlUrl="https://blog.dejavu.moe/index.xml" created="2024-04-29T00:00:00.000Z" htmlUrl="https://blog.dejavu.moe/"></outline>
+    <outline text="甜鱼/Ayu" type="rss" xmlUrl="https://ayu.land/rss.zh.xml" created="2024-10-26T00:00:00.000Z" description="三脚猫多面手，努力学习世界的一切。" htmlUrl="https://ayu.land/"></outline>
+    <outline text="Anthony Fu" type="rss" xmlUrl="https://antfu.me/feed.xml" created="2024-10-26T00:00:00.000Z" description="Hey, I am Anthony Fu, a fanatical open sourceror." htmlUrl="https://antfu.me/"></outline>
+    <outline text="XAOXUU" type="rss" xmlUrl="https://xaoxuu.com/atom.xml" created="2024-10-26T00:00:00.000Z" description="风暴前夕" htmlUrl="https://xaoxuu.com/"></outline>
+    <outline text="無名小栈" type="rss" xmlUrl="https://blog.imsyy.top/rss.xml" created="2024-10-26T00:00:00.000Z" description="分享技术与科技生活" htmlUrl="https://blog.imsyy.top/"></outline>
+    <outline text="最小可读" type="rss" xmlUrl="https://mvread.blog/feed" created="2024-10-29T00:00:00.000Z" description="基本无害，可能有用" htmlUrl="https://mvread.blog/"></outline>
+    <outline text="清羽飞扬" type="rss" xmlUrl="https://blog.liushen.fun/atom.xml" created="2025-03-15T00:00:00.000Z" description="柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜" htmlUrl="https://blog.liushen.fun/"></outline>
+    <outline text="Leonus" type="rss" xmlUrl="https://blog.leonus.cn/atom.xml" created="2025-04-19T00:00:00.000Z" description="进一寸有进一寸的欢喜。" htmlUrl="https://blog.leonus.cn/"></outline>
+  </body>
+</opml>
