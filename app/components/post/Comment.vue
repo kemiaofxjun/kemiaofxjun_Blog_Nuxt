@@ -14,19 +14,6 @@ onMounted(() => {
         site: appConfig.artalk?.sitename,
 	})
 })
-// // API 配置常量
-// const API_CONFIG = {
-//     server: 'https://artalk.myxz.top/api/v2/comments',
-//     limit: 20,
-// 	page_key: location.pathname,
-// }
-
-// const api = `${API_CONFIG.server}`+`?limit=`+`${API_CONFIG.limit}`+`&page_key=`+`{API_CONFIG.page_key}`
-
-// interface CommentUid {
-// 	user_id: number
-// 	badge_color: string
-// }
 </script>
 
 <template>
