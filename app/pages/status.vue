@@ -2,7 +2,7 @@
 </script>
 
 <template lang="pug">
-    tab(:tab="[]" center)
+    tab(:tab="['Uptime Kuma', '哪吒探针']" center)
         template#tab1
             
         template#tab2
