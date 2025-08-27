@@ -62,7 +62,6 @@ const keycut = computed(() => navigator?.userAgent.includes('Mac OS') ? '⌘K' :
 		left: 0;
 		width: 320px;
 		max-width: 100%;
-		box-shadow: 0 0 1rem var(--ld-shadow);
 		background-color: var(--ld-bg-blur);
 		backdrop-filter: blur(0.5rem);
 		color: currentcolor;
@@ -71,6 +70,7 @@ const keycut = computed(() => navigator?.userAgent.includes('Mac OS') ? '⌘K' :
 		z-index: 100;
 
 		&.show {
+			box-shadow: 0 0 1rem var(--ld-shadow);
 			transform: none;
 		}
 	}
@@ -145,7 +145,7 @@ const keycut = computed(() => navigator?.userAgent.includes('Mac OS') ? '⌘K' :
 }
 
 .search-btn {
-	margin-block: 1rem;
+	margin: 1rem 0;
 	outline: 1px solid var(--c-border);
 	outline-offset: -1px;
 	cursor: text;

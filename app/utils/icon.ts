@@ -1,3 +1,4 @@
+/** 友链架构图标映射 */
 // @keep-sorted
 const archIcons = {
 	'服务器': 'ph:hard-drives-fill',
@@ -32,9 +33,20 @@ export function getArchIcon(arch: Arch) {
 	return archIcons[arch] ?? ''
 }
 
+/** BlogTech Widget 构建平台图标映射 */
+// @keep-sorted
+export const ciIcons: Record<string, string> = {
+	'Cloudflare Pages': 'devicon:cloudflare',
+	'Cloudflare Workers': 'devicon:cloudflareworkers',
+	'EdgeOne': 'https://edgeone.ai/favicon.ico',
+	'GitHub Actions': 'ri:github-fill',
+	'Netlify CI': 'catppuccin:netlify',
+	'Vercel': 'ri:vercel-fill',
+}
+
 /** 主域名图标映射 */
 // @keep-sorted
-export const mainDomainIcons: Record<string, string> = {
+const mainDomainIcons: Record<string, string> = {
 	'bilibili.com': 'ri:bilibili-fill',
 	'creativecommons.org': 'ri:creative-commons-line',
 	'github.com': 'ri:github-fill',
@@ -46,6 +58,7 @@ export const mainDomainIcons: Record<string, string> = {
 	'pages.dev': 'simple-icons:cloudflare',
 	'qq.com': 'ri:qq-fill',
 	'thisis.host': 'ph:star-four-fill',
+	'v2ex.com': 'simple-icons:v2ex',
 	'vercel.app': 'simple-icons:vercel',
 	'zabaur.app': 'tabler:square-letter-z-filled',
 	'zhihu.com': 'ri:zhihu-line',

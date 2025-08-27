@@ -4,6 +4,7 @@ import blogConfig from '~~/blog.config'
 // 图标查询：https://yesicon.app/ph
 // 图标插件：https://marketplace.visualstudio.com/items?itemName=antfu.iconify
 
+// @keep-sorted
 export default defineAppConfig({
 	// 将 blog.config 中的配置项复制到 appConfig，方便调用
 	...blogConfig,
@@ -13,7 +14,6 @@ export default defineAppConfig({
 			搭建: { icon: 'ph:computer-tower-bold', color: '#3af' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
 			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
-			站历史: { icon: 'ph:desktop-bold', color: '#72e'},
 			分享: { icon:'ph:desktop-tower-bold', color: '#3ab' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
 		},
@@ -36,8 +36,9 @@ export default defineAppConfig({
 		},
 	},
 
+	// @keep-sorted
 	footer: {
-		/** 页脚版权信息 */
+		/** 页脚版权信息，支持 <br> 换行等 HTML 标签 */
 		copyright: `© ${new Date().getFullYear()} ${blogConfig.author.name}`,
 		/** 侧边栏底部图标导航 */
 		iconNav: [
@@ -50,32 +51,30 @@ export default defineAppConfig({
 		/** 页脚站点地图 */
 		nav: [
 			{
-                title: '探索',
-                items: [
-                    { icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
-                    { icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
-                    // { icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
-                ],
-            },
-            {
-                title: '社交',
-                items: [
-                    { icon: 'ph:github-logo-bold', text: '661111', url: 'https://github.com/661111' },
-                    // { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-                    { icon: 'ph:envelope-simple-bold', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
-                ],
-            },
-            {
-                title: '信息',
-                items: [
-                    { icon: 'simple-icons:nuxtdotjs', text: 'Nuxt开源博客主题', url: 'https://github.com/L33Z22L11/blog-v3' },
-                    // { icon: 'ph:swatches-bold', text: '主题和组件文档', url: 'https://www.myxz.top/theme' },
-                    { icon: 'ph:certificate-bold', text: '萌备20251949号', url: 'https://icp.gov.moe/?keyword=20251949' },
-                ],
-            },
+				title: '探索',
+				items: [
+					{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
+					{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/' },
+					{ icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
+				],
+			},
+			{
+				title: '社交',
+				items: [
+					{ icon: 'ph:github-logo-bold', text: '661111', url: 'https://github.com/661111' },
+					// { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+					{ icon: 'ph:envelope-simple-bold', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
+				],
+			},
+			{
+				title: '信息',
+				items: [
+					{ icon: 'simple-icons:nuxtdotjs', text: '本站主题', url: 'https://github.com/L33Z22L11/blog-v3' },
+					// { icon: 'ph:swatches-bold', text: '主题和组件文档', url: '/theme' },
+					{ icon: 'ph:certificate-bold', text: '萌备20251949号', url: 'https://icp.gov.moe/?keyword=20251949' },
+				],
+			},
 		] satisfies Nav,
-		/** 页脚版权信息底部的其他信息 */
-		message: '',
 	},
 
 	/** 左侧栏顶部 Logo */
@@ -85,15 +84,7 @@ export default defineAppConfig({
 		showTitle: true,
 		subtitle: blogConfig.subtitle,
 		emojiTail: ['📄', '🦌', '🙌', '🐟', '🏖️'],
-		avatarFrame: 'https://sourceimage.s3.bitiful.net/avatarFrame/%20144.avif',
-	},
-
-	pagination: {
-		perPage: 10,
-		/** 默认排序方式，需要是 this.article.order 中的键名 */
-		sortOrder: 'date' as const,
-		/** 允许（普通/预览/归档）文章列表正序，开启后排序方式左侧图标可切换顺序 */
-		allowAscending: false,
+		'https://sourceimage.s3.bitiful.net/avatarFrame/%20144.avif',
 	},
 
 	/** 左侧栏导航 */
@@ -113,10 +104,12 @@ export default defineAppConfig({
 		},
 	] satisfies Nav,
 
-	/** 风格化 blog-stats widget */
-	seasonal: {
-		widgetBackground: 'https://sourceimage.s3.bitiful.net/img%2Fdefault_cover_8.avif',
-		// emoji: '🧧',
+	pagination: {
+		perPage: 10,
+		/** 默认排序方式，需要是 this.article.order 中的键名 */
+		sortOrder: 'date' as const,
+		/** 允许（普通/预览/归档）文章列表正序，开启后排序方式左侧图标可切换顺序 */
+		allowAscending: false,
 	},
 
 	stats: {

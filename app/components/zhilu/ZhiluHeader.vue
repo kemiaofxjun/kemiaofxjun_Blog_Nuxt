@@ -26,7 +26,6 @@ const appConfig = useAppConfig()
 			:alt="appConfig.title"
 		/>
 	</div>
-
 	<div v-if="appConfig.header.showTitle" class="zhilu-text">
 		<div class="header-title">
 			<span
@@ -65,6 +64,7 @@ const appConfig = useAppConfig()
 		box-shadow: 2px 4px 1rem var(--ld-shadow);
 	}
 }
+
 .avatarFrame {
 	top: -7px;
     transform: scale(1.3);

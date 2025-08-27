@@ -1,18 +1,16 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
 	banner?: string
 	mirror?: ImgService
-	title?: string
+	title: string
 	description?: string
 	link: string
 }>()
-
-const src = computed(() => getImgUrl(props.banner, props.mirror))
 </script>
 
 <template>
-<ZRawLink :to="link" class="link-banner card" :title>
-	<NuxtImg v-if="banner" class="link-banner-bg" :src :alt="title" />
+<ZRawLink :to="link" class="link-banner card" :title="joinWith([title, description, link])">
+	<ZRawImg v-if="banner" class="link-banner-bg" :src="banner" :mirror />
 	<div class="link-banner-header" />
 	<div class="link-banner-info">
 		<div class="link-banner-title">
@@ -37,7 +35,7 @@ const src = computed(() => getImgUrl(props.banner, props.mirror))
 	.link-banner-bg {
 		aspect-ratio: 2.4;
 		margin-bottom: -5%;
-		mask: linear-gradient(#FFF 50%, transparent);
+		mask-image: linear-gradient(#FFF 50%, transparent);
 		object-fit: cover;
 	}
 

@@ -2,7 +2,7 @@
 <NuxtLoadingIndicator />
 <SkipToContent />
 <ZSidebar />
-<div id="content" style="width: 1150px;">
+<div id="content">
 	<main id="main-content">
 		<NuxtPage />
 		<ZFooter />

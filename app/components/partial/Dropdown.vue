@@ -42,6 +42,12 @@
 
 		&:hover {
 			background-color: var(--c-bg-soft);
+			color: var(--c-text-1);
+		}
+
+		&.active {
+			background-color: var(--c-primary-soft);
+			color: var(--c-primary);
 		}
 	}
 }
