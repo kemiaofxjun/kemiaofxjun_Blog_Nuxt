@@ -300,12 +300,16 @@
 	--qiyuan-warp: var(--qiyuan-card-background);
 	--qiyuan-preview: var(--qiyuan-card-background);
 	--qiyuan-bottom: var(--qiyuan-card-background);
+  --qiyuan-card-backgroundtwo: #fff;
+  --qiyuan-input: var(--qiyuan-card-backgroundtwo);
 }
 
-:root,.light {
+.light, :root {
+  --qiyuan-card-backgroundtwo: #fff;
 	--qiyuan-card-background: #fff;
 	--qiyuan-editor: var(--qiyuan-card-background);
 	--qiyuan-warp: var(--qiyuan-card-background);
 	--qiyuan-preview: var(--qiyuan-card-background);
 	--qiyuan-bottom: var(--qiyuan-card-background);
+  --qiyuan-input: var(--qiyuan-card-backgroundtwo);
 }

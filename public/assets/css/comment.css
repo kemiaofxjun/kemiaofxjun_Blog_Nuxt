@@ -1,13 +1,18 @@
 /* artalk */
+.artalk {
+    color: var(--qiyuan-card-backgroundtwo)!important;
+}
 .atk-main-editor {
   background: var(--qiyuan-card-background) !important;
   border: none !important;
+  border-radius: none!important;
 }
 .atk-header {
   padding: 0 !important;
   gap: 16px !important;
 }
-.atk-header .input {
+.atk-main-editor>.atk-header input {
+  background: var(--qiyuan-input)!important;
   padding: 10px 12px !important;
 }
 .atk-textarea-wrap {
@@ -21,6 +26,7 @@
 }
 
 .atk-editor-plug-preview {
+  margin-top: 1rem;
   border-radius: 3px;
   padding: 10px 12px !important;
   background: var(--qiyuan-preview) !important;
