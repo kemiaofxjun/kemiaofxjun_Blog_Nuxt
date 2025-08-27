@@ -31,15 +31,17 @@ onMounted(() => {
 .z-comment {
 	margin: 3rem 1rem;
 
-	> h3 {
+	h3 {
 		margin-top: 3rem;
 		font-size: 1.25rem;
 	}
+}
 
+:deep(#twikoo) {
 	.atk-main-editor {
 		background:var(--qiyuan-card-background)!important;
 		border: none!important;
-		> .atk-header {
+		.atk-header {
 			padding: 0!important;
 			gap: 16px!important;
 
@@ -47,13 +49,13 @@ onMounted(() => {
 				padding: 10px 12px!important;
 			}
 		}
-		> .atk-textarea-wrap {
+		.atk-textarea-wrap {
 			background: var(--qiyuan-warp)!important;
 			border-radius: 3px!important;
 			margin-top: 1rem!important;
 		}
 
-		> .atk-plug-panel-wrap {
+		.atk-plug-panel-wrap {
 			border-top: 0!important;
 
 			.atk-editor-plug-preview {
@@ -63,7 +65,7 @@ onMounted(() => {
 			}
 		}
 
-		> .atk-bottom {
+		.atk-bottom {
 			padding: 10px 12px!important;
 			background: var(--qiyuan-bottom)!important;
 			margin-top: 1rem!important;
