@@ -24,7 +24,7 @@ const blogStats = computed(() => [{
 }])
 
 onMounted(async () => {
-	const stats = await $fetch('/api/zishu')
+	const stats = await $fetch('/api/stats')
 	totalWords.value = formatNumber(stats.total.words)
 	yearlyTip.value = Object.entries(stats.annual).reverse().map(([year, item]) =>
 		`${year}年：${item.posts}篇，${formatNumber(item.words)}字`,
