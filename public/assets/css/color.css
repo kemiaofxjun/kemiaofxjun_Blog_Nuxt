@@ -292,3 +292,20 @@
   --anzhiyu-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
   --anzhiyu-card-border: #42444a;
 }
+
+/* 柒渊阁 */
+.dark {
+	--qiyuan-card-background: #000;
+	--qiyuan-editor: var(--qiyuan-card-background);
+	--qiyuan-warp: var(--qiyuan-card-background);
+	--qiyuan-preview: var(--qiyuan-card-background);
+	--qiyuan-bottom: var(--qiyuan-card-background);
+}
+
+:root,.light {
+	--qiyuan-card-background: #fff;
+	--qiyuan-editor: var(--qiyuan-card-background);
+	--qiyuan-warp: var(--qiyuan-card-background);
+	--qiyuan-preview: var(--qiyuan-card-background);
+	--qiyuan-bottom: var(--qiyuan-card-background);
+}
