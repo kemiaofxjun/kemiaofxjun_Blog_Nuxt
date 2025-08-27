@@ -32,7 +32,6 @@
     "radash": "catalog:util",
     "rehype-katex": "catalog:content",
     "remark-math": "catalog:content",
-    "unplugin-yaml": "catalog:framework",
     "vue-tippy": "catalog:ui",
     "vue-virtual-scroller": "catalog:ui"
   },
@@ -61,6 +60,7 @@
     "stylelint": "catalog:quality",
     "terser": "catalog:framework",
     "typescript": "catalog:framework",
+    "unplugin-yaml": "catalog:framework",
     "vue": "catalog:framework",
     "vue-router": "catalog:framework"
   }
