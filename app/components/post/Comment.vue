@@ -35,40 +35,40 @@ onMounted(() => {
 		margin-top: 3rem;
 		font-size: 1.25rem;
 	}
-}
 
-.atk-main-editor {
-	background:var(--qiyuan-card-background)!important;
-	border: none!important;
-	> .atk-header {
-		padding: 0!important;
-		gap: 16px!important;
+	.atk-main-editor {
+		background:var(--qiyuan-card-background)!important;
+		border: none!important;
+		> .atk-header {
+			padding: 0!important;
+			gap: 16px!important;
 
-		.input {
-			padding: 10px 12px!important;
+			.input {
+				padding: 10px 12px!important;
+			}
 		}
-	}
-	> .atk-textarea-wrap {
-		background: var(--qiyuan-warp)!important;
-		border-radius: 3px!important;
-		margin-top: 1rem!important;
-	}
-
-	> .atk-plug-panel-wrap {
-		border-top: 0!important;
-
-		.atk-editor-plug-preview {
-			border-radius: 3px;
-			padding: 10px 12px!important;
-    		background: var(--qiyuan-preview)!important;
+		> .atk-textarea-wrap {
+			background: var(--qiyuan-warp)!important;
+			border-radius: 3px!important;
+			margin-top: 1rem!important;
 		}
-	}
 
-	> .atk-bottom {
-		padding: 10px 12px!important;
-		background: var(--qiyuan-bottom)!important;
-		margin-top: 1rem!important;
-		border-radius: 3px!important;
+		> .atk-plug-panel-wrap {
+			border-top: 0!important;
+
+			.atk-editor-plug-preview {
+				border-radius: 3px;
+				padding: 10px 12px!important;
+				background: var(--qiyuan-preview)!important;
+			}
+		}
+
+		> .atk-bottom {
+			padding: 10px 12px!important;
+			background: var(--qiyuan-bottom)!important;
+			margin-top: 1rem!important;
+			border-radius: 3px!important;
+		}
 	}
 }
 
