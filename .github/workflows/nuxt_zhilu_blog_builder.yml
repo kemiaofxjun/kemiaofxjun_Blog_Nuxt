@@ -28,22 +28,22 @@ jobs:
       - name: 3. 安装插件
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          npm install -g pnpm@latest
-          pnpm i
+          npm install -g pnpm@10.13.1
+          pnpm install
 
       - name: 4. 开始构建
         run: |
           pnpm generate
 
-      - name: 5. 推送到vercel分支
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: Nuxt
-          publish_dir: .output/public
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          full_commit_message: ${{ github.event.head_commit.message }}
+      # - name: 5. 推送到vercel分支
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_branch: Nuxt
+      #     publish_dir: .output/public
+      #     user_name: 'github-actions[bot]'
+      #     user_email: 'github-actions[bot]@users.noreply.github.com'
+      #     full_commit_message: ${{ github.event.head_commit.message }}
 
       - name: 6. 推送到仓库
         uses: JamesIves/github-pages-deploy-action@v4

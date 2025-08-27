@@ -4,6 +4,7 @@ import blogConfig from '~~/blog.config'
 // 图标查询：https://yesicon.app/ph
 // 图标插件：https://marketplace.visualstudio.com/items?itemName=antfu.iconify
 
+// @keep-sorted
 export default defineAppConfig({
 	// 将 blog.config 中的配置项复制到 appConfig，方便调用
 	...blogConfig,
@@ -14,8 +15,7 @@ export default defineAppConfig({
 			技术分享: { icon: 'ph:code-bold', color: '#77f' },
 			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
 			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
-			站历史: { icon: 'ph:desktop-bold', color: '#72e' },
-			分享: { icon: 'ph:desktop-tower-bold', color: '#3ab' },
+			资源分享: { icon: 'ph:cloud-bold', color: '#77f' },
 			未分类: { icon: 'ph:folder-dotted-bold' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',
@@ -37,8 +37,9 @@ export default defineAppConfig({
 		},
 	},
 
+	// @keep-sorted
 	footer: {
-		/** 页脚版权信息 */
+		/** 页脚版权信息，支持 <br> 换行等 HTML 标签 */
 		copyright: `© ${new Date().getFullYear()} ${blogConfig.author.name}`,
 		/** 侧边栏底部图标导航 */
 		iconNav: [
@@ -55,8 +56,8 @@ export default defineAppConfig({
 				title: '探索',
 				items: [
 					{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
-					{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
-					// { icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
+					{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/' },
+					{ icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
 				],
 			},
 			{
@@ -76,8 +77,6 @@ export default defineAppConfig({
 				],
 			},
 		] satisfies Nav,
-		/** 页脚版权信息底部的其他信息 */
-		message: '',
 	},
 
 	/** 左侧栏顶部 Logo */
@@ -88,14 +87,6 @@ export default defineAppConfig({
 		subtitle: blogConfig.subtitle,
 		emojiTail: ['📔', '📓', '📖', '📚️', '📑'],
 		avatarFrame: 'https://img.314926.xyz/images/2025/08/13/no-background-kemiaofxjun.webp',
-	},
-
-	pagination: {
-		perPage: 10,
-		/** 默认排序方式，需要是 this.article.order 中的键名 */
-		sortOrder: 'date' as const,
-		/** 允许（普通/预览/归档）文章列表正序，开启后排序方式左侧图标可切换顺序 */
-		allowAscending: false,
 	},
 
 	/** 左侧栏导航 */
@@ -115,10 +106,12 @@ export default defineAppConfig({
 		},
 	] satisfies Nav,
 
-	/** 风格化 blog-stats widget */
-	seasonal: {
-		widgetBackground: 'https://img.314926.xyz/images/2025/08/15/cover20.webp',
-		// emoji: '🧧',
+	pagination: {
+		perPage: 10,
+		/** 默认排序方式，需要是 this.article.order 中的键名 */
+		sortOrder: 'date' as const,
+		/** 允许（普通/预览/归档）文章列表正序，开启后排序方式左侧图标可切换顺序 */
+		allowAscending: false,
 	},
 
 	stats: {

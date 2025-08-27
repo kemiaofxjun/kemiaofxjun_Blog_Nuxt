@@ -5,7 +5,7 @@ useSeoMeta({
 	description: `${appConfig.title}的文章预览。`,
 })
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'blog-tech', 'blog-log'])
 
 const { data: listRaw } = useArticleIndex('previews/%')
 const { listSorted, isAscending, sortOrder } = useArticleSort(listRaw)
@@ -52,7 +52,7 @@ const { category, categories, listCategorized } = useCategory(listSorted)
 	justify-content: space-between;
 
 	h1 {
-		mask: linear-gradient(#FFF, transparent);
+		mask-image: linear-gradient(#FFF, transparent);
 	}
 }
 </style>

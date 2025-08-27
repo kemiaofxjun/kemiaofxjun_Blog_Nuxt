@@ -9,12 +9,6 @@ const blogLog = [
 
 <template>
 <ZWidget card title="更新日志">
-	<!-- TODO: 优化时间线样式 -->
-	<ul>
-		<li v-for="(item, index) in blogLog" :key="index">
-			<small>{{ item.date }}</small><br>
-			{{ item.content }}
-		</li>
-	</ul>
+	<ZDlGroup size="large" :items="blogLog" />
 </ZWidget>
 </template>

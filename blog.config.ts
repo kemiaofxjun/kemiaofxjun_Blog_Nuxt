@@ -1,7 +1,5 @@
 import type { NitroConfig } from 'nitropack'
 import type { FeedEntry } from './app/types/feed'
-import { defer } from 'radash'
-import { server } from 'typescript'
 import redirectList from './redirects.json'
 
 export { zhCN as dateLocale } from 'date-fns/locale/zh-CN'
@@ -58,13 +56,15 @@ const blogConfig = {
 		// Twikoo 评论系统
 		{ src: 'https://cdn.cbd.int/kemiao-gitee-static@1.0.0/js/twikoo/twikoo@1.6.44.min.js', defer: true },
 		// Artalk
-		{ src: 'https://artalk.myxz.top/dist/Artalk.js', defer: true },
+		{ src: 'https://jsd.myxz.top/npm/artalk@2.5.3/dist/Artalk.min.js', defer: true },
 	],
 
 	// 自己部署的 Twikoo 服务
 	twikoo: {
 		envId: 'https://kemiao-twikoo.050815.xyz/',
 		preload: 'https://kemiao-twikoo.050815.xyz/',
+		// envId: 'https://twikoo.zhilu.cyou/',
+		// preload: 'https://twikoo.zhilu.cyou/',
 	},
 
 	artalk: {
@@ -96,6 +96,7 @@ const redirectRouteRules = Object.entries(redirectList)
 	}, {})
 
 // https://nitro.build/config#routerules
+// 使用 EdgeOne 部署时，需要同步更新 edgeone.json
 // @keep-sorted
 export const routeRules = <NitroConfig['routeRules']>{
 	...redirectRouteRules,

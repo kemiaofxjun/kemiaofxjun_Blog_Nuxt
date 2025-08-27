@@ -29,6 +29,7 @@ const { copy, copied } = useCopy(shareText)
 				文字分享
 			</ZButton>
 		</div>
+
 		<div v-if="!hideInfo" class="post-info">
 			<time
 				v-if="date"
@@ -59,6 +60,7 @@ const { copy, copied } = useCopy(shareText)
 			</span>
 		</div>
 	</div>
+
 	<h1 class="post-title" :class="getPostTypeClassName(type)">
 		{{ title }}
 	</h1>
@@ -88,19 +90,23 @@ const { copy, copied } = useCopy(shareText)
 	&.has-cover {
 		position: relative;
 		overflow: hidden;
+		overflow: clip;
 		min-height: 256px;
 		max-height: 320px;
-		text-shadow: 0 1px 1px #0003, 0 1px 2px #0003;
 		color: white;
 		transition: font-size 0.2s;
-		z-index: 0;
 
 		&:hover {
 			font-size: 0.8em;
 		}
 
+		.post-info {
+			filter: drop-shadow(0 1px 2px #000);
+		}
+
 		.post-title {
 			background-image: linear-gradient(transparent, #0003, #0005);
+			text-shadow: 0 1px 1px #0003, 0 1px 2px #0003;
 
 			&.text-story {
 				text-align: center;
@@ -133,13 +139,13 @@ const { copy, copied } = useCopy(shareText)
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: -1;
 }
 
 .post-title {
 	padding: 0.8em 1rem;
 	font-size: 1.6em;
 	line-height: 1.2;
+	z-index: 1;
 }
 
 .post-nav {

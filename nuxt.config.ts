@@ -1,7 +1,7 @@
 import process from 'node:process'
+import ci from 'ci-info'
 import blogConfig, { routeRules } from './blog.config'
 import packageJson from './package.json'
-import { Script } from 'node:vm';
 
 // 此处配置无需修改
 export default defineNuxtConfig({
@@ -15,18 +15,17 @@ export default defineNuxtConfig({
 				// 此处为元数据的生成器标识，不建议修改
 				{ 'name': 'generator', 'content': packageJson.name, 'data-github-repo': packageJson.homepage, 'data-version': packageJson.version },
 				{ name: 'mobile-web-app-capable', content: 'yes' },
-				{ name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
 			],
 			link: [
 				{ rel: 'icon', href: blogConfig.favicon },
 				{ rel: 'alternate', type: 'application/atom+xml', href: '/atom.xml' },
 				{ rel: 'preconnect', href: blogConfig.twikoo.preload },
-				// 思源黑体 "Noto Sans SC", 思源宋体 "Noto Serif SC", "JetBrains Mono"
 				{ rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
                 { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
                 { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
-				{ rel: 'stylesheet', href: 'https://artalk.myxz.top/dist/Artalk.css', media: 'none', onload: 'this.media="all"'  },
+				{ rel: 'stylesheet', href: 'https://jsd.myxz.top/npm/artalk@2.5.3/dist/Artalk.min.css', media: 'none', onload: 'this.media="all"'  },
                 { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
+				{ rel: 'stylesheet', href: '/assets/css/comment.css', media: 'none', onload: 'this.media="all"'  },
 			],
 			templateParams: {
 				separator: '|',
@@ -64,6 +63,10 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			buildTime: new Date().toISOString(),
+			nodeVersion: process.version,
+			platform: process.platform,
+			arch: process.arch,
+			ci: process.env.TENCENTCLOUD_RUNENV === 'SCF' ? 'EdgeOne' : ci.name || '',
 		},
 	},
 
@@ -89,6 +92,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/seo',
 		'@pinia/nuxt',
 		'@vueuse/nuxt',
+		'unplugin-yaml/nuxt',
 	],
 
 	colorMode: {
@@ -101,13 +105,28 @@ export default defineNuxtConfig({
 		build: {
 			markdown: {
 				highlight: false,
-				remarkPlugins: { 'remark-reading-time': {} },
+				// @keep-sorted
+				remarkPlugins: {
+					'remark-math': {},
+					'remark-reading-time': {},
+				},
+				rehypePlugins: {
+					'rehype-katex': {},
+				},
 				toc: { depth: 4, searchDepth: 4 },
 			},
 		},
 	},
 
 	hooks: {
+		'ready': () => {
+			console.info(`
+================================
+${packageJson.name} ${packageJson.version}
+${packageJson.homepage}
+================================
+`)
+		},
 		'content:file:afterParse': (ctx) => {
 			// 在 URL 中隐藏指定目录前缀的路径
 			for (const prefix of blogConfig.hideContentPrefixes) {

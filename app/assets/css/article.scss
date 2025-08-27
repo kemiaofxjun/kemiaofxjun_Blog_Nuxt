@@ -40,7 +40,6 @@
 			margin: 0.2em 0;
 
 			&::marker {
-				font-size: 0.8em;
 				color: var(--c-primary);
 			}
 		}
@@ -98,6 +97,7 @@
 		padding: 0 2px;
 		border-radius: 0.2rem;
 		background-color: var(--c-primary);
+		text-autospace: no-autospace;
 	}
 
 	&.md-story {

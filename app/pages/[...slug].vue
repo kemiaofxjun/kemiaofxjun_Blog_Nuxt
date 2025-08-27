@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity'])
+layoutStore.setAside(['toc'])
 
 const { data: post } = await useAsyncData(
 	() => route.path,
@@ -25,7 +25,7 @@ else {
 	// const event = useRequestEvent()
 	// event && setResponseStatus(event, 404)
 	route.meta.title = '404'
-	layoutStore.setAside(['blog-stats', 'connectivity'])
+	layoutStore.setAside(['blog-log'])
 }
 </script>
 
