@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { toZonedTime } from 'date-fns-tz'
-import { ref, onMounted, computed } from 'vue';
 
 const appConfig = useAppConfig()
 const runtimeConfig = useRuntimeConfig()
