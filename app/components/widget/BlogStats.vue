@@ -11,20 +11,20 @@ const yearlyTip = ref('')
 
 const blogStats = computed(() => [{
 	label: '运营时长',
-	value: timeElapse(appConfig.timeEstablished),
+	content: timeElapse(appConfig.timeEstablished),
 	tip: `博客于${appConfig.timeEstablished}上线`,
 }, {
 	label: '上次更新',
-	value: timeElapse(buildTime),
+	content: timeElapse(buildTime),
 	tip: `构建于${getLocaleDatetime(buildTime)}`,
 }, {
 	label: '总字数',
-	value: totalWords,
-	tip: yearlyTip,
+	content: totalWords,
+	tip: yearlyTip.value,
 }])
 
 onMounted(async () => {
-	const stats = await $fetch('/api/stats')
+	const stats = await $fetch('/api/zishu')
 	totalWords.value = formatNumber(stats.total.words)
 	yearlyTip.value = Object.entries(stats.annual).reverse().map(([year, item]) =>
 		`${year}年：${item.posts}篇，${formatNumber(item.words)}字`,
@@ -34,6 +34,25 @@ onMounted(async () => {
 
 <template>
 <ZWidget card title="博客统计">
-	<ZDlGroup :items="blogStats" size="small" data-allow-mismatch />
+	<ul>
+		<li v-for="(item, index) in blogStats" :key="index" :title="item.tip">
+			<small>{{ item.label }}</small><br>
+			<span data-allow-mismatch>{{ item.content }}</span>
+		</li>
+	</ul>
 </ZWidget>
 </template>
+
+<style lang="scss" scoped>
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	text-align: center;
+
+	>li {
+		flex: 1;
+		white-space: nowrap;
+	}
+}
+</style>
