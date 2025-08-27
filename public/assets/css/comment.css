@@ -13,11 +13,12 @@
     gap: 16px !important;
 }
 .atk-main-editor>.atk-header input {
-    background: var(--qiyuan-input)!important;
+    border-color: var(--qiyuan-input)!important;
     padding: 10px 12px !important;
+    border-radius: 12px;
 }
 .atk-textarea-wrap {
-    background: var(--qiyuan-warp) !important;
+    border-color: var(--qiyuan-warp) !important;
     border-radius: 3px !important;
     margin-top: 1rem !important;
 }
