@@ -37,31 +37,60 @@ onMounted(() => {
 	}
 }
 
-:root {
-	--ark-color-bg: #fff
+.atk-main-editor {
+	background:var(--qiyuan-card-background)!important;
+	border: none!important;
+	> .atk-header {
+		padding: 0!important;
+		gap: 16px!important;
+
+		.input {
+			padding: 10px 12px!important;
+		}
+	}
+	> .atk-textarea-wrap {
+		background: var(--qiyuan-warp)!important;
+		border-radius: 3px!important;
+		margin-top: 1rem!important;
+	}
+
+	> .atk-plug-panel-wrap {
+		border-top: 0!important;
+
+		.atk-editor-plug-preview {
+			border-radius: 3px;
+			padding: 10px 12px!important;
+    		background: var(--qiyuan-preview)!important;
+		}
+	}
+
+	> .atk-bottom {
+		padding: 10px 12px!important;
+		background: var(--qiyuan-bottom)!important;
+		margin-top: 1rem!important;
+		border-radius: 3px!important;
+	}
+}
+
+// 颜色样式表（勿删）
+@mixin dark-theme {
+	--qiyuan-card-background: #000;
+	--qiyuan-editor: var(--qiyuan-card-background);
+	--qiyuan-warp: var(--qiyuan-card-background);
+	--qiyuan-preview: var(--qiyuan-card-background);
+	--qiyuan-bottom: var(--qiyuan-card-background);
+}
+
+:root,.light {
+	--qiyuan-card-background: #fff;
+	--qiyuan-editor: var(--qiyuan-card-background);
+	--qiyuan-warp: var(--qiyuan-card-background);
+	--qiyuan-preview: var(--qiyuan-card-background);
+	--qiyuan-bottom: var(--qiyuan-card-background);
 }
 
 .dark {
-	--ark-color-bg: #000000
-}
-
-:deep(#artalk) {
-	margin: 2em 0;
-
-	.atk-main-editor {
-		background: var(--ark-color-bg)!important;
-
-		.atk-main-editor>.atk-header input {
-			color: var(--ark-color-bg)!important;
-		}
-		.atk-textarea-wrap {
-			textarea.atk-textarea {
-				background: var(--ark-color-bg)!important;
-			}
-		}
-		.atk-main-editor>.atk-bottom .atk-plug-btn i {
-			color: #ffffff;
-		}
-	}
+	@include dark-theme;
+	color-scheme: dark;
 }
 </style>
