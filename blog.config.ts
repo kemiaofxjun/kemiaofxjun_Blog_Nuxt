@@ -56,7 +56,7 @@ const blogConfig = {
 		// Twikoo 评论系统
 		// { src: 'https://cdn.cbd.int/kemiao-gitee-static@1.0.0/js/twikoo/twikoo@1.6.44.min.js', defer: true },
 		// Artalk
-		{ src: '/assets/js/artalk.js', defer: true },
+		{ src: 'https://artalk.050815.xyz/dist/Artalk.js', defer: true },
 		// // Twikoo 评论系统
 		// { src: 'https://lib.baomitu.com/twikoo/1.6.44/twikoo.min.js', defer: true },
 		// { src: '/assets/js/artalk.js', defer: true }
