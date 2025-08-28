@@ -10,7 +10,7 @@ import Social from '../components/about/social.vue'
 import Technology from '../components/about/technology.vue'
 
 const layoutStore = useLayoutStore()
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'blog-tech', 'blog-log'])
 
 // 动态加载外部 JS 脚本
 function loadScript(url: string, callback?: () => void) {

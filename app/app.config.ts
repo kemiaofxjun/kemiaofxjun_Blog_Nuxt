@@ -57,7 +57,7 @@ export default defineAppConfig({
 				items: [
 					{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
 					{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/' },
-					{ icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
+					// { icon: 'ph:flying-saucer-bold', text: '异次元旅行', url: 'https://travel.moe/go.html?travel=on' },
 				],
 			},
 			{
@@ -65,7 +65,7 @@ export default defineAppConfig({
 				items: [
 					{ icon: 'ph:github-logo-bold', text: 'kemiaofxjun', url: 'https://github.com/kemiaofxjun' },
 					// { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-					{ icon: 'ph:envelope-simple-bold', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
+					{ icon: 'ph:envelope-simple-bold', text: '本站邮箱', url: `mailto:${blogConfig.author.email}` },
 				],
 			},
 			{
