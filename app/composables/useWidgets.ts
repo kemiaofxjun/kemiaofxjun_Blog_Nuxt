@@ -5,6 +5,7 @@ import {
 	LazyWidgetCommGroup,
 	LazyWidgetEmpty,
 	LazyWidgetGithubCard,
+	LazyWidgetPoetry,
 	LazyWidgetToc,
 } from '#components'
 import { pascal } from 'radash'
@@ -17,6 +18,7 @@ const rawWidgets = {
 	LazyWidgetCommGroup,
 	LazyWidgetEmpty,
 	LazyWidgetGithubCard,
+	LazyWidgetPoetry,
 	LazyWidgetToc,
 }
 
