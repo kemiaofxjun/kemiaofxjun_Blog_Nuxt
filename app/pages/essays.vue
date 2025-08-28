@@ -6,7 +6,7 @@ const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
 
 // 设置侧边栏组件
-layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
+layoutStore.setAside(['blog-stats', 'blog-tech', 'blog-log'])
 
 // SEO 配置
 useSeoMeta({
@@ -238,7 +238,7 @@ onMounted(fetchTalks)
 
 function goComment(content: string) {
     const textContent = content.replace(/<[^>]+>/g, '')
-    const textarea = document.querySelector('.tk-input .el-textarea__inner') as HTMLTextAreaElement
+    const textarea = document.querySelector('.atk-textarea-wrap .atk-textarea') as HTMLTextAreaElement
     if (textarea) {
         textarea.value = `> ${textContent}\n\n`
         textarea.focus()
