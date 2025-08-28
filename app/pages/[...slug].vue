@@ -25,7 +25,6 @@ else {
 	// const event = useRequestEvent()
 	// event && setResponseStatus(event, 404)
 	route.meta.title = '404'
-	layoutStore.setAside(['blog-log'])
 }
 </script>
 
