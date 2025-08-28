@@ -22,7 +22,6 @@ export default defineNuxtConfig({
                 { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
 				{ rel: 'stylesheet', href: 'https://jsd.myxz.top/npm/artalk@2.5.3/dist/Artalk.min.css', media: 'none', onload: 'this.media="all"'  },
                 { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
-				{ rel: 'stylesheet', href: '/assets/css/comment.css', media: 'none', onload: 'this.media="all"'  },
 			],
 			templateParams: {
 				separator: '|',
