@@ -7,7 +7,7 @@ onMounted(() => {
 		// envId: appConfig.twikoo?.envId,
 		// // twikoo 会把挂载后的元素变为 #twikoo
 		// el: '#twikoo',
-        el: '#artalk',
+        el: '#layoutHelper-comments',
         pageKey: '',
         pageTitle: '',
         server: appConfig.artalk?.server,
