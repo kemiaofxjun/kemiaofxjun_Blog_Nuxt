@@ -313,3 +313,7 @@
 	--qiyuan-bottom: var(--qiyuan-card-background);
   --qiyuan-input: var(--qiyuan-card-backgroundtwo);
 }
+
+.atk-content {
+    color: var(--c-text)!important;
+}
