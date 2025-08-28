@@ -54,9 +54,12 @@ const blogConfig = {
 		// 自己网站的 Cloudflare Insights 统计服务
 		// { 'src': 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "97a4fe32ed8240ac8284e9bffaf03962"}', 'defer': true },
 		// Twikoo 评论系统
-		{ src: 'https://cdn.cbd.int/kemiao-gitee-static@1.0.0/js/twikoo/twikoo@1.6.44.min.js', defer: true },
+		// { src: 'https://cdn.cbd.int/kemiao-gitee-static@1.0.0/js/twikoo/twikoo@1.6.44.min.js', defer: true },
 		// Artalk
-		{ src: 'https://jsd.myxz.top/npm/artalk@2.5.3/dist/Artalk.min.js', defer: true },
+		{ src: '/assets/js/artalk.js', defer: true },
+		// // Twikoo 评论系统
+		// { src: 'https://lib.baomitu.com/twikoo/1.6.44/twikoo.min.js', defer: true },
+		// { src: '/assets/js/artalk.js', defer: true }
 	],
 
 	// 自己部署的 Twikoo 服务
@@ -68,8 +71,8 @@ const blogConfig = {
 	},
 
 	artalk: {
-		server: '',
-		sitename: '柒渊阁',
+		server: 'https://artalk.050815.xyz/',
+		sitename: '喵洛阁',
 	},
 }
 

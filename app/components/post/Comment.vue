@@ -3,10 +3,19 @@ const appConfig = useAppConfig()
 
 onMounted(() => {
 	// @ts-expect-error windows上有twikoo实例
-	window.twikoo?.init?.({
-		envId: appConfig.twikoo?.envId,
-		// twikoo 会把挂载后的元素变为 #twikoo
-		el: '#twikoo',
+	// window.twikoo?.init?.({
+	// 	envId: appConfig.twikoo?.envId,
+	// 	// twikoo 会把挂载后的元素变为 #twikoo
+	// 	el: '#twikoo',
+	window.Artalk?.init?.({
+		// envId: appConfig.twikoo?.envId,
+		// // twikoo 会把挂载后的元素变为 #twikoo
+		// el: '#twikoo',
+		el: '#layoutHelper-comments',
+		pageKey: '',
+		pageTitle: '',
+		server: appConfig.artalk?.server,
+		site: appConfig.artalk?.sitename,
 	})
 })
 </script>
@@ -16,7 +25,7 @@ onMounted(() => {
 	<h3 class="text-creative">
 		评论区
 	</h3>
-	<div id="twikoo">
+	<div id="layoutHelper-comments" style="margin: 2em 0;">
 		<p>评论加载中...</p>
 	</div>
 </section>
