@@ -10,7 +10,7 @@ const activeTab = ref(0); // 默认激活第一个标签页
 </div>
 
 <div class="tabs-container">
-	<div class="tabs-header">
+	<div class="tabs">
 		<button v-for="(tab, index) in siteLinkItems" :key="tab.name" @click="activeTab = index" :class="{ 'active': activeTab === index }">
 			{{ tab.name }}
 		</button>
@@ -18,7 +18,7 @@ const activeTab = ref(0); // 默认激活第一个标签页
 
     <div class="sitelink-list">
         <div class="sitelink-item" v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index">
-            <img width="150" height="150" alt="Syntax" class="cover" :src="site.link">
+            <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
             <main>
                 <header>
                     <h2 class="title">
@@ -56,6 +56,57 @@ const activeTab = ref(0); // 默认激活第一个标签页
 </template>
 
 <style lang="css" scoped>
+.tabs {
+	position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .9em;
+    gap: .5em;
+    justify-content: center;
+    line-height: 1.4;
+}
+
+.tabs button {
+	background-color: var(--ld-bg-card);
+    box-shadow: 0 1px .5em var(--ld-shadow);
+    color: var(--c-text);
+	border-radius: .4em;
+    color: var(--c-text-2);
+    margin-bottom: .5em;
+    padding: .3em .5em;
+    transition: all .2s;
+}
+
+.tabs button:after {
+    background-color: var(--c-border);
+    content: "";
+    left: -.8em;
+    right: -.8em;
+}
+
+.tabs button:before {
+    background-color: var(--c-primary);
+    content: "";
+    z-index: 1;
+}
+
+.tabs button:after, .tabs button:before {
+    border-radius: 1em;
+    bottom: -.5em;
+    display: block;
+    height: 2px;
+    left: .8em;
+    pointer-events: none;
+    position: absolute;
+    right: .8em;
+}
+
+button.active {
+    background-color: var(--ld-bg-card);
+    box-shadow: 0 1px .5em var(--ld-shadow);
+    color: var(--c-text);
+}
+
 .feed-label {
     margin: 2rem 1rem -1rem
 }
