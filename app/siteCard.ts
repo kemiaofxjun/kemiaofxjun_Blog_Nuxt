@@ -1,6 +1,6 @@
 import type { siteTabs } from '~/types/site'
 
-export default [
+export const siteLinkItems: siteTabs[] = [
     {
         name: '',
         siteItems: [{
@@ -12,4 +12,4 @@ export default [
             ]
         }]
     }
-] satisfies siteTabs[]
+]

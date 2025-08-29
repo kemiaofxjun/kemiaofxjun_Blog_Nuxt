@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { siteTabs } from '~/sitecard'
+import { siteLinkItems } from '/app/sitecard.ts'
 </script>
 
 <template>
     <div class="sitelink-list">
-        <div v-for="tabs in siteTabs" :key="siteTabs.name">
+        <div v-for="tabs in siteLinkItems" :key="tabs.name">
             <div class="sitelink-item" v-for="site in tabs">
                 <img width="150" height="150" alt="Syntax" class="cover" :src="site.link">
                 <main>
