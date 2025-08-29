@@ -21,7 +21,7 @@ function addStatusTagsWithCache(url: string) {
       if (!link.href) return
       
       const cleanHref = link.href.replace(/\/$/, "")
-      const statusDiv = document.createElement("div")
+      const statusDiv = document.createElement("header")
       statusDiv.classList.add("state")
       
       const matchedStatus = data.find(item => 
