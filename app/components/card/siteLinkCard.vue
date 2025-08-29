@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { siteTabs } from '/app/sitecard'
+import { siteTabs } from '~/sitecard'
 </script>
 
 <template>
