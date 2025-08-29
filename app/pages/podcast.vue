@@ -17,6 +17,13 @@ interface CacheData {
   timestamp: number
 }
 
+interface FriendLink {
+  name: string
+  url: string
+  avatar: string
+  description: string
+}
+
 const CACHE_KEY = 'statusTagsData'
 const CACHE_EXPIRATION = 30 * 60 * 1000 // 半小时
 const JSON_URL = 'https://agent.service.myxz.top/result.json'
@@ -27,27 +34,30 @@ function applyStatusTags(data: StatusData) {
     if (!(card instanceof HTMLAnchorElement) || !card.href) return
     
     const link = card.href.replace(/\/$/, '')
-    const statusTag = document.createElement('div')
-    statusTag.classList.add('status-tag')
-    
     const status = linkStatus.find(item => 
       item.link.replace(/\/$/, '') === link
     )
     
     if (!status) return
     
+    // 移除已有的状态标签（如果存在）
+    const existingTag = card.querySelector('.status-tag')
+    if (existingTag) existingTag.remove()
+    
     let latencyText = '未知'
-    let className = 'status-tag-red'
+    let className = 'status-tag status-tag-red'
     
     if (status.latency !== -1) {
       latencyText = `${status.latency.toFixed(2)} s`
-      if (status.latency <= 2) className = 'status-tag-green'
-      else if (status.latency <= 5) className = 'status-tag-light-yellow'
-      else if (status.latency <= 10) className = 'status-tag-dark-yellow'
+      if (status.latency <= 2) className = 'status-tag status-tag-green'
+      else if (status.latency <= 5) className = 'status-tag status-tag-light-yellow'
+      else if (status.latency <= 10) className = 'status-tag status-tag-dark-yellow'
     }
     
+    const statusTag = document.createElement('div')
+    statusTag.className = className
     statusTag.textContent = latencyText
-    statusTag.classList.add(className)
+    
     card.style.position = 'relative'
     card.appendChild(statusTag)
   })
@@ -64,24 +74,29 @@ function fetchDataAndUpdateUI() {
       }
       localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
     })
-    .catch(error => console.error('Error fetching status data:', error))
+    .catch(error => console.error('获取状态数据失败:', error))
 }
 
 function addStatusTagsWithCache() {
   const cachedData = localStorage.getItem(CACHE_KEY)
   
   if (cachedData) {
-    const { data, timestamp } = JSON.parse(cachedData) as CacheData
-    if (Date.now() - timestamp < CACHE_EXPIRATION) {
-      applyStatusTags(data)
-      return
+    try {
+      const { data, timestamp } = JSON.parse(cachedData) as CacheData
+      if (Date.now() - timestamp < CACHE_EXPIRATION) {
+        applyStatusTags(data)
+      }
+    } catch (e) {
+      console.error('解析缓存数据失败', e)
     }
   }
   
+  // 总是获取最新数据
   fetchDataAndUpdateUI()
 }
 
 onMounted(() => {
+  // 使用setTimeout确保DOM完全渲染
   setTimeout(addStatusTagsWithCache, 0)
 })
 </script>
