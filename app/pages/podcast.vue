@@ -77,7 +77,7 @@ function addStatusTagsWithCache(url: string) {
 
 onMounted(() => {
   setTimeout(() => {
-    addStatusTagsWithCache("https://site-action-tanzheng.edgeone.app/result.json")
+    addStatusTagsWithCache("https://link-api.vercel.sxiaohe.top/result.json")
   }, 0)
 })
 </script>
