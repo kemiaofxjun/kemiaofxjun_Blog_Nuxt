@@ -1,6 +1,6 @@
 export interface siteTabs {
     name: string
-    Items: Item[]
+    Item: Item[]
 }
 
 export interface Item {
@@ -20,7 +20,7 @@ export interface service {
 export const siteLinkItems: siteTabs[] = [
     {
         name: '分站',
-        Items: [
+        Item: [
             {
                 name: 'EdgeOne镜像',
                 image: 'https://sourceimage.s3.bitiful.net/myxz.avif',

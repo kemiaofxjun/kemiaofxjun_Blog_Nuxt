@@ -1,44 +1,42 @@
 <script setup lang="ts">
-import { siteLinkItems } from './sitelink'
+import { siteLinkItems } from '../../sitelink';
 </script>
 
 <template>
     <div class="sitelink-list">
-        <div v-for="siteTab in siteLinkItems" :key="siteTab.name">
-            <div class="sitelink-item" v-for="site in siteTab.Items" :key="site.name">
-                <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
-                <main>
-                    <header>
-                        <h2 class="title">
-                            <a :href="site.link" rel="noopener noreferrer" target="_blank">
-                                {{ site.name }}
-                            </a>
-                            <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                        </h2>
-                    </header>
-                    <section>
-                        <div class="badges" v-for="service in site.service" :key="service.name">
-                            <a :href="service.link" rel="noopener noreferrer" target="_blank" class="badge badge-img">
-                                <img :alt="service.name" class="badge-icon" :src="service.image">
-                                <span class="badge-text">
-                                    {{ service.name }}
-                                </span>
-                            </a>
-                        </div>
-                        <p class="description">
-                            {{ site.desc }}
-                        </p>
-                    </section>
-                    <footer>
-                        <h5 class="rss">
-                            <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
-                            <a :href="site.link" rel="noopener noreferrer" target="_blank">
-                                {{ site.link }}
-                            </a>
-                        </h5>
-                    </footer>
-                </main>
-            </div>
+        <div class="sitelink-item" v-for="site in siteLinkItems[activeTab].Items" :key="site.name">
+            <img width="150" height="150" alt="Syntax" class="cover" :src="site.link">
+            <main>
+                <header>
+                    <h2 class="title">
+                        <a :href="site.link" rel="noopener noreferrer" target="_blank">
+                            {{ site.name }}
+                        </a>
+                        <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
+                    </h2>
+                </header>
+                <section>
+                    <div class="badges" v-for="service in site.service" :key="service.name">
+                        <a :href="service.link" rel="noopener noreferrer" target="_blank" class="badge badge-img">
+                            <img :alt="service.name" class="badge-icon" :src="service.image">
+                            <span class="badge-text">
+                                {{ service.name }}
+                            </span>
+                        </a>
+                    </div>
+                    <p class="description">
+                        {{ site.desc }}
+                    </p>
+                </section>
+                <footer>
+                    <h5 class="rss">
+                        <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
+                        <a :href="site.link" rel="noopener noreferrer" target="_blank">
+                            {{ site.link }}
+                        </a>
+                    </h5>
+                </footer>
+            </main>
         </div>
     </div>
 </template>

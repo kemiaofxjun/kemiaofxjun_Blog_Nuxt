@@ -1,9 +1,9 @@
 export interface siteTabs {
     name: string
-    siteItems: siteItem[]
+    Item: Item[]
 }
 
-export interface siteItem {
+export interface Item {
     name: string
     image: string
     link: string
@@ -19,15 +19,31 @@ export interface service {
 
 export const siteLinkItems: siteTabs[] = [
     {
-        name: '',
-        siteItems: [{
-            name: '莫言小栈',
-            image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-            link: 'https://www.myxz.top',
-            desc: "",
-            service: [
-                { name: 'EdgeOne', image: '', link: ""}
-            ],
-        }]
-    }
+        name: '分站',
+        Item: [
+            {
+                name: 'EdgeOne镜像',
+                image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
+                link: 'https://blog-v3.myxz.top',
+                desc: "",
+                service: [
+                    { name: 'EdgeOne', image: '', link: ""}
+                ],
+            }
+        ]
+    },
+    {
+        name: '服务',
+        Item: [
+            {
+                name: '说说',
+                image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
+                link: 'https://blog-v3.myxz.top',
+                desc: "",
+                service: [
+                    { name: 'EdgeOne', image: '', link: ""}
+                ],
+            }
+        ]
+    },
 ]
