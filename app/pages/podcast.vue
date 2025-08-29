@@ -56,41 +56,47 @@ const activeTab = ref(0); // 默认激活第一个标签页
 </template>
 
 <style lang="css" scoped>
+.float-in-leave-active {
+    position: revert
+}
+
+.center {
+    margin-inline:auto;max-width: 100%
+}
+
+.center,.tabs {
+    width: -moz-fit-content;
+    width: fit-content
+}
+
 .tabs {
-	position: relative;
     display: flex;
     flex-wrap: wrap;
     font-size: .9em;
     gap: .5em;
     justify-content: center;
     line-height: 1.4;
+    margin: 0 auto
 }
 
-.tabs button {
-	background-color: var(--ld-bg-card);
-    box-shadow: 0 1px .5em var(--ld-shadow);
-    color: var(--c-text);
-	border-radius: .4em;
+.tabs,button {
+    position: relative
+}
+
+button {
+    border-radius: .4em;
     color: var(--c-text-2);
     margin-bottom: .5em;
     padding: .3em .5em;
-    transition: all .2s;
+    transition: all .2s
 }
 
-.tabs button:after {
-    background-color: var(--c-border);
-    content: "";
-    left: -.8em;
-    right: -.8em;
+button:hover {
+    background-color: var(--c-bg-soft);
+    color: var(--c-text)
 }
 
-.tabs button:before {
-    background-color: var(--c-primary);
-    content: "";
-    z-index: 1;
-}
-
-.tabs button:after, .tabs button:before {
+button:after,button:before {
     border-radius: 1em;
     bottom: -.5em;
     display: block;
@@ -98,14 +104,32 @@ const activeTab = ref(0); // 默认激活第一个标签页
     left: .8em;
     pointer-events: none;
     position: absolute;
-    right: .8em;
+    right: .8em
+}
+
+button:after {
+    background-color: var(--c-border);
+    content: "";
+    left: -.8em;
+    right: -.8em
 }
 
 button.active {
     background-color: var(--ld-bg-card);
     box-shadow: 0 1px .5em var(--ld-shadow);
-    color: var(--c-text);
+    color: var(--c-text)
 }
+
+button.active:before {
+    background-color: var(--c-primary);
+    content: "";
+    z-index: 1
+}
+
+.tab-content {
+    padding: .5em 0
+}
+
 
 .feed-label {
     margin: 2rem 1rem -1rem
