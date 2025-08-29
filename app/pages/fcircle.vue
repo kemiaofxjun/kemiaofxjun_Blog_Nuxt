@@ -193,7 +193,7 @@ function hideModal() {
 	<div class="banner-extra">
 		<div class="friend-stats">
 			<div class="update-time">
-				Updated at 2025-07-17
+				Updated at Everyday.
 			</div>
 			<div class="powered-by">
 				Powered by FriendCircleLite
