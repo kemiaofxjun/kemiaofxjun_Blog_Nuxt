@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue';
 import { siteLinkItems } from '../sitelink'
 const activeTab = ref(0); // 默认激活第一个标签页
 
+const links = ref<FriendLink[]>([])
+
 interface LinkStatus {
   link: string
   latency: number
@@ -63,7 +65,8 @@ function applyStatusTags(data: StatusData) {
   })
 }
 
-function fetchDataAndUpdateUI() {
+function fetchDataAndUpdateUI(retryCount = 0) {
+  const MAX_RETRY = 3
   fetch(JSON_URL)
     .then(response => response.json())
     .then(data => {
@@ -74,7 +77,12 @@ function fetchDataAndUpdateUI() {
       }
       localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
     })
-    .catch(error => console.error('获取状态数据失败:', error))
+    .catch(error => {
+      console.error('获取状态数据失败:', error)
+      if (retryCount < MAX_RETRY) {
+        setTimeout(() => fetchDataAndUpdateUI(retryCount + 1), 3000)
+      }
+    })
 }
 
 function addStatusTagsWithCache() {
@@ -95,9 +103,11 @@ function addStatusTagsWithCache() {
   fetchDataAndUpdateUI()
 }
 
-onMounted(() => {
-  // 使用setTimeout确保DOM完全渲染
-  setTimeout(addStatusTagsWithCache, 0)
+onMounted(async () => {
+  await fetchFriendLinks()
+  nextTick(() => {
+    setTimeout(addStatusTagsWithCache, 0)
+  })
 })
 </script>
 
