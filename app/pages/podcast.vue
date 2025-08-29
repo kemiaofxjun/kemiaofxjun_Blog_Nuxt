@@ -2,113 +2,6 @@
 import { ref, onMounted } from 'vue';
 import { siteLinkItems } from '../sitelink'
 const activeTab = ref(0); // 默认激活第一个标签页
-
-const links = ref<FriendLink[]>([])
-
-interface LinkStatus {
-  link: string
-  latency: number
-}
-
-interface StatusData {
-  link_status: LinkStatus[]
-}
-
-interface CacheData {
-  data: StatusData
-  timestamp: number
-}
-
-interface FriendLink {
-  name: string
-  url: string
-  avatar: string
-  description: string
-}
-
-const CACHE_KEY = 'statusTagsData'
-const CACHE_EXPIRATION = 30 * 60 * 1000 // 半小时
-const JSON_URL = 'https://agent.service.myxz.top/result.json'
-
-function applyStatusTags(data: StatusData) {
-  const linkStatus = data.link_status
-  document.querySelectorAll('.title').forEach(card => {
-    if (!(card instanceof HTMLAnchorElement) || !card.href) return
-    
-    const link = card.href.replace(/\/$/, '')
-    const status = linkStatus.find(item => 
-      item.link.replace(/\/$/, '') === link
-    )
-    
-    if (!status) return
-    
-    // 移除已有的状态标签（如果存在）
-    const existingTag = card.querySelector('.status-tag')
-    if (existingTag) existingTag.remove()
-    
-    let latencyText = '未知'
-    let className = 'status-tag status-tag-red'
-    
-    if (status.latency !== -1) {
-      latencyText = `${status.latency.toFixed(2)} s`
-      if (status.latency <= 2) className = 'status-tag status-tag-green'
-      else if (status.latency <= 5) className = 'status-tag status-tag-light-yellow'
-      else if (status.latency <= 10) className = 'status-tag status-tag-dark-yellow'
-    }
-        
-    const statusTag = document.createElement('div')
-    statusTag.className = className
-    statusTag.textContent = latencyText
-    
-    card.style.position = 'relative'
-    card.appendChild(statusTag)
-  })
-}
-
-function fetchDataAndUpdateUI(retryCount = 0) {
-  const MAX_RETRY = 3
-  fetch(JSON_URL)
-    .then(response => response.json())
-    .then(data => {
-      applyStatusTags(data)
-      const cacheData: CacheData = {
-        data,
-        timestamp: Date.now()
-      }
-      localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
-    })
-    .catch(error => {
-      console.error('获取状态数据失败:', error)
-      if (retryCount < MAX_RETRY) {
-        setTimeout(() => fetchDataAndUpdateUI(retryCount + 1), 3000)
-      }
-    })
-}
-
-function addStatusTagsWithCache() {
-  const cachedData = localStorage.getItem(CACHE_KEY)
-  
-  if (cachedData) {
-    try {
-      const { data, timestamp } = JSON.parse(cachedData) as CacheData
-      if (Date.now() - timestamp < CACHE_EXPIRATION) {
-        applyStatusTags(data)
-      }
-    } catch (e) {
-      console.error('解析缓存数据失败', e)
-    }
-  }
-  
-  // 总是获取最新数据
-  fetchDataAndUpdateUI()
-}
-
-onMounted(async () => {
-  await fetchFriendLinks()
-  nextTick(() => {
-    setTimeout(addStatusTagsWithCache, 0)
-  })
-})
 </script>
 
 <template>
@@ -133,6 +26,23 @@ onMounted(async () => {
                             {{ site.name }}
                         </a>
                         <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
+                        <div v-for="status in site.status">
+                            <div v-if="status === '正常'">
+                                <div class="status status-tag-green">
+                                    正常
+                                </div>
+                            </div>
+                            <div v-else-if="status === '失败'">
+                                <div class="status status-tag-red">
+                                    错误
+                                </div>
+                            </div>
+                            <div v-else-if="status === '迟缓'">
+                                <div class="status status-tag-light-yellow">
+                                    慢速
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </header>
                 <section>

@@ -8,6 +8,7 @@ export interface Item {
     image: string
     link: string
     desc: string
+    status: '正常'|'失败'|'迟缓'
     service: service[]
 }
 
@@ -29,6 +30,7 @@ export const siteLinkItems: siteTabs[] = [
                 service: [
                     { name: 'EdgeOne', image: '', link: ""}
                 ],
+                status: '正常'
             }
         ]
     },
@@ -41,8 +43,9 @@ export const siteLinkItems: siteTabs[] = [
                 link: 'https://blog-v3.myxz.top',
                 desc: "",
                 service: [
-                    { name: 'EdgeOne', image: '', link: ""}
+                    { name: 'EdgeOne', image: '', link: "" }
                 ],
+                status: "正常"
             }
         ]
     },
