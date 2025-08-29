@@ -8,7 +8,7 @@ import SiteLinkCard from '../components/card/siteLinkCard.vue';
 	<h2> 其他站点 </h2>
 </div>
 
-<Tab :tabs="siteLinkItems.name" center>
+<Tab :tabs="[siteLinkItems.name]" center>
 	<template #tab1>
 		<SiteLinkCard />
 	</template>
