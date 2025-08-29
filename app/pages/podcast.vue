@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import { siteLinkItems } from '../sitelink'
+
+const layoutStore = useLayoutStore()
+layoutStore.setAside(['blog-stats', 'blog-tech', 'blog-log'])
+
 const activeTab = ref(0); // 默认激活第一个标签页
 </script>
 
@@ -26,23 +30,6 @@ const activeTab = ref(0); // 默认激活第一个标签页
                             {{ site.name }}
                         </a>
                         <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                        <div v-for="status in site.status">
-                            <div v-if="status === '正常'">
-                                <div class="status status-tag-green">
-                                    正常
-                                </div>
-                            </div>
-                            <div v-else-if="status === '失败'">
-                                <div class="status status-tag-red">
-                                    错误
-                                </div>
-                            </div>
-                            <div v-else-if="status === '迟缓'">
-                                <div class="status status-tag-light-yellow">
-                                    慢速
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </header>
                 <section>
