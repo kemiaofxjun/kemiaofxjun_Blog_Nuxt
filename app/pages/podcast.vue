@@ -1,12 +1,89 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { siteLinkItems } from '../sitelink'
 const activeTab = ref(0); // 默认激活第一个标签页
-</script>
+// 检测工具
+interface LinkStatus {
+  link: string
+  latency: number
+}
 
+interface CacheData {
+  data: LinkStatus[]
+  timestamp: number
+}
+
+function addStatusTagsWithCache(url: string) {
+  const CACHE_KEY = "statusTagsData"
+  
+  const processStatusTags = (data: LinkStatus[]) => {
+    document.querySelectorAll<HTMLAnchorElement>(".header").forEach(link => {
+      if (!link.href) return
+      
+      const cleanHref = link.href.replace(/\/$/, "")
+      const statusDiv = document.createElement("div")
+      statusDiv.classList.add("state")
+      
+      const matchedStatus = data.find(item => 
+        item.link.replace(/\/$/, "") === cleanHref
+      )
+      
+      if (matchedStatus) {
+        let text: string
+        let statusClass: string
+        
+        if (matchedStatus.latency === -1) {
+          text = 'ERR'
+          statusClass = "error"
+        } else {
+          text = `${(matchedStatus.latency * 1000).toFixed(0)} ms`
+          if (matchedStatus.latency <= 3) statusClass = "success"
+          else if (matchedStatus.latency <= 5) statusClass = "success"
+          else if (matchedStatus.latency <= 10) statusClass = "success"
+          else statusClass = "error"
+        }
+        
+        statusDiv.textContent = text
+        statusDiv.classList.add(statusClass)
+        
+        link.style.position = "relative"
+        link.appendChild(statusDiv)
+      }
+    })
+  }
+
+  // 尝试从缓存获取数据
+  const cachedData = localStorage.getItem(CACHE_KEY)
+  if (cachedData) {
+    const { data, timestamp }: CacheData = JSON.parse(cachedData)
+    if (Date.now() - timestamp < 1800000) { // 30分钟有效期
+      return processStatusTags(data)
+    }
+  }
+
+  // 获取新数据
+  fetch(url)
+    .then(res => res.json())
+    .then((data: LinkStatus[]) => {
+      processStatusTags(data)
+      const cache: CacheData = {
+        data,
+        timestamp: Date.now()
+      }
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cache))
+    })
+    .catch(err => console.error("Error fetching status data:", err))
+}
+
+onMounted(() => {
+  setTimeout(() => {
+    addStatusTagsWithCache("https://site-action-tanzheng.edgeone.app/result.json")
+  }, 0)
+})
+</script>
 <template>
-<div class="sitelinkHead">
-	<h2> 站点 </h2>
+<div class="feed-label">
+	<h2> 站点详情 </h2>
 </div>
 
 <div class="tabs-container">
@@ -20,7 +97,7 @@ const activeTab = ref(0); // 默认激活第一个标签页
         <div class="sitelink-item" v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index">
             <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
             <main>
-                <header>
+                <header class="header">
                     <h2 class="title">
                         <a :href="site.link" rel="noopener noreferrer" target="_blank">
                             {{ site.name }}
