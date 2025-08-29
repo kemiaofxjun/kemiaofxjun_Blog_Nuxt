@@ -183,6 +183,18 @@ export default [
 				archs: ['Hexo', 'Vercel'],
 				date: '2025-08-11',
 				comment: '',
+			},{
+				author: '青序栈',
+				sitenick: '',
+				title: '青序栈',
+				desc: '青序成栈·向简而生',
+				link: 'https://qxzhan.cn/',
+				feed: 'ttps://qxzhan.cn/feed/',
+				icon: 'https://qxzhan.cn/favicon.png',
+				avatar: 'https://qxzhan.cn/favicon.png',
+				archs: ['Hexo'],
+				date: '2025-08-29',
+				comment: '',
 			}
 		],
 	},
