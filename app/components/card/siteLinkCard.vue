@@ -6,7 +6,7 @@ import { siteLinkItems } from './sitelink'
     <div class="sitelink-list">
         <div v-for="siteTab in siteLinkItems" :key="siteTab.name">
             <div class="sitelink-item" v-for="site in siteTab.Items" :key="site.name">
-                <img width="150" height="150" alt="Syntax" class="cover" :src="site.link">
+                <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
                 <main>
                     <header>
                         <h2 class="title">
