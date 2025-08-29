@@ -2,83 +2,87 @@
 import { ref, onMounted } from 'vue';
 import { siteLinkItems } from '../sitelink'
 const activeTab = ref(0); // 默认激活第一个标签页
-// 检测工具
+
 interface LinkStatus {
   link: string
   latency: number
 }
 
+interface StatusData {
+  link_status: LinkStatus[]
+}
+
 interface CacheData {
-  data: LinkStatus[]
+  data: StatusData
   timestamp: number
 }
 
-function addStatusTagsWithCache(url: string) {
-  const CACHE_KEY = "statusTagsData"
-  
-  const processStatusTags = (data: LinkStatus[]) => {
-    document.querySelectorAll<HTMLAnchorElement>(".header").forEach(link => {
-      if (!link.href) return
-      
-      const cleanHref = link.href.replace(/\/$/, "")
-      const statusDiv = document.createElement("header")
-      statusDiv.classList.add("state")
-      
-      const matchedStatus = data.find(item => 
-        item.link.replace(/\/$/, "") === cleanHref
-      )
-      
-      if (matchedStatus) {
-        let text: string
-        let statusClass: string
-        
-        if (matchedStatus.latency === -1) {
-          text = 'ERR'
-          statusClass = "error"
-        } else {
-          text = `${(matchedStatus.latency * 1000).toFixed(0)} ms`
-          if (matchedStatus.latency <= 3) statusClass = "success"
-          else if (matchedStatus.latency <= 5) statusClass = "success"
-          else if (matchedStatus.latency <= 10) statusClass = "success"
-          else statusClass = "error"
-        }
-        
-        statusDiv.textContent = text
-        statusDiv.classList.add(statusClass)
-        
-        link.style.position = "relative"
-        link.appendChild(statusDiv)
-      }
-    })
-  }
+const CACHE_KEY = 'statusTagsData'
+const CACHE_EXPIRATION = 30 * 60 * 1000 // 半小时
+const JSON_URL = 'https://agent.service.myxz.top/result.json'
 
-  // 尝试从缓存获取数据
-  const cachedData = localStorage.getItem(CACHE_KEY)
-  if (cachedData) {
-    const { data, timestamp }: CacheData = JSON.parse(cachedData)
-    if (Date.now() - timestamp < 1800000) { // 30分钟有效期
-      return processStatusTags(data)
+function applyStatusTags(data: StatusData) {
+  const linkStatus = data.link_status
+  document.querySelectorAll('.flink-list-item').forEach(card => {
+    if (!(card instanceof HTMLAnchorElement) || !card.href) return
+    
+    const link = card.href.replace(/\/$/, '')
+    const statusTag = document.createElement('div')
+    statusTag.classList.add('status-tag')
+    
+    const status = linkStatus.find(item => 
+      item.link.replace(/\/$/, '') === link
+    )
+    
+    if (!status) return
+    
+    let latencyText = '未知'
+    let className = 'status-tag-red'
+    
+    if (status.latency !== -1) {
+      latencyText = `${status.latency.toFixed(2)} s`
+      if (status.latency <= 2) className = 'status-tag-green'
+      else if (status.latency <= 5) className = 'status-tag-light-yellow'
+      else if (status.latency <= 10) className = 'status-tag-dark-yellow'
     }
-  }
+    
+    statusTag.textContent = latencyText
+    statusTag.classList.add(className)
+    card.style.position = 'relative'
+    card.appendChild(statusTag)
+  })
+}
 
-  // 获取新数据
-  fetch(url)
-    .then(res => res.json())
-    .then((data: LinkStatus[]) => {
-      processStatusTags(data)
-      const cache: CacheData = {
+function fetchDataAndUpdateUI() {
+  fetch(JSON_URL)
+    .then(response => response.json())
+    .then(data => {
+      applyStatusTags(data)
+      const cacheData: CacheData = {
         data,
         timestamp: Date.now()
       }
-      localStorage.setItem(CACHE_KEY, JSON.stringify(cache))
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
     })
-    .catch(err => console.error("Error fetching status data:", err))
+    .catch(error => console.error('Error fetching status data:', error))
+}
+
+function addStatusTagsWithCache() {
+  const cachedData = localStorage.getItem(CACHE_KEY)
+  
+  if (cachedData) {
+    const { data, timestamp } = JSON.parse(cachedData) as CacheData
+    if (Date.now() - timestamp < CACHE_EXPIRATION) {
+      applyStatusTags(data)
+      return
+    }
+  }
+  
+  fetchDataAndUpdateUI()
 }
 
 onMounted(() => {
-  setTimeout(() => {
-    addStatusTagsWithCache("https://agent.service.myxz.top/result.json")
-  }, 0)
+  setTimeout(addStatusTagsWithCache, 0)
 })
 </script>
 <template>
