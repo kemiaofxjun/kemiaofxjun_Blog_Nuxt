@@ -53,7 +53,7 @@ function applyStatusTags(data: StatusData) {
       else if (status.latency <= 5) className = 'status-tag status-tag-light-yellow'
       else if (status.latency <= 10) className = 'status-tag status-tag-dark-yellow'
     }
-    
+        
     const statusTag = document.createElement('div')
     statusTag.className = className
     statusTag.textContent = latencyText
