@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { siteLinkItems } from '~/siteCard'
 import SiteLinkCard from '../components/card/siteLinkCard.vue';
 </script>
 
