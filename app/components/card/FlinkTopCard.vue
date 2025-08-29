@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import friendsInfo from '~/friends'; // 假设同步导入数据（或替换为异步）
+import friendsInfo from '../../feeds'; // 假设同步导入数据（或替换为异步）
 
 // 定义类型接口
 interface FriendEntry {
