@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { about } from '~/about'
+import { about } from '../../about'
 </script>
 
 <template>
-    <div class="author-content-item social">
-        <div  v-for="social in about.social" :key="social.herf">
-            <a :herf="social.herf">
-                <span :class="social.class" aria-hidden="true" style="width: 32px; height: 32px; margin: 0 auto;"></span>
-            </a>
+    <div class="author-content-item social" style="width: 38%;">
+        <div v-for="(page, index) in about" :key="index">
+            <div v-for="social in page.social" :key="social.herf">
+                <a :herf="social.herf">
+                    <span :class="social.class" aria-hidden="true" style="width: 32px; height: 32px; margin: 0 auto;"></span>
+                </a>
+            </div>
         </div>
     </div>
 </template>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { about } from '~/about'
-
-const appConfig = useAppConfig()
+import { about } from '../../about'
 </script>
 
 <template>

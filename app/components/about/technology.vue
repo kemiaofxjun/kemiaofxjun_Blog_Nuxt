@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { about } from '~/about'
+import { about } from '../../about'
 </script>
 
 <template>
-    <div class="author-content-item like-technology" v-for="(technologyItem, index) in about" :key="index" style="width: 50%;">
+    <div class="author-content-item like-technology" v-for="(technologyItem, index) in about" :key="index" style="width: 49.9%;">
         <div v-for="technology in technologyItem.technology" :key="technology.tip">
             <div class="card-content">
                 <div class="author-content-item-tips">

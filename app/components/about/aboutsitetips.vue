@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { about } from '~/about'
+import { about } from '../../about'
 </script>
 
 <template>
     <div class="aboutsiteTips author-content-item" v-for="(myinfo, index) in about" :key="index">
         <div v-for="(info, index) in myinfo.myinfo" :key="index">
-            <div v-for="card in info.card" :key="card.title1">
+            <div v-for="card in info.card" :key="card.tips">
                 <div class="author-content-item-tips">
                     {{ card.tips }}
                 </div>
