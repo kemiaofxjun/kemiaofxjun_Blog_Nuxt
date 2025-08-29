@@ -1,122 +1,247 @@
-<!-- <script lang="ts" setup>
-// import {customPodCast} from '~/podcast';
-// const props = defineProps<{
-//     /** tab 下标从 1 开始 */
-//     tabs: string[]
-//     center?: boolean
-//     active?: number
-// }>()
-// // 使用 v-bind:active 以传递 Number 值
-// const activeTab = ref(Number(props.active) || 1)
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import { siteLinkItems } from '../sitelink'
 
-// const layoutStore = useLayoutStore()
-// layoutStore.setAside(['blog-stats', 'connectivity', 'blog-log'])
-</script> -->
+const activeTab = ref(0) // 默认激活第一个标签页
+// 检测工具
+interface LinkStatus {
+	link: string
+	latency: number
+}
+
+interface CacheData {
+	data: LinkStatus[]
+	timestamp: number
+}
+
+function addStatusTagsWithCache(url: string) {
+	const CACHE_KEY = 'statusTagsData'
+
+	const processStatusTags = (data: LinkStatus[]) => {
+		document.querySelectorAll<HTMLAnchorElement>('.header').forEach((link) => {
+			if (!link.href)
+				return
+
+			const cleanHref = link.href.replace(/\/$/, '')
+			const statusDiv = document.createElement('div')
+			statusDiv.classList.add('state')
+
+			const matchedStatus = data.find(item =>
+				item.link.replace(/\/$/, '') === cleanHref,
+			)
+
+			if (matchedStatus) {
+				let text: string
+				let statusClass: string
+
+				if (matchedStatus.latency === -1) {
+					text = 'ERR'
+					statusClass = 'error'
+				}
+				else {
+					text = `${(matchedStatus.latency * 1000).toFixed(0)} ms`
+					if (matchedStatus.latency <= 3)
+						statusClass = 'success'
+					else if (matchedStatus.latency <= 5)
+						statusClass = 'success'
+					else if (matchedStatus.latency <= 10)
+						statusClass = 'success'
+					else statusClass = 'error'
+				}
+
+				statusDiv.textContent = text
+				statusDiv.classList.add(statusClass)
+
+				link.style.position = 'relative'
+				link.appendChild(statusDiv)
+			}
+		})
+	}
+
+	// 尝试从缓存获取数据
+	const cachedData = localStorage.getItem(CACHE_KEY)
+	if (cachedData) {
+		const { data, timestamp }: CacheData = JSON.parse(cachedData)
+		if (Date.now() - timestamp < 1800000) { // 30分钟有效期
+			return processStatusTags(data)
+		}
+	}
+
+	// 获取新数据
+	fetch(url)
+		.then(res => res.json())
+		.then((data: LinkStatus[]) => {
+			processStatusTags(data)
+			const cache: CacheData = {
+				data,
+				timestamp: Date.now(),
+			}
+			localStorage.setItem(CACHE_KEY, JSON.stringify(cache))
+		})
+		.catch(err => console.error('Error fetching status data:', err))
+}
+
+onMounted(() => {
+	setTimeout(() => {
+		addStatusTagsWithCache('https://agent.service.myxz.top/result.json')
+	}, 0)
+})
+</script>
 
 <template>
-	<!-- <h2 class="feed-label"> 收听的播客 </h2>
-    <main class="container" v-for="(podcast, index) in customPodCast" :key="index">
-        <div :class="{ center }">
-            <div class="tabs">
-                <button
-                    v-for="(tab, tabIndex) in tabs"
-                    :key="tabIndex"
-                    :class="{ active: activeTab === tabIndex + 1 }"
-                    @click="activeTab = tabIndex + 1"
-                >
-                    {{ tab }}
-                </button>
-            </div>
-            <div class="tab-content" > -->
-	<!-- <Transition>
-                <slot :name="`tab${activeTab}`" /> -->
-	<!-- </Transition> -->
-	<!-- <div class="podcast-list" style="margin-top: 20px;" v-for="content in podcast.tabItem" :key="content.podcastTitle">
-                    <div class="podcast-item">
-                        <img :src="content.podcastTmage">
-                            <main>
-                                <header>
-                                    <h2 class="title">
-                                        <a :herf="content.podcastLink" rel="noopener noreferrer" target="_blank">{{ content.podcastTitle }}</a>
-                                        <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                                    </h2>
-                                </header>
-                                <section>
-                                    <div class="badges" v-for="(badges, badgesIndex) in content.podcastBadge" :key="badgesIndex">
-                                        <a :herf="badges.BadgeLink" rel="noopener noreferrer" target="_blank" class="badge badge-img">
-                                            <img class="badge-icon" :src="badges.BadgeImage" :alt="badges.BadgeName"></img>
-                                            <span class="badge-text">{{ badges.BadgeName }}</span>
-                                        </a>
-                                    </div>
-                                    <div class="description">
-                                        {{ content.podcastDesc }}
-                                    </div>
-                                </section>
-                                <footer>
-                                    <h5 class="rss">
-                                        <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
-                                        <a :href="content.podcastLink" rel="noopener noreferrer" target="_blank">
-                                            {{ content.podcastLink }}
-                                        </a>
-                                    </h5>
-                                </footer>
-                            </main>
-                        </div>
-                    </div>
-                </div>
+<div class="feed-label">
+	<h2> 站点详情 </h2>
+</div>
 
-        </div>
-    </main> -->
+<div class="tabs-container">
+	<div class="tabs">
+		<button v-for="(tab, index) in siteLinkItems" :key="tab.name" :class="{ active: activeTab === index }" @click="activeTab = index">
+			{{ tab.name }}
+		</button>
+	</div>
+
+	<div class="sitelink-list">
+		<div v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index" class="sitelink-item">
+			<img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
+			<main>
+				<header class="header">
+					<h2 class="title">
+						<a :href="site.link" rel="noopener noreferrer" target="_blank">
+							{{ site.name }}
+						</a>
+						<span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;" />
+					</h2>
+				</header>
+				<section>
+					<div v-for="service in site.service" :key="service.name" class="badges">
+						<a :href="service.link" rel="noopener noreferrer" target="_blank" class="badge badge-img">
+							<img :alt="service.name" class="badge-icon" :src="service.image">
+							<span class="badge-text">
+								{{ service.name }}
+							</span>
+						</a>
+					</div>
+					<p class="description">
+						{{ site.desc }}
+					</p>
+				</section>
+				<footer>
+					<h5 class="rss">
+						<span class="iconify i-ph:rss-fill" aria-hidden="true" />
+						<a :href="site.link" rel="noopener noreferrer" target="_blank">
+							{{ site.link }}
+						</a>
+					</h5>
+				</footer>
+			</main>
+		</div>
+	</div>
+</div>
 </template>
 
-<style scoped>
-.tabs{
+<style lang="css" scoped>
+.float-in-leave-active {
+    position: revert
+}
+
+.center {
+    margin-inline:auto;max-width: 100%
+}
+
+.center,.tabs {
+    width: -moz-fit-content;
+    width: fit-content
+}
+
+.tabs {
     display: flex;
     flex-wrap: wrap;
     font-size: .9em;
     gap: .5em;
     justify-content: center;
-    line-height: normal;
-    margin: 0 auto;
-    padding: .5em 0;
-    position: relative;
+    line-height: 1.4;
+    margin: 0 auto
 }
 
-button.active{
-    background-color: var(--ld-bg-card);
-    box-shadow: 0 1px .5em var(--ld-shadow);
-    color: var(--c-text);
-    position: relative;
+.tabs,button {
+    position: relative
 }
 
-button{
+button {
     border-radius: .4em;
     color: var(--c-text-2);
+    margin-bottom: .5em;
     padding: .3em .5em;
-    transition: all .2s;
+    transition: all .2s
+}
+
+button:hover {
+    background-color: var(--c-bg-soft);
+    color: var(--c-text)
+}
+
+button:after,button:before {
+    border-radius: 1em;
+    bottom: -.5em;
+    display: block;
+    height: 2px;
+    left: .8em;
+    pointer-events: none;
+    position: absolute;
+    right: .8em
+}
+
+button:after {
+    background-color: var(--c-border);
+    content: "";
+    left: -.8em;
+    right: -.8em
+}
+
+button.active {
+    background-color: var(--ld-bg-card);
+    box-shadow: 0 1px .5em var(--ld-shadow);
+    color: var(--c-text)
 }
 
 button.active:before {
     background-color: var(--c-primary);
-    border-radius: 1em;
-    bottom: -.5em;
     content: "";
-    display: block;
-    height: 2px;
-    left: .8em;
-    position: absolute;
-    right: .8em;
+    z-index: 1
 }
 
-.tab-content{
-    padding: .5em 0;
+.tab-content {
+    padding: .5em 0
 }
 
-.podcast-list {
-    margin: 1rem;
+.feed-label {
+    margin: 2rem 1rem -1rem
 }
 
-.podcast-item {
+.sitelink-list {
+    margin: 1rem
+}
+
+@media (max-width: 639px) {
+    .sitelink-list {
+        padding:1rem
+    }
+
+     .sitelink-item {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+        justify-items: center
+    }
+
+     .sitelink-item main {
+        font-size: .9em;
+        line-height: 1.4;
+        overflow-wrap: break-word
+    }
+}
+
+.sitelink-item {
     animation: float-in .2s var(--delay) backwards;
     background: var(--c-bg);
     background-color: var(--ld-bg-card);
@@ -128,117 +253,65 @@ button.active:before {
     grid-template-columns: 150px 1fr;
     margin-bottom: 1rem;
     padding: 1rem;
-    transition: all .2s;
+    transition: all .2s
 }
 
-.podcast-item .cover {
-    border-radius: .8em;
-    height: 150px;
-    width: 150px;
+.sitelink-item:hover {
+    box-shadow: 0 .5em 1em var(--ld-shadow);
+    transform: translateY(-2px)
 }
 
-.podcast-item main {
+.sitelink-item main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between
 }
 
-.podcast-item main header {
-    margin-bottom: .5rem;
+.sitelink-item main section {
+    flex: 1
 }
 
-.podcast-item .title {
+.sitelink-item main header {
+    margin-bottom: .5rem
+}
+
+.sitelink-item .title {
     align-items: center;
     color: var(--c-text);
     display: flex;
     font-size: 1.2em;
     gap: .5rem;
     line-height: 1.2;
-    margin: 0;
+    margin: 0
 }
 
-.podcast-item main section {
-    flex: 1;
+.sitelink-item .cover {
+    border-radius: .8em;
+    height: 150px;
+    width: 150px
 }
 
-.podcast-item .badges {
-    display: flex
-;
+.sitelink-item .badges {
+    display: flex;
     flex-wrap: wrap;
     gap: .5rem;
     margin-bottom: .2em;
-    margin-top: .2em;
+    margin-top: .2em
 }
 
-.badge {
-    align-items: baseline;
-    background-color: var(--c-bg-2);
-    border: 1px solid var(--c-border);
-    border-radius: 4px;
-    display: inline-flex;
-    font-size: .875em;
-    height: 1.6em;
-    line-height: 1.6;
-    transition: color .2s;
-}
-
-@supports (color:color-mix(in srgb,transparent,transparent)) {
-    .badge {
-        background-color: color-mix(in srgb, currentcolor 5%, transparent);
-        border-color: color-mix(in srgb, currentcolor 10%, transparent);
-        color: color-mix(in srgb, currentcolor 80%, transparent);
-    }
-}
-
-.badge-img .badge-icon {
-    align-self: center;
-    border-radius: 3.5px;
-    height: 100%;
-}
-
-img:before {
-    background-color: var(--c-border);
-    color: var(--c-bg-soft);
-    content: attr(alt);
-    display: grid;
-    font: 700 1.5rem / 1.2 var(--font-serif);
-    inset: 0;
-    overflow: visible;
-    padding: .5em;
-    place-content: center;
-    position: absolute;
-    text-align: center;
-    text-shadow: none;
-    word-break: normal;
-}
-
-.badge-img .badge-text {
-    margin-left: -.1em;
-}
-
-.badge-text {
-    padding: 0 .4em;
-}
-
-.podcast-item .description {
+.sitelink-item .description {
     color: var(--c-text-2);
-    margin: .5em 0;
+    margin: .5em 0
 }
 
-.podcast-item footer, .podcast-item footer .rss {
+.sitelink-item footer {
+    color: var(--c-text-2);
+    font-size: .9em
+}
+
+.sitelink-item footer,.sitelink-item footer .rss {
     align-items: center;
     display: flex;
-    gap: .5rem;
-}
-
-.podcast-item footer {
-    color: var(--c-text-2);
-    font-size: .9em;
-}
-
-.podcast-item footer .rss {
-    align-items: center;
-    display: flex;
-    gap: .5rem;
+    gap: .5rem
 }
 </style>
