@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import SiteLinkCard from '../components/card/siteLinkCard.vue';
 import { siteLinkItems } from '../sitelink'
 const activeTab = ref(0); // 默认激活第一个标签页
 </script>
@@ -10,17 +9,6 @@ const activeTab = ref(0); // 默认激活第一个标签页
 	<h2> 站点 </h2>
 </div>
 
-<Tab :tabs="['服务', '分站', '推荐']">
-	<template #tab1>
-		<SiteLinkCard />
-	</template>
-	<template #tab2>
-		<SiteLinkCard />
-	</template>
-	<template #tab3>
-		<SiteLinkCard />
-	</template>
-</Tab>
 <div class="tabs-container">
 	<div class="tabs-header">
 		<button v-for="(tab, index) in siteLinkItems" :key="tab.name" @click="activeTab = index" :class="{ 'active': activeTab === index }">
@@ -29,7 +17,7 @@ const activeTab = ref(0); // 默认激活第一个标签页
 	</div>
 
     <div class="sitelink-list">
-        <div class="sitelink-item" v-for="site in siteLinkItems[activeTab].Item" :key="site.name">
+        <div class="sitelink-item" v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index">
             <img width="150" height="150" alt="Syntax" class="cover" :src="site.link">
             <main>
                 <header>
