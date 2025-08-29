@@ -15,7 +15,6 @@ import SiteLinkCard from '../components/card/siteLinkCard.vue';
 	<template #tab2>
 		<SiteLinkCard />
 	</template>
-	<template>
-	</template>
 </Tab>
+
 </template>
