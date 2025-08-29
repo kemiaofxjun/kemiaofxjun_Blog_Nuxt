@@ -77,7 +77,7 @@ function addStatusTagsWithCache(url: string) {
 
 onMounted(() => {
   setTimeout(() => {
-    addStatusTagsWithCache("https://link-api.vercel.sxiaohe.top/result.json")
+    addStatusTagsWithCache("https://agent.service.myxz.top/result.json")
   }, 0)
 })
 </script>
