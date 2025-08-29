@@ -3,88 +3,109 @@ import { onMounted, ref } from 'vue'
 import { siteLinkItems } from '../sitelink'
 
 const activeTab = ref(0) // 默认激活第一个标签页
-// 检测工具
+
 interface LinkStatus {
 	link: string
 	latency: number
 }
 
+interface StatusData {
+	link_status: LinkStatus[]
+}
+
 interface CacheData {
-	data: LinkStatus[]
+	data: StatusData
 	timestamp: number
 }
 
-function addStatusTagsWithCache(url: string) {
-	const CACHE_KEY = 'statusTagsData'
+interface FriendLink {
+	name: string
+	url: string
+	avatar: string
+	description: string
+}
 
-	const processStatusTags = (data: LinkStatus[]) => {
-		document.querySelectorAll<HTMLAnchorElement>('.header').forEach((link) => {
-			if (!link.href)
-				return
+const CACHE_KEY = 'statusTagsData'
+const CACHE_EXPIRATION = 30 * 60 * 1000 // 半小时
+const JSON_URL = 'https://agent.service.myxz.top/result.json'
 
-			const cleanHref = link.href.replace(/\/$/, '')
-			const statusDiv = document.createElement('div')
-			statusDiv.classList.add('state')
+function applyStatusTags(data: StatusData) {
+	const linkStatus = data.link_status
+	document.querySelectorAll('.title').forEach((card) => {
+		if (!(card instanceof HTMLAnchorElement) || !card.href)
+			return
 
-			const matchedStatus = data.find(item =>
-				item.link.replace(/\/$/, '') === cleanHref,
-			)
+		const link = card.href.replace(/\/$/, '')
+		const status = linkStatus.find(item =>
+			item.link.replace(/\/$/, '') === link,
+		)
 
-			if (matchedStatus) {
-				let text: string
-				let statusClass: string
+		if (!status)
+			return
 
-				if (matchedStatus.latency === -1) {
-					text = 'ERR'
-					statusClass = 'error'
-				}
-				else {
-					text = `${(matchedStatus.latency * 1000).toFixed(0)} ms`
-					if (matchedStatus.latency <= 3)
-						statusClass = 'success'
-					else if (matchedStatus.latency <= 5)
-						statusClass = 'success'
-					else if (matchedStatus.latency <= 10)
-						statusClass = 'success'
-					else statusClass = 'error'
-				}
+		// 移除已有的状态标签（如果存在）
+		const existingTag = card.querySelector('.status-tag')
+		if (existingTag)
+			existingTag.remove()
 
-				statusDiv.textContent = text
-				statusDiv.classList.add(statusClass)
+		let latencyText = '未知'
+		let className = 'status-tag status-tag-red'
 
-				link.style.position = 'relative'
-				link.appendChild(statusDiv)
-			}
-		})
-	}
-
-	// 尝试从缓存获取数据
-	const cachedData = localStorage.getItem(CACHE_KEY)
-	if (cachedData) {
-		const { data, timestamp }: CacheData = JSON.parse(cachedData)
-		if (Date.now() - timestamp < 1800000) { // 30分钟有效期
-			return processStatusTags(data)
+		if (status.latency !== -1) {
+			latencyText = `${status.latency.toFixed(2)} s`
+			if (status.latency <= 2)
+				className = 'status-tag status-tag-green'
+			else if (status.latency <= 5)
+				className = 'status-tag status-tag-light-yellow'
+			else if (status.latency <= 10)
+				className = 'status-tag status-tag-dark-yellow'
 		}
-	}
 
-	// 获取新数据
-	fetch(url)
-		.then(res => res.json())
-		.then((data: LinkStatus[]) => {
-			processStatusTags(data)
-			const cache: CacheData = {
+		const statusTag = document.createElement('div')
+		statusTag.className = className
+		statusTag.textContent = latencyText
+
+		card.style.position = 'relative'
+		card.appendChild(statusTag)
+	})
+}
+
+function fetchDataAndUpdateUI() {
+	fetch(JSON_URL)
+		.then(response => response.json())
+		.then((data) => {
+			applyStatusTags(data)
+			const cacheData: CacheData = {
 				data,
 				timestamp: Date.now(),
 			}
-			localStorage.setItem(CACHE_KEY, JSON.stringify(cache))
+			localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData))
 		})
-		.catch(err => console.error('Error fetching status data:', err))
+		.catch(error => console.error('获取状态数据失败:', error))
+}
+
+function addStatusTagsWithCache() {
+	const cachedData = localStorage.getItem(CACHE_KEY)
+
+	if (cachedData) {
+		try {
+			const { data, timestamp } = JSON.parse(cachedData) as CacheData
+			if (Date.now() - timestamp < CACHE_EXPIRATION) {
+				applyStatusTags(data)
+			}
+		}
+		catch (e) {
+			console.error('解析缓存数据失败', e)
+		}
+	}
+
+	// 总是获取最新数据
+	fetchDataAndUpdateUI()
 }
 
 onMounted(() => {
-	setTimeout(() => {
-		addStatusTagsWithCache('https://agent.service.myxz.top/result.json')
-	}, 0)
+	// 使用setTimeout确保DOM完全渲染
+	setTimeout(addStatusTagsWithCache, 0)
 })
 </script>
 
@@ -105,12 +126,12 @@ onMounted(() => {
 			<img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
 			<main>
 				<header class="header">
-					<h2 class="title">
+					<div class="title">
 						<a :href="site.link" rel="noopener noreferrer" target="_blank">
 							{{ site.name }}
 						</a>
 						<span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;" />
-					</h2>
+					</div>
 				</header>
 				<section>
 					<div v-for="service in site.service" :key="service.name" class="badges">

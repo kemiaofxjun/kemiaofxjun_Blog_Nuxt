@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 // 导入外部数据
-import { creativityData } from '~/creativity';
+import { creativityData } from '../../creativity';
 
 // 从 creativityData 中提取技能数据（假设取第一个分类）
 const skills = computed(() => {

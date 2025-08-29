@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { about } from '~/about'
+import { about } from '../../about'
 const { data: singlePost } = await useAsyncData('/about', () => queryCollection('content').path('/about').first())
 </script>
 
