@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { siteLinkItems } from '~/sitelink'
+import { siteLinkItems } from 'sitelink'
 </script>
 
 <template>
