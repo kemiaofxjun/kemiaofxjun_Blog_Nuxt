@@ -23,7 +23,7 @@ const JSON_URL = 'https://agent.service.myxz.top/result.json'
 
 function applyStatusTags(data: StatusData) {
   const linkStatus = data.link_status
-  document.querySelectorAll('.flink-list-item').forEach(card => {
+  document.querySelectorAll('.title').forEach(card => {
     if (!(card instanceof HTMLAnchorElement) || !card.href) return
     
     const link = card.href.replace(/\/$/, '')
@@ -85,6 +85,7 @@ onMounted(() => {
   setTimeout(addStatusTagsWithCache, 0)
 })
 </script>
+
 <template>
 <div class="feed-label">
 	<h2> 站点详情 </h2>
@@ -102,12 +103,12 @@ onMounted(() => {
             <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
             <main>
                 <header class="header">
-                    <h2 class="title">
+                    <div class="title">
                         <a :href="site.link" rel="noopener noreferrer" target="_blank">
                             {{ site.name }}
                         </a>
                         <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                    </h2>
+                    </div>
                 </header>
                 <section>
                     <div class="badges" v-for="service in site.service" :key="service.name">
