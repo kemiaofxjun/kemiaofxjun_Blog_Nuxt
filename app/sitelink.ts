@@ -1,5 +1,6 @@
 export interface siteTabs {
     name: string
+    itemnumber: string
     Item: Item[]
 }
 
@@ -20,6 +21,7 @@ export interface service {
 export const siteLinkItems: siteTabs[] = [
     {
         name: '镜像站点',
+        itemnumber: '3',
         Item: [
             {
                 name: 'EdgeOne镜像',
@@ -62,6 +64,7 @@ export const siteLinkItems: siteTabs[] = [
     },
     {
         name: '服务',
+        itemnumber: '1',
         Item: [
             {
                 name: '说说',

@@ -19,7 +19,7 @@ const activeTab = ref(0); // 默认激活第一个标签页
             <button v-for="(tab, index) in siteLinkItems" :key="tab.name" @click="activeTab = index" :class="{ 'active': activeTab === index }">
                 {{ tab.name }}
             </button>
-            <span class="count-text">{{ siteLinkItems[activeTab] }}{{ data?.total ?? 0 }}部游戏</span>
+            <span class="count-text">{{ siteLinkItems[activeTab] }}{{ siteLinkItems?.itemnumber ?? 0 }}部游戏</span>
         </div>
 
         <div class="sitelink-list">
