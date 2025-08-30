@@ -18,13 +18,14 @@ export default defineNuxtConfig({
 			],
 			link: [
 				{ rel: 'icon', href: blogConfig.favicon },
+				{ rel: 'stylesheet', href: 'https://scdn.星.fun/icp.css' },
 				{ rel: 'alternate', type: 'application/atom+xml', href: '/atom.xml' },
 				{ rel: 'preconnect', href: blogConfig.twikoo.preload },
 				{ rel: 'preconnect', href: 'https://sourceimage.s3.bitiful.net' },
-                { rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
-                { rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"'  },
-                { rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"'  },
-				{ rel: 'stylesheet', href: '/assets/css/comment.css', media: 'none', onload: 'this.media="all"'  },
+				{ rel: 'stylesheet', href: 'https://sourceimage.s3.bitiful.net/font/Yozai-Medium/result.css', media: 'none', onload: 'this.media="all"' },
+				{ rel: 'stylesheet', href: 'https://static.vercel.sxiaohe.top/fonts/anzhiyu/anzhiyufonts.css', media: 'none', onload: 'this.media="all"' },
+				{ rel: 'stylesheet', href: '/assets/css/color.css', media: 'none', onload: 'this.media="all"' },
+				{ rel: 'stylesheet', href: '/assets/css/comment.css', media: 'none', onload: 'this.media="all"' },
 			],
 			templateParams: {
 				separator: '|',

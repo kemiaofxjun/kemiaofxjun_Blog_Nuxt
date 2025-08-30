@@ -49,6 +49,7 @@ export default defineAppConfig({
 			{ icon: 'ph:rss-simple-bold', text: 'Atom订阅', url: '/atom.xml' },
 			{ icon: 'ph:subway-bold', text: '开往', url: 'https://www.travellings.cn/go-by-clouds.html' },
 		] satisfies NavItem[],
+		message: '<a href="https://icp.gov.moe/?keyword=20250530" target="_blank">萌ICP备20250530号</a>',
 		/** 页脚站点地图 */
 
 		nav: [
@@ -74,6 +75,7 @@ export default defineAppConfig({
 					{ icon: 'simple-icons:nuxtdotjs', text: 'Nuxt开源博客主题', url: 'https://github.com/L33Z22L11/blog-v3' },
 					// { icon: 'ph:swatches-bold', text: '主题和组件文档', url: 'https://www.myxz.top/theme' },
 					{ icon: 'ph:certificate-bold', text: '萌备20250530号', url: 'https://icp.gov.moe/?keyword=20250530' },
+					{ icon: 'ph:certificate-bold', text: '雾ICP备20250530号', url: 'https://icp.wudu.ltd/id.php?keyword=20250530' },
 				],
 			},
 		] satisfies Nav,

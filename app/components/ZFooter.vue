@@ -20,6 +20,12 @@ const appConfig = useAppConfig()
 		</div>
 	</nav>
 	<p v-html="appConfig.footer.copyright" />
+	<div class="github-badge">
+		<span class="badge-subject">雾备</span>
+		<a style="color:#fff" href="https://icp.wudu.ltd/id.php?keyword=20250530" rel="external" target="_blank">
+			<span class="badge-value bg-cai">20250530号</span>
+		</a>
+	</div>
 </footer>
 </template>
 
