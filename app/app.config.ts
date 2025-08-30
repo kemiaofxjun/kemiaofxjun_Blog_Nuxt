@@ -105,6 +105,7 @@ export default defineAppConfig({
 				{ icon: 'ph:lightning-bold', text: '闲言碎语', url: '/essays' },
 				{ icon: 'ph:star-of-david-bold', text: '优良精装', url: '/equipment' },
 				{ icon: 'ph:apple-podcasts-logo-bold', text: '关于自己', url: '/about' },
+				// { icon: 'ph:codesandbox-logo-bold', text:'站点展览', url:'/site'}
 			],
 		},
 	] satisfies Nav,

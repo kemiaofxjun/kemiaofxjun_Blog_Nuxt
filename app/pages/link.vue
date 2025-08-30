@@ -5,7 +5,6 @@ import FlinkTopCard from '../components/card/FlinkTopCard.vue'
 
 const appConfig = useAppConfig()
 const layoutStore = useLayoutStore()
-layoutStore.setAside([])
 
 const { data: postLink } = await useAsyncData('/link', () => queryCollection('content').path('/link').first())
 useSeoMeta({
