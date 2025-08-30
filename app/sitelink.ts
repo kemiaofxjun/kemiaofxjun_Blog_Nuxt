@@ -8,7 +8,6 @@ export interface Item {
     image: string
     link: string
     desc: string
-    status: '正常'|'失败'|'迟缓'
     service: service[]
 }
 
@@ -20,18 +19,45 @@ export interface service {
 
 export const siteLinkItems: siteTabs[] = [
     {
-        name: '分站',
+        name: '镜像站点',
         Item: [
             {
                 name: 'EdgeOne镜像',
                 image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-                link: 'https://blog-v3.myxz.top',
+                link: 'https://blog-v3.edgeone.mirrors.myxz.top',
                 desc: "",
                 service: [
-                    { name: 'EdgeOne', image: '', link: ""}
+                    { 
+                        name: 'EdgeOne', 
+                        image: '/assets/img/link/service/edgeone.jpg', 
+                        link: "https://edgeone.ai/"
+                    }
                 ],
-                status: '正常'
-            }
+            },{
+                name: "Vercel镜像",
+                image: "https://sourceimage.s3.bitiful.net/myxz.avif",
+                link: "https://blog-v3.vercel.mirrors.myxz.top",
+                desc: "",
+                service: [
+                    {
+                        name: "Vercel",
+                        image: "/assets/img/link/service/vercel.png",
+                        link: "https://vercel.com"
+                    }
+                ]
+            },{
+                name: "Netlify镜像",
+                image: "https://sourceimage.s3.bitiful.net/myxz.avif",
+                link: "https://blog-v3.netifly.mirrors.myxz.top",
+                desc: "",
+                service: [
+                    {
+                        name: "Netlify",
+                        image: "/assets/img/link/service/netlify.png",
+                        link: "https://Netlify.com"
+                    }
+                ]
+            },
         ]
     },
     {
@@ -43,9 +69,12 @@ export const siteLinkItems: siteTabs[] = [
                 link: 'https://blog-v3.myxz.top',
                 desc: "",
                 service: [
-                    { name: 'EdgeOne', image: '', link: "" }
+                    { 
+                        name: 'EdgeOne', 
+                        image: '', 
+                        link: "" 
+                    }
                 ],
-                status: "正常"
             }
         ]
     },
