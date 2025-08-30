@@ -41,7 +41,7 @@ export const siteLinkItems: siteTabs[] = [
                 service: [
                     {
                         name: "Vercel",
-                        image: "/assets/img/link/service/vercel.png",
+                        image: "/assets/img/link/service/vercel.jpg",
                         link: "https://vercel.com"
                     }
                 ]
@@ -53,7 +53,7 @@ export const siteLinkItems: siteTabs[] = [
                 service: [
                     {
                         name: "Netlify",
-                        image: "/assets/img/link/service/netlify.png",
+                        image: "/assets/img/link/service/netlify.jpg",
                         link: "https://Netlify.com"
                     }
                 ]
