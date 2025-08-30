@@ -62,11 +62,13 @@ const activeTab = ref(0); // 默认激活第一个标签页
 </template>
 
 <style lang="css" scoped>
+/* 页面宽度 */
 .sitelinkPage {
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
+/* tab组件样式（从原来的组件样式照搬） */
 .float-in-leave-active {
     position: revert
 }
@@ -141,7 +143,54 @@ button.active:before {
     padding: .5em 0
 }
 
+/* badge组件样式（从原来的组件样式直接照搬） */
+.badge {
+    align-items: baseline;
+    background-color: var(--c-bg-2);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    display: inline-flex;
+    font-size: .875em;
+    height: 1.6em;
+    line-height: 1.6;
+    transition: color .2s
+}
 
+@supports (color: color-mix(in srgb,transparent,transparent)) {
+    .badge {
+        background-color:color-mix(in srgb,currentcolor 5%,transparent);
+        border-color: color-mix(in srgb,currentcolor 10%,transparent);
+        color: color-mix(in srgb,currentcolor 80%,transparent)
+    }
+}
+
+.badge[href]:hover {
+    color: var(--c-text)
+}
+
+.badge.badge-round,.badge.badge-round .badge-icon {
+    border-radius: 1em
+}
+
+.badge-img .badge-icon {
+    align-self: center;
+    border-radius: 3.5px;
+    height: 100%
+}
+
+.badge-img .badge-text {
+    margin-left: -.1em
+}
+
+.badge-text {
+    padding: 0 .4em
+}
+
+.badge-text:empty {
+    display: none
+}
+
+/* 卡片组件样式 */
 .feed-label {
     margin: 2rem 1rem -1rem
 }
