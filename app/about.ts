@@ -138,8 +138,8 @@ export const about: aboutConnect[] = [
 		}],
 		hello: 'Main Dis My Blogs',
 		social: [
-			{ herf: 'https://github.com/kemiaofxjun', class: 'ph:github-logo-bold' },
-			{ herf: 'mailto:me@mail.kemeow.top', class: 'ph:envelope' },
+			{ herf: 'https://github.com/kemiaofxjun', class: 'i-ph:github-logo-bold' },
+			{ herf: 'mailto:me@mail.kemeow.top', class: 'i-ph:envelope' },
 		],
 		maxim: [{
 			tip: '座右铭',
