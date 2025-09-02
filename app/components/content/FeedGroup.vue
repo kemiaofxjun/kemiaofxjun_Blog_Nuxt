@@ -1,182 +1,112 @@
 <script setup lang="ts">
-import feeds from '../../feeds'
+import type { FeedEntry, FeedGroup } from '~/types/feed'
 
-const appConfig = useAppConfig()
+defineProps<{
+	label?: string
+	feeds: FeedGroup[]
+}>()
 
-// 从feeds中随机选择4个友链
-const randomFeeds = ref<any[]>([])
-const hitokoto = ref('')
-const showHitokoto = ref(false)
-
-// 初始化随机友链
-function initializeRandomFeeds() {
-	// 收集所有友链条目
-	// 收集所有友链条目
-	const allFeeds = feeds.flatMap((group: any) =>
-		// 对每个组内的条目进行映射处理
-		group.entries.map((entry: any) => ({
-			// 设置条目的文本为作者的名称
-			text: entry.author,
-			// 设置条目的链接为条目的链接
-			url: entry.link,
-			// 设置条目的图标为统一的图标
-			icon: 'ph:link-bold', // 使用统一的图标
-		})),
-	)
-
-	// Fisher-Yates 洗牌算法随机打乱数组
-	// 将allFeeds数组复制到一个新数组中，并应用Fisher-Yates洗牌算法打乱顺序
-	const shuffled = [...allFeeds].sort(() => 0.5 - Math.random())
-
-	// 返回前4个
-	// 将打乱后的数组的前4个元素赋值给randomFeeds.value
-	randomFeeds.value = shuffled.slice(0, 4)
-}
-
-// 获取一言
-async function fetchHitokoto() {
-	try {
-		const response = await fetch('https://yiyan.050815.xyz/?encode=text')
-		hitokoto.value = await response.text()
-		showHitokoto.value = true
+// 友链浮现随机延迟
+function getCardDelay(feed: FeedEntry) {
+	let hash = 0
+	for (const char of feed.link) {
+		hash = hash * 31 + char.charCodeAt(0)
 	}
-	catch (error) {
-		console.error('获取一言失败:', error)
-		hitokoto.value = '暂无法获取一言...'
-		showHitokoto.value = true
-	}
-}
-
-// 页面加载时初始化
-initializeRandomFeeds()
-fetchHitokoto()
-
-// 刷新随机友链
-function refreshFeeds() {
-	initializeRandomFeeds()
+	return (hash % 1000) / 1000
 }
 </script>
 
 <template>
-<footer class="z-footer">
-	<nav class="footer-nav">
-		<div v-for="(group, groupIndex) in appConfig.footer.nav" :key="groupIndex" class="footer-nav-group">
-			<h3 v-if="group.title">
-				{{ group.title }}
-			</h3>
-			<menu>
-				<li v-for="(item, itemIndex) in group.items" :key="itemIndex">
-					<ZRawLink :to="item.url">
-						<Icon :name="item.icon" />
-						<span class="nav-text">{{ item.text }}</span>
-					</ZRawLink>
-				</li>
-			</menu>
-		</div>
+<h2 v-if="label" class="feed-label text-creative">
+	{{ label }}
+</h2>
 
-		<!-- 随机友链展示 -->
-		<div class="footer-nav-group">
-			<h3>
-				友链
-				<button aria-label="刷新" class="refresh-button" title="刷新友链" @click="refreshFeeds">
-					<Icon name="ph:arrow-clockwise-bold" />
-				</button>
-			</h3>
-			<menu>
-				<li v-for="(feed, index) in randomFeeds" :key="index">
-					<ZRawLink :to="feed.url" external>
-						<Icon :name="feed.icon" />
-						<span class="nav-text">{{ feed.text }}</span>
-					</ZRawLink>
-				</li>
-				<li>
-					<ZRawLink to="/link" external>
-						<span class="nav-text">更多...</span>
-					</ZRawLink>
-				</li>
-			</menu>
-		</div>
-	</nav>
-	<p v-html="appConfig.footer.copyright" />
-	<p class="hitokoto" :class="{ 'hitokoto-fade-in': showHitokoto }">
-		{{ hitokoto }}
+<section v-for="group in feeds" :key="group.name" class="feed-group">
+	<h3 class="feed-title">
+		{{ group.name }}
+	</h3>
+	<p class="feed-desc">
+		{{ group.desc }}
 	</p>
-</footer>
+	<TransitionGroup tag="menu" class="feed-list" appear name="float-in">
+		<li
+			v-for="entry in group.entries"
+			:key="entry.link"
+			:style="`--delay: ${getCardDelay(entry)}s;`"
+		>
+			<FeedCard v-bind="entry" />
+		</li>
+	</TransitionGroup>
+</section>
 </template>
 
 <style lang="scss" scoped>
-.z-footer {
-	margin: 3rem 1rem;
-	font-size: 0.9em;
+.feed-label {
+	margin: 2rem 1rem -1rem;
+}
+
+.feed-group {
+	// position: relative;
+	container-type: inline-size;
+	margin: 2rem 1rem;
+}
+
+.feed-title {
+	position: sticky;
+	opacity: 0.5;
+	top: 0;
+	margin-bottom: -0.3em;
+	mask-image: linear-gradient(#FFF 50%, transparent);
+	font: 800 5em / 1 var(--font-stroke-free);
+	text-align: center;
+	color: transparent;
+	transition: 0.2s;
+	z-index: -1;
+	-webkit-text-stroke: 1px var(--c-text-3);
+
+	&::selection, :hover > & {
+		color: #4b4b4b;
+		text-shadow: 0 0 8px var(--c-text-3);
+		-webkit-text-stroke: 0;
+	}
+}
+
+.feed-desc {
+	text-align: center;
 	color: var(--c-text-2);
+}
 
-	.footer-nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 5vw clamp(2rem, 5%, 5vw);
-		padding-block: 3rem;
+.feed-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	gap: 0.2rem 0.5rem;
+	margin: 1rem auto;
 
-		h3 {
-			margin: 0.5em;
-			font: inherit;
-			display: flex;
-			align-items: center;
-			gap: 0.5em;
-		}
+	@mixin feed-narrow {
+		grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+		font-size: 0.9em;
 
-		a {
-			display: flex;
-			align-items: center;
-			gap: 0.3em;
-			width: fit-content;
-			padding: 0.3em 0.5em;
-			border-radius: 0.5em;
-			font-size: 0.9em;
-			transition: background-color 0.2s, color 0.1s;
+		:deep(.feed-card) {
+			flex-direction: column;
+			text-align: center;
 
-			&:hover {
-				background-color: var(--c-bg-soft);
-				color: var(--c-text);
+			.avatar.avatar {
+				margin: 0 0 0.2rem;
 			}
 		}
 	}
 
-	.refresh-button {
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0.2em;
-		border-radius: 0.3em;
-		color: var(--c-text-2);
-		transition: background-color 0.2s, color 0.1s;
-
-		&:hover {
-			background-color: var(--c-bg-soft);
-			color: var(--c-text);
-		}
+	@media (max-width: $breakpoint-phone) {
+		@include feed-narrow;
 	}
 
-	p {
-		margin: 0.5em;
+	@container (max-width: #{$breakpoint-phone}) {
+		@include feed-narrow;
 	}
+}
 
-	.hitokoto-fade-in {
-		animation: fade-in 0.5s ease-in-out;
-	}
-
-	.hitokoto {
-		color: var(--c-text-3);
-	}
-
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+:deep(.feed-card.feed-card) {
+	width: auto;
+	margin: 0;
 }
 </style>
