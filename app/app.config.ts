@@ -11,12 +11,12 @@ export default defineAppConfig({
 
 	article: {
 		categories: <{ [category: string]: { icon: string, color?: string } }>{
-			搭建: { icon: 'ph:mouse-bold', color: '#3af' },
+			// 搭建: { icon: 'ph:mouse-bold', color: '#3af' },
 			技术分享: { icon: 'ph:code-bold', color: '#77f' },
-			生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
-			博客魔改: { icon: 'ph:code-bold', color: '#77f' },
+			// 生活: { icon: 'ph:shooting-star-bold', color: '#3ba' },
+			// 博客魔改: { icon: 'ph:code-bold', color: '#77f' },
 			资源分享: { icon: 'ph:cloud-bold', color: '#77f' },
-			未分类: { icon: 'ph:folder-dotted-bold' },
+			// 未分类: { icon: 'ph:folder-dotted-bold' },
 		},
 		defaultCategoryIcon: 'ph:folder-bold',
 		/** 分类排序方式，键为排序字段，值为显示名称 */

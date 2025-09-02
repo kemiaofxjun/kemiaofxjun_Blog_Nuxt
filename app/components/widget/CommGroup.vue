@@ -2,16 +2,16 @@
 <ZWidget
 	card
 	dim
-	title="博客/技术社区"
-	bg-img="https://p.qlogo.cn/gh/169994096/169994096/100/"
+	title="TG频道"
+	bg-img="https://t.me/kemiaofx_me"
 	bg-right
 >
 	<div class="title">
-		纸网接入点
+		克喵-资源分享
 	</div>
 
 	<Tip copy icon="oui:empty" :tip-options="{ placement: 'left' }">
-		<Icon name="ri:qq-fill" />169994096
+		<Icon name="ri:telegram-fill" size="1.2em" />kemiaofx_me
 	</Tip>
 </ZWidget>
 </template>

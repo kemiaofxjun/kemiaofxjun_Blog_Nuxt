@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { CollectionType } from '../composables/useBangumi'
+import type { CollectionType } from '~/composables/useBangumi'
 import Pagination from '~/components/partial/Pagination.vue'
 
-import useBangumi from '../composables/useBangumi'
+import useBangumi from '~/composables/useBangumi'
 
 const route = useRoute()
 const contentType = 'anime'
