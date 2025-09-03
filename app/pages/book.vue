@@ -37,7 +37,7 @@ watch(collectionType, () => {
 			:primary="collectionType === key"
 			@click="collectionType = key as CollectionType"
 		/>
-		<span class="count-text">{{ orderMap[collectionType] }}{{ data?.total ?? 0 }}部动漫</span>
+		<span class="count-text">{{ orderMap[collectionType] }}{{ data?.total ?? 0 }}本书</span>
 	</div>
 	<div v-if="error" class="error">
 		{{ error.message }}

@@ -45,7 +45,7 @@
 // }
 import type { BangumiApiResponse } from '~/types/bangumi'
 
-export type ContentType = 'anime' | 'game'
+export type ContentType = 'anime' | 'game' | 'real' | 'book' | 'music'
 export type CollectionType = keyof typeof TYPE_ID_MAP
 
 export const ITEMS_PER_PAGE = 20
@@ -61,9 +61,9 @@ export default function useBangumiCollection(
 	collectionType: Ref<CollectionType> = ref('wish'),
 	page: Ref<number> = ref(1),
 ) {
-	const username = 'shenley'
+	const username = 'kemiao'
 
-	const subjectType = computed(() => (contentType === 'anime' ? 2 : 4))
+	const subjectType = computed(() => contentType === 'anime' ? 2 : contentType === 'game' ? 4 : contentType === 'book' ? 1 : contentType === 'real' ? 6 : 6)
 	const typeId = computed(() => TYPE_ID_MAP[toValue(collectionType)])
 	const offset = computed(() => (page.value - 1) * ITEMS_PER_PAGE)
 

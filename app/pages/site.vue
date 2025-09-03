@@ -1,66 +1,66 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue'
 import { siteLinkItems } from '../sitelink'
 
 const layoutStore = useLayoutStore()
 layoutStore.setAside(['blog-stats', 'blog-tech', 'blog-log'])
 
-const activeTab = ref(0); // 默认激活第一个标签页
+const activeTab = ref(0) // 默认激活第一个标签页
 </script>
 
 <template>
 <div class="sitelinkPage">
-    <div class="feed-label">
-        <h2> 站点详情 </h2>
-    </div>
+	<div class="feed-label">
+		<h2> 站点详情 </h2>
+	</div>
 
-    <div class="tabs-container">
-        <div class="tabs">
-            <button v-for="(tab, index) in siteLinkItems" :key="tab.name" @click="activeTab = index" :class="{ 'active': activeTab === index }">
-                {{ tab.name }}
-            </button>
-        </div>
-        <span class="count-text" v-for="(count, index) in siteLinkItems[activeTab]" :key="index">
-            {{ count.name }}{{ count?.itemnumber ?? 0 }}个站点
-        </span>
+	<div class="tabs-container">
+		<div class="tabs">
+			<button v-for="(tab, index) in siteLinkItems" :key="tab.name" :class="{ active: activeTab === index }" @click="activeTab = index">
+				{{ tab.name }}
+			</button>
+		</div>
+		<span v-for="(count, index) in siteLinkItems[activeTab]" :key="index" class="count-text">
+			{{ count.name }}{{ count?.itemnumber ?? 0 }}个站点
+		</span>
 
-        <div class="sitelink-list">
-            <div class="sitelink-item" v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index">
-                <img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
-                <main>
-                    <header class="header">
-                        <div class="title">
-                            <a :href="site.link" rel="noopener noreferrer" target="_blank">
-                                {{ site.name }}
-                            </a>
-                            <span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;"></span>
-                        </div>
-                    </header>
-                    <section>
-                        <div class="badges" v-for="service in site.service" :key="service.name">
-                            <a :href="service.link" rel="noopener noreferrer" target="_blank" class="badge badge-img">
-                                <img :alt="service.name" class="badge-icon" :src="service.image">
-                                <span class="badge-text">
-                                    {{ service.name }}
-                                </span>
-                            </a>
-                        </div>
-                        <p class="description">
-                            {{ site.desc }}
-                        </p>
-                    </section>
-                    <footer>
-                        <h5 class="rss">
-                            <span class="iconify i-ph:rss-fill" aria-hidden="true"></span>
-                            <a :href="site.link" rel="noopener noreferrer" target="_blank">
-                                {{ site.link }}
-                            </a>
-                        </h5>
-                    </footer>
-                </main>
-            </div>
-        </div>
-    </div>
+		<div class="sitelink-list">
+			<div v-for="(site, index) in siteLinkItems[activeTab].Item" :key="index" class="sitelink-item">
+				<img width="150" height="150" alt="Syntax" class="cover" :src="site.image">
+				<main>
+					<header class="header">
+						<div class="title">
+							<a :href="site.link" rel="noopener noreferrer" target="_blank">
+								{{ site.name }}
+							</a>
+							<span class="iconify i-ph:link-duotone" aria-hidden="true" style="font-size: 0.8em;" />
+						</div>
+					</header>
+					<section>
+						<div v-for="service in site.service" :key="service.name" class="badges">
+							<a :href="service.link" rel="noopener noreferrer" target="_blank" class="badge badge-img">
+								<img :alt="service.name" class="badge-icon" :src="service.image">
+								<span class="badge-text">
+									{{ service.name }}
+								</span>
+							</a>
+						</div>
+						<p class="description">
+							{{ site.desc }}
+						</p>
+					</section>
+					<footer>
+						<h5 class="rss">
+							<span class="iconify i-ph:rss-fill" aria-hidden="true" />
+							<a :href="site.link" rel="noopener noreferrer" target="_blank">
+								{{ site.link }}
+							</a>
+						</h5>
+					</footer>
+				</main>
+			</div>
+		</div>
+	</div>
 </div>
 </template>
 
