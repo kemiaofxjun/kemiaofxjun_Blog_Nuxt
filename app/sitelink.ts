@@ -20,26 +20,26 @@ export interface service {
 
 export const siteLinkItems: siteTabs[] = [
 	{
-		name: '镜像站点',
+		name: '服务',
 		itemnumber: '3',
 		Item: [
 			{
-				name: 'EdgeOne镜像',
-				image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-				link: 'https://blog-v3.edgeone.mirrors.myxz.top',
+				name: '主页',
+				image: 'https://www.zhilu.site/api/avatar.png',
+				link: 'https://home.kemeow.top',
 				desc: '',
 				service: [
 					{
-						name: 'EdgeOne',
-						image: '/assets/img/link/service/edgeone.jpg',
-						link: 'https://edgeone.ai/',
+						name: 'Vercel',
+						image: '/assets/img/link/service/vercel.jpg',
+						link: 'https://vercel.com/',
 					},
 				],
 			},
 			{
-				name: 'Vercel镜像',
-				image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-				link: 'https://blog-v3.vercel.mirrors.myxz.top',
+				name: '网站监测',
+				image: 'https://imgtg.kemeow.top/file/AgACAgUAAyEGAAScqokCAAMaaKmTWVxkdidV-MMtbWaBcKQWZJYAAoHEMRuLMFFVq_PMXQkvPxIBAAMCAAN4AAM2BA.webp',
+				link: 'https://status.kemeow.top',
 				desc: '',
 				service: [
 					{
@@ -50,37 +50,37 @@ export const siteLinkItems: siteTabs[] = [
 				],
 			},
 			{
-				name: 'Netlify镜像',
-				image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-				link: 'https://blog-v3.netifly.mirrors.myxz.top',
+				name: '每日热榜',
+				image: 'https://imgtg.kemeow.top/file/AgACAgUAAyEGAAScqokCAANAaKxl6XDgJW0LfTgQ8E9qbKk4xFoAAhDHMRv-Y2hVylN89o3A7O8BAAMCAAN3AAM2BA.webp',
+				link: 'https://newsnow.kemeow.top',
 				desc: '',
 				service: [
 					{
-						name: 'Netlify',
-						image: '/assets/img/link/service/netlify.jpg',
-						link: 'https://Netlify.com',
+						name: 'Vercel',
+						image: '/assets/img/link/service/vercel.jpg',
+						link: 'https://vercel.com',
 					},
 				],
 			},
 		],
 	},
-	{
-		name: '服务',
-		itemnumber: '1',
-		Item: [
-			{
-				name: '说说',
-				image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
-				link: 'https://blog-v3.myxz.top',
-				desc: '',
-				service: [
-					{
-						name: 'EdgeOne',
-						image: '',
-						link: '',
-					},
-				],
-			},
-		],
-	},
+	// {
+	// 	name: '服务',
+	// 	itemnumber: '1',
+	// 	Item: [
+	// 		{
+	// 			name: '说说',
+	// 			image: 'https://sourceimage.s3.bitiful.net/myxz.avif',
+	// 			link: 'https://blog-v3.myxz.top',
+	// 			desc: '',
+	// 			service: [
+	// 				{
+	// 					name: 'EdgeOne',
+	// 					image: '',
+	// 					link: '',
+	// 				},
+	// 			],
+	// 		},
+	// 	],
+	// },
 ]
