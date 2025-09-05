@@ -76,6 +76,7 @@ export default defineAppConfig({
 					// { icon: 'ph:swatches-bold', text: '主题和组件文档', url: 'https://www.myxz.top/theme' },
 					{ icon: 'ph:certificate-bold', text: '萌备20250530号', url: 'https://icp.gov.moe/?keyword=20250530' },
 					{ icon: 'ph:certificate-bold', text: '雾ICP备20250530号', url: 'https://icp.wudu.ltd/id.php?keyword=20250530' },
+					{ icon: 'ph:certificate-bold', text: '茶ICP备2025090150号', url: 'https://icp.redcha.cn/beian/ICP-2025090150.html' },
 				],
 			},
 		] satisfies Nav,

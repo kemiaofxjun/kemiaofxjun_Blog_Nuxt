@@ -96,6 +96,7 @@ function refreshFeeds() {
 			<span class="badge-value bg-cai">20250530号</span>
 		</a>
 	</div>
+	<a href="https://icp.redcha.cn/beian/ICP-2025090150.html" target="_blank"><img style="width:20px;height:20px;" src="https://icp.redcha.cn/static/picture/icplogoi.png">茶ICP备2025090150号</a>
 	<p v-html="appConfig.footer.copyright" />
 	<p class="hitokoto" :class="{ 'hitokoto-fade-in': showHitokoto }">
 		{{ hitokoto }}
